@@ -1,0 +1,4 @@
+{"image_name":"localhost/conunit-rq1/shell-form-entrypoint-defect:rq1","suite_name":"ConUnit hardening profile","status":"COMPLETED","timestamp":"2026-11-14T00:00:00Z","total":2,"passed":1,"failed":1,"results":[
+ {"test_id":"SPEC-01","test_name":"Non-Root Execution Identity","tier":1,"outcome":"FAIL","passed":false,"rule_type":"spec"},
+ {"test_id":"FS-04","test_name":"SUID/SGID Privilege Escalation Vectors","tier":2,"outcome":"PASS","passed":true,"rule_type":"filesystem"}
+]}

@@ -1,0 +1,73 @@
+{
+  "source": {
+    "registry": "gcr.io",
+    "repository": "distroless/static-debian12",
+    "tag_at_fetch": "nonroot",
+    "index_or_manifest_digest": "sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab",
+    "platform_manifest_digest": "sha256:52dcfbabb7457ea47c82f6e13af8c8a4a1d9f7b0145142b3ecab20f2b888411d",
+    "config_digest": "sha256:12aa113e298cbae388b298c0dc163fa1547beba948153b23eb9094e16a07a770"
+  },
+  "platform": "linux/amd64",
+  "config": {
+    "User": "65532",
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
+    ],
+    "Volumes": null,
+    "Healthcheck": null,
+    "Entrypoint": null,
+    "Cmd": null,
+    "WorkingDir": "/home/nonroot"
+  },
+  "history": [
+    {
+      "created_by": "bazel build @bookworm//base-files/amd64:data_statusd",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build @bookworm//netbase/amd64:data_statusd",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build @bookworm//tzdata/amd64:data_statusd",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build @bookworm//media-types/amd64:data_statusd",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:rootfs",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:passwd",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:home",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:group",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:tmp",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //static:nsswitch",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:os_release_debian12",
+      "empty_layer": false
+    },
+    {
+      "created_by": "bazel build //common:cacerts_debian12_amd64_tar",
+      "empty_layer": false
+    }
+  ]
+}

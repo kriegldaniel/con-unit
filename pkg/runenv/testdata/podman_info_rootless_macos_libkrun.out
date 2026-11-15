@@ -1,0 +1,180 @@
+{
+  "host": {
+    "arch": "arm64",
+    "buildahVersion": "1.43.0",
+    "cgroupManager": "systemd",
+    "cgroupVersion": "v2",
+    "cgroupControllers": [
+      "cpu",
+      "io",
+      "memory",
+      "pids"
+    ],
+    "conmon": {
+      "package": "conmon-2.1.13-2.fc43.aarch64",
+      "path": "/usr/bin/conmon",
+      "version": "conmon version 2.1.13, commit: "
+    },
+    "cpus": 6,
+    "cpuUtilization": {
+      "userPercent": 0.26,
+      "systemPercent": 0.23,
+      "idlePercent": 99.51
+    },
+    "databaseBackend": "sqlite",
+    "distribution": {
+      "distribution": "fedora",
+      "variant": "coreos",
+      "version": "43"
+    },
+    "eventLogger": "journald",
+    "freeLocks": 1672,
+    "hostname": "localhost.localdomain",
+    "idMappings": {
+      "gidmap": [
+        {
+          "container_id": 0,
+          "host_id": 1000,
+          "size": 1
+        },
+        {
+          "container_id": 1,
+          "host_id": 100000,
+          "size": 1000000
+        }
+      ],
+      "uidmap": [
+        {
+          "container_id": 0,
+          "host_id": 501,
+          "size": 1
+        },
+        {
+          "container_id": 1,
+          "host_id": 100000,
+          "size": 1000000
+        }
+      ]
+    },
+    "kernel": "6.18.10-200.fc43.aarch64",
+    "logDriver": "journald",
+    "memFree": 328732672,
+    "memTotal": 3786420224,
+    "networkBackend": "netavark",
+    "networkBackendInfo": {
+      "backend": "netavark",
+      "version": "netavark 1.17.2",
+      "package": "netavark-1.17.2-1.fc43.aarch64",
+      "path": "/usr/libexec/podman/netavark",
+      "dns": {
+        "version": "aardvark-dns 1.17.0",
+        "package": "aardvark-dns-1.17.0-1.fc43.aarch64",
+        "path": "/usr/libexec/podman/aardvark-dns"
+      },
+      "defaultNetwork": "podman"
+    },
+    "ociRuntime": {
+      "name": "crun",
+      "package": "crun-1.25.1-1.fc43.aarch64",
+      "path": "/usr/bin/crun",
+      "version": "crun version 1.25.1\ncommit: 156ae065d4a322d149c7307034f98d9637aa92a2\nrundir: /run/user/501/crun\nspec: 1.0.0\n+SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +LIBKRUN +WASM:wasmedge +YAJL"
+    },
+    "os": "linux",
+    "remoteSocket": {
+      "path": "unix:///run/user/501/podman/podman.sock",
+      "exists": true
+    },
+    "rootlessNetworkCmd": "pasta",
+    "serviceIsRemote": true,
+    "security": {
+      "apparmorEnabled": false,
+      "capabilities": "CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_FOWNER,CAP_FSETID,CAP_KILL,CAP_NET_BIND_SERVICE,CAP_SETFCAP,CAP_SETGID,CAP_SETPCAP,CAP_SETUID,CAP_SYS_CHROOT",
+      "rootless": true,
+      "seccompEnabled": true,
+      "seccompProfilePath": "/usr/share/containers/seccomp.json",
+      "selinuxEnabled": true
+    },
+    "swapFree": 0,
+    "swapTotal": 0,
+    "uptime": "4h 21m 3.00s (Approximately 0.17 days)",
+    "variant": "v8",
+    "linkmode": "dynamic",
+    "emulatedArchitectures": [
+      "linux/386",
+      "linux/amd64",
+      "linux/arm64be"
+    ]
+  },
+  "store": {
+    "configFile": "/var/home/core/.config/containers/storage.conf",
+    "containerStore": {
+      "number": 0,
+      "paused": 0,
+      "running": 0,
+      "stopped": 0
+    },
+    "graphDriverName": "overlay",
+    "graphOptions": {},
+    "graphRoot": "/var/home/core/.local/share/containers/storage",
+    "graphRootAllocated": 99252940800,
+    "graphRootUsed": 14337183744,
+    "graphStatus": {
+      "Backing Filesystem": "xfs",
+      "Native Overlay Diff": "true",
+      "Supports d_type": "true",
+      "Supports shifting": "false",
+      "Supports volatile": "true",
+      "Using metacopy": "false"
+    },
+    "imageCopyTmpDir": "/var/tmp",
+    "imageStore": {
+      "number": 17
+    },
+    "runRoot": "/run/user/501/containers",
+    "volumePath": "/var/home/core/.local/share/containers/storage/volumes",
+    "transientStore": false
+  },
+  "registries": {
+    "search": [
+      "docker.io"
+    ]
+  },
+  "plugins": {
+    "volume": [
+      "local"
+    ],
+    "network": [
+      "bridge",
+      "macvlan",
+      "ipvlan"
+    ],
+    "log": [
+      "k8s-file",
+      "none",
+      "passthrough",
+      "journald"
+    ],
+    "authorization": null
+  },
+  "version": {
+    "APIVersion": "5.8.1",
+    "Version": "5.8.1",
+    "GoVersion": "go1.25.7 X:nodwarf5",
+    "GitCommit": "c6077f645788743258a1a749f8005b4fb3cbe533",
+    "BuiltTime": "Wed Mar 11 01:00:00 2026",
+    "Built": 1773187200,
+    "BuildOrigin": "Copr: packit/containers-podman-28250",
+    "OsArch": "linux/arm64",
+    "Os": "linux"
+  },
+  "Client": {
+    "APIVersion": "5.8.1",
+    "Version": "5.8.1",
+    "GoVersion": "go1.26.1",
+    "GitCommit": "",
+    "BuiltTime": "Tue Jan  1 01:00:00 1980",
+    "Built": 315532800,
+    "OsArch": "darwin/arm64",
+    "Os": "darwin"
+  }
+}

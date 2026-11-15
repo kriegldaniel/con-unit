@@ -1,0 +1,13 @@
+# Deprecated Docker Official Images among the dataset candidates.
+#
+# One entry per line: either a full candidate tag as it appears in
+# fixtures/evaluation_dataset_full.txt (for example nginx:1.30.6-alpine) or a
+# repository name (for example rethinkdb), which flags every candidate of that
+# repository. tools/pin_dataset records the matches in the dataset audit file
+# and warns about them. Flagged images stay in the dataset unless they are
+# removed from the candidate list by hand; the audit documents either choice.
+#
+# Fill this list from the deprecation notices of docker-library/official-images
+# at the sampling frame commit recorded in the audit. It is intentionally empty
+# until that check has been done; an empty list is recorded as zero flagged
+# images, not as a verified absence of deprecated images.

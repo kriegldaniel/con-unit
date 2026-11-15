@@ -1,0 +1,98 @@
+{
+  "schema_version": "2",
+  "run_a": {
+    "path": "runA/empirical_study.json",
+    "sha256": "ccbdad9326cca838e424dd31a92ddf1e4211df39821677a4b9c4208520370316",
+    "started_at": "2026-11-14T10:00:00Z",
+    "instance_type": "c6i.2xlarge",
+    "dataset_sha256": "d",
+    "attempted": 4,
+    "completed": 4
+  },
+  "run_b": {
+    "path": "runB/empirical_study.json",
+    "sha256": "ea1f281cbab82beb05c33d440c90e64bdd6a4dd4425e45594a388fd9788643e9",
+    "started_at": "2026-11-14T10:00:00Z",
+    "instance_type": "c6i.2xlarge",
+    "dataset_sha256": "d",
+    "attempted": 4,
+    "completed": 4
+  },
+  "images": {
+    "records_in_both": 4,
+    "completed_in_both": 4,
+    "records_only_in_a": 0,
+    "records_only_in_b": 0
+  },
+  "checks": [
+    {
+      "rule": "SPEC-01",
+      "name": "SPEC-01 property_name",
+      "tier": 1,
+      "verified_in_both": 3,
+      "agree": 2,
+      "pass_pass": 2,
+      "pass_fail": 1,
+      "fail_pass": 0,
+      "fail_fail": 0,
+      "percent_agreement": 0.6666666666666666,
+      "verified_only_in_a": 1,
+      "verified_only_in_b": 0,
+      "flipped": 1,
+      "flipped_images": [
+        "x@sha256:1"
+      ]
+    },
+    {
+      "rule": "FS-04",
+      "name": "FS-04 property_name",
+      "tier": 2,
+      "verified_in_both": 4,
+      "agree": 2,
+      "pass_pass": 1,
+      "pass_fail": 1,
+      "fail_pass": 1,
+      "fail_fail": 1,
+      "percent_agreement": 0.5,
+      "verified_only_in_a": 0,
+      "verified_only_in_b": 0,
+      "flipped": 2,
+      "flipped_images": [
+        "x@sha256:1",
+        "y@sha256:2"
+      ]
+    }
+  ],
+  "flipped": {
+    "count": 2,
+    "images": [
+      {
+        "image": "x@sha256:1",
+        "checks": [
+          {
+            "rule": "SPEC-01",
+            "run_a": "PASS",
+            "run_b": "FAIL"
+          },
+          {
+            "rule": "FS-04",
+            "run_a": "FAIL",
+            "run_b": "PASS"
+          }
+        ]
+      },
+      {
+        "image": "y@sha256:2",
+        "checks": [
+          {
+            "rule": "FS-04",
+            "run_a": "PASS",
+            "run_b": "FAIL"
+          }
+        ]
+      }
+    ],
+    "pairs": 3
+  },
+  "pooled_percent_agreement": 0.5714285714285714
+}

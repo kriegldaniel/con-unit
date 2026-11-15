@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/apt-lists-clean/Dockerfile
+exit: 1
+--- stderr ---
+

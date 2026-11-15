@@ -1,0 +1,1 @@
+2026-11-15T19:53:18.436+0100	[31mFATAL[0m	unable to initialize a image struct: failed to initialize source: opening file "/tmp/does-not-exist.tar": open /tmp/does-not-exist.tar: no such file or directory

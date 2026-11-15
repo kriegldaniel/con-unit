@@ -1,0 +1,278 @@
+{
+  "schema_version": 2,
+  "description": "Ground truth for the RQ1 defect-seeded corpus. Each property has one or more defect cases and one clean control. Tool scope and detection IDs are declared per property and inherited by its cases, and every entry names the published catalog entry it was read from in its source field. The catalogs object pins the version of each document. A tool counts as detecting a defect when any of its detect_ids is reported (a trailing * matches any suffix). A tool that is out of scope for a property is never counted as having missed it, and the note of an out-of-scope entry states why. All Dockerfiles use digest-pinned bases taken from fixtures/evaluation_dataset_pinned.txt.",
+  "tools": ["conunit", "hadolint", "trivy", "cst", "dockle"],
+  "catalogs": {
+    "conunit": {
+      "name": "ConUnit rule catalog (pkg/conunit/rules.go) of the evaluated build",
+      "url": "pkg/conunit/rules.go",
+      "retrieved": "2026-11-15",
+      "note": "ConUnit is the tool under test, so there is no pinned version: the build that ran is recorded in raw/tools.json. The rules SPEC-09, SPEC-10 and FS-10 of the lint pack are defined by docs/INTERFACE_V2.md section 3 and implemented by another work package, so their entries could not be checked against a catalog in this tree and are marked unverified."
+    },
+    "hadolint": {
+      "name": "Hadolint rules (README rules table and rule pages)",
+      "version": "2.14.0",
+      "ref": "4e697ba704fd23b2409b947a319c19c3ee54d24f",
+      "url": "https://github.com/hadolint/hadolint/blob/v2.14.0/README.md",
+      "retrieved": "2026-11-15",
+      "note": "The README table is read at tag v2.14.0. The rule pages in the wiki are not versioned with releases and were read on the retrieval date."
+    },
+    "trivy": {
+      "name": "Trivy Dockerfile checks (trivy-checks) and builtin secret rules",
+      "version": "0.76.1",
+      "ref": "ac85645895ed",
+      "url": "https://github.com/aquasecurity/trivy-checks/tree/ac85645895ed/checks/docker",
+      "retrieved": "2026-11-15",
+      "note": "Trivy 0.76.1 (commit e713f67f7d54decdcd9b3132c9751833dcced698) embeds the trivy-checks module version v1.12.2-0.20261012053351-ac85645895ed, read from its go.mod. The run uses --skip-check-update, so the embedded checks apply. Secret rule IDs are read from pkg/fanal/secret/builtin-rules.go at tag v0.76.1."
+    },
+    "cst": {
+      "name": "container-structure-test documented test types (README)",
+      "version": "1.22.1",
+      "ref": "1e1bb81e5272bf616f3ee87d5e085e2f90d94917",
+      "url": "https://github.com/GoogleContainerTools/container-structure-test/blob/v1.22.1/README.md",
+      "retrieved": "2026-11-15",
+      "note": "container-structure-test has no rule catalog. It ships four test types (command, file existence, file content, metadata) and the policy is written by the user. A property is in scope when one of these documented types can express it against the built image, and the policy file in fixtures/rq1/cst is authored by the benchmark author."
+    },
+    "dockle": {
+      "name": "Dockle checkpoints (CHECKPOINT.md) and assessors",
+      "version": "0.4.15",
+      "ref": "54368575d2a0c34a82fb05c904b8207284a64891",
+      "url": "https://github.com/goodwithtech/dockle/blob/v0.4.15/CHECKPOINT.md",
+      "retrieved": "2026-11-15",
+      "note": "CHECKPOINT.md and the assessors under pkg/assessor are read at tag v0.4.15. Run from a docker-archive with --input, Dockle does not evaluate DKL-DI-0006 (the latest tag check needs an image name), CIS-DI-0005 reads DOCKER_CONTENT_TRUST of the scanning host and CIS-DI-0002 has no code path. A checkpoint missing from the report can also hide a failed assessor, because an assessor error is only logged."
+    }
+  },
+  "properties": {
+    "root-user": {
+      "title": "Container runs as root by default",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-01"], "source": "con-unit rule catalog pkg/conunit/rules.go, SPEC-01", "note": "Reads the image config User field."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3002"], "source": "hadolint 2.14.0 README rules table, DL3002, https://github.com/hadolint/hadolint/wiki/DL3002", "note": "DL3002 reports an explicit last USER root. It cannot see an omitted USER instruction."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0002"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/root_user.rego, DS-0002", "note": "DS-0002 requires a non-root USER."},
+        "cst": {"in_scope": true, "config": "cst/root-user.yaml", "detect_ids": ["rq1-root-user"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test running id -u inside the image. The metadata test field user can only assert one expected user name, so a generic policy needs the command test."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0001"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0001", "note": "Reports when the image config user is empty or root (manifest assessor)."}
+      }
+    },
+    "no-healthcheck": {
+      "title": "Image defines no HEALTHCHECK",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["CIS-4.6"], "source": "con-unit rule catalog pkg/conunit/rules.go, CIS-4.6", "note": "Reads the image config Healthcheck field."},
+        "hadolint": {"in_scope": true, "args": ["--info", "DL3057"], "detect_ids": ["DL3057"], "source": "hadolint 2.14.0 README rules table, DL3057, https://github.com/hadolint/hadolint/wiki/DL3057", "note": "DL3057 is disabled by default in Hadolint 2.14.0 and is enabled explicitly here so the tool is credited with its opt-in rule."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0026"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/no_healthcheck_instruction.rego, DS-0026", "note": "DS-0026 reports a missing HEALTHCHECK."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Metadata Test supported fields", "note": "The documented metadata fields are env, labels, entrypoint, cmd, ports, volumes, workdir and user. None addresses a HEALTHCHECK."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0006"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0006", "note": "Reports when the image config has no Healthcheck (manifest assessor)."}
+      }
+    },
+    "setuid-binary": {
+      "title": "Setuid binary present in the image",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["FS-04"], "source": "con-unit rule catalog pkg/conunit/rules.go, FS-04", "note": "Scans layer tar headers for setuid and setgid modes."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule addresses file modes", "note": "Dockerfile linter without access to file modes in the built image."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check addresses file modes", "note": "No misconfiguration or secret check addresses file modes in image content."},
+        "cst": {"in_scope": true, "config": "cst/setuid-binary.yaml", "detect_ids": ["rq1-setuid-binary"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test running find with -perm /6000."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0008"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0008", "note": "Reports every file whose mode has the setuid or setgid bit (privilege assessor)."}
+      }
+    },
+    "world-writable-file": {
+      "title": "World-writable regular file present in the image",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["FS-05"], "source": "con-unit rule catalog pkg/conunit/rules.go, FS-05", "note": "Scans layer tar headers for mode bit 0002."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule addresses file modes", "note": "Dockerfile linter without access to file modes in the built image."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check addresses file modes", "note": "No misconfiguration or secret check addresses file modes in image content."},
+        "cst": {"in_scope": true, "config": "cst/world-writable-file.yaml", "detect_ids": ["rq1-world-writable-file"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test running find with -perm -0002."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "The only file mode check of Dockle is CIS-DI-0008 for the setuid and setgid bits. No checkpoint addresses world-writable files."}
+      }
+    },
+    "private-key-file": {
+      "title": "PEM private key file present in the image",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["FS-06"], "source": "con-unit rule catalog pkg/conunit/rules.go, FS-06", "note": "Scans recognized key file names for PEM private key blocks."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule inspects image content", "note": "Dockerfile linter without access to file content in the built image."},
+        "trivy": {"in_scope": true, "detect_ids": ["SECRET:private-key"], "source": "trivy 0.76.1, builtin secret rule private-key, pkg/fanal/secret/builtin-rules.go", "note": "Secret scanner rule for private key blocks."},
+        "cst": {"in_scope": true, "config": "cst/private-key-file.yaml", "detect_ids": ["rq1-private-key-file"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test running grep over common application directories. The directory list is part of the policy."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0010"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0010 (credential assessor)", "note": "CIS-DI-0010 covers credential files by file name and a fixed list of extensions. It does not read file content, and the extensions .pem and .key are commented out in credential.go, so a PEM key stored as server.key is outside what it matches."}
+      }
+    },
+    "package-cache": {
+      "title": "Package manager cache left in the image (apk)",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "lint", "detect_ids": ["FS-01"], "source": "con-unit rule catalog pkg/conunit/rules.go, FS-01", "note": "Checks for cache paths in the merged image filesystem. Run with the lint pack, which also lists /var/lib/apt/lists, and not with the hardening profile."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3019"], "source": "hadolint 2.14.0 README rules table, DL3019, https://github.com/hadolint/hadolint/wiki/DL3019", "note": "DL3019 requires apk add --no-cache."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0025"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/missing_apk_no_cache.rego, DS-0025", "note": "DS-0025 requires apk add --no-cache."},
+        "cst": {"in_scope": true, "config": "cst/package-cache.yaml", "detect_ids": ["rq1-package-cache"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test listing files under /var/cache/apk."},
+        "dockle": {"in_scope": true, "detect_ids": ["DKL-DI-0004"], "source": "dockle 0.4.15 CHECKPOINT.md, DKL-DI-0004", "note": "Reports an apk add without --no-cache in a build step of the image history."}
+      }
+    },
+    "apt-lists": {
+      "title": "Package index left in the image (apt)",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "lint", "detect_ids": ["FS-01"], "source": "con-unit rule catalog pkg/conunit/rules.go, FS-01", "note": "Checks a fixed list of cache paths in the merged image filesystem. The hygiene pack list does not contain /var/lib/apt/lists, so the property runs with the lint pack, whose FS-01 adds that path (docs/INTERFACE_V2.md section 3)."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3009"], "source": "hadolint 2.14.0 README rules table, DL3009, https://github.com/hadolint/hadolint/wiki/DL3009", "note": "DL3009 requires deleting the apt lists after installing."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check addresses the apt lists", "note": "No Trivy Dockerfile check addresses removal of the apt lists. Audit with the observed IDs in rq1_results.json."},
+        "cst": {"in_scope": true, "config": "cst/apt-lists.yaml", "detect_ids": ["rq1-apt-lists"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test listing package index files under /var/lib/apt/lists."},
+        "dockle": {"in_scope": true, "detect_ids": ["DKL-DI-0005"], "source": "dockle 0.4.15 CHECKPOINT.md, DKL-DI-0005", "note": "Reports an apt-get update or install in a build step without a later rm of /var/lib/apt/lists in the same step."}
+      }
+    },
+    "shell-form-entrypoint": {
+      "title": "Shell-form ENTRYPOINT keeps a shell as PID 1 that does not forward SIGTERM",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "hygiene", "detect_ids": ["EXEC-03"], "source": "con-unit rule catalog pkg/conunit/rules.go, EXEC-03", "note": "The hardening profile (cis) has no SIGTERM check. EXEC-03 is part of the hygiene pack, so this property runs with that pack."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3025"], "source": "hadolint 2.14.0 README rules table, DL3025, https://github.com/hadolint/hadolint/wiki/DL3025", "note": "DL3025 requires JSON notation for ENTRYPOINT and CMD."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check addresses ENTRYPOINT form or signals", "note": "No Trivy check addresses shell-form ENTRYPOINT or signal handling."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Metadata Test and Command Tests", "note": "Cannot distinguish shell form from exec form in image metadata, and command tests overwrite the entrypoint and cannot send signals to the image process."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "No checkpoint addresses the form of ENTRYPOINT or CMD or signal handling."}
+      }
+    },
+    "add-remote-url": {
+      "title": "ADD of a remote URL",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-07"], "source": "con-unit rule catalog pkg/conunit/rules.go, SPEC-07", "note": "Reads ADD instructions from the OCI history."},
+        "hadolint": {"in_scope": false, "detect_ids": ["DL3020"], "source": "hadolint 2.14.0 README rules table, DL3020 and the DL3020 rule page exceptions", "note": "DL3020 exempts URLs and archives by design, so a remote ADD is not covered by any rule. DL3020 is watched so that the audit shows if it fires anyway."},
+        "trivy": {"in_scope": false, "detect_ids": ["DS-0005"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/add_instead_of_copy.rego, DS-0005", "note": "DS-0005 skips ADD arguments that contain .tar, http://, https:// or git@, so the check does not address a remote ADD. In the image config scan the history records ADD <digest> in <path> without the URL, so DS-0005 can still report the instruction. That incidental report is not credited and is counted in out_of_scope_flagged."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, test types command, file existence, file content and metadata", "note": "ADD instructions are not observable in image content or metadata tests."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0009"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0009", "note": "Reports every ADD instruction in the image history except the first one of the history, which Dockle treats as the base image import."}
+      }
+    },
+    "add-local-file": {
+      "title": "ADD of a local file where COPY suffices",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-07"], "source": "con-unit rule catalog pkg/conunit/rules.go, SPEC-07", "note": "Reads ADD instructions from the OCI history."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3020"], "source": "hadolint 2.14.0 README rules table, DL3020, https://github.com/hadolint/hadolint/wiki/DL3020", "note": "DL3020 requires COPY for files and folders."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0005"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/add_instead_of_copy.rego, DS-0005", "note": "DS-0005 requires COPY instead of ADD."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, test types command, file existence, file content and metadata", "note": "ADD instructions are not observable in image content or metadata tests."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0009"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0009", "note": "Reports every ADD instruction in the image history except the first one of the history, which Dockle treats as the base image import."}
+      }
+    },
+    "secret-in-env": {
+      "title": "Credentials stored in ENV",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-03"], "source": "con-unit rule catalog pkg/conunit/rules.go, SPEC-03", "note": "Matches ENV variable names containing PASSWORD, SECRET, TOKEN or PRIVATE_KEY."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule inspects ENV names or values", "note": "No rule inspects ENV names or values."},
+        "trivy": {"in_scope": true, "detect_ids": ["SECRET:*", "DS-0031"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/leaked_secrets.rego, DS-0031, and builtin secret rules", "note": "The secret scanner over the image config reports SECRET:<rule id>, and DS-0031 reports secret-named ENV and ARG instructions of the Dockerfile. Any of them counts."},
+        "cst": {"in_scope": true, "config": "cst/secret-in-env.yaml", "detect_ids": ["rq1-secret-in-env"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test matching credential-like variable names in the container environment."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0010"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0010 (manifest assessor)", "note": "Matches ENV names against PASS, PASSWD, PASSWORD, SECRET, KEY, ACCESS and TOKEN, with the accepted keys GPG_KEY and GPG_KEYS."}
+      }
+    },
+    "privileged-port": {
+      "title": "EXPOSE of a privileged port",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-05"], "source": "con-unit rule catalog pkg/conunit/rules.go, SPEC-05", "note": "Reads the declared ExposedPorts of the image."},
+        "hadolint": {"in_scope": false, "detect_ids": ["DL3011"], "source": "hadolint 2.14.0 README rules table, DL3011, https://github.com/hadolint/hadolint/wiki/DL3011", "note": "DL3011 only validates the port range 0 to 65535. It is watched so that the audit shows if it fires."},
+        "trivy": {"in_scope": false, "detect_ids": ["DS-0004", "DS-0008"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/port22.rego (DS-0004) and unix_ports_out_of_range.rego (DS-0008)", "note": "DS-0004 only addresses port 22 and DS-0008 only ports outside 0 to 65535. Both are watched so that the audit shows if either fires."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Metadata Test exposedPorts and unexposedPorts", "note": "Metadata tests list concrete ports and have no range or pattern, so they cannot express the generic privileged range."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "No checkpoint addresses exposed or privileged ports."}
+      }
+    },
+    "runtime-needs-capability": {
+      "title": "Container needs root and CAP_CHOWN at start",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["EXEC-02"], "source": "con-unit rule catalog pkg/conunit/rules.go, EXEC-02", "note": "Tier 3 restarts the container with all capabilities dropped and compares against a baseline run."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule observes run time behavior", "note": "Runtime behavior is not visible in the Dockerfile text."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check observes run time behavior", "note": "Does not run the container."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Additional Options containerRunOptions", "note": "Command tests overwrite the entrypoint, and containerRunOptions can add capabilities but offers no way to drop them."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "Dockle reads the image and never runs the container."}
+      }
+    },
+    "update-alone": {
+      "title": "Package index update in its own build step, without an install",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "lint", "detect_ids": ["SPEC-09"], "source": "con-unit rule catalog SPEC-09, defined by docs/INTERFACE_V2.md section 3 (unverified in this tree, implemented by the lint pack work package)", "note": "Reads the OCI history. Fails when a step runs apt-get update or apt update without a later install or upgrade of the same manager in that step."},
+        "hadolint": {"in_scope": false, "detect_ids": ["DL3009"], "source": "hadolint 2.14.0 README rules table, no rule addresses an index update without an install, DL3009 is the neighbouring rule", "note": "No rule of the README table addresses apt-get update used alone. DL3009 concerns the lists after an install and can still report the update step, so it is watched and not credited."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0017"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/update_instruction_alone.rego, DS-0017", "note": "DS-0017 requires an install after an update of apt-get, apt, yum, apk, dnf or zypper in the same RUN statement."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, test types command, file existence, file content and metadata", "note": "Build steps are not observable in image content or metadata tests."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0007"], "source": "dockle 0.4.15 CHECKPOINT.md, CIS-DI-0007", "note": "Reports an apt-get or apt update in a build step of the image history without a later install or upgrade in that step."}
+      }
+    },
+    "sudo-usage": {
+      "title": "sudo used in a build step",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "lint", "detect_ids": ["SPEC-10"], "source": "con-unit rule catalog SPEC-10, defined by docs/INTERFACE_V2.md section 3 (unverified in this tree, implemented by the lint pack work package)", "note": "Reads the OCI history. Fails when sudo is in command position of a recorded step, so a step that only installs the package is no finding."},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3004"], "source": "hadolint 2.14.0 README rules table, DL3004, https://github.com/hadolint/hadolint/wiki/DL3004", "note": "DL3004 reports sudo used in a RUN instruction."},
+        "trivy": {"in_scope": true, "detect_ids": ["DS-0010"], "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/run_using_sudo.rego, DS-0010", "note": "DS-0010 reports a RUN instruction that starts a command with sudo."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, test types command, file existence, file content and metadata", "note": "Build steps are not observable in image content or metadata tests. A file existence test could see an installed sudo binary, which is a different property."},
+        "dockle": {"in_scope": true, "detect_ids": ["DKL-DI-0001"], "source": "dockle 0.4.15 CHECKPOINT.md, DKL-DI-0001", "note": "Reports a build step of the image history that contains the word sudo as a token."}
+      }
+    },
+    "non-unique-uid": {
+      "title": "Two accounts share one UID",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "lint", "detect_ids": ["FS-10"], "source": "con-unit rule catalog FS-10, defined by docs/INTERFACE_V2.md section 3 (unverified in this tree, implemented by the lint pack work package)", "note": "Reads /etc/passwd and /etc/group of the final image. Fails when two different account names share a UID or two group names share a GID."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule inspects account files", "note": "Dockerfile linter without access to the account files of the built image."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check inspects account files", "note": "No misconfiguration or secret check addresses duplicate UIDs."},
+        "cst": {"in_scope": true, "config": "cst/non-unique-uid.yaml", "detect_ids": ["rq1-non-unique-uid"], "source": "container-structure-test 1.22.1 README, Command Tests", "note": "Command test listing UIDs that occur more than once in /etc/passwd. A file content test cannot express it, because the regexes have no back references."},
+        "dockle": {"in_scope": true, "detect_ids": ["DKL-LI-0002"], "source": "dockle 0.4.15 CHECKPOINT.md, DKL-LI-0002", "note": "Reports a UID that occurs twice in /etc/passwd or a GID that occurs twice in /etc/group. It reports a SKIP entry when the file is absent."}
+      }
+    },
+    "needs-setuid-setgid": {
+      "title": "Container starts as root and needs CAP_SETUID and CAP_SETGID together to drop to a user",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["EXEC-02"], "source": "con-unit rule catalog pkg/conunit/rules.go, EXEC-02", "note": "Tier 3 restarts the container with all capabilities dropped. The privilege drop fails without CAP_SETUID and CAP_SETGID, so the treatment run exits while the baseline runs."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule observes run time behavior", "note": "Runtime behavior is not visible in the Dockerfile text."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check observes run time behavior", "note": "Does not run the container."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Additional Options containerRunOptions", "note": "Command tests overwrite the entrypoint, and containerRunOptions can add capabilities but offers no way to drop them."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "Dockle reads the image and never runs the container."}
+      }
+    },
+    "writes-outside-tmp": {
+      "title": "Container writes below /var/lib at start and fails with a read-only root filesystem",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["EXEC-01"], "source": "con-unit rule catalog pkg/conunit/rules.go, EXEC-01", "note": "Tier 3 restarts the container with a read-only root filesystem and a writable /tmp. The write below /var/lib fails there while the baseline runs."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, no rule observes run time behavior", "note": "Runtime behavior is not visible in the Dockerfile text."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker, no check observes run time behavior", "note": "Does not run the container."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Additional Options containerRunOptions", "note": "Command tests overwrite the entrypoint, and containerRunOptions has no option for a read-only root filesystem."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "Dockle reads the image and never runs the container."}
+      }
+    },
+    "nonroot-privileged-port": {
+      "title": "Non-root container binds port 80 at start",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["EXEC-02"], "source": "con-unit rule catalog pkg/conunit/rules.go, EXEC-02", "note": "Tier 3 restarts the container with all capabilities dropped. Whether the defect shows depends on the engine, see fixtures/rq1/tier3_truth.json: where the engine leaves ip_unprivileged_port_start at 1024 the baseline already fails and the result is UNVERIFIED."},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 README rules table, DL3011, https://github.com/hadolint/hadolint/wiki/DL3011", "note": "The image declares no EXPOSE, and DL3011 would only validate the port range."},
+        "trivy": {"in_scope": false, "source": "trivy 0.76.1, trivy-checks ac85645895ed, checks/docker/port22.rego (DS-0004) and unix_ports_out_of_range.rego (DS-0008)", "note": "The image declares no EXPOSE, and the port checks cover only port 22 and the range."},
+        "cst": {"in_scope": false, "source": "container-structure-test 1.22.1 README, Additional Options containerRunOptions", "note": "Command tests overwrite the entrypoint, so the listener of the image never starts."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 CHECKPOINT.md, no checkpoint addresses this property", "note": "No checkpoint addresses ports or listeners, and Dockle never runs the container."}
+      }
+    }
+  },
+  "cases": [
+    {"id": "root-user-implicit", "dockerfile": "cases/root-user-implicit/Dockerfile", "property": "root-user", "defect_present": true, "description": "No USER instruction."},
+    {"id": "root-user-explicit", "dockerfile": "cases/root-user-explicit/Dockerfile", "property": "root-user", "defect_present": true, "description": "Explicit USER root."},
+    {"id": "root-user-clean", "dockerfile": "cases/root-user-clean/Dockerfile", "property": "root-user", "defect_present": false, "description": "USER 10001."},
+    {"id": "no-healthcheck-defect", "dockerfile": "cases/no-healthcheck-defect/Dockerfile", "property": "no-healthcheck", "defect_present": true, "description": "No HEALTHCHECK."},
+    {"id": "no-healthcheck-clean", "dockerfile": "cases/no-healthcheck-clean/Dockerfile", "property": "no-healthcheck", "defect_present": false, "description": "HEALTHCHECK defined."},
+    {"id": "setuid-binary-defect", "dockerfile": "cases/setuid-binary-defect/Dockerfile", "property": "setuid-binary", "defect_present": true, "description": "Copy of busybox with mode 4755."},
+    {"id": "setuid-binary-clean", "dockerfile": "cases/setuid-binary-clean/Dockerfile", "property": "setuid-binary", "defect_present": false, "description": "Copy of busybox with mode 0755."},
+    {"id": "world-writable-file-defect", "dockerfile": "cases/world-writable-file-defect/Dockerfile", "property": "world-writable-file", "defect_present": true, "description": "Regular file with mode 0666."},
+    {"id": "world-writable-file-clean", "dockerfile": "cases/world-writable-file-clean/Dockerfile", "property": "world-writable-file", "defect_present": false, "description": "Regular file with mode 0644."},
+    {"id": "private-key-file-defect", "dockerfile": "cases/private-key-file-defect/Dockerfile", "property": "private-key-file", "defect_present": true, "description": "server.key with a PEM private key block (random body, not a usable key)."},
+    {"id": "private-key-file-clean", "dockerfile": "cases/private-key-file-clean/Dockerfile", "property": "private-key-file", "defect_present": false, "description": "server.pem with a PEM public key block."},
+    {"id": "package-cache-defect", "dockerfile": "cases/package-cache-defect/Dockerfile", "property": "package-cache", "defect_present": true, "description": "apk update and apk add without --no-cache. Needs network at build time."},
+    {"id": "package-cache-clean", "dockerfile": "cases/package-cache-clean/Dockerfile", "property": "package-cache", "defect_present": false, "description": "apk add --no-cache. Needs network at build time."},
+    {"id": "apt-lists-defect", "dockerfile": "cases/apt-lists-defect/Dockerfile", "property": "apt-lists", "defect_present": true, "description": "apt lists left in the layer. Needs network at build time."},
+    {"id": "apt-lists-clean", "dockerfile": "cases/apt-lists-clean/Dockerfile", "property": "apt-lists", "defect_present": false, "description": "apt lists removed in the same layer. Needs network at build time."},
+    {"id": "shell-form-entrypoint-defect", "dockerfile": "cases/shell-form-entrypoint-defect/Dockerfile", "property": "shell-form-entrypoint", "defect_present": true, "description": "Shell-form ENTRYPOINT, /bin/sh stays PID 1 and does not forward SIGTERM."},
+    {"id": "shell-form-entrypoint-clean", "dockerfile": "cases/shell-form-entrypoint-clean/Dockerfile", "property": "shell-form-entrypoint", "defect_present": false, "description": "Exec-form ENTRYPOINT whose shell traps SIGTERM."},
+    {"id": "add-remote-url-defect", "dockerfile": "cases/add-remote-url-defect/Dockerfile", "property": "add-remote-url", "defect_present": true, "description": "ADD of a remote URL. Needs network at build time."},
+    {"id": "add-remote-url-clean", "dockerfile": "cases/add-remote-url-clean/Dockerfile", "property": "add-remote-url", "defect_present": false, "description": "COPY of a local file."},
+    {"id": "add-local-file-defect", "dockerfile": "cases/add-local-file-defect/Dockerfile", "property": "add-local-file", "defect_present": true, "description": "ADD of a local file."},
+    {"id": "add-local-file-clean", "dockerfile": "cases/add-local-file-clean/Dockerfile", "property": "add-local-file", "defect_present": false, "description": "COPY of the same file."},
+    {"id": "secret-in-env-defect", "dockerfile": "cases/secret-in-env-defect/Dockerfile", "property": "secret-in-env", "defect_present": true, "description": "Documented AWS example credentials in ENV."},
+    {"id": "secret-in-env-clean", "dockerfile": "cases/secret-in-env-clean/Dockerfile", "property": "secret-in-env", "defect_present": false, "description": "Non-secret ENV variable."},
+    {"id": "privileged-port-defect", "dockerfile": "cases/privileged-port-defect/Dockerfile", "property": "privileged-port", "defect_present": true, "description": "EXPOSE 80."},
+    {"id": "privileged-port-clean", "dockerfile": "cases/privileged-port-clean/Dockerfile", "property": "privileged-port", "defect_present": false, "description": "EXPOSE 8080."},
+    {"id": "runtime-needs-capability-defect", "dockerfile": "cases/runtime-needs-capability-defect/Dockerfile", "property": "runtime-needs-capability", "defect_present": true, "description": "Root user chowns a directory at start."},
+    {"id": "runtime-needs-capability-clean", "dockerfile": "cases/runtime-needs-capability-clean/Dockerfile", "property": "runtime-needs-capability", "defect_present": false, "description": "Ownership fixed at build time, unprivileged user."},
+    {"id": "update-alone-defect", "dockerfile": "cases/update-alone-defect/Dockerfile", "property": "update-alone", "defect_present": true, "description": "apt-get update in its own RUN step. Needs network at build time."},
+    {"id": "update-alone-clean", "dockerfile": "cases/update-alone-clean/Dockerfile", "property": "update-alone", "defect_present": false, "description": "apt-get update and install in one RUN step. Needs network at build time."},
+    {"id": "sudo-usage-defect", "dockerfile": "cases/sudo-usage-defect/Dockerfile", "property": "sudo-usage", "defect_present": true, "description": "A RUN step installs sudo and runs a command through it. Needs network at build time."},
+    {"id": "sudo-usage-clean", "dockerfile": "cases/sudo-usage-clean/Dockerfile", "property": "sudo-usage", "defect_present": false, "description": "The same directory is prepared without sudo."},
+    {"id": "non-unique-uid-defect", "dockerfile": "cases/non-unique-uid-defect/Dockerfile", "property": "non-unique-uid", "defect_present": true, "description": "Two accounts share UID 10001."},
+    {"id": "non-unique-uid-clean", "dockerfile": "cases/non-unique-uid-clean/Dockerfile", "property": "non-unique-uid", "defect_present": false, "description": "One account with UID 10001."},
+    {"id": "needs-setuid-setgid-defect", "dockerfile": "cases/needs-setuid-setgid-defect/Dockerfile", "property": "needs-setuid-setgid", "defect_present": true, "description": "Root drops to the app user with su at start, which needs CAP_SETUID and CAP_SETGID together. Seeded Tier 3 defect."},
+    {"id": "needs-setuid-setgid-clean", "dockerfile": "cases/needs-setuid-setgid-clean/Dockerfile", "property": "needs-setuid-setgid", "defect_present": false, "description": "Starts as UID 10001 directly."},
+    {"id": "writes-outside-tmp-defect", "dockerfile": "cases/writes-outside-tmp-defect/Dockerfile", "property": "writes-outside-tmp", "defect_present": true, "description": "Writes a state file below /var/lib at start. Seeded Tier 3 defect."},
+    {"id": "writes-outside-tmp-clean", "dockerfile": "cases/writes-outside-tmp-clean/Dockerfile", "property": "writes-outside-tmp", "defect_present": false, "description": "Writes the state file below /tmp."},
+    {"id": "nonroot-privileged-port-defect", "dockerfile": "cases/nonroot-privileged-port-defect/Dockerfile", "property": "nonroot-privileged-port", "defect_present": true, "description": "Non-root listener binds port 80 at start, no EXPOSE. Seeded Tier 3 defect that depends on the engine."},
+    {"id": "nonroot-privileged-port-clean", "dockerfile": "cases/nonroot-privileged-port-clean/Dockerfile", "property": "nonroot-privileged-port", "defect_present": false, "description": "Non-root listener binds port 8080."}
+  ]
+}

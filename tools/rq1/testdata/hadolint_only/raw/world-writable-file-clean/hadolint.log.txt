@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/world-writable-file-clean/Dockerfile
+exit: 0
+--- stderr ---
+

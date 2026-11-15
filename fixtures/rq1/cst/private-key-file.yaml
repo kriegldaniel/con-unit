@@ -1,0 +1,8 @@
+# Container Structure Test: no PEM private key block in common application directories.
+# The directory list is part of the policy written by the benchmark author.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-private-key-file"
+    command: "sh"
+    args: ["-c", "grep -rIl 'BEGIN [A-Z ]*PRIVATE KEY' /etc /opt /root /home /srv /usr/local /var/lib /tmp 2>/dev/null || true"]
+    excludedOutput: ["."]

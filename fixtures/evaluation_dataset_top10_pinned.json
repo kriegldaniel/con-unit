@@ -1,0 +1,82 @@
+[
+  {
+    "original_tag": "alpine:3.24.3",
+    "immutable_ref": "index.docker.io/library/alpine@sha256:f847bc0122297a1d4af1dc15c701101cea4cc0887ce69256eef9992b23b9cc94",
+    "manifest_digest": "sha256:f847bc0122297a1d4af1dc15c701101cea4cc0887ce69256eef9992b23b9cc94",
+    "config_digest": "sha256:f7bbaec1bd0330a8dba26f03e05f421bb3c8b807bb41873df3c3b0c3d1083d8f",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "ubuntu:noble-20261024.1",
+    "immutable_ref": "index.docker.io/library/ubuntu@sha256:e1bd8c9efc04dc84502e6b967b61ff5eec5a20b67c4828a01374c27767ffab80",
+    "manifest_digest": "sha256:e1bd8c9efc04dc84502e6b967b61ff5eec5a20b67c4828a01374c27767ffab80",
+    "config_digest": "sha256:1f1aeedbd16d617d1e09524c511cbbfb3b9748526f73ef36325366eee8347f8c",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "nginx:1.30.6-alpine",
+    "immutable_ref": "index.docker.io/library/nginx@sha256:83fdb6def6d4cd9ca68805e2b6886558f0e7f77424fac8d2955234ac7b5ac84a",
+    "manifest_digest": "sha256:83fdb6def6d4cd9ca68805e2b6886558f0e7f77424fac8d2955234ac7b5ac84a",
+    "config_digest": "sha256:71f44768e348d88b5e3ea14a77e0e082792bc46d283de47ef08249bd7ae2e223",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "python:3.15.2-slim",
+    "immutable_ref": "index.docker.io/library/python@sha256:caa0532bfa622b030f2d968bdcd4b2d924a6dfe12dfa482840126b9a96b871e1",
+    "manifest_digest": "sha256:caa0532bfa622b030f2d968bdcd4b2d924a6dfe12dfa482840126b9a96b871e1",
+    "config_digest": "sha256:e9c0d147a5fd4bd4700ad63359afdc696676b8101477c18dc1dc9ec229e2aebb",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "node:24.22.2-alpine",
+    "immutable_ref": "index.docker.io/library/node@sha256:03990ecb798244b8877ea26e8b0a39f46dbea7187d40c3ce7d4e98c3434aa487",
+    "manifest_digest": "sha256:03990ecb798244b8877ea26e8b0a39f46dbea7187d40c3ce7d4e98c3434aa487",
+    "config_digest": "sha256:9419aebdf4ccbf7bd0096475d0db76ca83f0db496a23592a2bfc3b769894473c",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "golang:1.27.3-alpine",
+    "immutable_ref": "index.docker.io/library/golang@sha256:e35b22d33b03e81219af7f4691a0de16352c6d2db093df197a77dd48807804c4",
+    "manifest_digest": "sha256:e35b22d33b03e81219af7f4691a0de16352c6d2db093df197a77dd48807804c4",
+    "config_digest": "sha256:c32c794743db45d5ec67da0b89119d53c9099575981217015c7996ea43d2b25a",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "postgres:18.6-alpine",
+    "immutable_ref": "index.docker.io/library/postgres@sha256:1ffdbe2ca5ccc7a1b3bc2af01249155f7479bb61fbc4177f3621c14e0aeaf2c9",
+    "manifest_digest": "sha256:1ffdbe2ca5ccc7a1b3bc2af01249155f7479bb61fbc4177f3621c14e0aeaf2c9",
+    "config_digest": "sha256:d198b39c31a6df6012ac71d61fe3596277c3c06e0884fc24965669cb8d799f10",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "redis:8.10.3-alpine",
+    "immutable_ref": "index.docker.io/library/redis@sha256:5d009e851ae33c1deb001c41305a829eb7cb116de624ae2761d00ef1efb3c273",
+    "manifest_digest": "sha256:5d009e851ae33c1deb001c41305a829eb7cb116de624ae2761d00ef1efb3c273",
+    "config_digest": "sha256:3e56fb2dd578827a6a711af0459ce130c8d4ea9ab640f752ffa542ec57e8d89d",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "rabbitmq:4.4.0-management-alpine",
+    "immutable_ref": "index.docker.io/library/rabbitmq@sha256:4e0bf7e64123ab9417945bc10f5554e47649b9b993fc4038c58c56ee3c91ab1f",
+    "manifest_digest": "sha256:4e0bf7e64123ab9417945bc10f5554e47649b9b993fc4038c58c56ee3c91ab1f",
+    "config_digest": "sha256:bac1445bc125d321b042f2bd0570751b1ac6857013c778ed90e0fa0d9551e9b3",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  },
+  {
+    "original_tag": "traefik:v3.7.17",
+    "immutable_ref": "index.docker.io/library/traefik@sha256:6b5b11d7a3a9e8a6be55390aaa43e6c4a751217532e405eeb1180f876d3e6242",
+    "manifest_digest": "sha256:6b5b11d7a3a9e8a6be55390aaa43e6c4a751217532e405eeb1180f876d3e6242",
+    "config_digest": "sha256:54e1a2de4e1a514d1270ee9b937a1fe94a262a34eb312af48c4fcd3536b07568",
+    "platform": "linux/arm64",
+    "status": "PINNED"
+  }
+]

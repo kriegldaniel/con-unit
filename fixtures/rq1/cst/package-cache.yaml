@@ -1,0 +1,7 @@
+# Container Structure Test: no file left in the apk cache directory.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-package-cache"
+    command: "sh"
+    args: ["-c", "find /var/cache/apk -type f 2>/dev/null || true"]
+    excludedOutput: ["."]

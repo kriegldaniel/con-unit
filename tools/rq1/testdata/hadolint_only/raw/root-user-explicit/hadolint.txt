@@ -1,0 +1,1 @@
+[{"code":"DL3002","column":1,"file":"fixtures/rq1/cases/root-user-explicit/Dockerfile","level":"warning","line":6,"message":"Last USER should not be root"}]

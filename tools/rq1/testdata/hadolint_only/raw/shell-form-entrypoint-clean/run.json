@@ -1,0 +1,35 @@
+{
+  "case": "shell-form-entrypoint-clean",
+  "build": {
+    "status": "skipped",
+    "error": "no container engine"
+  },
+  "tools": {
+    "conunit": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "cst": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/bin/hadolint --no-color --format json fixtures/rq1/cases/shell-form-entrypoint-clean/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    }
+  }
+}

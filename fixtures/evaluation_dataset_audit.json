@@ -1,0 +1,96 @@
+{
+  "schema_version": "1",
+  "tool": "pin_dataset",
+  "tool_version": "pin_dataset 2",
+  "generated_at": "2026-11-14T15:08:50Z",
+  "mode": "audit-only",
+  "sampling_frame": {
+    "repository": "docker-library/official-images",
+    "commit": "38202481675fa945ea2a2df1e6c64b400f3b2e49",
+    "date": "2026-11-14"
+  },
+  "inclusion_rule": "A candidate is included when its tag resolves to a multi-platform OCI index or Docker manifest list that contains both linux/amd64 and linux/arm64 manifests. The index digest is pinned. Single-architecture candidates are excluded and logged. The evaluation itself runs on linux/amd64.",
+  "evaluation_platform": "linux/amd64",
+  "input": {
+    "path": "fixtures/evaluation_dataset_full.txt",
+    "sha256": "df0f67915850e7f6c063459d2c6608f7771ce22544d292461047d26684b7d3de",
+    "entries": 108,
+    "declared_n": 108
+  },
+  "outputs": {
+    "pinned_txt": {
+      "path": "fixtures/evaluation_dataset_pinned.txt",
+      "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+      "entries": 100,
+      "declared_n": 100
+    },
+    "pinned_json": {
+      "path": "fixtures/evaluation_dataset_pinned.json",
+      "sha256": "43b5dedf2b9b1db78c4fa6710edd134584c1176de9b31fc732a68d5f6c98ee6b",
+      "entries": 108
+    },
+    "top10": {
+      "input": {
+        "path": "fixtures/evaluation_dataset_top10.txt",
+        "sha256": "020b02a882e2e7f906a9fae6fec687282bdcf0a3eea20893a812ae0aa71c1e21",
+        "entries": 10
+      },
+      "pinned": {
+        "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+        "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+        "entries": 10,
+        "declared_n": 10
+      },
+      "all_in_main_pinned_list": true
+    }
+  },
+  "counts": {
+    "candidates": 108,
+    "pinned": 100,
+    "excluded": 8,
+    "failed": 0,
+    "deprecated_flagged": 0
+  },
+  "exclusion_log": [
+    {
+      "original_tag": "chronograf:1.11.6-alpine",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "kapacitor:1.8.8-alpine",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "jetty:12.1.13-jdk21-alpine",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "maven:3.10.0-eclipse-temurin-11-alpine",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "rocket.chat:8.9.0",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "archlinux:base-20261025.0.616225",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "silverpeas:6.4.6",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    },
+    {
+      "original_tag": "bonita:11.1.0",
+      "status": "EXCLUDED_SINGLE_ARCH",
+      "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/package-cache-clean/Dockerfile
+exit: 1
+--- stderr ---
+

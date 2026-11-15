@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/non-unique-uid-clean/Dockerfile
+exit: 0
+--- stderr ---
+

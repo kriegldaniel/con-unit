@@ -1,0 +1,1 @@
+{"ID":"","Containers":0,"Images":0,"Driver":"","DriverStatus":null,"CgroupVersion":"","OSType":"","Architecture":"","ServerVersion":"","ServerErrors":["Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"],"ClientInfo":{"Debug":false,"Version":"27.3.1","Context":"default","Plugins":[],"Warnings":null}}

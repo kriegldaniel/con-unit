@@ -1,0 +1,4 @@
+{"image_name":"x","suite_name":"legacy","results":[
+ {"test_id":"FS-04","test_name":"SUID","tier":2,"passed":false,"rule_type":"filesystem"},
+ {"test_id":"FS-05","test_name":"WW","tier":2,"passed":true,"rule_type":"filesystem"}
+]}

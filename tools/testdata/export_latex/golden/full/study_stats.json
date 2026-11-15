@@ -1,0 +1,1167 @@
+{
+  "source": "empirical_study.json",
+  "source_sha256": "8bedcdc8173311ca7e44e464223f9d39bd2332b79fd475eec7ef0f5701cc0e50",
+  "legacy_input": false,
+  "schema_version": "2",
+  "run": {
+    "conunit_version": "0.9.0-test",
+    "commit": "0123456789abcdef0123456789abcdef01234567",
+    "dataset_sha256": "abababababababababababababababababababababababababababababababab",
+    "pack_id": "PACK-CONUNIT-HARDENING",
+    "platform": "linux/amd64",
+    "image_source_policy": "local",
+    "probe_window_ms": 3000,
+    "engine_name": "podman",
+    "engine_version": "5.0.2",
+    "rootless": false,
+    "cgroup_version": "v2",
+    "storage_driver": "overlay",
+    "oci_runtime": "crun 1.14",
+    "registry_remap": "docker.io/library -\u003e public.ecr.aws/docker/library",
+    "host_os": "Ubuntu 24.04.1 LTS",
+    "linux_kernel": "6.8.0-1017-aws",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz \u0026 friends",
+    "vcpus": 8,
+    "memory_bytes": 17179869184,
+    "virtualization": "aws-nitro-kvm",
+    "execution_mode": "virtualized-cloud",
+    "cloud_provider": "aws",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-0123456789abcdef0",
+    "region": "eu-central-1",
+    "started_at": "2026-11-14T10:00:00Z",
+    "finished_at": "2026-11-14T10:40:00Z"
+  },
+  "audit": {
+    "schema_version": "1",
+    "tool": "pin_dataset",
+    "tool_version": "test",
+    "generated_at": "2026-11-14T09:00:00Z",
+    "mode": "registry",
+    "sampling_frame": {
+      "repository": "docker-library/official-images",
+      "commit": "abc1234def56789",
+      "date": "2026-11-13"
+    },
+    "inclusion_rule": "test rule",
+    "evaluation_platform": "linux/amd64",
+    "input": {
+      "path": "in.txt",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "entries": 16,
+      "declared_n": 16
+    },
+    "outputs": {
+      "pinned_txt": {
+        "path": "pinned.txt",
+        "sha256": "abababababababababababababababababababababababababababababababab",
+        "entries": 14
+      },
+      "pinned_json": {
+        "path": "",
+        "sha256": "",
+        "entries": 0
+      }
+    },
+    "counts": {
+      "candidates": 16,
+      "pinned": 14,
+      "excluded": 2,
+      "failed": 0,
+      "deprecated_flagged": 0
+    },
+    "exclusion_log": [
+      {
+        "original_tag": "chronograf:1",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "amd64 only"
+      },
+      {
+        "original_tag": "kapacitor:1",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "amd64 only"
+      }
+    ]
+  },
+  "flow": {
+    "attempted": 12,
+    "completed": 8,
+    "not_completed": 4,
+    "by_status": {
+      "INDEX_LIMIT": 1,
+      "RATE_LIMITED": 1,
+      "TIMEOUT": 1,
+      "UNAVAILABLE": 1
+    },
+    "reasons_by_status": {
+      "INDEX_LIMIT": {
+        "INDEX_TOO_LARGE": 1
+      },
+      "RATE_LIMITED": {
+        "REGISTRY_THROTTLED": 1
+      },
+      "TIMEOUT": {
+        "DEADLINE_EXCEEDED": 1
+      },
+      "UNAVAILABLE": {
+        "MANIFEST_NOT_FOUND": 1
+      }
+    },
+    "infrastructure": 3,
+    "infrastructure_share": {
+      "estimate": 0.25,
+      "lo": 0.08894166839405471,
+      "hi": 0.5323053349335657
+    },
+    "index_limit_images": [
+      {
+        "name": "big",
+        "ref": "index.docker.io/library/big@sha256:0000000000000000000000000000000000000000000000000000000000005ccd",
+        "compressed_bytes": 2147483648,
+        "uncompressed_bytes": 6442450944,
+        "layers": 14
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "CIS-4.6",
+      "name": "Image HEALTHCHECK",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.6",
+        "mapping": "exact",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.6 (exact)",
+      "pass": 1,
+      "fail": 7,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.875,
+        "lo": 0.5291118177871464,
+        "hi": 0.9775825085499433
+      }
+    },
+    {
+      "id": "SPEC-01",
+      "name": "Non-Root Execution Identity",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.1",
+        "mapping": "exact",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.1 (exact)",
+      "pass": 2,
+      "fail": 5,
+      "unverified": 1,
+      "verified": 7,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "EVIDENCE_INCOMPLETE": 1
+      },
+      "prevalence": {
+        "estimate": 0.7142857142857143,
+        "lo": 0.35893445183261935,
+        "hi": 0.9177810759959433
+      }
+    },
+    {
+      "id": "SPEC-05",
+      "name": "Non-Privileged Declared Image Ports",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "5.7",
+        "mapping": "approximate"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 5.7 (approximate)",
+      "pass": 7,
+      "fail": 1,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.125,
+        "lo": 0.02241749145005667,
+        "hi": 0.4708881822128535
+      }
+    },
+    {
+      "id": "SPEC-06",
+      "name": "Dangling Debug Port Exclusion",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "standard": "unmapped",
+      "pass": 8,
+      "fail": 0,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.32440756488388023
+      }
+    },
+    {
+      "id": "SPEC-07",
+      "name": "Instruction Hygiene",
+      "tier": 1,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.9",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.9 (approximate)",
+      "pass": 7,
+      "fail": 0,
+      "unverified": 1,
+      "verified": 7,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "EVIDENCE_INCOMPLETE": 1
+      },
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.35433043506668743
+      }
+    },
+    {
+      "id": "XTRA-01",
+      "name": "Unclassified Future Check",
+      "tier": 1,
+      "class": "exploratory",
+      "listed_in_classification": false,
+      "standard": "unmapped",
+      "pass": 0,
+      "fail": 1,
+      "unverified": 0,
+      "verified": 1,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 1,
+        "lo": 0.20654931437723745,
+        "hi": 1
+      }
+    },
+    {
+      "id": "FS-04",
+      "name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.8",
+        "mapping": "exact",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.8 (exact)",
+      "pass": 4,
+      "fail": 4,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.5,
+        "lo": 0.21521606221387757,
+        "hi": 0.7847839377861224
+      }
+    },
+    {
+      "id": "FS-05",
+      "name": "World-Writable File Elimination",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "mapping": "custom"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 7,
+      "fail": 1,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.125,
+        "lo": 0.02241749145005667,
+        "hi": 0.4708881822128535
+      }
+    },
+    {
+      "id": "FS-06",
+      "name": "Hardcoded Private Key Elimination",
+      "tier": 2,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.10",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.10 (approximate)",
+      "pass": 7,
+      "fail": 1,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 2,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.125,
+        "lo": 0.02241749145005667,
+        "hi": 0.4708881822128535
+      }
+    },
+    {
+      "id": "FS-07",
+      "name": "Development and Test Harness Leakage",
+      "tier": 2,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.3",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.3 (approximate)",
+      "pass": 8,
+      "fail": 0,
+      "unverified": 0,
+      "verified": 8,
+      "fixture_only_images": 1,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.32440756488388023
+      }
+    },
+    {
+      "id": "FS-08",
+      "name": "Account Security",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.10",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.10 (approximate)",
+      "pass": 7,
+      "fail": 0,
+      "unverified": 1,
+      "verified": 7,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "EVIDENCE_INCOMPLETE": 1
+      },
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.35433043506668743
+      }
+    },
+    {
+      "id": "EXEC-01",
+      "name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "5.12",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 5.12 (approximate)",
+      "pass": 2,
+      "fail": 1,
+      "unverified": 5,
+      "verified": 3,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 3,
+        "NOT_OBSERVABLE": 2
+      },
+      "prevalence": {
+        "estimate": 0.3333333333333333,
+        "lo": 0.06149194472039621,
+        "hi": 0.7923403991979522
+      }
+    },
+    {
+      "id": "EXEC-02",
+      "name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "5.3",
+        "mapping": "approximate",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 5.3 (approximate)",
+      "pass": 5,
+      "fail": 2,
+      "unverified": 1,
+      "verified": 7,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 1
+      },
+      "prevalence": {
+        "estimate": 0.2857142857142857,
+        "lo": 0.08221892400405678,
+        "hi": 0.6410655481673808
+      }
+    },
+    {
+      "id": "SUP-02",
+      "name": "Cryptographic Image Provenance and Signature",
+      "tier": 4,
+      "class": "excluded",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "CIS Docker Benchmark",
+        "standard_version": "1.6.0",
+        "control_id": "4.5",
+        "mapping": "exact",
+        "scope": "image_content"
+      },
+      "standard": "CIS Docker Benchmark v1.6.0 4.5 (exact)",
+      "pass": 0,
+      "fail": 0,
+      "unverified": 8,
+      "verified": 0,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "NO_TRUST_POLICY": 8
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "alpine",
+      "ref": "index.docker.io/library/alpine@sha256:000000000000000000000000000000000000000000000000000000000000b99a",
+      "archetype": "base-os",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 10
+      }
+    },
+    {
+      "name": "nginx",
+      "ref": "index.docker.io/library/nginx@sha256:0000000000000000000000000000000000000000000000000000000000009aab",
+      "archetype": "web-ingress",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 13
+      }
+    },
+    {
+      "name": "postgres",
+      "ref": "index.docker.io/library/postgres@sha256:000000000000000000000000000000000000000000000000000000000000f778",
+      "archetype": "database",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "python",
+      "ref": "index.docker.io/library/python@sha256:000000000000000000000000000000000000000000000000000000000000b99a",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 11
+      }
+    },
+    {
+      "name": "redis",
+      "ref": "index.docker.io/library/redis@sha256:0000000000000000000000000000000000000000000000000000000000009aab",
+      "archetype": "database",
+      "base_family": "debian",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "traefik",
+      "ref": "index.docker.io/library/traefik@sha256:000000000000000000000000000000000000000000000000000000000000d889",
+      "archetype": "web-ingress",
+      "base_family": "unknown",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 11
+      }
+    },
+    {
+      "name": "mystery",
+      "ref": "index.docker.io/library/mystery@sha256:000000000000000000000000000000000000000000000000000000000000d889",
+      "archetype": "unmapped",
+      "base_family": "unmapped",
+      "headline": {
+        "fail": 0,
+        "verified": 5
+      },
+      "all": {
+        "fail": 0,
+        "verified": 8
+      }
+    },
+    {
+      "name": "busybox",
+      "ref": "index.docker.io/library/busybox@sha256:000000000000000000000000000000000000000000000000000000000000d889",
+      "archetype": "base-os",
+      "base_family": "other",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 11
+      }
+    }
+  ],
+  "distribution": {
+    "all": {
+      "confirmed_failures": {
+        "n": 8,
+        "min": 0,
+        "q1": 2,
+        "median": 2.5,
+        "q3": 3.5,
+        "max": 6,
+        "mean": 2.875,
+        "sd": 1.8850918886280925,
+        "sd_defined": true
+      },
+      "verified_checks": {
+        "n": 8,
+        "min": 8,
+        "q1": 10.75,
+        "median": 11,
+        "q3": 12,
+        "max": 13,
+        "mean": 11,
+        "sd": 1.5118578920369088,
+        "sd_defined": true
+      },
+      "images_without_confirmed_failure": 1,
+      "images_without_verified_check": 0
+    },
+    "headline": {
+      "confirmed_failures": {
+        "n": 8,
+        "min": 0,
+        "q1": 2,
+        "median": 2,
+        "q3": 2.5,
+        "max": 4,
+        "mean": 2.25,
+        "sd": 1.2817398889233114,
+        "sd_defined": true
+      },
+      "verified_checks": {
+        "n": 8,
+        "min": 5,
+        "q1": 7,
+        "median": 7,
+        "q3": 7,
+        "max": 7,
+        "mean": 6.75,
+        "sd": 0.7071067811865476,
+        "sd_defined": true
+      },
+      "images_without_confirmed_failure": 1,
+      "images_without_verified_check": 0
+    }
+  },
+  "strata": [
+    {
+      "kind": "archetype",
+      "name": "base-os",
+      "images": 2,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 2,
+          "verified": 2
+        },
+        "EXEC-02": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-04": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-01": {
+          "fail": 2,
+          "verified": 2
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "language-runtime",
+      "images": 1,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 1,
+          "verified": 1
+        },
+        "FS-05": {
+          "fail": 1,
+          "verified": 1
+        },
+        "FS-06": {
+          "fail": 1,
+          "verified": 1
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-01": {
+          "fail": 1,
+          "verified": 1
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "database",
+      "images": 2,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 2,
+          "verified": 2
+        },
+        "EXEC-01": {
+          "fail": 0,
+          "verified": 2
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-04": {
+          "fail": 2,
+          "verified": 2
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-01": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 2
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "web-ingress",
+      "images": 2,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 2,
+          "verified": 2
+        },
+        "EXEC-01": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-04": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-01": {
+          "fail": 2,
+          "verified": 2
+        },
+        "SPEC-05": {
+          "fail": 1,
+          "verified": 2
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 2
+        },
+        "XTRA-01": {
+          "fail": 1,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "unmapped",
+      "images": 1,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "alpine",
+      "images": 2,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 2,
+          "verified": 2
+        },
+        "EXEC-01": {
+          "fail": 0,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-04": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-01": {
+          "fail": 1,
+          "verified": 2
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 2
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "debian",
+      "images": 3,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 3,
+          "verified": 3
+        },
+        "EXEC-01": {
+          "fail": 1,
+          "verified": 2
+        },
+        "EXEC-02": {
+          "fail": 0,
+          "verified": 3
+        },
+        "FS-04": {
+          "fail": 3,
+          "verified": 3
+        },
+        "FS-05": {
+          "fail": 1,
+          "verified": 3
+        },
+        "FS-06": {
+          "fail": 1,
+          "verified": 3
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 3
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 3
+        },
+        "SPEC-01": {
+          "fail": 2,
+          "verified": 3
+        },
+        "SPEC-05": {
+          "fail": 1,
+          "verified": 3
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 3
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 3
+        },
+        "XTRA-01": {
+          "fail": 1,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "other",
+      "images": 1,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-01": {
+          "fail": 1,
+          "verified": 1
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "unknown",
+      "images": 1,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-01": {
+          "fail": 1,
+          "verified": 1
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "unmapped",
+      "images": 1,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 1
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 1
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "no -pinned file given; the alpine, slim and tagged image counts are reported as n/a",
+    "3 of 12 attempted images (25.0%) ended in an infrastructure status; docs/ANALYSIS_PLAN.md section 6 requires a rerun above 5%",
+    "rule XTRA-01 is not listed in headline_checks.json; treated as exploratory",
+    "1 completed images have no entry in archetypes.json and are reported as \"unmapped\""
+  ]
+}

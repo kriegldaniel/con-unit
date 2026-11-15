@@ -1,0 +1,293 @@
+{
+  "schema_version": "2",
+  "source": "adjudication.csv",
+  "source_sha256": "9defff454393770c800f456bd1f3fb07119d24749a4ad3fef1c66d58eb69ab10",
+  "precision_threshold": 0.8,
+  "rows": 9,
+  "unrated": 9,
+  "overall_agreement": {
+    "rated": 0,
+    "agree": 0,
+    "percent_agreement": null,
+    "kappa": null
+  },
+  "checks": [
+    {
+      "rule": "EXEC-01",
+      "rows": 2,
+      "unrated": 2,
+      "agreement": {
+        "rated": 0,
+        "agree": 0,
+        "percent_agreement": null,
+        "kappa": null
+      },
+      "tp": 0,
+      "fp": 0,
+      "undecidable": 0,
+      "unresolved": 2,
+      "resolved_tp_fp": 0,
+      "precision": null,
+      "meets_threshold": false
+    },
+    {
+      "rule": "EXEC-04",
+      "rows": 1,
+      "unrated": 1,
+      "agreement": {
+        "rated": 0,
+        "agree": 0,
+        "percent_agreement": null,
+        "kappa": null
+      },
+      "tp": 0,
+      "fp": 0,
+      "undecidable": 0,
+      "unresolved": 1,
+      "resolved_tp_fp": 0,
+      "precision": null,
+      "meets_threshold": false
+    },
+    {
+      "rule": "FS-06",
+      "rows": 3,
+      "unrated": 3,
+      "agreement": {
+        "rated": 0,
+        "agree": 0,
+        "percent_agreement": null,
+        "kappa": null
+      },
+      "tp": 0,
+      "fp": 0,
+      "undecidable": 0,
+      "unresolved": 2,
+      "resolved_tp_fp": 0,
+      "precision": null,
+      "meets_threshold": false,
+      "fixture_candidates": {
+        "rows": 1,
+        "wrongly_exempted_tp": 0,
+        "correctly_exempted_fp": 0,
+        "undecidable": 0,
+        "unresolved": 1,
+        "wrongly_exempted_share": null
+      }
+    },
+    {
+      "rule": "FS-07",
+      "rows": 2,
+      "unrated": 2,
+      "agreement": {
+        "rated": 0,
+        "agree": 0,
+        "percent_agreement": null,
+        "kappa": null
+      },
+      "tp": 0,
+      "fp": 0,
+      "undecidable": 0,
+      "unresolved": 1,
+      "resolved_tp_fp": 0,
+      "precision": null,
+      "meets_threshold": false,
+      "fixture_candidates": {
+        "rows": 1,
+        "wrongly_exempted_tp": 0,
+        "correctly_exempted_fp": 0,
+        "undecidable": 0,
+        "unresolved": 1,
+        "wrongly_exempted_share": null
+      }
+    },
+    {
+      "rule": "SPEC-07",
+      "rows": 1,
+      "unrated": 1,
+      "agreement": {
+        "rated": 0,
+        "agree": 0,
+        "percent_agreement": null,
+        "kappa": null
+      },
+      "tp": 0,
+      "fp": 0,
+      "undecidable": 0,
+      "unresolved": 1,
+      "resolved_tp_fp": 0,
+      "precision": null,
+      "meets_threshold": false
+    }
+  ],
+  "crosscheck": {
+    "rows": 8,
+    "unrated": 2,
+    "tp": 3,
+    "fp": 2,
+    "undecidable": 1,
+    "unresolved": 2,
+    "conunit_correct": 3,
+    "dockle_correct": 2,
+    "unattributed": 0,
+    "conunit_correct_share": {
+      "estimate": 0.6,
+      "wilson_lo": 0.2307242812760128,
+      "wilson_hi": 0.882379225767352
+    },
+    "rater_agreement": {
+      "rated": 6,
+      "agree": 5,
+      "percent_agreement": 0.8333333333333334,
+      "kappa": 0.7142857142857144
+    },
+    "by_kind": [
+      {
+        "kind": "only_conunit",
+        "rows": 2,
+        "unrated": 0,
+        "tp": 1,
+        "fp": 0,
+        "undecidable": 1,
+        "unresolved": 0,
+        "conunit_correct": 1,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 1,
+          "wilson_lo": 0.20654931437723745,
+          "wilson_hi": 1
+        }
+      },
+      {
+        "kind": "only_dockle",
+        "rows": 6,
+        "unrated": 2,
+        "tp": 2,
+        "fp": 2,
+        "undecidable": 0,
+        "unresolved": 2,
+        "conunit_correct": 2,
+        "dockle_correct": 2,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 0.5,
+          "wilson_lo": 0.15003898915214947,
+          "wilson_hi": 0.8499610108478506
+        }
+      }
+    ],
+    "checks": [
+      {
+        "rule": "CIS-4.6",
+        "rows": 1,
+        "unrated": 0,
+        "tp": 1,
+        "fp": 0,
+        "undecidable": 0,
+        "unresolved": 0,
+        "conunit_correct": 0,
+        "dockle_correct": 1,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 0,
+          "wilson_lo": 0,
+          "wilson_hi": 0.7934506856227626
+        }
+      },
+      {
+        "rule": "FS-01",
+        "rows": 2,
+        "unrated": 0,
+        "tp": 1,
+        "fp": 0,
+        "undecidable": 1,
+        "unresolved": 0,
+        "conunit_correct": 0,
+        "dockle_correct": 1,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 0,
+          "wilson_lo": 0,
+          "wilson_hi": 0.7934506856227626
+        }
+      },
+      {
+        "rule": "FS-06",
+        "rows": 1,
+        "unrated": 0,
+        "tp": 0,
+        "fp": 1,
+        "undecidable": 0,
+        "unresolved": 0,
+        "conunit_correct": 1,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 1,
+          "wilson_lo": 0.20654931437723745,
+          "wilson_hi": 1
+        }
+      },
+      {
+        "rule": "FS-11",
+        "rows": 1,
+        "unrated": 1,
+        "tp": 0,
+        "fp": 0,
+        "undecidable": 0,
+        "unresolved": 1,
+        "conunit_correct": 0,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": null
+      },
+      {
+        "rule": "SPEC-09",
+        "rows": 1,
+        "unrated": 0,
+        "tp": 0,
+        "fp": 1,
+        "undecidable": 0,
+        "unresolved": 0,
+        "conunit_correct": 1,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 1,
+          "wilson_lo": 0.20654931437723745,
+          "wilson_hi": 1
+        }
+      },
+      {
+        "rule": "SPEC-11",
+        "rows": 1,
+        "unrated": 1,
+        "tp": 0,
+        "fp": 0,
+        "undecidable": 0,
+        "unresolved": 1,
+        "conunit_correct": 0,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": null
+      },
+      {
+        "rule": "SPEC-12",
+        "rows": 1,
+        "unrated": 0,
+        "tp": 1,
+        "fp": 0,
+        "undecidable": 0,
+        "unresolved": 0,
+        "conunit_correct": 1,
+        "dockle_correct": 0,
+        "unattributed": 0,
+        "conunit_correct_share": {
+          "estimate": 1,
+          "wilson_lo": 0.20654931437723745,
+          "wilson_hi": 1
+        }
+      }
+    ]
+  }
+}

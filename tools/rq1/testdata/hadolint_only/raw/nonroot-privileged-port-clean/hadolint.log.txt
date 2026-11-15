@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/nonroot-privileged-port-clean/Dockerfile
+exit: 0
+--- stderr ---
+

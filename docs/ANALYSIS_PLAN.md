@@ -1,0 +1,142 @@
+# ConUnit Evaluation Analysis Plan
+
+Version 2, written before any data of the final run. Version 1 is in the git history of this file.
+
+Status: draft until the commit is tagged `eval-v1`. After the tag, this plan, the rule set, the Tier 3 profile and the dataset are frozen. Any change after the tag forces a full rerun and must be logged in `docs/DEVIATIONS.md`. Changes between version 1 and the freeze are logged there as well.
+
+## 1. Scope of claims
+
+The study is descriptive. It reports how a curated, digest-pinned sample of Docker Official Images behaves under a documented hardening profile. It makes no population-level claim about Docker Hub, and it does not claim CIS compliance. Check outcomes are "conformance with profile P", where P is stated in the paper and in `docs/RULES.md`.
+
+Tier 1 and Tier 2 are static checks over the image configuration, history and filesystem. Other image linters (Dockle, the Anchore CIS policy pack) cover much of that ground, so the paper claims no novelty for them. Tier 3 (baseline-controlled runtime probing) is the capability that the evaluation tests most closely. Tier 4 (supply chain) is an interface only and is not evaluated.
+
+## 2. Sample and environment
+
+- Image list: `fixtures/evaluation_dataset_pinned.txt` and `fixtures/evaluation_dataset_pinned.json`, identified by sha256 in the run metadata. Every entry is `name@sha256:<index digest>`. The tags are only in the JSON (`original_tag`).
+- The sample is a convenience sample. It consists of the candidates that the sampling frame produced (the official-images commit and date are recorded in `fixtures/evaluation_dataset_audit.json`) and that resolve to a multi-platform index with both linux/amd64 and linux/arm64. Images of one maintainer or one base share layers, and the sample is not drawn at random. The paper states this together with the number of images whose tag contains `alpine` and `slim`, which are generated macros (`\ConUnitNAlpineTag`, `\ConUnitNSlimTag`, `\ConUnitNTagged`) computed from `original_tag` of the completed images. No count of tag variants is typed by hand.
+- Platform: `linux/amd64`, passed explicitly to pull and inspect.
+- Source: digest-pinned references fetched from the ECR Public mirror of Docker Official Images. A digest identifies content, so the registry does not change what is tested. The run metadata records the registry remap.
+- Host and engine: recorded by `pkg/runenv` in the `run` block of `empirical_study.json`. Primary configuration is rootful Podman on Ubuntu 24.04.
+- External tools run at the versions pinned in `submission/eval-infra/tools.lock` and recorded in `host/tool_versions.json` and `run_manifest.json`. They are the same versions that the RQ1 oracle sources were read at.
+- Sampling frame, inclusion rule and exclusion log (including the 8 single-architecture images) are written by `tools/pin_dataset` into the dataset audit file.
+
+## 3. Outcomes and denominators
+
+Every check yields exactly one of PASS, FAIL or UNVERIFIED per image, with a machine-readable reason for UNVERIFIED.
+
+- Verified images for a check: those with PASS or FAIL.
+- Prevalence of a check: FAIL / (PASS + FAIL), reported with a Wilson 95% confidence interval and the number of verified images.
+- UNVERIFIED is reported separately, broken down by reason, never folded into the numerator or the denominator. The checks that read file modes or owners (FS-04, FS-05, FS-09) are UNVERIFIED with EVIDENCE_INCOMPLETE when a hard link has no target in its own layer and nothing else failed.
+- No per-image pass rate and no "fully compliant" statistic are reported. Per image, the paper reports the number of confirmed failures among verified checks together with the number of verified checks.
+- SUP-02 (signature) is UNVERIFIED by design when no trust policy is configured and is excluded from all prevalence statistics.
+- Standard deviations use the sample form (n-1).
+- No check states a CIS control number. The numbers were not confirmed against the official document, so the checks of the profile are custom ConUnit checks that are informed by topics of the CIS Docker Benchmark (docs/DEVIATIONS.md, DEV-15). Mapping types (exact, approximate, custom) are those of the rule catalog.
+
+## 4. Headline versus exploratory checks
+
+A check is headline only if all of the following hold.
+
+1. Oracle fixtures: recall 100% and zero false positives on the seeded corpus with clean controls.
+2. Adjudication: precision at or above 0.8 (point estimate, with Wilson 95% interval reported) over all flagged findings, or over a random sample of at least 30 when more were flagged.
+3. For runtime checks (Tier 3): the failure is attributed by controlled variants (re-run with the suspected capability or mount added back), not by keywords in logs, and the Tier 3 decision rule of section 5 holds.
+
+Checks that fail any criterion are exploratory and appear only in the artifact. Standard mappings come from the rule catalog (`docs/RULES.md`, generated by `con-unit rules`). The profile is CIS-informed, not a CIS compliance assessment. Classification before validation:
+
+- Candidate headline: SPEC-01, CIS-4.6, FS-04, FS-05, FS-08, SPEC-05, SPEC-06.
+- Conditional on adjudication: FS-06, FS-07, SPEC-07, FS-09, SPEC-03.
+- Tier 3 (EXEC-01, EXEC-02, EXEC-04, EXEC-07): conditional on adjudication, controlled variants and the decision rule of section 5. EXEC-04 and EXEC-07 have no attribution procedure (there is nothing to add back for no-new-privileges, and the memory limit is a parameter of the profile), so they stay exploratory in any case and the paper says so. EXEC-03, EXEC-05, EXEC-06 and EXEC-08 are not part of the evaluated profile.
+- New static checks of the `lint` pack: SPEC-09, SPEC-10, SPEC-11, SPEC-12, SPEC-13, FS-10, FS-11 and FS-12 start exploratory. They become headline only under the criteria above. Their name based and history parsing parts are heuristic, and every limit is in the rule catalog. FS-01 and SPEC-03 keep their status when they run inside the `lint` pack.
+- The 17-check hardening profile is unchanged. The `lint` pack exists so that every image-level Dockle checkpoint has a ConUnit check. This departs from the out-of-scope list of the external review at the request of the authors and is logged in `docs/DEVIATIONS.md`.
+
+## 5. Tier 3 interpretation and decision rule
+
+- Profile P: `--network=none`, `--pids-limit=256`, fixed mock environment variables, observation window W (default 3 s), memory limit 256 MiB for EXEC-07.
+- A baseline run with only the defensive flags precedes the treatment runs. A treatment result is interpretable only when the baseline is running at W. The baseline and the treatments run one after another, which the runner is checked to confirm.
+- A FAIL means "did not survive window W under profile P although the baseline did". It is not a defect claim and not a root-cause claim. Tier 3 is a short liveness proxy for long-running images. The paper states the generated share of images for which Tier 3 is UNVERIFIED.
+- Images whose baseline fails or exits 0 early yield UNVERIFIED with reason BASELINE_FAILED or NOT_OBSERVABLE.
+- Tier 3 latency is bounded below by W by design and is not a performance result. The floor is (1 plus the number of Tier 3 treatments of the pack) times W, a generated macro (`\ConUnitTierThreeFloor`).
+
+Decision rule, declared before any data. A Tier 3 check that can be attributed (EXEC-01 and EXEC-02) is reported as headline only if all three conditions hold. Otherwise it stays exploratory and the paper says why.
+
+1. Seeded cases. Every seeded runtime defect that manifests on the engine is attributed exactly to its expected cause (`EXACT` in `attribution.json`). Cases that do not manifest are reported and are excluded from this count.
+2. Real failures. At least half of the reproducible real FAILs are resolved to a named minimal capability set or mount. A real FAIL is reproducible when its failing treatment fails again when `attribute_exec` reruns it. It is resolved when attribution ends in `RESOLVED_MINIMAL` or in a single capability or mount that restores it.
+3. Stability. At most 10 percent of the Tier 3 verdicts of the 10-image subset flip across the three repeats at W of 3 s. The denominator is the number of check and image pairs that have a verdict in all three repeats.
+
+The thresholds (all seeded cases, one half, 10 percent) are the authors' proposal and are fixed here before data. The window sensitivity (W of 10 s and 30 s, once each) and the misattribution count are reported, and they do not enter the rule.
+
+## 6. Attrition
+
+The paper reports the full flow: candidates, pinned, attempted, completed, and every non-completed status with its count.
+
+Infrastructure statuses are RATE_LIMITED, EXECUTION_ERROR, UNAVAILABLE and TIMEOUT. If more than 5% of attempted images end in an infrastructure status, the affected images are rerun after the cause is fixed. If the share still exceeds 5% after the rerun, it is reported as a limitation. INDEX_LIMIT is a limit of the tool, not a property of the image. The default cap of 1,000,000 entries was set from a measurement of the indexer (about 470 MiB peak heap at the cap) so that it lies above real images. The entry count of every analyzed image is in the study (`resources.indexed_entries`). Excluded images are listed in `ATTRITION_REPORT.md` with their layer count, entries counted and content size read, which are lower bounds. The run metadata records the effective `--max-index-entries` and `--image-timeout`.
+
+## 7. Static cross-check against Dockle
+
+Dockle is the static comparator of Tier 1 and Tier 2. The protocol is fixed here.
+
+- Tool and version: Dockle at the version in `tools.lock`. The JSON schema, the level names and the default behaviour (ignore files, accepted keys, skipped checks) are verified against that binary, not taken from its README.
+- Input: the same docker-archive export that ConUnit reads (`save --format docker-archive`). The archive's config digest must equal `config_digest` of the study record. A mismatch is a recorded error and not a result. Dockle runs with `--input <archive> --format json --exit-code 0`, with every `DOCKLE_*` variable removed from its environment and from an empty working directory.
+- Scope: the `lint` study over the completed images of the evaluation (`lint/empirical_study.json`). The mapping from ConUnit rules to Dockle checkpoints is fixed in `docs/INTERFACE_V2.md` before any data.
+- Counting rule. Per mapped check and image, ConUnit contributes PASS or FAIL, or UNVERIFIED. Dockle contributes a finding when its entry for a mapped code has level INFO, WARN or FATAL, whatever the level. An entry at level SKIP is a finding only if some alert does not start with "failed to detect", and otherwise Dockle did not evaluate the property. No entry means no finding. A Dockle run error, a digest mismatch and a not evaluated entry are counted separately from findings.
+- Excluded and not comparable. CIS-DI-0005 reads an environment variable of the scanning host and CIS-DI-0002 has no code path in the pinned Dockle, so both are excluded and listed as such. DKL-DI-0006 is only evaluated when Dockle receives an image name, never with `--input`, so SPEC-13 against DKL-DI-0006 is reported as not comparable and never as agreement.
+- Statistics. For each mapped check, a 2x2 table over the images where ConUnit is verified and Dockle ran: both report, only ConUnit, only Dockle, neither. UNVERIFIED and Dockle errors are counted next to it. The agreement is raw percent agreement. No kappa is computed, because Dockle is not an independent rater of the same construct.
+- Discordances. Every discordant image and check enters the same two-rater adjudication sheet as the other findings, with item type `crosscheck`. The list of resolved discordances is published. Where ConUnit differs on purpose (command tokenizing, user resolution), the discordance list states the intended difference.
+- Coverage matrix. A catalog level comparison of each ConUnit check of the hardening profile and the `lint` pack against each Dockle checkpoint and each control of the Anchore CIS pack, marked overlap, ConUnit only or Dockle only, built from the published catalogs. It tests the statement that ConUnit covers every image-level Dockle checkpoint. The two host-environment content-trust checkpoints are excluded.
+
+## 8. Seeded validation of Tier 3 attribution
+
+- Seeded runtime defects, each with a clean control: an image that needs CAP_SETUID and CAP_SETGID together (su-exec style), an image that writes below `/var/lib` and fails with a read-only root filesystem, and a non-root image that binds port 80. The expected minimal cause of each case is in `fixtures/rq1/tier3_truth.json`.
+- Each case is run on the real engine to decide whether the defect manifests. The privileged port case depends on `ip_unprivileged_port_start` of the engine. A case that does not manifest stays in the corpus with `manifests: false` and a note, and is excluded from the accuracy denominator.
+- `attribute_exec -truth` compares the minimal set it finds with the expected cause: `EXACT`, `SUPERSET`, `WRONG` or `NOT_MANIFESTED`.
+- Minimization: after the union of added back capabilities or mounts restores the container, candidates are removed one at a time while the container still survives. Single additions alone cannot resolve a case that needs two capabilities together.
+- Ablation: for the images whose Tier 3 result is UNVERIFIED with BASELINE_FAILED or NOT_OBSERVABLE, the four treatments run without the baseline gate. The paper reports how many of them a single-run tool, which has no baseline, would have called FAIL.
+- The seeded corpus and the oracle are authored by us. The paper states this circularity as a threat.
+
+## 9. Reliability and sensitivity
+
+- Two complete runs (run A and run B) on separate instances. Per check, the run-to-run agreement is the raw percent agreement over the images verified in both runs, together with the number and the list of images whose verdict flipped. Cohen's kappa is not reported for run-to-run agreement. It stays in use for the two human raters of section 13.
+- Tier 3 stability on the 10-image subset: three repeats at W of 3 s, and one run each at W of 10 s and 30 s. The report gives the number of flipped images, the number of flipped check and image pairs, the number of pairs whose verdict differs between the three windows, and the denominator of section 5.
+- The optional rootless sensitivity run stays in the plan only if the authors choose to keep it, and it is reported as exploratory.
+
+## 10. Strata and dependence
+
+Results are stratified by archetype and base family using `fixtures/archetypes.json`. Images share base layers and maintainers, so images are not independent. Intervals are therefore reported as descriptive, and stratum counts are shown next to every stratified result. No weighting is applied.
+
+Base families are derived from the `os-release` file of each image. `tools/label_base_family` reads `/etc/os-release` (or `/usr/lib/os-release`) of the linux/amd64 image from its digest, and `fixtures/base_family_evidence.json` stores the raw text, the marker files, the rule that decided and the config digest. Images without any release file are labeled from release marker files, are `scratch-or-distroless` when they have no shell, and stay `unknown` otherwise. Nothing is guessed from the repository name.
+
+## 11. RQ1 benchmark
+
+A defect-seeded corpus with clean controls and a ground-truth oracle (`fixtures/rq1/oracle.json`). The tools are Hadolint, Trivy, container-structure-test, Dockle and ConUnit, each at the pinned version with raw output captured.
+
+- Scopes come from the published catalogs of the tools at the pinned versions, and every `in_scope` and `detect_ids` entry carries a `source`. A tool that is out of scope for a property is never counted as having missed it.
+- Results are TP, FP, FN, TN and "out of scope" per property and tool, never a bare pass rate.
+- Dockle uses the counting rule of section 7. A Dockle case that it did not evaluate is counted as not evaluated, neither as a detection nor as a miss.
+- Properties where Dockle is out of scope (world-writable files, privileged ports, shell form entrypoints, runtime capability needs) and the seeded runtime defects make the complementarity visible. Properties that Dockle covers are included, and ConUnit is in scope for them under the `lint` pack.
+- Claims are limited to the benchmark properties and are framed as complementary capabilities.
+
+## 12. RQ3 benchmark
+
+- Environment read from `pkg/runenv`, never assumed. A `c6i.2xlarge` is reported as a virtualized host.
+- One discarded warm-up iteration, then at least 10 timed trials per image. Median and IQR, plus mean with a Student t interval.
+- Phases reported separately: resolve, stream and index, Tier 1, Tier 2, Tier 3 (bounded by W), Tier 4. ConUnit CPU time is reported separately from engine and container time.
+- Dockle is timed on the same host and the same trials, split into the archive export and the Dockle analysis, so that the seconds per image of both tools are comparable by phase.
+- Cold registry trials are optional, labeled network dependent, and follow an explicit image purge.
+- No cross-tool speedup is claimed unless comparators are measured on the same host with the same images. No timing comparison against container-structure-test or InSpec is made.
+
+## 13. Adjudication
+
+Two raters independently label every flagged FS-06 and FS-07 finding, all SPEC-07 failures, a sample of at least 30 EXEC failures (all if fewer), and every discordance of the Dockle cross-check. Findings of the new exploratory checks are included in the same way. Labels are true positive, false positive or undecidable. Report Cohen's kappa for the two raters, resolve disagreements by discussion, and publish `adjudication.csv` with the evidence shown to the raters. Cross-check rows are scored separately.
+
+## 14. Reporting
+
+Every number in the paper is a LaTeX macro or a generated table produced from the files of the final runs: the single `empirical_study.json` of each run and the outputs of `crosscheck`, `attribute_exec`, `reliability`, `agreement`, `rq1` and the benchmark. `lint_numbers.sh` fails on hand-typed result numbers. The artifact bundle contains the JSON, logs, journal, adjudication file, `run_manifest.json` and `SHA256SUMS`.
+
+## 15. Pilot and freeze
+
+- A pilot on the 10-image subset runs on a release candidate tag (a tag of the form `eval-v1-rc<N>`), first as a canary with every stage and then on the subset with every stage. The pilot is non-evidentiary: it may be used to fix check bugs before the freeze, and its output is never used in the paper. Every change that follows from the pilot is logged in `docs/DEVIATIONS.md`.
+- If the pilot shows that attribution resolves few failures or that the agreement with Dockle is low, the claim is narrowed before the freeze and is not hidden.
+- Freeze: this plan and the deviations log are final, the working tree is committed, the bundle scan is clean, and only then the tag `eval-v1` is created (commit first, then tag). The two final runs start from that tag.
+
+## 16. Out of scope
+
+No Tier 4 evaluation. No bare-metal run. No user study. No timing comparison against container-structure-test or InSpec. No non-official images. No `--fix` verification. No new formal model. No new rule packs or checks beyond the `lint` pack and its eight checks, which are a logged departure.

@@ -1,0 +1,12 @@
+.direnv/
+bin/
+results/
+reports/
+tests/reports/
+coverage.out
+*.xml
+*.json
+!fixtures/**/*.json
+!fixtures/**/*.txt
+!**/testdata/**/*.json
+!**/testdata/**/*.xml

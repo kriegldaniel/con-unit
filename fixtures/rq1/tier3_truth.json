@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "image_prefix": "localhost/conunit-rq1",
+  "cases": [
+    {
+      "case": "needs-setuid-setgid-defect",
+      "rule": "EXEC-02",
+      "expected_minimal": ["CAP_SETGID", "CAP_SETUID"],
+      "manifests": true,
+      "note": "Observed on podman 5.8.1 (rootless, libkrun machine, arm64). The baseline keeps running. With all capabilities dropped the container exits with status 1 (su: can't set groups). Adding back only CAP_SETUID still exits with status 1 (can't set groups). Adding back only CAP_SETGID still exits with status 1 (setuid: Operation not permitted). Both together keep it running, so no single capability resolves it."
+    },
+    {
+      "case": "writes-outside-tmp-defect",
+      "rule": "EXEC-01",
+      "expected_minimal": ["/var/lib"],
+      "manifests": true,
+      "note": "Observed on podman 5.8.1 (rootless, libkrun machine, arm64). The baseline keeps running. With a read-only root filesystem and a writable /tmp the container exits with status 1 (Read-only file system). Adding a writable tmpfs at /var/lib keeps it running."
+    },
+    {
+      "case": "nonroot-privileged-port-defect",
+      "rule": "EXEC-02",
+      "expected_minimal": ["CAP_NET_BIND_SERVICE"],
+      "manifests": false,
+      "note": "Does not manifest as a treatment failure on podman 5.8.1 (rootless, libkrun machine, arm64). There the sysctl net.ipv4.ip_unprivileged_port_start is 1024 inside the container, so the baseline run already exits with status 1 (nc: bind: Permission denied) and the baseline gate makes EXEC-02 UNVERIFIED with reason BASELINE_FAILED. Dropping all capabilities changes nothing, and dropping all and adding only CAP_NET_BIND_SERVICE makes the listener start. expected_minimal records that capability as the nominal cause, and the case is left out of the accuracy denominator. An engine that lowers the sysctl to 0 would let the baseline run, but no such engine was available here and that outcome is unverified."
+    }
+  ]
+}

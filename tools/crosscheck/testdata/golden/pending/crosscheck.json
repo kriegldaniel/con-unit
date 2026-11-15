@@ -1,0 +1,1689 @@
+{
+  "schema_version": "1",
+  "study": {
+    "file": "empirical_study.json",
+    "sha256": "abababababababababababababababababababababababababababababababab",
+    "conunit_version": "0.9.0-test",
+    "commit": "0123456789abcdef0123456789abcdef01234567",
+    "pack": "lint",
+    "pack_id": "PACK-IMAGE-LINT",
+    "platform": "linux/amd64",
+    "image_source_policy": "auto",
+    "engine_name": "podman",
+    "engine_version": "5.8.1",
+    "dataset_sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  },
+  "tools": {
+    "dockle": {
+      "version": "0.4.15",
+      "schema_verified_at": "0.4.15",
+      "version_verified": true,
+      "command": "dockle --input \u003carchive\u003e --format json --exit-code 0",
+      "environment": "every DOCKLE_ variable removed, empty working directory"
+    },
+    "engine": "podman version 5.8.1",
+    "platform": "linux/amd64"
+  },
+  "counting_rule": "An entry of a mapped Dockle code at the level INFO, WARN or FATAL is a finding. An entry at the level SKIP is a finding only if an alert is not a failed-to-detect notice; otherwise Dockle did not evaluate the checkpoint. The 2x2 table holds images where ConUnit is verified (PASS or FAIL) and Dockle evaluated the checkpoint. ConUnit UNVERIFIED, Dockle errors and checkpoints that Dockle did not evaluate are counted separately. Agreement is the raw share of images in the 2x2 table on which both tools agree. No chance-corrected statistic is computed.",
+  "mapping": [
+    {
+      "check": "SPEC-01",
+      "key": "SPECZeroOne",
+      "dockle_codes": [
+        "CIS-DI-0001"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "CIS-4.6",
+      "key": "CISFourSix",
+      "dockle_codes": [
+        "CIS-DI-0006"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "FS-04",
+      "key": "FSZeroFour",
+      "dockle_codes": [
+        "CIS-DI-0008"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-07",
+      "key": "SPECZeroSeven",
+      "dockle_codes": [
+        "CIS-DI-0009"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-03",
+      "key": "SPECZeroThree",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "facet": "env"
+    },
+    {
+      "check": "FS-06",
+      "key": "FSZeroSix",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "facet": "file"
+    },
+    {
+      "check": "FS-12",
+      "key": "FSOneTwo",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "facet": "file"
+    },
+    {
+      "check": "FS-08",
+      "key": "FSZeroEight",
+      "dockle_codes": [
+        "DKL-LI-0001"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-09",
+      "key": "SPECZeroNine",
+      "dockle_codes": [
+        "CIS-DI-0007"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-10",
+      "key": "SPECOneZero",
+      "dockle_codes": [
+        "DKL-DI-0001"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-11",
+      "key": "SPECOneOne",
+      "dockle_codes": [
+        "DKL-DI-0003"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-12",
+      "key": "SPECOneTwo",
+      "dockle_codes": [
+        "DKL-DI-0002"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "SPEC-13",
+      "key": "SPECOneThree",
+      "dockle_codes": [
+        "DKL-DI-0006"
+      ],
+      "comparable": false,
+      "not_comparable_reason": "Dockle evaluates DKL-DI-0006 only when it receives an image name; with --input the name is empty and the checkpoint never fires, so an archive cannot produce it"
+    },
+    {
+      "check": "FS-10",
+      "key": "FSOneZero",
+      "dockle_codes": [
+        "DKL-LI-0002"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "FS-11",
+      "key": "FSOneOne",
+      "dockle_codes": [
+        "DKL-LI-0003"
+      ],
+      "comparable": true
+    },
+    {
+      "check": "FS-01",
+      "key": "FSZeroOne",
+      "dockle_codes": [
+        "DKL-DI-0004",
+        "DKL-DI-0005"
+      ],
+      "comparable": true
+    }
+  ],
+  "excluded_dockle_codes": [
+    {
+      "code": "CIS-DI-0002",
+      "reason": "documented as content trust, concerns the scanning host, and has no code path in Dockle 0.4.15, so it is never emitted"
+    },
+    {
+      "code": "CIS-DI-0005",
+      "reason": "reads the environment variable DOCKER_CONTENT_TRUST of the scanning host, not the image"
+    }
+  ],
+  "dockle_codes_without_conunit_counterpart": [
+    {
+      "code": "CIS-DI-0002",
+      "reason": "documented as content trust, concerns the scanning host, and has no code path in Dockle 0.4.15, so it is never emitted"
+    },
+    {
+      "code": "CIS-DI-0003",
+      "reason": "CHECKPOINT.md: not supported"
+    },
+    {
+      "code": "CIS-DI-0004",
+      "reason": "CHECKPOINT.md: not supported, refers to a vulnerability scanner"
+    },
+    {
+      "code": "CIS-DI-0005",
+      "reason": "reads the environment variable DOCKER_CONTENT_TRUST of the scanning host, not the image"
+    },
+    {
+      "code": "CIS-DI-0011",
+      "reason": "CHECKPOINT.md: not supported"
+    }
+  ],
+  "totals": {
+    "images_completed": 6,
+    "images_analyzed": 4,
+    "images_with_error": 2,
+    "errors_by_status": {
+      "DIGEST_MISMATCH": 1,
+      "EXPORT_ERROR": 1
+    },
+    "discordant": 8,
+    "resolved": null,
+    "undecidable": 0,
+    "dockle_version": "0.4.15"
+  },
+  "checks": [
+    {
+      "check": "SPEC-01",
+      "key": "SPECZeroOne",
+      "dockle_codes": [
+        "CIS-DI-0001"
+      ],
+      "comparable": true,
+      "both": 3,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 1,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "CIS-4.6",
+      "key": "CISFourSix",
+      "dockle_codes": [
+        "CIS-DI-0006"
+      ],
+      "comparable": true,
+      "both": 3,
+      "only_conunit": 0,
+      "only_dockle": 1,
+      "neither": 0,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "FS-04",
+      "key": "FSZeroFour",
+      "dockle_codes": [
+        "CIS-DI-0008"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 4,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "SPEC-07",
+      "key": "SPECZeroSeven",
+      "dockle_codes": [
+        "CIS-DI-0009"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "SPEC-03",
+      "key": "SPECZeroThree",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "FS-06",
+      "key": "FSZeroSix",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 1,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "FS-12",
+      "key": "FSOneTwo",
+      "dockle_codes": [
+        "CIS-DI-0010"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "FS-08",
+      "key": "FSZeroEight",
+      "dockle_codes": [
+        "DKL-LI-0001"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 2,
+      "conunit_unverified": 1,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 1,
+      "images": 6,
+      "table": 2,
+      "agree": 2,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "SPEC-09",
+      "key": "SPECZeroNine",
+      "dockle_codes": [
+        "CIS-DI-0007"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 1,
+      "neither": 2,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "SPEC-10",
+      "key": "SPECOneZero",
+      "dockle_codes": [
+        "DKL-DI-0001"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 4,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "SPEC-11",
+      "key": "SPECOneOne",
+      "dockle_codes": [
+        "DKL-DI-0003"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 1,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "SPEC-12",
+      "key": "SPECOneTwo",
+      "dockle_codes": [
+        "DKL-DI-0002"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 1,
+      "only_dockle": 0,
+      "neither": 2,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "SPEC-13",
+      "key": "SPECOneThree",
+      "dockle_codes": [
+        "DKL-DI-0006"
+      ],
+      "comparable": false,
+      "not_comparable_reason": "Dockle evaluates DKL-DI-0006 only when it receives an image name; with --input the name is empty and the checkpoint never fires, so an archive cannot produce it",
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 0,
+      "conunit_unverified": 0,
+      "dockle_error": 0,
+      "dockle_not_evaluated": 0,
+      "not_comparable": 6,
+      "images": 6,
+      "table": 0,
+      "agree": 0,
+      "percent_agreement": null,
+      "discordant": 0
+    },
+    {
+      "check": "FS-10",
+      "key": "FSOneZero",
+      "dockle_codes": [
+        "DKL-LI-0002"
+      ],
+      "comparable": true,
+      "both": 1,
+      "only_conunit": 0,
+      "only_dockle": 0,
+      "neither": 2,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 1,
+      "images": 6,
+      "table": 3,
+      "agree": 3,
+      "percent_agreement": 1,
+      "discordant": 0
+    },
+    {
+      "check": "FS-11",
+      "key": "FSOneOne",
+      "dockle_codes": [
+        "DKL-LI-0003"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 0,
+      "only_dockle": 1,
+      "neither": 3,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 3,
+      "percent_agreement": 0.75,
+      "discordant": 1
+    },
+    {
+      "check": "FS-01",
+      "key": "FSZeroOne",
+      "dockle_codes": [
+        "DKL-DI-0004",
+        "DKL-DI-0005"
+      ],
+      "comparable": true,
+      "both": 0,
+      "only_conunit": 1,
+      "only_dockle": 1,
+      "neither": 2,
+      "conunit_unverified": 0,
+      "dockle_error": 2,
+      "dockle_not_evaluated": 0,
+      "images": 6,
+      "table": 4,
+      "agree": 2,
+      "percent_agreement": 0.5,
+      "discordant": 2
+    }
+  ],
+  "discordances": [
+    {
+      "image": "index.docker.io/library/distroless@sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "check": "CIS-4.6",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0006",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+      "intended_difference": "",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/distroless@sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "check": "SPEC-12",
+      "kind": "only_conunit",
+      "dockle_code": "DKL-DI-0002",
+      "conunit_outcome": "FAIL",
+      "dockle_finding": false,
+      "conunit_evidence": "volume /proc/self declared",
+      "dockle_alert": "",
+      "intended_difference": "ConUnit also fails a volume below /dev, /proc or /sys, for example /proc/self. Dockle compares the exact paths /dev, /proc and /sys, so a trailing slash or a subpath is missed.",
+      "intended_short": "volume below /proc, /sys or /dev",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/nginx@sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "check": "SPEC-09",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0007",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0007 FATAL: Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c apt-get update",
+      "intended_difference": "Dockle splits a command on \u0026\u0026 only and matches any two of the tokens apt-get, apt and update in a segment, so mentions in echo, in arguments or after a semicolon count. ConUnit tokenizes on \u0026\u0026, ||, ; and | and newlines and counts a command in command position only.",
+      "intended_short": "whitespace tokens, only \u0026\u0026 splits",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/nginx@sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "check": "FS-01",
+      "kind": "only_conunit",
+      "dockle_code": "DKL-DI-0004+DKL-DI-0005",
+      "conunit_outcome": "FAIL",
+      "dockle_finding": false,
+      "conunit_evidence": "package manager caches present; paths: /var/cache/apt, /var/lib/apt/lists",
+      "dockle_alert": "",
+      "intended_difference": "FS-01 checks the merged filesystem for the cache and hygiene paths (/var/cache/apt, /var/cache/apk, /root/.cache, /.git, /root/.ssh, /.env and /var/lib/apt/lists), whatever step created them. Dockle's two checkpoints judge only the recorded apk add and apt commands.",
+      "intended_short": "outcome of the filesystem",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-06",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0010",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0010 FATAL: Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\") | Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)",
+      "intended_difference": "Dockle fails on a credential file name alone, for example id_rsa, with no content check and no fixture exemption. ConUnit passes when the file holds no private key block or when every finding is under a fixture-like path or is a Debian snakeoil key.",
+      "intended_short": "name match without content check",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "SPEC-11",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-DI-0003",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-DI-0003 WARN: Avoid dist-upgrade in container : /bin/sh -c true apt-get dist-upgrade",
+      "intended_difference": "Dockle matches any two of the tokens apt-get, apt and dist-upgrade in a segment, so a mention in an argument or an echo counts. ConUnit requires the command form apt-get dist-upgrade or apt dist-upgrade.",
+      "intended_short": "tokens outside command position",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-11",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-LI-0003",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-LI-0003 INFO: unnecessary file : app/Dockerfile",
+      "intended_difference": "",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-01",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-DI-0005",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-DI-0005 FATAL: Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c true apt-get update",
+      "intended_difference": "Dockle reports an apk add without --no-cache, or an apt update or install without a later removal of /var/lib/apt/lists, in the recorded commands. ConUnit passes when the final filesystem holds none of its listed paths, for example after a cleanup in a later step.",
+      "intended_short": "command judged, not the result",
+      "resolution": "",
+      "resolved_by": ""
+    }
+  ],
+  "timings": {
+    "export_seconds": {
+      "n": 6,
+      "min": 0.2,
+      "q1": 0.65,
+      "median": 0.8500000000000001,
+      "q3": 1.05,
+      "max": 1.4,
+      "mean": 0.8333333333333334,
+      "sd": 0.4131182235954578,
+      "sd_defined": true
+    },
+    "dockle_seconds": {
+      "n": 4,
+      "min": 1.2,
+      "q1": 1.7249999999999999,
+      "median": 2.05,
+      "q3": 2.4250000000000003,
+      "max": 3.1,
+      "mean": 2.0999999999999996,
+      "sd": 0.7874007874011811,
+      "sd_defined": true
+    },
+    "export_plus_dockle_seconds": {
+      "n": 4,
+      "min": 1.7999999999999998,
+      "q1": 2.475,
+      "median": 2.9000000000000004,
+      "q3": 3.45,
+      "max": 4.5,
+      "mean": 3.025,
+      "sd": 1.1236102527122116,
+      "sd_defined": true
+    },
+    "pull_seconds": {
+      "n": 0,
+      "min": 0,
+      "q1": 0,
+      "median": 0,
+      "q3": 0,
+      "max": 0,
+      "mean": 0,
+      "sd": 0,
+      "sd_defined": false
+    }
+  },
+  "unmapped_codes_seen": [],
+  "excluded_codes_seen": [
+    {
+      "code": "CIS-DI-0005",
+      "images": 4,
+      "in_catalog": true
+    }
+  ],
+  "images": [
+    {
+      "image": "index.docker.io/library/alpine@sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "status": "OK",
+      "config_digest_study": "sha256:x",
+      "config_digest_archive": "sha256:cfg",
+      "export_seconds": 0.8,
+      "dockle_seconds": 1.9,
+      "dockle_summary": {
+        "fatal": 0,
+        "warn": 1,
+        "info": 2,
+        "skip": 0,
+        "pass": 13
+      },
+      "dockle_details": [
+        {
+          "code": "CIS-DI-0001",
+          "title": "Create a user for the container",
+          "level": "WARN",
+          "alerts": [
+            "Last user should not be root"
+          ]
+        },
+        {
+          "code": "CIS-DI-0005",
+          "title": "Enable Content trust for Docker",
+          "level": "INFO",
+          "alerts": [
+            "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          ]
+        },
+        {
+          "code": "CIS-DI-0006",
+          "title": "Add HEALTHCHECK instruction to the container image",
+          "level": "INFO",
+          "alerts": [
+            "not found HEALTHCHECK statement"
+          ]
+        }
+      ],
+      "excluded_codes_seen": [
+        "CIS-DI-0005"
+      ],
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image runs as root user (configured user: '')",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0001"
+          ],
+          "dockle_alerts": "CIS-DI-0001 WARN: Last user should not be root",
+          "cell": "both"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image has no enabled HEALTHCHECK",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0006"
+          ],
+          "dockle_alerts": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+          "cell": "both"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        }
+      ]
+    },
+    {
+      "image": "index.docker.io/library/broken@sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "status": "EXPORT_ERROR",
+      "error": "the image is not in the engine store and could not be pulled: manifest unknown",
+      "config_digest_study": "sha256:x",
+      "export_seconds": 0.2,
+      "dockle_seconds": 0,
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        }
+      ]
+    },
+    {
+      "image": "index.docker.io/library/distroless@sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "status": "OK",
+      "config_digest_study": "sha256:x",
+      "config_digest_archive": "sha256:cfg",
+      "export_seconds": 0.6,
+      "dockle_seconds": 1.2,
+      "dockle_summary": {
+        "fatal": 0,
+        "warn": 0,
+        "info": 0,
+        "skip": 0,
+        "pass": 1
+      },
+      "dockle_details": [
+        {
+          "code": "DKL-LI-0001",
+          "title": "DKL-LI-0001",
+          "level": "SKIP",
+          "alerts": [
+            "failed to detect etc/shadow,etc/master.passwd"
+          ]
+        },
+        {
+          "code": "DKL-LI-0002",
+          "title": "DKL-LI-0002",
+          "level": "SKIP",
+          "alerts": [
+            "failed to detect etc/passwd",
+            "failed to detect etc/group"
+          ]
+        },
+        {
+          "code": "CIS-DI-0005",
+          "title": "CIS-DI-0005",
+          "level": "INFO",
+          "alerts": [
+            "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          ]
+        },
+        {
+          "code": "CIS-DI-0006",
+          "title": "CIS-DI-0006",
+          "level": "INFO",
+          "alerts": [
+            "not found HEALTHCHECK statement"
+          ]
+        }
+      ],
+      "excluded_codes_seen": [
+        "CIS-DI-0005"
+      ],
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0006"
+          ],
+          "dockle_alerts": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+          "cell": "only_dockle"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_EVALUATED",
+          "dockle_alerts": "DKL-LI-0001 SKIP: failed to detect etc/shadow,etc/master.passwd",
+          "cell": "dockle_not_evaluated"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "volume /proc/self declared",
+          "dockle_state": "CLEAR",
+          "cell": "only_conunit"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_EVALUATED",
+          "dockle_alerts": "DKL-LI-0002 SKIP: failed to detect etc/passwd | failed to detect etc/group",
+          "cell": "dockle_not_evaluated"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        }
+      ]
+    },
+    {
+      "image": "index.docker.io/library/drifted@sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "status": "DIGEST_MISMATCH",
+      "error": "the archive config digest sha256:other differs from the study config digest sha256:cfg",
+      "config_digest_study": "sha256:x",
+      "config_digest_archive": "sha256:other",
+      "export_seconds": 1.1,
+      "dockle_seconds": 0,
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "ERROR",
+          "cell": "dockle_error"
+        }
+      ]
+    },
+    {
+      "image": "index.docker.io/library/nginx@sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "status": "OK",
+      "config_digest_study": "sha256:x",
+      "config_digest_archive": "sha256:cfg",
+      "export_seconds": 1.4,
+      "dockle_seconds": 3.1,
+      "dockle_summary": {
+        "fatal": 0,
+        "warn": 0,
+        "info": 0,
+        "skip": 0,
+        "pass": 1
+      },
+      "dockle_details": [
+        {
+          "code": "CIS-DI-0001",
+          "title": "CIS-DI-0001",
+          "level": "WARN",
+          "alerts": [
+            "Last user should not be root"
+          ]
+        },
+        {
+          "code": "CIS-DI-0007",
+          "title": "CIS-DI-0007",
+          "level": "FATAL",
+          "alerts": [
+            "Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c apt-get update"
+          ]
+        },
+        {
+          "code": "DKL-LI-0001",
+          "title": "DKL-LI-0001",
+          "level": "SKIP",
+          "alerts": [
+            "failed to detect etc/shadow,etc/master.passwd"
+          ]
+        },
+        {
+          "code": "CIS-DI-0005",
+          "title": "CIS-DI-0005",
+          "level": "INFO",
+          "alerts": [
+            "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          ]
+        },
+        {
+          "code": "CIS-DI-0006",
+          "title": "CIS-DI-0006",
+          "level": "INFO",
+          "alerts": [
+            "not found HEALTHCHECK statement"
+          ]
+        }
+      ],
+      "excluded_codes_seen": [
+        "CIS-DI-0005"
+      ],
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image runs as root user (configured user: '')",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0001"
+          ],
+          "dockle_alerts": "CIS-DI-0001 WARN: Last user should not be root",
+          "cell": "both"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image has no enabled HEALTHCHECK",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0006"
+          ],
+          "dockle_alerts": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+          "cell": "both"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "UNVERIFIED",
+          "conunit_reason": "FILE_MISSING",
+          "conunit_evidence": "a required file is missing; reason: FILE_MISSING",
+          "dockle_state": "NOT_EVALUATED",
+          "dockle_alerts": "DKL-LI-0001 SKIP: failed to detect etc/shadow,etc/master.passwd",
+          "cell": "conunit_unverified"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0007"
+          ],
+          "dockle_alerts": "CIS-DI-0007 FATAL: Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c apt-get update",
+          "cell": "only_dockle"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "package manager caches present; paths: /var/cache/apt, /var/lib/apt/lists",
+          "dockle_state": "CLEAR",
+          "cell": "only_conunit"
+        }
+      ]
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "status": "OK",
+      "config_digest_study": "sha256:x",
+      "config_digest_archive": "sha256:cfg",
+      "export_seconds": 0.9,
+      "dockle_seconds": 2.2,
+      "dockle_summary": {
+        "fatal": 7,
+        "warn": 2,
+        "info": 3,
+        "skip": 0,
+        "pass": 4
+      },
+      "dockle_details": [
+        {
+          "code": "CIS-DI-0007",
+          "title": "Do not use update instructions alone in the Dockerfile",
+          "level": "FATAL",
+          "alerts": [
+            "Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c true apt-get update"
+          ]
+        },
+        {
+          "code": "CIS-DI-0009",
+          "title": "Use COPY instead of ADD in Dockerfile",
+          "level": "FATAL",
+          "alerts": [
+            "Use COPY : /bin/sh -c #(nop) ADD file:eac5a34ff96da0fd0d35e6b357185682058e3c2dce55660b42073524366b9e3f in /file.txt      "
+          ]
+        },
+        {
+          "code": "CIS-DI-0010",
+          "title": "Do not store credential in environment variables/files",
+          "level": "FATAL",
+          "alerts": [
+            "Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\")",
+            "Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)"
+          ]
+        },
+        {
+          "code": "DKL-DI-0001",
+          "title": "Avoid sudo command",
+          "level": "FATAL",
+          "alerts": [
+            "Avoid sudo in container : /bin/sh -c true sudo"
+          ]
+        },
+        {
+          "code": "DKL-DI-0002",
+          "title": "Avoid sensitive directory mounting",
+          "level": "FATAL",
+          "alerts": [
+            "Avoid mounting sensitive dirs : /proc"
+          ]
+        },
+        {
+          "code": "DKL-DI-0005",
+          "title": "Clear apt-get caches",
+          "level": "FATAL",
+          "alerts": [
+            "Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c true apt-get update"
+          ]
+        },
+        {
+          "code": "DKL-LI-0002",
+          "title": "Be unique UID/GROUP",
+          "level": "FATAL",
+          "alerts": [
+            "duplicate UID 1000 : username dup2"
+          ]
+        },
+        {
+          "code": "CIS-DI-0001",
+          "title": "Create a user for the container",
+          "level": "WARN",
+          "alerts": [
+            "Last user should not be root"
+          ]
+        },
+        {
+          "code": "DKL-DI-0003",
+          "title": "Avoid \"apt-get dist-upgrade\"",
+          "level": "WARN",
+          "alerts": [
+            "Avoid dist-upgrade in container : /bin/sh -c true apt-get dist-upgrade"
+          ]
+        },
+        {
+          "code": "CIS-DI-0005",
+          "title": "Enable Content trust for Docker",
+          "level": "INFO",
+          "alerts": [
+            "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          ]
+        },
+        {
+          "code": "CIS-DI-0006",
+          "title": "Add HEALTHCHECK instruction to the container image",
+          "level": "INFO",
+          "alerts": [
+            "not found HEALTHCHECK statement"
+          ]
+        },
+        {
+          "code": "DKL-LI-0003",
+          "title": "Only put necessary files",
+          "level": "INFO",
+          "alerts": [
+            "unnecessary file : app/Dockerfile "
+          ]
+        }
+      ],
+      "excluded_codes_seen": [
+        "CIS-DI-0005"
+      ],
+      "checks": [
+        {
+          "check": "SPEC-01",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image runs as root user (configured user: '')",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0001"
+          ],
+          "dockle_alerts": "CIS-DI-0001 WARN: Last user should not be root",
+          "cell": "both"
+        },
+        {
+          "check": "CIS-4.6",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Image has no enabled HEALTHCHECK",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0006"
+          ],
+          "dockle_alerts": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+          "cell": "both"
+        },
+        {
+          "check": "FS-04",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-07",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Detected 1 ADD instructions in the recorded image history",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0009"
+          ],
+          "dockle_alerts": "CIS-DI-0009 FATAL: Use COPY : /bin/sh -c #(nop) ADD file:eac5a34ff96da0fd0d35e6b357185682058e3c2dce55660b42073524366b9e3f in /file.txt",
+          "cell": "both"
+        },
+        {
+          "check": "SPEC-03",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "Key=DB_PASSWORD",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0010"
+          ],
+          "dockle_alerts": "CIS-DI-0010 FATAL: Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\") | Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)",
+          "dockle_facets": [
+            "env",
+            "file"
+          ],
+          "cell": "both"
+        },
+        {
+          "check": "FS-06",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0010"
+          ],
+          "dockle_alerts": "CIS-DI-0010 FATAL: Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\") | Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)",
+          "dockle_facets": [
+            "env",
+            "file"
+          ],
+          "cell": "only_dockle"
+        },
+        {
+          "check": "FS-12",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "credential-named file; paths: /app/id_rsa",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0010"
+          ],
+          "dockle_alerts": "CIS-DI-0010 FATAL: Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\") | Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)",
+          "dockle_facets": [
+            "env",
+            "file"
+          ],
+          "cell": "both"
+        },
+        {
+          "check": "FS-08",
+          "conunit_outcome": "PASS",
+          "dockle_state": "CLEAR",
+          "cell": "neither"
+        },
+        {
+          "check": "SPEC-09",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "apt-get update without install",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "CIS-DI-0007"
+          ],
+          "dockle_alerts": "CIS-DI-0007 FATAL: Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c true apt-get update",
+          "cell": "both"
+        },
+        {
+          "check": "SPEC-10",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "sudo in command position",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-DI-0001"
+          ],
+          "dockle_alerts": "DKL-DI-0001 FATAL: Avoid sudo in container : /bin/sh -c true sudo",
+          "cell": "both"
+        },
+        {
+          "check": "SPEC-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-DI-0003"
+          ],
+          "dockle_alerts": "DKL-DI-0003 WARN: Avoid dist-upgrade in container : /bin/sh -c true apt-get dist-upgrade",
+          "cell": "only_dockle"
+        },
+        {
+          "check": "SPEC-12",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "volume /proc declared",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-DI-0002"
+          ],
+          "dockle_alerts": "DKL-DI-0002 FATAL: Avoid mounting sensitive dirs : /proc",
+          "cell": "both"
+        },
+        {
+          "check": "SPEC-13",
+          "conunit_outcome": "PASS",
+          "dockle_state": "NOT_COMPARABLE",
+          "cell": "not_comparable"
+        },
+        {
+          "check": "FS-10",
+          "conunit_outcome": "FAIL",
+          "conunit_evidence": "UID 1000 shared by dup1 and dup2",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-LI-0002"
+          ],
+          "dockle_alerts": "DKL-LI-0002 FATAL: duplicate UID 1000 : username dup2",
+          "cell": "both"
+        },
+        {
+          "check": "FS-11",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-LI-0003"
+          ],
+          "dockle_alerts": "DKL-LI-0003 INFO: unnecessary file : app/Dockerfile",
+          "cell": "only_dockle"
+        },
+        {
+          "check": "FS-01",
+          "conunit_outcome": "PASS",
+          "dockle_state": "FINDING",
+          "dockle_codes": [
+            "DKL-DI-0005"
+          ],
+          "dockle_alerts": "DKL-DI-0005 FATAL: Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c true apt-get update",
+          "cell": "only_dockle"
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

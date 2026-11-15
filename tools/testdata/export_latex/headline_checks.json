@@ -1,0 +1,5 @@
+{
+  "headline": ["SPEC-01", "CIS-4.6", "FS-04", "FS-05", "FS-08", "SPEC-05", "SPEC-06"],
+  "exploratory": ["SPEC-07", "FS-06", "FS-07", "EXEC-01", "EXEC-02"],
+  "excluded": ["SUP-02"]
+}

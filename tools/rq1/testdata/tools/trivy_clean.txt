@@ -1,0 +1,4 @@
+### trivy config --format json --quiet --skip-check-update /work/cases/root-user-clean | exit=0
+{"SchemaVersion":2,"ArtifactName":"/work/cases/root-user-clean","ArtifactType":"filesystem"}
+### trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1.tar | exit=0
+{"SchemaVersion":2,"ArtifactType":"container_image","Results":[]}

@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":642750,"Results":[{"Name":"Command Test: rq1-root-user","Pass":false,"Errors":["Error creating container: Post \"http://unix.sock/containers/create?platform=linux%2Farm64\": dial unix /run/user/501/podman/podman.sock: connect: no such file or directory"],"Duration":642750}]}

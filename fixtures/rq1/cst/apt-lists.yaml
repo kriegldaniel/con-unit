@@ -1,0 +1,7 @@
+# Container Structure Test: no apt package index left under /var/lib/apt/lists.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-apt-lists"
+    command: "sh"
+    args: ["-c", "find /var/lib/apt/lists -type f -name '*Packages*' 2>/dev/null || true"]
+    excludedOutput: ["."]

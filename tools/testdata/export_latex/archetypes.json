@@ -1,0 +1,9 @@
+{
+  "alpine": {"archetype": "base-os", "base_family": "alpine"},
+  "nginx": {"archetype": "web-ingress", "base_family": "debian"},
+  "postgres": {"archetype": "database", "base_family": "alpine"},
+  "python": {"archetype": "language-runtime", "base_family": "debian"},
+  "redis": {"archetype": "database", "base_family": "debian"},
+  "traefik": {"archetype": "web-ingress", "base_family": "unknown"},
+  "busybox": {"archetype": "base-os", "base_family": "other"}
+}

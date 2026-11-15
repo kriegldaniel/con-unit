@@ -1,0 +1,5 @@
+{"image_name":"localhost/conunit-rq1/shell-form-entrypoint-defect:rq1","image_digest":"","config_digest":"sha256:0000","platform":"linux/amd64","suite_name":"Production Container Hygiene & Security Baseline","status":"COMPLETED","timestamp":"2026-11-14T00:00:00Z","duration":3200000000,"total":3,"passed":1,"failed":1,"unverified":1,"results":[
+ {"test_id":"SPEC-01","test_name":"Non-Root Execution Identity","tier":1,"outcome":"PASS","passed":true,"duration":1000,"rule_type":"spec"},
+ {"test_id":"EXEC-03","test_name":"Graceful Signal Handling (SIGTERM)","tier":3,"outcome":"FAIL","passed":false,"duration":3000000000,"rule_type":"contract"},
+ {"test_id":"EXEC-01","test_name":"Read-Only Root Filesystem Conformance","tier":3,"outcome":"UNVERIFIED","passed":false,"duration":3000,"rule_type":"contract","reason":"NOT_OBSERVABLE"}
+]}

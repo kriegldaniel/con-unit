@@ -1,0 +1,119 @@
+{
+  "schema_version": "1",
+  "study": {
+    "file": "empirical_study.json",
+    "sha256": "abababababababababababababababababababababababababababababababab"
+  },
+  "discordances": [
+    {
+      "image": "index.docker.io/library/distroless@sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "check": "CIS-4.6",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0006",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0006 INFO: not found HEALTHCHECK statement",
+      "intended_difference": "",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/distroless@sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "check": "SPEC-12",
+      "kind": "only_conunit",
+      "dockle_code": "DKL-DI-0002",
+      "conunit_outcome": "FAIL",
+      "dockle_finding": false,
+      "conunit_evidence": "volume /proc/self declared",
+      "dockle_alert": "",
+      "intended_difference": "ConUnit also fails a volume below /dev, /proc or /sys, for example /proc/self. Dockle compares the exact paths /dev, /proc and /sys, so a trailing slash or a subpath is missed.",
+      "intended_short": "volume below /proc, /sys or /dev",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/nginx@sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "check": "SPEC-09",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0007",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0007 FATAL: Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c apt-get update",
+      "intended_difference": "Dockle splits a command on && only and matches any two of the tokens apt-get, apt and update in a segment, so mentions in echo, in arguments or after a semicolon count. ConUnit tokenizes on &&, ||, ; and | and newlines and counts a command in command position only.",
+      "intended_short": "whitespace tokens, only && splits",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/nginx@sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "check": "FS-01",
+      "kind": "only_conunit",
+      "dockle_code": "DKL-DI-0004+DKL-DI-0005",
+      "conunit_outcome": "FAIL",
+      "dockle_finding": false,
+      "conunit_evidence": "package manager caches present; paths: /var/cache/apt, /var/lib/apt/lists",
+      "dockle_alert": "",
+      "intended_difference": "FS-01 checks the merged filesystem for the cache and hygiene paths (/var/cache/apt, /var/cache/apk, /root/.cache, /.git, /root/.ssh, /.env and /var/lib/apt/lists), whatever step created them. Dockle's two checkpoints judge only the recorded apk add and apt commands.",
+      "intended_short": "outcome of the filesystem",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-06",
+      "kind": "only_dockle",
+      "dockle_code": "CIS-DI-0010",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "CIS-DI-0010 FATAL: Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\") | Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)",
+      "intended_difference": "Dockle fails on a credential file name alone, for example id_rsa, with no content check and no fixture exemption. ConUnit passes when the file holds no private key block or when every finding is under a fixture-like path or is a Debian snakeoil key.",
+      "intended_short": "name match without content check",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "SPEC-11",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-DI-0003",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-DI-0003 WARN: Avoid dist-upgrade in container : /bin/sh -c true apt-get dist-upgrade",
+      "intended_difference": "Dockle matches any two of the tokens apt-get, apt and dist-upgrade in a segment, so a mention in an argument or an echo counts. ConUnit requires the command form apt-get dist-upgrade or apt dist-upgrade.",
+      "intended_short": "tokens outside command position",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-11",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-LI-0003",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-LI-0003 INFO: unnecessary file : app/Dockerfile",
+      "intended_difference": "",
+      "resolution": "",
+      "resolved_by": ""
+    },
+    {
+      "image": "index.docker.io/library/seeded@sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "check": "FS-01",
+      "kind": "only_dockle",
+      "dockle_code": "DKL-DI-0005",
+      "conunit_outcome": "PASS",
+      "dockle_finding": true,
+      "conunit_evidence": "",
+      "dockle_alert": "DKL-DI-0005 FATAL: Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c true apt-get update",
+      "intended_difference": "Dockle reports an apk add without --no-cache, or an apt update or install without a later removal of /var/lib/apt/lists, in the recorded commands. ConUnit passes when the final filesystem holds none of its listed paths, for example after a cleanup in a later step.",
+      "intended_short": "command judged, not the result",
+      "resolution": "",
+      "resolved_by": ""
+    }
+  ]
+}

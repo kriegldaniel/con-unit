@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "podman-machine-default",
+        "Default": true,
+        "Created": "2026-03-30T15:59:11.353212+02:00",
+        "Running": true,
+        "Starting": false,
+        "LastUp": "2026-08-11T21:47:44.04349+02:00",
+        "Stream": "default",
+        "VMType": "libkrun",
+        "CPUs": 6,
+        "Memory": "3999268864",
+        "Swap": "0",
+        "DiskSize": "99857989632",
+        "Port": 49314,
+        "RemoteUsername": "core",
+        "IdentityPath": "/Users/user/.local/share/containers/podman/machine/machine",
+        "UserModeNetworking": true
+    }
+]

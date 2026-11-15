@@ -1,0 +1,108 @@
+{
+  "summary": {
+    "fatal": 7,
+    "warn": 2,
+    "info": 3,
+    "skip": 0,
+    "pass": 4
+  },
+  "details": [
+    {
+      "code": "CIS-DI-0007",
+      "title": "Do not use update instructions alone in the Dockerfile",
+      "level": "FATAL",
+      "alerts": [
+        "Always combine 'apt-get update' with 'apt-get install|upgrade' : /bin/sh -c true apt-get update"
+      ]
+    },
+    {
+      "code": "CIS-DI-0009",
+      "title": "Use COPY instead of ADD in Dockerfile",
+      "level": "FATAL",
+      "alerts": [
+        "Use COPY : /bin/sh -c #(nop) ADD file:eac5a34ff96da0fd0d35e6b357185682058e3c2dce55660b42073524366b9e3f in /file.txt      "
+      ]
+    },
+    {
+      "code": "CIS-DI-0010",
+      "title": "Do not store credential in environment variables/files",
+      "level": "FATAL",
+      "alerts": [
+        "Suspicious filename found : app/id_rsa (You can suppress it with \"-af id_rsa\")",
+        "Suspicious ENV key found : DB_PASSWORD on /bin/sh -c #(nop) ENV DB_PASSWORD=******* GPG_KEY=abc123 PLAIN=value (You can suppress it with --accept-key)"
+      ]
+    },
+    {
+      "code": "DKL-DI-0001",
+      "title": "Avoid sudo command",
+      "level": "FATAL",
+      "alerts": [
+        "Avoid sudo in container : /bin/sh -c true sudo"
+      ]
+    },
+    {
+      "code": "DKL-DI-0002",
+      "title": "Avoid sensitive directory mounting",
+      "level": "FATAL",
+      "alerts": [
+        "Avoid mounting sensitive dirs : /proc"
+      ]
+    },
+    {
+      "code": "DKL-DI-0005",
+      "title": "Clear apt-get caches",
+      "level": "FATAL",
+      "alerts": [
+        "Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c true apt-get update"
+      ]
+    },
+    {
+      "code": "DKL-LI-0002",
+      "title": "Be unique UID/GROUP",
+      "level": "FATAL",
+      "alerts": [
+        "duplicate UID 1000 : username dup2"
+      ]
+    },
+    {
+      "code": "CIS-DI-0001",
+      "title": "Create a user for the container",
+      "level": "WARN",
+      "alerts": [
+        "Last user should not be root"
+      ]
+    },
+    {
+      "code": "DKL-DI-0003",
+      "title": "Avoid \"apt-get dist-upgrade\"",
+      "level": "WARN",
+      "alerts": [
+        "Avoid dist-upgrade in container : /bin/sh -c true apt-get dist-upgrade"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    },
+    {
+      "code": "CIS-DI-0006",
+      "title": "Add HEALTHCHECK instruction to the container image",
+      "level": "INFO",
+      "alerts": [
+        "not found HEALTHCHECK statement"
+      ]
+    },
+    {
+      "code": "DKL-LI-0003",
+      "title": "Only put necessary files",
+      "level": "INFO",
+      "alerts": [
+        "unnecessary file : app/Dockerfile "
+      ]
+    }
+  ]
+}

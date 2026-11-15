@@ -1,0 +1,4 @@
+$ /usr/bin/hadolint --no-color --format json fixtures/rq1/cases/runtime-needs-capability-defect/Dockerfile
+exit: 0
+--- stderr ---
+

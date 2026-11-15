@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-11-15T00:00:00Z",
+  "engine": {
+    "name": "engine",
+    "binary": "",
+    "available": false,
+    "selected": false,
+    "reason": "no container engine found (podman or docker)"
+  },
+  "tools": {
+    "conunit": {
+      "name": "conunit",
+      "binary": "con-unit",
+      "available": false,
+      "selected": true,
+      "reason": "binary not found on PATH"
+    },
+    "cst": {
+      "name": "cst",
+      "binary": "container-structure-test",
+      "available": false,
+      "selected": true,
+      "reason": "binary not found on PATH"
+    },
+    "dockle": {
+      "name": "dockle",
+      "binary": "dockle",
+      "available": false,
+      "selected": true,
+      "reason": "binary not found on PATH"
+    },
+    "hadolint": {
+      "name": "hadolint",
+      "binary": "hadolint",
+      "path": "/usr/bin/hadolint",
+      "version": "Haskell Dockerfile Linter 2.14.0",
+      "available": true,
+      "selected": true
+    },
+    "trivy": {
+      "name": "trivy",
+      "binary": "trivy",
+      "available": false,
+      "selected": true,
+      "reason": "binary not found on PATH"
+    }
+  }
+}

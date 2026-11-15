@@ -1,0 +1,4 @@
+{"image_name":"localhost/conunit-rq1/shell-form-entrypoint-clean:rq1","suite_name":"Production Container Hygiene & Security Baseline","status":"COMPLETED","timestamp":"2026-11-14T00:00:00Z","total":2,"passed":2,"results":[
+ {"test_id":"SPEC-01","test_name":"Non-Root Execution Identity","tier":1,"outcome":"PASS","passed":true,"rule_type":"spec"},
+ {"test_id":"EXEC-03","test_name":"Graceful Signal Handling (SIGTERM)","tier":3,"outcome":"PASS","passed":true,"rule_type":"contract"}
+]}

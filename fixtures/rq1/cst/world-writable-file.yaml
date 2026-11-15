@@ -1,0 +1,7 @@
+# Container Structure Test: no world-writable regular file.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-world-writable-file"
+    command: "sh"
+    args: ["-c", "find / -xdev -type f -perm -0002 2>/dev/null || true"]
+    excludedOutput: ["."]

@@ -1,0 +1,8 @@
+# Container Structure Test: the image must not run as UID 0.
+# The metadata test field user can only assert one expected user name, so a generic policy is written as a command test.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-root-user"
+    command: "id"
+    args: ["-u"]
+    excludedOutput: ["(?m)^0$"]

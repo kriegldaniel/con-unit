@@ -1,0 +1,8 @@
+# Container Structure Test: no UID occurs twice in /etc/passwd.
+# A file content test cannot express this, because the regexes have no back references, so the policy is a command test.
+schemaVersion: "2.0.0"
+commandTests:
+  - name: "rq1-non-unique-uid"
+    command: "sh"
+    args: ["-c", "cut -d: -f3 /etc/passwd | sort | uniq -d"]
+    excludedOutput: ["."]

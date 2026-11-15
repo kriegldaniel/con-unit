@@ -1,0 +1,33 @@
+# Curated Dataset of Docker Hub Official Images for Empirical Evaluation (N = 25)
+
+# --- Category 1: Minimal Operating System & Base Distros ---
+alpine:latest
+debian:bookworm-slim
+ubuntu:24.04
+busybox:latest
+
+# --- Category 2: Language Runtimes & SDKs ---
+python:3.11-slim
+python:3.12-alpine
+node:20-slim
+node:20-alpine
+golang:1.22-alpine
+golang:1.22-bookworm
+rust:1.77-slim
+ruby:3.3-slim
+php:8.3-cli-alpine
+
+# --- Category 3: Databases & In-Memory Data Stores ---
+redis:7-alpine
+redis:7
+postgres:16-alpine
+postgres:16
+mariadb:11
+memcached:alpine
+
+# --- Category 4: Web Servers & Reverse Proxies ---
+nginx:alpine
+nginx:latest
+httpd:2.4-alpine
+caddy:alpine
+traefik:v2.11

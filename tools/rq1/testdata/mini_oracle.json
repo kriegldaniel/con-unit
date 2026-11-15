@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "description": "Small oracle used by the offline tests of tools/rq1. Not part of the benchmark.",
+  "tools": ["conunit", "hadolint", "trivy", "cst", "dockle"],
+  "catalogs": {
+    "conunit": {"name": "test rule catalog", "url": "pkg/conunit/rules.go", "retrieved": "2026-11-15"},
+    "hadolint": {"name": "test hadolint catalog", "version": "2.14.0", "url": "https://example.invalid/hadolint", "retrieved": "2026-11-15"},
+    "trivy": {"name": "test trivy catalog", "version": "0.58.0", "url": "https://example.invalid/trivy", "retrieved": "2026-11-15"},
+    "cst": {"name": "test cst catalog", "version": "1.22.1", "url": "https://example.invalid/cst", "retrieved": "2026-11-15"},
+    "dockle": {"name": "test dockle catalog", "version": "0.4.15", "url": "https://example.invalid/dockle", "retrieved": "2026-11-15"}
+  },
+  "properties": {
+    "user": {
+      "title": "Runs as root",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-01"], "source": "test catalog SPEC-01", "note": "n"},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3002"], "source": "hadolint 2.14.0 test entry", "note": "n"},
+        "trivy": {"in_scope": true, "detect_ids": ["DS002"], "source": "trivy 0.58.0 test entry", "note": "n"},
+        "cst": {"in_scope": true, "config": "cst/root-user.yaml", "detect_ids": ["rq1-root-user"], "source": "cst 1.22.1 test entry", "note": "n"},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0001"], "source": "dockle 0.4.15 test entry", "note": "n"}
+      }
+    },
+    "sigterm": {
+      "title": "Shell-form ENTRYPOINT",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "hygiene", "detect_ids": ["EXEC-03"], "source": "test catalog EXEC-03", "note": "n"},
+        "hadolint": {"in_scope": true, "detect_ids": ["DL3025"], "source": "hadolint 2.14.0 test entry", "note": "n"},
+        "trivy": {"in_scope": false, "source": "trivy 0.58.0 test entry", "note": "No check addresses the form of ENTRYPOINT."},
+        "cst": {"in_scope": false, "source": "cst 1.22.1 test entry", "note": "Command tests cannot see the form of ENTRYPOINT."},
+        "dockle": {"in_scope": false, "source": "dockle 0.4.15 test entry", "note": "No checkpoint addresses the form of ENTRYPOINT."}
+      }
+    },
+    "secret": {
+      "title": "Secret in image",
+      "tools": {
+        "conunit": {"in_scope": true, "pack": "cis", "detect_ids": ["SPEC-03"], "source": "test catalog SPEC-03", "note": "n"},
+        "hadolint": {"in_scope": false, "source": "hadolint 2.14.0 test entry", "note": "No rule inspects ENV names or values."},
+        "trivy": {"in_scope": true, "detect_ids": ["SECRET:*"], "source": "trivy 0.58.0 test entry", "note": "n"},
+        "cst": {"in_scope": false, "source": "cst 1.22.1 test entry", "note": "No policy exists for this test property."},
+        "dockle": {"in_scope": true, "detect_ids": ["CIS-DI-0010"], "source": "dockle 0.4.15 test entry", "note": "n"}
+      }
+    }
+  },
+  "cases": [
+    {"id": "user-defect", "dockerfile": "cases/user-defect/Dockerfile", "property": "user", "defect_present": true},
+    {"id": "user-clean", "dockerfile": "cases/user-clean/Dockerfile", "property": "user", "defect_present": false},
+    {"id": "sigterm-defect", "dockerfile": "cases/sigterm-defect/Dockerfile", "property": "sigterm", "defect_present": true},
+    {"id": "sigterm-clean", "dockerfile": "cases/sigterm-clean/Dockerfile", "property": "sigterm", "defect_present": false},
+    {"id": "secret-defect", "dockerfile": "cases/secret-defect/Dockerfile", "property": "secret", "defect_present": true},
+    {"id": "secret-clean", "dockerfile": "cases/secret-clean/Dockerfile", "property": "secret", "defect_present": false}
+  ]
+}

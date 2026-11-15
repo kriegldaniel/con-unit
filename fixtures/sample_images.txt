@@ -1,0 +1,4 @@
+# Sample Mined Images for Empirical Evaluation
+alpine:latest
+python:3.11-slim
+node:slim

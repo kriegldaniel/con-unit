@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "tool": "label_base_family 1",
+  "platform": "linux/amd64",
+  "classification_rules": [
+    "1. os-release exists and ID, or else the first matching token of ID_LIKE, is alpine, debian, ubuntu or one of rhel, fedora and centos (family fedora-rhel): that family.",
+    "2. os-release exists and names no listed family: other.",
+    "3. os-release exists but has no ID: unknown.",
+    "4. No os-release, but a release marker file exists (/etc/alpine-release, /etc/debian_version, /etc/redhat-release, /etc/system-release): the family of the marker.",
+    "5. No os-release, no marker and no shell (/bin/sh, /usr/bin/sh, /busybox/sh): scratch-or-distroless.",
+    "6. Anything else, and every os-release path that could not be resolved: unknown."
+  ],
+  "images": [
+    {
+      "repository": "arangodb",
+      "original_tag": "arangodb:3.12.12",
+      "immutable_ref": "index.docker.io/library/arangodb@sha256:ae1ce5af4783e008d359daaa963559aa4e32a5bd9ea54e2304f5b3adbc88c4aa",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:ab9b794792c142c6a038c3d887e11b58957bfbcb4cdabb93bb0e10453a9756ab",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Alpine Linux\"\nID=alpine\nVERSION_ID=3.24.3\nPRETTY_NAME=\"Alpine Linux v3.24\"\nHOME_URL=\"https://alpinelinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.alpinelinux.org/alpine/aports/-/issues\"\n",
+      "id": "alpine",
+      "pretty_name": "Alpine Linux v3.24",
+      "markers": {
+        "/etc/alpine-release": "3.24.3"
+      },
+      "has_shell": true,
+      "family": "alpine",
+      "rule": "os-release ID alpine"
+    },
+    {
+      "repository": "cassandra",
+      "original_tag": "cassandra:5.0.9",
+      "immutable_ref": "index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:9920e40fc47062891e4539487b8c996a10b59699eb82e34f327c83f67f48680e",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "markers": {
+        "/etc/debian_version": "13.7"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "convertigo",
+      "original_tag": "convertigo:8.4.6",
+      "immutable_ref": "index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:ba45aee1753f6a4f76edbc0c6ef44a4f0938c873f8325ef672616b852b6b3974",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "dart",
+      "original_tag": "dart:3.13.7-sdk",
+      "immutable_ref": "index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:0743b7c39c44930786f437e629da4bd2a80fb8456aa13c7ec8638cb891c91202",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "markers": {
+        "/etc/debian_version": "13.7"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "eggdrop",
+      "original_tag": "eggdrop:1.10.1",
+      "immutable_ref": "index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:718de2fa6c06b5129ac5a811dc8441b23bb94c98231b303ac02f9ccbd5cb2c20",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Alpine Linux\"\nID=alpine\nVERSION_ID=3.21.7\nPRETTY_NAME=\"Alpine Linux v3.21\"\nHOME_URL=\"https://alpinelinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.alpinelinux.org/alpine/aports/-/issues\"\n",
+      "id": "alpine",
+      "pretty_name": "Alpine Linux v3.21",
+      "markers": {
+        "/etc/alpine-release": "3.21.7"
+      },
+      "has_shell": true,
+      "family": "alpine",
+      "rule": "os-release ID alpine"
+    },
+    {
+      "repository": "elasticsearch",
+      "original_tag": "elasticsearch:9.5.5",
+      "immutable_ref": "index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:caeff9384879f790348923ddc61914e70984f45e28a88c392809dc97996a4e2f",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Red Hat Enterprise Linux\"\nVERSION=\"9.9 (Plow)\"\nID=\"rhel\"\nID_LIKE=\"fedora\"\nVERSION_ID=\"9.9\"\nPLATFORM_ID=\"platform:el9\"\nPRETTY_NAME=\"Red Hat Enterprise Linux 9.9 (Plow)\"\nANSI_COLOR=\"0;31\"\nLOGO=\"fedora-logo-icon\"\nCPE_NAME=\"cpe:/o:redhat:enterprise_linux:9::baseos\"\nHOME_URL=\"https://www.redhat.com/\"\nDOCUMENTATION_URL=\"https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9\"\nBUG_REPORT_URL=\"https://issues.redhat.com/\"\n\nREDHAT_BUGZILLA_PRODUCT=\"Red Hat Enterprise Linux 9\"\nREDHAT_BUGZILLA_PRODUCT_VERSION=9.9\nREDHAT_SUPPORT_PRODUCT=\"Red Hat Enterprise Linux\"\nREDHAT_SUPPORT_PRODUCT_VERSION=\"9.9\"\n",
+      "id": "rhel",
+      "id_like": "fedora",
+      "pretty_name": "Red Hat Enterprise Linux 9.9 (Plow)",
+      "markers": {
+        "/etc/redhat-release": "Red Hat Enterprise Linux release 9.9 (Plow)",
+        "/etc/system-release": "Red Hat Enterprise Linux release 9.9 (Plow)"
+      },
+      "has_shell": true,
+      "family": "fedora-rhel",
+      "rule": "os-release ID rhel"
+    },
+    {
+      "repository": "haxe",
+      "original_tag": "haxe:latest",
+      "immutable_ref": "index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:45a98912dc25ef0a6c8f19789bd39195fa70af314927ec95bc155130d09baf03",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "markers": {
+        "/etc/debian_version": "13.7"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "hitch",
+      "original_tag": "hitch:1.8.0",
+      "immutable_ref": "index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:4ddcca8629c041fc5aaff821eacfac2eb2368d701aaf67f0d1a5bd4e88a45a31",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 12 (bookworm)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"12\"\nVERSION=\"12 (bookworm)\"\nVERSION_CODENAME=bookworm\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 12 (bookworm)",
+      "markers": {
+        "/etc/debian_version": "12.15"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "influxdb",
+      "original_tag": "influxdb:3.11.8-core",
+      "immutable_ref": "index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:0a1b1fa170c146d16813188368c10d1ab7dd427a61a009317180334dd8e4385a",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "kong",
+      "original_tag": "kong:3.9.4",
+      "immutable_ref": "index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:96209e9de1471995581260514e83ed70628431be8b96d75dba8a16e6d7ccd8b8",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "krakend",
+      "original_tag": "krakend:latest",
+      "immutable_ref": "index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:ee24d049a1b8636f0ce3b1f4b6e42113fe347fe44d0ca88ee95b6463d762e409",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Alpine Linux\"\nID=alpine\nVERSION_ID=3.23.8\nPRETTY_NAME=\"Alpine Linux v3.23\"\nHOME_URL=\"https://alpinelinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.alpinelinux.org/alpine/aports/-/issues\"\n",
+      "id": "alpine",
+      "pretty_name": "Alpine Linux v3.23",
+      "markers": {
+        "/etc/alpine-release": "3.23.8"
+      },
+      "has_shell": true,
+      "family": "alpine",
+      "rule": "os-release ID alpine"
+    },
+    {
+      "repository": "lightstreamer",
+      "original_tag": "lightstreamer:7.4.9-jdk25",
+      "immutable_ref": "index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:b0afa591207b2bf7b1eddb7a6aa45423c5530bd1c2ffe0d67012424e40e1bc0f",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 26.04.1 LTS",
+      "markers": {
+        "/etc/debian_version": "forky/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "logstash",
+      "original_tag": "logstash:9.5.5",
+      "immutable_ref": "index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:c111be35451266f8a06a58c4449f84f9338fbdec19361879c8ff21e5c5433195",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Red Hat Enterprise Linux\"\nVERSION=\"9.9 (Plow)\"\nID=\"rhel\"\nID_LIKE=\"fedora\"\nVERSION_ID=\"9.9\"\nPLATFORM_ID=\"platform:el9\"\nPRETTY_NAME=\"Red Hat Enterprise Linux 9.9 (Plow)\"\nANSI_COLOR=\"0;31\"\nLOGO=\"fedora-logo-icon\"\nCPE_NAME=\"cpe:/o:redhat:enterprise_linux:9::baseos\"\nHOME_URL=\"https://www.redhat.com/\"\nDOCUMENTATION_URL=\"https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9\"\nBUG_REPORT_URL=\"https://issues.redhat.com/\"\n\nREDHAT_BUGZILLA_PRODUCT=\"Red Hat Enterprise Linux 9\"\nREDHAT_BUGZILLA_PRODUCT_VERSION=9.9\nREDHAT_SUPPORT_PRODUCT=\"Red Hat Enterprise Linux\"\nREDHAT_SUPPORT_PRODUCT_VERSION=\"9.9\"\n",
+      "id": "rhel",
+      "id_like": "fedora",
+      "pretty_name": "Red Hat Enterprise Linux 9.9 (Plow)",
+      "markers": {
+        "/etc/redhat-release": "Red Hat Enterprise Linux release 9.9 (Plow)",
+        "/etc/system-release": "Red Hat Enterprise Linux release 9.9 (Plow)"
+      },
+      "has_shell": true,
+      "family": "fedora-rhel",
+      "rule": "os-release ID rhel"
+    },
+    {
+      "repository": "neo4j",
+      "original_tag": "neo4j:2026.10.1-community",
+      "immutable_ref": "index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:e62393be2b79d6d35d4778f3d7013256eaabaff413a7d975357e131b0ce6b3c1",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "markers": {
+        "/etc/debian_version": "13.7"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "odoo",
+      "original_tag": "odoo:20.0-20261015",
+      "immutable_ref": "index.docker.io/library/odoo@sha256:d5e3a26baa044867c826dddc09058f10e2582706bf83c146ea04fea889720c76",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:9d9623991d2072de3db27f686a96d50a354882ec0aae584e566ece1c05296c43",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "open-liberty",
+      "original_tag": "open-liberty:26.0.0.9-full-java17-openj9",
+      "immutable_ref": "index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:766d872a476f950d00c789a9771fd9bdb57957938cc5f650946c326001f21cee",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "orientdb",
+      "original_tag": "orientdb:3.2.57",
+      "immutable_ref": "index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:9c85eb90f21d7d8963a897702bafbbe39bbfc7dda2f09532b442d6667e532345",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 26.04.1 LTS",
+      "markers": {
+        "/etc/debian_version": "forky/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "solr",
+      "original_tag": "solr:10.0.0",
+      "immutable_ref": "index.docker.io/library/solr@sha256:4eead47c03533079d324fa49e28a73d88b1e4d9568d0d779a0bcd58520117dfe",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:1f93c4a9e9fda00e5210f3665c5099dc3011379e3a2e4bf0d989e73e73f80d34",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "sonarqube",
+      "original_tag": "sonarqube:26.10.0.133078-community",
+      "immutable_ref": "index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:f86a22da31060d7939e92219282baf40692b7ba465861e16b7075417a147c20f",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "storm",
+      "original_tag": "storm:3.1.0",
+      "immutable_ref": "index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:6169a39d855f2a1bcefe16c397b562c59558f89fb6a4250a18352594b96dce33",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 26.04.1 LTS",
+      "markers": {
+        "/etc/debian_version": "forky/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "traefik",
+      "original_tag": "traefik:v3.7.17",
+      "immutable_ref": "index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:d848e658dbc9653fc3fbe2fc5ffce860a508a62cf6351027a9336e9a3bcb2e21",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Alpine Linux\"\nID=alpine\nVERSION_ID=3.24.4\nPRETTY_NAME=\"Alpine Linux v3.24\"\nHOME_URL=\"https://alpinelinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.alpinelinux.org/alpine/aports/-/issues\"\n",
+      "id": "alpine",
+      "pretty_name": "Alpine Linux v3.24",
+      "markers": {
+        "/etc/alpine-release": "3.24.4"
+      },
+      "has_shell": true,
+      "family": "alpine",
+      "rule": "os-release ID alpine"
+    },
+    {
+      "repository": "varnish",
+      "original_tag": "varnish:9.1.0",
+      "immutable_ref": "index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:05d7497b95f161b7c2781945aee05f2d6613343b95270d8f30a502208b0a25b3",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+      "id": "debian",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "markers": {
+        "/etc/debian_version": "13.7"
+      },
+      "has_shell": true,
+      "family": "debian",
+      "rule": "os-release ID debian"
+    },
+    {
+      "repository": "websphere-liberty",
+      "original_tag": "websphere-liberty:26.0.0.3-full-java17-openj9",
+      "immutable_ref": "index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:feaf8775641d6c44b60f9e377f5cf325b598f925c98ef4bf4a502f67e49cd4cb",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 24.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "trixie/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "xwiki",
+      "original_tag": "xwiki:18.9.0",
+      "immutable_ref": "index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:05edc8993f6d9be0a56537d63f2aceef64578e9510ba21d0a128dde47628a4ae",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 26.04.1 LTS",
+      "markers": {
+        "/etc/debian_version": "forky/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    },
+    {
+      "repository": "znc",
+      "original_tag": "znc:1.10.3",
+      "immutable_ref": "index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:05948bbb3943f830beb78986184adede1193988750414c6448039583d637b3b2",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "NAME=\"Alpine Linux\"\nID=alpine\nVERSION_ID=3.23.8\nPRETTY_NAME=\"Alpine Linux v3.23\"\nHOME_URL=\"https://alpinelinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.alpinelinux.org/alpine/aports/-/issues\"\n",
+      "id": "alpine",
+      "pretty_name": "Alpine Linux v3.23",
+      "markers": {
+        "/etc/alpine-release": "3.23.8"
+      },
+      "has_shell": true,
+      "family": "alpine",
+      "rule": "os-release ID alpine"
+    },
+    {
+      "repository": "zookeeper",
+      "original_tag": "zookeeper:3.9.6",
+      "immutable_ref": "index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a",
+      "platform": "linux/amd64",
+      "config_digest": "sha256:433f4886c4bacf96c197555034661c31b134abd911667359d164c75eaacd0244",
+      "status": "OK",
+      "os_release_path": "/usr/lib/os-release",
+      "os_release": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+      "id": "ubuntu",
+      "id_like": "debian",
+      "pretty_name": "Ubuntu 22.04.5 LTS",
+      "markers": {
+        "/etc/debian_version": "bookworm/sid"
+      },
+      "has_shell": true,
+      "family": "ubuntu",
+      "rule": "os-release ID ubuntu"
+    }
+  ]
+}
