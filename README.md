@@ -2,7 +2,9 @@
 
 ConUnit is a research prototype that tests OCI container images. It reads an image without a Docker daemon, checks it in four tiers, and reports each check as PASS, FAIL or UNVERIFIED, with a reason and the evidence behind the outcome. Checks are available through a Go API (xUnit style) and through a command line with rule packs.
 
-Status: research code that goes with a paper. This repository contains no evaluation result. Results are generated from the files of a tagged final run and appear only in the paper and its artifact.
+Status: research code that goes with a paper. The evaluation results are not part of this branch. The replication package of the final run, made from the tag `eval-v1`, is on the branch [`replication-eval-v1`](https://github.com/kriegldaniel/con-unit/tree/replication-eval-v1).
+
+Project page with a screencast: https://kriegldaniel.github.io/con-unit/
 
 ## What it checks
 
@@ -20,9 +22,15 @@ Status: research code that goes with a paper. This repository contains no evalua
 
 ## Quick start
 
-The project uses Nix flakes. With `direnv` the development shell loads on entering the directory.
+You need Nix with flakes and a running container engine, Podman or Docker. Tier 3 starts the image's own entrypoint, so run the checks on a disposable machine. With `direnv` the development shell also loads on entering the directory.
+
+These steps were run from a fresh clone on 2026-11-20 (rootless Podman 5.8.1, linux/arm64):
 
 ```sh
+git clone https://github.com/kriegldaniel/con-unit.git
+cd con-unit
+nix develop                                  # Go, just and the other tools
+go mod download                              # once, `just test` runs with GOPROXY=off
 just test                                    # offline unit tests
 just build                                   # builds bin/con-unit
 ./bin/con-unit test alpine:latest            # the hardening profile on one image
@@ -30,7 +38,17 @@ just build                                   # builds bin/con-unit
 ./bin/con-unit rules                         # the generated rule reference
 ```
 
+Without `go mod download`, `just test` fails in a fresh clone, because the module cache is empty and module lookup is disabled.
+
+`./bin/con-unit test alpine:latest` exits with code 1 when a check fails or is unverified. For `alpine:latest` in that run, `SPEC-01` and `CIS-4.6` failed, and the four runtime checks were `UNVERIFIED` because the baseline exits with code 0 before the observation window ends. The image moves over time, so details can differ.
+
+To build exactly the evaluated version, clone with `--branch eval-v1`. At the time of writing, `main` differs from that tag only in documentation.
+
 Engine-backed tests and the evaluation commands are listed in `justfile` and in `ONBOARDING.md`.
+
+## Module path
+
+The Go module is declared as `github.com/con-unit/con-unit`. Build from a clone as above. `go install github.com/kriegldaniel/con-unit/cmd/con-unit@eval-v1` fails with a module path mismatch, and other Go modules cannot import these packages under this repository's path.
 
 ## Documentation
 
@@ -42,7 +60,7 @@ Engine-backed tests and the evaluation commands are listed in `justfile` and in 
 
 ## Artifact
 
-The artifact of the paper is the bundle of the final run: the study JSON, logs, journal, adjudication file, run manifest and checksums. How it is produced and checked is described in `docs/ANALYSIS_PLAN.md`, section 14.
+The replication package of the final run is on the branch `replication-eval-v1`: the study JSON, logs, journal, run manifest and checksums of both runs. Start with its `README.txt`. How the runs are produced and checked is described in `docs/ANALYSIS_PLAN.md`, section 14.
 
 ## License
 
