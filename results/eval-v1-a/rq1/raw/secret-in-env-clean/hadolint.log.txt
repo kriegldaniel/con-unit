@@ -1,0 +1,4 @@
+$ /usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-clean/Dockerfile
+exit: 0
+--- stderr ---
+

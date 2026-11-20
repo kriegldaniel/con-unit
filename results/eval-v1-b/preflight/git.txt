@@ -1,0 +1,8 @@
+con_unit_dir=~/Documents/development/paper-con-unit/con-unit
+head=2f5d90257717d3977b84ac68b8ef9af2a0876fe1
+branch=HEAD
+requested_tag=eval-v1
+tag_exists=1
+working_tree_dirty=false
+tag_commit=2f5d90257717d3977b84ac68b8ef9af2a0876fe1
+--- git status --porcelain

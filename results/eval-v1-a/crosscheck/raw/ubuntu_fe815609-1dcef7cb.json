@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+  "config_digest_study": "sha256:d9b8c34d61a9b9a3c44cab883d7d2f2619d674966ab520186f799cf32e3e0377",
+  "config_digest_archive": "sha256:d9b8c34d61a9b9a3c44cab883d7d2f2619d674966ab520186f799cf32e3e0377",
+  "status": "OK",
+  "export_seconds": 0.361944833,
+  "dockle_seconds": 0.101672882,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\"\n      ]\n    }\n  ]\n}"
+}

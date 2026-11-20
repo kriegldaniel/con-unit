@@ -1,0 +1,36 @@
+{
+  "case": "needs-setuid-setgid-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/needs-setuid-setgid-defect:rq1",
+    "image_id": "c80289d037ac53f6086f31b68c698d1a88e1f4dc375a9dc919d967969eea927f"
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/needs-setuid-setgid-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "hadolint": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "trivy": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    }
+  }
+}

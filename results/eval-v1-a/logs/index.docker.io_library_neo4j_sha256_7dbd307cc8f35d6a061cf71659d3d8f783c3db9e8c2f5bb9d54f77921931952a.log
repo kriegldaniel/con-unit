@@ -1,0 +1,120 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a
+TIMESTAMP: 2026-11-15T23:28:03Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: ConUnit Container Hardening Profile (CIS-informed)
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a
+CONFIG DIGEST: sha256:e62393be2b79d6d35d4778f3d7013256eaabaff413a7d975357e131b0ce6b3c1
+TOTAL DURATION: 26.634689729s
+PHASE BREAKDOWN: Pull=6.643053058s, Inspect=20.70229ms, Resolve=1.971234885s, Stream=138.722978ms, Tier1=164.214µs, Tier2=2.974145ms, Tier3=17.85721191s (window 3s), Tier4=192ns
+RESOURCES (ConUnit process only): Layers=6, IndexedEntries=7984, CompressedBytes=0, UncompressedBytes=648626104, LiveHeapMB=1.9, SelfCPU=0.23s, ChildCPU=15.67s
+SUMMARY: 10 passed, 6 failed, 1 unverified (total 17)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [FAIL] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    326ns
+    Message:     Image runs as root user (configured user: '')
+    Explanation: Running as root increases blast radius of container breakouts (e.g. CVE-2019-5736) to host-level root compromise.
+    Remediation: Add 'USER 10001:10001' to your Dockerfile or container build specification
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    146ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.067µs
+    Message:     Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    1.17µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    159.754µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    543ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    88ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [FAIL] FS-05 (World-Writable File Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    35.659µs
+    Message:     Found 262 world-writable regular files (privilege tampering risk): [/var/lib/neo4j/LICENSE.txt /var/lib/neo4j/README.txt /var/lib/neo4j/ThirdPartyLicenses.txt /var/lib/neo4j/UPGRADE.txt /var/lib/neo4j/conf/neo4j-admin.conf /var/lib/neo4j/conf/neo4j.conf /var/lib/neo4j/conf/server-logs.xml /var/lib/neo4j/conf/user-logs.xml /var/lib/neo4j/labs/LICENSE /var/lib/neo4j/labs/README.txt /var/lib/neo4j/labs/apoc-2026.10.1-core.jar /var/lib/neo4j/lib/FastInfoset-1.2.16.jar /var/lib/neo4j/lib/WMI4Java-1.6.3.jar /var/lib/neo4j/lib/annotations-2026.10.1.jar /var/lib/neo4j/lib/antlr4-runtime-4.13.2.jar /var/lib/neo4j/lib/argparse4j-0.9.0.jar /var/lib/neo4j/lib/asm-9.10.1.jar /var/lib/neo4j/lib/asm-analysis-9.10.1.jar /var/lib/neo4j/lib/asm-tree-9.10.1.jar /var/lib/neo4j/lib/asm-util-9.10.1.jar /var/lib/neo4j/lib/caffeine-3.3.0.jar /var/lib/neo4j/lib/commons-codec-1.22.1.jar /var/lib/neo4j/lib/commons-compress-1.28.0.jar /var/lib/neo4j/lib/commons-configuration2-2.15.1.jar /var/lib/neo4j/lib/commons-io-2.22.0.jar /var/lib/neo4j/lib/commons-lang3-3.21.0.jar /var/lib/neo4j/lib/commons-logging-1.4.0.jar /var/lib/neo4j/lib/commons-pool-1.6.jar /var/lib/neo4j/lib/commons-text-1.15.0.jar /var/lib/neo4j/lib/cypher-antlr-ast-common-2026.10.1.jar /var/lib/neo4j/lib/cypher-antlr-common-2026.10.1.jar /var/lib/neo4j/lib/cypher-parser-ast-common-2026.10.1.jar /var/lib/neo4j/lib/cypher-parser-common-2026.10.1.jar /var/lib/neo4j/lib/cypher-parser-factory-2026.10.1.jar /var/lib/neo4j/lib/cypher-preparser-2026.10.1.jar /var/lib/neo4j/lib/cypher-shell-2026.10.1.jar /var/lib/neo4j/lib/cypher-v25-antlr-parser-2026.10.1.jar /var/lib/neo4j/lib/cypher-v25-ast-factory-2026.10.1.jar /var/lib/neo4j/lib/cypher-v25-parser-listener-2026.10.1.jar /var/lib/neo4j/lib/cypher-v5-antlr-parser-2026.10.1.jar /var/lib/neo4j/lib/cypher-v5-ast-factory-2026.10.1.jar /var/lib/neo4j/lib/cypher-v5-literal-interpreter-2026.10.1.jar /var/lib/neo4j/lib/cypher-v5-parser-listener-2026.10.1.jar /var/lib/neo4j/lib/eclipse-collections-11.1.0.jar /var/lib/neo4j/lib/eclipse-collections-api-11.1.0.jar /var/lib/neo4j/lib/error_prone_annotations-2.50.0.jar /var/lib/neo4j/lib/failureaccess-1.0.3.jar /var/lib/neo4j/lib/guava-33.7.2-jre.jar /var/lib/neo4j/lib/hk2-api-2.6.1.jar /var/lib/neo4j/lib/hk2-locator-2.6.1.jar /var/lib/neo4j/lib/hk2-utils-2.6.1.jar /var/lib/neo4j/lib/ipaddress-5.6.2.jar /var/lib/neo4j/lib/istack-commons-runtime-3.0.8.jar /var/lib/neo4j/lib/j2objc-annotations-3.1.jar /var/lib/neo4j/lib/jPowerShell-3.0.jar /var/lib/neo4j/lib/jProcesses-1.6.5.jar /var/lib/neo4j/lib/jackson-annotations-2.22.jar /var/lib/neo4j/lib/jackson-core-2.22.3.jar /var/lib/neo4j/lib/jackson-databind-2.22.3.jar /var/lib/neo4j/lib/jackson-datatype-jsr310-2.22.3.jar /var/lib/neo4j/lib/jackson-jaxrs-base-2.22.3.jar /var/lib/neo4j/lib/jackson-jaxrs-json-provider-2.22.3.jar /var/lib/neo4j/lib/jackson-module-jaxb-annotations-2.22.3.jar /var/lib/neo4j/lib/jakarta.activation-api-1.2.2.jar /var/lib/neo4j/lib/jakarta.annotation-api-1.3.5.jar /var/lib/neo4j/lib/jakarta.inject-2.6.1.jar /var/lib/neo4j/lib/jakarta.validation-api-2.0.2.jar /var/lib/neo4j/lib/jakarta.ws.rs-api-2.1.6.jar /var/lib/neo4j/lib/jakarta.xml.bind-api-2.3.3.jar /var/lib/neo4j/lib/jansi-2.4.0.jar /var/lib/neo4j/lib/java-jwt-4.6.1.jar /var/lib/neo4j/lib/javassist-3.30.2-GA.jar /var/lib/neo4j/lib/javax.annotation-api-1.3.2.jar /var/lib/neo4j/lib/jaxb-api-2.2.12.jar /var/lib/neo4j/lib/jaxb-runtime-2.3.2.jar /var/lib/neo4j/lib/jctools-core-4.0.7.jar /var/lib/neo4j/lib/jersey-client-2.48.jar /var/lib/neo4j/lib/jersey-common-2.48.jar /var/lib/neo4j/lib/jersey-container-servlet-2.48.jar /var/lib/neo4j/lib/jersey-container-servlet-core-2.48.jar /var/lib/neo4j/lib/jersey-hk2-2.48.jar /var/lib/neo4j/lib/jersey-server-2.48.jar /var/lib/neo4j/lib/jetty-alpn-java-server-12.1.14.jar /var/lib/neo4j/lib/jetty-alpn-server-12.1.14.jar /var/lib/neo4j/lib/jetty-ee-webapp-12.1.14.jar /var/lib/neo4j/lib/jetty-ee8-nested-12.1.14.jar /var/lib/neo4j/lib/jetty-ee8-security-12.1.14.jar /var/lib/neo4j/lib/jetty-ee8-servlet-12.1.14.jar /var/lib/neo4j/lib/jetty-ee8-webapp-12.1.14.jar /var/lib/neo4j/lib/jetty-http-12.1.14.jar /var/lib/neo4j/lib/jetty-http2-common-12.1.14.jar /var/lib/neo4j/lib/jetty-http2-hpack-12.1.14.jar /var/lib/neo4j/lib/jetty-http2-server-12.1.14.jar /var/lib/neo4j/lib/jetty-io-12.1.14.jar /var/lib/neo4j/lib/jetty-security-12.1.14.jar /var/lib/neo4j/lib/jetty-server-12.1.14.jar /var/lib/neo4j/lib/jetty-servlet-api-4.0.9.jar /var/lib/neo4j/lib/jetty-session-12.1.14.jar /var/lib/neo4j/lib/jetty-util-12.1.14.jar /var/lib/neo4j/lib/jetty-xml-12.1.14.jar /var/lib/neo4j/lib/jline-native-3.30.17.jar /var/lib/neo4j/lib/jline-reader-3.30.17.jar /var/lib/neo4j/lib/jline-terminal-3.30.17.jar /var/lib/neo4j/lib/jline-terminal-jni-3.30.17.jar /var/lib/neo4j/lib/jna-5.19.1.jar /var/lib/neo4j/lib/jspecify-1.0.0.jar /var/lib/neo4j/lib/jtokkit-1.1.0.jar /var/lib/neo4j/lib/jts-core-1.20.0.jar /var/lib/neo4j/lib/kiama_3-2.5.1.jar /var/lib/neo4j/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar /var/lib/neo4j/lib/log4j-api-2.26.1.jar /var/lib/neo4j/lib/log4j-core-2.26.1.jar /var/lib/neo4j/lib/log4j-jul-2.26.1.jar /var/lib/neo4j/lib/log4j-layout-template-json-2.26.1.jar /var/lib/neo4j/lib/lucene-analysis-common-10.5.1.jar /var/lib/neo4j/lib/lucene-backward-codecs-10.5.1.jar /var/lib/neo4j/lib/lucene-core-10.5.1.jar /var/lib/neo4j/lib/lucene-queryparser-10.5.1.jar /var/lib/neo4j/lib/lucene9-shaded-2026.10.1.jar /var/lib/neo4j/lib/magnolia_3-1.3.0.jar /var/lib/neo4j/lib/neo4j-2026.10.1.jar /var/lib/neo4j/lib/neo4j-ast-2026.10.1.jar /var/lib/neo4j/lib/neo4j-bolt-2026.10.1.jar /var/lib/neo4j/lib/neo4j-bolt-connection-12.0.0.jar /var/lib/neo4j/lib/neo4j-bolt-connection-codec-12.1.0.jar /var/lib/neo4j/lib/neo4j-bolt-connection-netty-12.0.0.jar /var/lib/neo4j/lib/neo4j-bolt-connection-pooled-12.1.0.jar /var/lib/neo4j/lib/neo4j-bolt-connection-routed-12.1.0.jar /var/lib/neo4j/lib/neo4j-bolt-messages-2026.10.1.jar /var/lib/neo4j/lib/neo4j-bootcheck-2026.10.1.jar /var/lib/neo4j/lib/neo4j-capabilities-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cloud-2026.10.1.jar /var/lib/neo4j/lib/neo4j-codegen-2026.10.1.jar /var/lib/neo4j/lib/neo4j-collections-2026.10.1.jar /var/lib/neo4j/lib/neo4j-command-line-2026.10.1.jar /var/lib/neo4j/lib/neo4j-common-2026.10.1.jar /var/lib/neo4j/lib/neo4j-concurrent-2026.10.1.jar /var/lib/neo4j/lib/neo4j-configuration-2026.10.1.jar /var/lib/neo4j/lib/neo4j-consistency-check-2026.10.1.jar /var/lib/neo4j/lib/neo4j-csv-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-admin-runtime-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-cache-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-config-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-dsl-2025.3.4.jar /var/lib/neo4j/lib/neo4j-cypher-expression-evaluator-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-interpreted-runtime-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-ir-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-logical-plans-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-macros-scala3-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-physical-planning-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-planner-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-planner-spi-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-rendering-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-runtime-expressions-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-runtime-util-2026.10.1.jar /var/lib/neo4j/lib/neo4j-cypher-slotted-runtime-2026.10.1.jar /var/lib/neo4j/lib/neo4j-data-collector-2026.10.1.jar /var/lib/neo4j/lib/neo4j-dbms-2026.10.1.jar /var/lib/neo4j/lib/neo4j-diagnostics-2026.10.1.jar /var/lib/neo4j/lib/neo4j-exceptions-2026.10.1.jar /var/lib/neo4j/lib/neo4j-expressions-2026.10.1.jar /var/lib/neo4j/lib/neo4j-fabric-2026.10.1.jar /var/lib/neo4j/lib/neo4j-fleet-management-2026.10.1.jar /var/lib/neo4j/lib/neo4j-front-end-2026.10.1.jar /var/lib/neo4j/lib/neo4j-gql-status-2026.10.1.jar /var/lib/neo4j/lib/neo4j-graphdb-api-2026.10.1.jar /var/lib/neo4j/lib/neo4j-id-generator-2026.10.1.jar /var/lib/neo4j/lib/neo4j-import-api-2026.10.1.jar /var/lib/neo4j/lib/neo4j-import-tool-2026.10.1.jar /var/lib/neo4j/lib/neo4j-import-util-2026.10.1.jar /var/lib/neo4j/lib/neo4j-index-2026.10.1.jar /var/lib/neo4j/lib/neo4j-internal-notifications-2026.10.1.jar /var/lib/neo4j/lib/neo4j-io-2026.10.1.jar /var/lib/neo4j/lib/neo4j-java-driver-6.3.0.jar /var/lib/neo4j/lib/neo4j-kernel-2026.10.1.jar /var/lib/neo4j/lib/neo4j-kernel-api-2026.10.1.jar /var/lib/neo4j/lib/neo4j-layout-2026.10.1.jar /var/lib/neo4j/lib/neo4j-lock-2026.10.1.jar /var/lib/neo4j/lib/neo4j-logging-2026.10.1.jar /var/lib/neo4j/lib/neo4j-lucene-index-2026.10.1.jar /var/lib/neo4j/lib/neo4j-monitoring-2026.10.1.jar /var/lib/neo4j/lib/neo4j-native-2026.10.1.jar /var/lib/neo4j/lib/neo4j-native-index-2026.10.1.jar /var/lib/neo4j/lib/neo4j-notifications-2026.10.1.jar /var/lib/neo4j/lib/neo4j-procedure-2026.10.1.jar /var/lib/neo4j/lib/neo4j-procedure-api-2026.10.1.jar /var/lib/neo4j/lib/neo4j-push-to-cloud-2026.10.1.jar /var/lib/neo4j/lib/neo4j-query-router-2026.10.1.jar /var/lib/neo4j/lib/neo4j-record-storage-engine-2026.10.1.jar /var/lib/neo4j/lib/neo4j-resource-2026.10.1.jar /var/lib/neo4j/lib/neo4j-rewriting-2026.10.1.jar /var/lib/neo4j/lib/neo4j-schema-2026.10.1.jar /var/lib/neo4j/lib/neo4j-security-2026.10.1.jar /var/lib/neo4j/lib/neo4j-server-2026.10.1.jar /var/lib/neo4j/lib/neo4j-slf4j-provider-2026.10.1.jar /var/lib/neo4j/lib/neo4j-spatial-index-2026.10.1.jar /var/lib/neo4j/lib/neo4j-ssl-2026.10.1.jar /var/lib/neo4j/lib/neo4j-storage-engine-util-2026.10.1.jar /var/lib/neo4j/lib/neo4j-token-api-2026.10.1.jar /var/lib/neo4j/lib/neo4j-udc-2026.10.1.jar /var/lib/neo4j/lib/neo4j-unsafe-2026.10.1.jar /var/lib/neo4j/lib/neo4j-util-2026.10.1.jar /var/lib/neo4j/lib/neo4j-values-2026.10.1.jar /var/lib/neo4j/lib/neo4j-wal-2026.10.1.jar /var/lib/neo4j/lib/netty-buffer-4.2.19.Final.jar /var/lib/neo4j/lib/netty-codec-base-4.2.19.Final.jar /var/lib/neo4j/lib/netty-codec-compression-4.2.19.Final.jar /var/lib/neo4j/lib/netty-codec-haproxy-4.2.19.Final.jar /var/lib/neo4j/lib/netty-codec-http-4.2.19.Final.jar /var/lib/neo4j/lib/netty-common-4.2.19.Final.jar /var/lib/neo4j/lib/netty-handler-4.2.19.Final.jar /var/lib/neo4j/lib/netty-resolver-4.2.19.Final.jar /var/lib/neo4j/lib/netty-tcnative-classes-2.0.84.Final.jar /var/lib/neo4j/lib/netty-tcnative/netty-tcnative-2.0.84.Final-linux-x86_64-fedora.jar /var/lib/neo4j/lib/netty-tcnative/netty-tcnative-2.0.84.Final-linux-x86_64.jar /var/lib/neo4j/lib/netty-tcnative/netty-tcnative-2.0.84.Final-osx-aarch_64.jar /var/lib/neo4j/lib/netty-tcnative/netty-tcnative-2.0.84.Final-osx-x86_64.jar /var/lib/neo4j/lib/netty-transport-4.2.19.Final.jar /var/lib/neo4j/lib/netty-transport-classes-epoll-4.2.19.Final.jar /var/lib/neo4j/lib/netty-transport-classes-kqueue-4.2.19.Final.jar /var/lib/neo4j/lib/netty-transport-native-epoll-4.2.19.Final-linux-aarch_64.jar /var/lib/neo4j/lib/netty-transport-native-epoll-4.2.19.Final-linux-x86_64.jar /var/lib/neo4j/lib/netty-transport-native-kqueue-4.2.19.Final-osx-aarch_64.jar /var/lib/neo4j/lib/netty-transport-native-kqueue-4.2.19.Final-osx-x86_64.jar /var/lib/neo4j/lib/netty-transport-native-unix-common-4.2.19.Final.jar /var/lib/neo4j/lib/osgi-resource-locator-1.0.3.jar /var/lib/neo4j/lib/parquet-column-1.18.1.jar /var/lib/neo4j/lib/parquet-common-1.18.1.jar /var/lib/neo4j/lib/parquet-encoding-1.18.1.jar /var/lib/neo4j/lib/parquet-floor-2.4.jar /var/lib/neo4j/lib/parquet-format-structures-1.18.1.jar /var/lib/neo4j/lib/parquet-hadoop-1.18.1.jar /var/lib/neo4j/lib/parquet-jackson-1.18.1.jar /var/lib/neo4j/lib/picocli-4.7.7.jar /var/lib/neo4j/lib/reactive-streams-1.0.4.jar /var/lib/neo4j/lib/reactor-core-3.8.7.jar /var/lib/neo4j/lib/scala-collection-contrib_3-0.3.0.jar /var/lib/neo4j/lib/scala-library-2.13.17.jar /var/lib/neo4j/lib/scala-reflect-2.13.17.jar /var/lib/neo4j/lib/scala3-library_3-3.7.4.jar /var/lib/neo4j/lib/server-api-2026.10.1.jar /var/lib/neo4j/lib/shiro-cache-3.0.1.jar /var/lib/neo4j/lib/shiro-config-core-3.0.1.jar /var/lib/neo4j/lib/shiro-core-3.0.1.jar /var/lib/neo4j/lib/shiro-crypto-cipher-3.0.1.jar /var/lib/neo4j/lib/shiro-crypto-core-3.0.1.jar /var/lib/neo4j/lib/shiro-crypto-hash-3.0.1.jar /var/lib/neo4j/lib/shiro-event-3.0.1.jar /var/lib/neo4j/lib/shiro-lang-3.0.1.jar /var/lib/neo4j/lib/slf4j-api-2.0.17.jar /var/lib/neo4j/lib/snappy-java-1.1.10.12.jar /var/lib/neo4j/lib/sourcecode_3-0.4.2.jar /var/lib/neo4j/lib/stax-ex-1.8.1.jar /var/lib/neo4j/lib/txw2-2.3.2.jar /var/lib/neo4j/lib/zstd-jni-1.5.7-22.jar /var/lib/neo4j/lib/zstd-proxy-2026.10.1.jar /var/lib/neo4j/packaging_info /var/lib/neo4j/plugins/README.txt /var/lib/neo4j/products/neo4j-genai-plugin-2026.10.1.jar /var/lib/neo4j/products/neo4j-graph-data-science-2026.10.1.jar /var/lib/neo4j/web/neo4j-browser-2026.10.21+0.zip]
+    Explanation: World-writable files can be modified by any unprivileged user or shared volume process, allowing binary tampering.
+    Remediation: Remove world-writable bits during image build: chmod -R o-w /app
+
+[9] [PASS] FS-09 (System Directory Ownership Hygiene)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    179ns
+    Message:     All system binaries in /bin and /usr/bin are owned by root (UID 0)
+
+[10] [PASS] FS-07 (Development and Test Harness Leakage)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.935609ms
+    Message:     No test runner configuration was found outside fixture-like locations
+
+[11] [UNVERIFIED] SUP-02 (Cryptographic Image Provenance & Signature)
+    Tier:        Tier 4: Supply Chain
+    Duration:    192ns
+    Reason:      NO_TRUST_POLICY
+    Message:     Signature status is unverified: provide a cryptographic verifier and an explicit trust policy
+    Remediation: Configure a signature verifier with a trusted key or keyless identity and issuer
+
+[12] [FAIL] EXEC-02 (Dropped Linux Capabilities Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    11.002549182s
+    Message:     The container was not running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL) (exited_nonzero, exit code 1) although the baseline run was running
+    Explanation: FAIL records that the container was not running at the end of the observation window although the baseline run (same defensive flags and mock environment, without the treatment) was. It describes behavior under this profile only; it is not a defect claim and not a root cause.
+    Hint:        Keyword match, not a diagnosis: the log mentions chown or chmod, which need CAP_CHOWN or CAP_FOWNER (non-authoritative)
+    Remediation: Remove the need for root capabilities, for example binding ports below 1024 or switching users at runtime
+
+[13] [PASS] SPEC-05 (Non-Privileged Declared Image Ports)
+    Tier:        Tier 1: Specification
+    Duration:    2.21µs
+    Message:     No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected
+
+[14] [PASS] SPEC-06 (Dangling Debug Port Exclusion)
+    Tier:        Tier 1: Specification
+    Duration:    608ns
+    Message:     No dangerous debug or administration ports exposed
+
+[15] [PASS] EXEC-07 (Resource Constraint Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.232203553s
+    Message:     The container was still running at the end of the 3s window with a memory limit of 256m, as in the baseline
+
+[16] [FAIL] EXEC-01 (Read-Only Root Filesystem Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    317.75521ms
+    Message:     The container was not running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp) (exited_nonzero, exit code 1) although the baseline run was running
+    Explanation: FAIL records that the container was not running at the end of the observation window although the baseline run (same defensive flags and mock environment, without the treatment) was. It describes behavior under this profile only; it is not a defect claim and not a root cause.
+    Hint:        Keyword match, not a diagnosis: the log mentions a read-only file system error, so the image may write below a path that is not a tmpfs (non-authoritative)
+    Remediation: Ensure the application writes solely to ephemeral mounted tmpfs volumes (for example /tmp)
+
+[17] [PASS] EXEC-04 (No-New-Privileges Kernel Contract)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.304703965s
+    Message:     The container was still running at the end of the 3s window with no-new-privileges enabled, as in the baseline
+

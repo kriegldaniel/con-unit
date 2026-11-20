@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e",
+  "config_digest_study": "sha256:6e30e4af8c68a6f52124e211a25334562455e368db32f53ac4cdf361a75b3b26",
+  "config_digest_archive": "sha256:6e30e4af8c68a6f52124e211a25334562455e368db32f53ac4cdf361a75b3b26",
+  "status": "OK",
+  "export_seconds": 3.189461353,
+  "dockle_seconds": 0.225278863,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/pam_timestamp_check\",\n        \"setuid file: u--x--x--x usr/bin/sudo\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setuid file: urwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\"\n      ]\n    }\n  ]\n}"
+}

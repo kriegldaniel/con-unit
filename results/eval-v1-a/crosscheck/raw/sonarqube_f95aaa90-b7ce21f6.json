@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840",
+  "config_digest_study": "sha256:f86a22da31060d7939e92219282baf40692b7ba465861e16b7075417a147c20f",
+  "config_digest_archive": "sha256:f86a22da31060d7939e92219282baf40692b7ba465861e16b7075417a147c20f",
+  "status": "OK",
+  "export_seconds": 13.139976176,
+  "dockle_seconds": 1.398493679,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 0,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 13\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\"\n      ]\n    }\n  ]\n}"
+}

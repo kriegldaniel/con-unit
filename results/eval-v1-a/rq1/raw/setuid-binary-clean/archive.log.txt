@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-setuid-binary-clean.tar localhost/conunit-rq1/setuid-binary-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:7f722ec5c2940410ef44802f47dd805f9d6b8a08c49689af140db44068bfa173
+Copying config sha256:73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045
+Writing manifest to image destination

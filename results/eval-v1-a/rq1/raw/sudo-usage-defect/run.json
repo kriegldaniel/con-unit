@@ -1,0 +1,53 @@
+{
+  "case": "sudo-usage-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/sudo-usage-defect:rq1",
+    "image_id": "228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02.json",
+    "config_digest": "sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+    "image_id": "sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+    "matches_image_id": true,
+    "size_bytes": 10584576
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/sudo-usage-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/sudo-usage-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "skipped",
+      "reason": "no container-structure-test policy for this property",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-sudo-usage-defect.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-defect/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-sudo-usage-defect.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

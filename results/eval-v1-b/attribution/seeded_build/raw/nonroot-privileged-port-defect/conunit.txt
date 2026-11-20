@@ -1,0 +1,384 @@
+{
+  "image_name": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+  "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+  "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+  "platform": "linux/amd64",
+  "suite_name": "ConUnit Container Hardening Profile (CIS-informed)",
+  "requested_ref": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+  "image_source": "local-store",
+  "timestamp": "2026-11-16T00:12:29.594723237Z",
+  "duration": 458692195,
+  "total": 17,
+  "passed": 12,
+  "failed": 0,
+  "unverified": 5,
+  "phases": {
+    "pull_duration": 19963490,
+    "inspect_duration": 23772970,
+    "resolve_duration": 74458723,
+    "stream_duration": 4210442,
+    "tier1_duration": 70207,
+    "tier2_duration": 115709,
+    "tier3_duration": 335599012,
+    "tier4_duration": 135,
+    "probe_window": 3000000000
+  },
+  "resources": {
+    "alloc_mb": 2.0533828735351562,
+    "total_alloc_mb": 0.93536376953125,
+    "sys_mb": 17.20923614501953,
+    "peak_rss_mb": 11.3984375,
+    "num_gc": 0,
+    "layer_count": 2,
+    "uncompressed_bytes": 8425422,
+    "live_heap_mb": 0.686309814453125,
+    "self_cpu_seconds": 0.011102,
+    "child_cpu_seconds": 0.35861299999999996,
+    "indexed_entries": 520
+  },
+  "results": [
+    {
+      "test_id": "SPEC-01",
+      "test_name": "Non-Root Execution Identity",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 530,
+      "message": "Image config selects numeric non-root UID 10001",
+      "rule_type": "SPEC-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "CIS-4.6",
+      "test_name": "Image HEALTHCHECK",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 389,
+      "message": "Image metadata defines a HEALTHCHECK",
+      "rule_type": "CIS-4.6",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-04",
+      "test_name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 378,
+      "message": "Zero SUID/SGID binaries detected",
+      "rule_type": "FS-04",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SPEC-07",
+      "test_name": "Instruction Hygiene (COPY over ADD)",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 6599,
+      "message": "No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions",
+      "rule_type": "SPEC-07",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-03",
+      "test_name": "Clean Ambient Environment",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 61169,
+      "message": "No prohibited or secret environment variables detected",
+      "rule_type": "SPEC-03",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-06",
+      "test_name": "Private Key Material Scan",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 4642,
+      "message": "No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope",
+      "rule_type": "FS-06",
+      "evidence": {},
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-08",
+      "test_name": "Account Security (Empty Passwords)",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 48,
+      "message": "No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records",
+      "rule_type": "FS-08",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-05",
+      "test_name": "World-Writable File Elimination",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 128,
+      "message": "Zero world-writable regular files detected",
+      "rule_type": "FS-05",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-09",
+      "test_name": "System Directory Ownership Hygiene",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 117,
+      "message": "All system binaries in /bin and /usr/bin are owned by root (UID 0)",
+      "rule_type": "FS-09",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-07",
+      "test_name": "Development and Test Harness Leakage",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 110396,
+      "message": "No test runner configuration was found outside fixture-like locations",
+      "rule_type": "FS-07",
+      "evidence": {},
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SUP-02",
+      "test_name": "Cryptographic Image Provenance \u0026 Signature",
+      "tier": 4,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 135,
+      "message": "Signature status is unverified: provide a cryptographic verifier and an explicit trust policy",
+      "rule_type": "SUP-02",
+      "remediation": "Configure a signature verifier with a trusted key or keyless identity and issuer",
+      "reference": "https://www.cisecurity.org/benchmark/docker",
+      "reason": "NO_TRUST_POLICY",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "EXEC-02",
+      "test_name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 335595607,
+      "message": "The baseline run (defensive flags only) did not stay running for the 3s window (exited_nonzero, exit code 1), so the EXEC-02 result cannot be interpreted",
+      "rule_type": "EXEC-02",
+      "remediation": "Resolve the engine or image issue behind the baseline and rerun the runtime check",
+      "reason": "BASELINE_FAILED",
+      "evidence": {
+        "baseline_state": "exited_nonzero",
+        "baseline_exit_code": 1,
+        "window_ms": 3000,
+        "log_tail": "nc: bind: Permission denied"
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "SPEC-05",
+      "test_name": "Non-Privileged Declared Image Ports",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 1330,
+      "message": "No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected",
+      "rule_type": "SPEC-05",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-06",
+      "test_name": "Dangling Debug Port Exclusion",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 190,
+      "message": "No dangerous debug or administration ports exposed",
+      "rule_type": "SPEC-06",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "EXEC-07",
+      "test_name": "Resource Constraint Conformance",
+      "tier": 3,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 1714,
+      "message": "The baseline run (defensive flags only) did not stay running for the 3s window (exited_nonzero, exit code 1), so the EXEC-07 result cannot be interpreted",
+      "rule_type": "EXEC-07",
+      "remediation": "Resolve the engine or image issue behind the baseline and rerun the runtime check",
+      "reason": "BASELINE_FAILED",
+      "evidence": {
+        "baseline_state": "exited_nonzero",
+        "baseline_exit_code": 1,
+        "window_ms": 3000,
+        "log_tail": "nc: bind: Permission denied"
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-01",
+      "test_name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 956,
+      "message": "The baseline run (defensive flags only) did not stay running for the 3s window (exited_nonzero, exit code 1), so the EXEC-01 result cannot be interpreted",
+      "rule_type": "EXEC-01",
+      "remediation": "Resolve the engine or image issue behind the baseline and rerun the runtime check",
+      "reason": "BASELINE_FAILED",
+      "evidence": {
+        "baseline_state": "exited_nonzero",
+        "baseline_exit_code": 1,
+        "window_ms": 3000,
+        "log_tail": "nc: bind: Permission denied"
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-04",
+      "test_name": "No-New-Privileges Kernel Contract",
+      "tier": 3,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:df2c13e0af6d45af9a32a9a664b016301b5c04021352ec5be6613031b5d25d15",
+      "config_digest": "sha256:87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8",
+      "platform": "linux/amd64",
+      "duration": 735,
+      "message": "The baseline run (defensive flags only) did not stay running for the 3s window (exited_nonzero, exit code 1), so the EXEC-04 result cannot be interpreted",
+      "rule_type": "EXEC-04",
+      "remediation": "Resolve the engine or image issue behind the baseline and rerun the runtime check",
+      "reason": "BASELINE_FAILED",
+      "evidence": {
+        "baseline_state": "exited_nonzero",
+        "baseline_exit_code": 1,
+        "window_ms": 3000,
+        "log_tail": "nc: bind: Permission denied"
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    }
+  ]
+}

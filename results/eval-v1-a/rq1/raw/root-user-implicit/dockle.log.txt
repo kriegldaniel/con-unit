@@ -1,0 +1,4 @@
+$ /usr/local/bin/dockle --input /tmp/rq1-225601-root-user-implicit.tar --format json --exit-code 0
+exit: 0
+--- stderr ---
+

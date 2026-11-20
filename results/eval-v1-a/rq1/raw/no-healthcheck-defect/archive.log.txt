@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-no-healthcheck-defect.tar localhost/conunit-rq1/no-healthcheck-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741
+Writing manifest to image destination

@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-apt-lists-clean.tar localhost/conunit-rq1/apt-lists-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:f487d0da9ce0cd3b17ddb89deff39644274b08f2ff71e321a9e0e476ec2d46fe
+Copying blob sha256:cc30ba9ee7403cb65747c5fd81491f213a6343be416bd1de11225093551ce238
+Copying blob sha256:ed3f18086ee61d434f1cd2c3e717b8c4f2bf459f7c4380797901435bf781b64b
+Copying config sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96
+Writing manifest to image destination

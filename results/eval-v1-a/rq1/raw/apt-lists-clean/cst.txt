@@ -1,0 +1,1 @@
+{"Pass":1,"Fail":0,"Total":1,"Duration":600342277,"Results":[{"Name":"Command Test: rq1-apt-lists","Pass":true,"Duration":600342277}]}

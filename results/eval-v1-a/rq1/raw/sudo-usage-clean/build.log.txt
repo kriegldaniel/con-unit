@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/sudo-usage-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-clean
+exit: 0
+--- stderr ---
+

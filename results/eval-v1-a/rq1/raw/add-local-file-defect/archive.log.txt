@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-add-local-file-defect.tar localhost/conunit-rq1/add-local-file-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:37794bc7eb8f09d751ff7f30ea14ed767ab4b704a98f5537cbd57ec24e4a2f8e
+Copying config sha256:f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8
+Writing manifest to image destination

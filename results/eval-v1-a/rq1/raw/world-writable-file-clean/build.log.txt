@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/world-writable-file-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-clean
+exit: 0
+--- stderr ---
+

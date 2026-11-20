@@ -1,0 +1,4 @@
+$ /usr/local/bin/hadolint --no-color --format json --info DL3057 /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-clean/Dockerfile
+exit: 0
+--- stderr ---
+

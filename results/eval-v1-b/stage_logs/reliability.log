@@ -1,0 +1,202 @@
+2026-11-16T00:14:59Z [INFO ] reliability run r1: window 3s
+Evaluating 10 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 3s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[ 1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 411ms | local-store
+[ 2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 30ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.557s | local-store
+[ 3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 22ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 11.429s | local-store
+[ 4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 47ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.299s | local-store
+[ 5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 47ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 3.328s | local-store
+[ 6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 139ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 13.516s | local-store
+[ 7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 73ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 18.85s | local-store
+[ 8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 27ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 17.31s | local-store
+[ 9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 56ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 16.548s | local-store
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 40ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 15.106s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-b/reliability/r1/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-b/reliability/r1/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-b/reliability/r1/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 22.5 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 10 images COMPLETED
+2026-11-16T00:16:40Z [INFO ] reliability run r2: window 3s
+Evaluating 10 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 3s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[ 1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 411ms | local-store
+[ 2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 30ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 717ms | local-store
+[ 3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 23ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 10.705s | local-store
+[ 4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 46ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 944ms | local-store
+[ 5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 47ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.446s | local-store
+[ 6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 138ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.698s | local-store
+[ 7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 72ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 15.748s | local-store
+[ 8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 28ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 16.737s | local-store
+[ 9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 55ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 14.684s | local-store
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 39ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 14.323s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-b/reliability/r2/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-b/reliability/r2/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-b/reliability/r2/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 21.3 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 10 images COMPLETED
+2026-11-16T00:17:59Z [INFO ] reliability run r3: window 3s
+Evaluating 10 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 3s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[ 1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 3ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 418ms | local-store
+[ 2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 31ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 697ms | local-store
+[ 3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 22ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 10.775s | local-store
+[ 4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 47ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 933ms | local-store
+[ 5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 48ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.337s | local-store
+[ 6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 137ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.703s | local-store
+[ 7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 71ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 15.724s | local-store
+[ 8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 27ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 16.74s | local-store
+[ 9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 56ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 14.713s | local-store
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 40ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 14.368s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-b/reliability/r3/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-b/reliability/r3/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-b/reliability/r3/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 21.3 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 10 images COMPLETED
+2026-11-16T00:19:18Z [INFO ] reliability run w10: window 10s
+Evaluating 10 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 10s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[ 1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 416ms | local-store
+[ 2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 30ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 699ms | local-store
+[ 3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 22ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 31.755s | local-store
+[ 4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 46ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 925ms | local-store
+[ 5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 47ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.335s | local-store
+[ 6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 139ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.711s | local-store
+[ 7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 73ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 43.825s | local-store
+[ 8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 27ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 51.803s | local-store
+[ 9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 56ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 42.46s | local-store
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 39ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 42.441s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-b/reliability/w10/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-b/reliability/w10/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-b/reliability/w10/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 22.0 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 10 images COMPLETED
+2026-11-16T00:22:57Z [INFO ] reliability run w30: window 30s
+Evaluating 10 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 30s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[ 1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 411ms | local-store
+[ 2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 30ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 697ms | local-store
+[ 3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 23ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 1m31.781s | local-store
+[ 4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 47ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 939ms | local-store
+[ 5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 47ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.334s | local-store
+[ 6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 137ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 2.7s | local-store
+[ 7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 72ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 2m3.229s | local-store
+[ 8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 28ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 2m31.816s | local-store
+[ 9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 55ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 2m2.353s | local-store
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 40ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 2m2.088s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-b/reliability/w30/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-b/reliability/w30/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-b/reliability/w30/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 23.2 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 10 images COMPLETED
+
+-------------------------------
+  Reliability of the verdicts
+-------------------------------
+[INFO]     repeats 3 (r1, r2, r3) at W = 3 s, 10 images completed in all of them
+[INFO]     pairs   140 with a verified verdict in every repeat, 0 flipped, in 0 images
+[INFO]              30 pairs unverified in some repeat, in neither number
+[INFO]     tier 3  20 pairs, 0 flipped in 0 images
+[INFO]     windows w3, w10, w30: 10 images, 170 pairs, 0 changed (0 with an unverified verdict)
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/reliability/reliability.json
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/reliability/table_reliability.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/reliability/macros_reliability.tex

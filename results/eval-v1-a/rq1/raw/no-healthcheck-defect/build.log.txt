@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/no-healthcheck-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-defect
+exit: 0
+--- stderr ---
+

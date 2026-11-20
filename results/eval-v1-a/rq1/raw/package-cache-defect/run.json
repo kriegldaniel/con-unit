@@ -1,0 +1,54 @@
+{
+  "case": "package-cache-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/package-cache-defect:rq1",
+    "image_id": "addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144.json",
+    "config_digest": "sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+    "image_id": "sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+    "matches_image_id": true,
+    "size_bytes": 12715520
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/package-cache-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/package-cache-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/package-cache-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/package-cache.yaml --output json",
+      "output": "cst.txt"
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-package-cache-defect.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/package-cache-defect/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/package-cache-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-package-cache-defect.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

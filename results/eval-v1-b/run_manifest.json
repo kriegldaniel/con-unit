@@ -1,0 +1,170 @@
+{
+  "schema": "conunit-run-manifest/1",
+  "run_id": "eval-v1-b",
+  "outcome": "complete",
+  "exit_code": 0,
+  "source": {
+    "requested_tag": "eval-v1",
+    "tag_exists": true,
+    "bundle_kind": "tag",
+    "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "head_commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "tree": null,
+    "tainted": false,
+    "working_tree_dirty": false,
+    "bundle_sha256": "73efdf48954324f22fc686ff0e3fdd0ced2af1a8772c79ac98385ca417fa8021"
+  },
+  "dataset": {
+    "canary": false,
+    "eval": {
+      "path": "fixtures/evaluation_dataset_pinned.txt",
+      "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+      "entries": 100
+    },
+    "rq3": {
+      "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+      "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "entries": 10
+    },
+    "reliability": {
+      "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+      "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "entries": 10
+    },
+    "remote_reported": {
+      "eval": {
+        "path": "fixtures/evaluation_dataset_pinned.txt",
+        "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+        "entries": 100
+      },
+      "rq3": {
+        "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+        "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+        "entries": 10
+      },
+      "reliability": {
+        "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+        "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+        "entries": 10
+      }
+    },
+    "mirror_check_performed": true,
+    "mirror_check_results": {
+      "eval": "preflight/mirror_check_eval.json",
+      "rq3": "preflight/mirror_check_rq3.json"
+    }
+  },
+  "infrastructure": {
+    "region": "eu-central-1",
+    "instance_type": "c6i.2xlarge",
+    "instance_id": "i-03292ea470dd3a03f",
+    "availability_zone": "eu-central-1a",
+    "ami": {
+      "id": "ami-04bbcae8eccec8bce",
+      "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108",
+      "creation_date": "2026-11-09T19:24:25.000Z",
+      "deprecation_time": "2028-11-09T19:24:25.000Z"
+    },
+    "root_volume_gb": 150,
+    "watchdog_minutes": 240,
+    "ssh_host_key_check": "verified-against-console"
+  },
+  "execution": {
+    "engine_mode": "rootful",
+    "stages": [
+      "eval",
+      "export",
+      "attribute",
+      "ablate",
+      "reliability"
+    ],
+    "pack": "cis",
+    "platform": "linux/amd64",
+    "image_source_policy": "auto",
+    "probe_window": "3s",
+    "rq1_cases": 0,
+    "rq3_iterations": 10,
+    "rq3_warmup": 1,
+    "docker_hub_blocked": true,
+    "registry_remap": "docker.io/library -> public.ecr.aws/docker/library"
+  },
+  "timestamps": {
+    "started": "2026-11-15T23:19:38Z",
+    "provisioned": "2026-11-15T23:23:10Z",
+    "ssh_ready": "2026-11-15T23:23:21Z",
+    "remote_started": "2026-11-15T23:23:42Z",
+    "remote_finished": "2026-11-16T00:33:15Z",
+    "results_collected": "2026-11-16T00:33:17Z",
+    "destroyed": "2026-11-16T00:34:11Z",
+    "manifest_written": "2026-11-16T00:34:12Z"
+  },
+  "exit_codes": {
+    "remote_script": 0,
+    "remote_result": "complete",
+    "remote_stages": {
+      "host": 0,
+      "bundle": 0,
+      "go": 0,
+      "packages": 0,
+      "tools": 0,
+      "registry": 0,
+      "docker_hub_block": 0,
+      "mode": 0,
+      "datasets": 0,
+      "mirror_proof": 0,
+      "host_info": 0,
+      "build": 0,
+      "eval": 0,
+      "run_block_check": 0,
+      "export": 0,
+      "attribute": 0,
+      "ablate": 0,
+      "reliability": 0
+    }
+  },
+  "tool_versions": {
+    "local": {
+      "opentofu": "OpenTofu v1.13.2",
+      "aws_cli": "aws-cli/2.36.31 Python/3.14.8 Darwin/27.2.0 source/arm64",
+      "jq": "jq-1.8.2",
+      "git": "git version 2.56.0",
+      "rsync": "rsync  version 3.5.0  protocol version 32",
+      "ssh": "OpenSSH_10.6p1, OpenSSL 3.5.9 29 Sep 2026",
+      "bash": "5.3.20(1)-release"
+    },
+    "remote": {
+      "go": "go version go1.26.10 linux/amd64",
+      "podman": "podman version 4.9.3",
+      "crun": "crun version 1.14.1",
+      "conmon": "conmon version 2.1.10",
+      "netavark": "1.4.0-4",
+      "kernel": "7.0.0-1014-aws",
+      "podman_rootless": "false",
+      "cgroups": "v2",
+      "oci_runtime": "crun crun version 1.14.1",
+      "storage_driver": "overlay",
+      "engine_mode": "rootful",
+      "syft": "absent"
+    },
+    "installed": {
+      "schema": "conunit-tool-versions/1",
+      "lock_file": "tools.lock",
+      "lock_sha256": null,
+      "locked": {},
+      "tools": {}
+    },
+    "lock_sha256_shipped": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737"
+  },
+  "teardown": {
+    "kept": false,
+    "verified": true,
+    "note": "destroyed and verified",
+    "remaining": {
+      "state_resources": "0",
+      "instances": "0",
+      "volumes": "0",
+      "security_groups": "0",
+      "key_pairs": "0"
+    }
+  }
+}

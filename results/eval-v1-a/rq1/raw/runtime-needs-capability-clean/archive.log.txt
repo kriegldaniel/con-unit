@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-runtime-needs-capability-clean.tar localhost/conunit-rq1/runtime-needs-capability-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:e3508ca7f881b53c25dfced8c781a46ecb4b0afb70030d808b089ff29ffc6553
+Copying config sha256:300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e
+Writing manifest to image destination

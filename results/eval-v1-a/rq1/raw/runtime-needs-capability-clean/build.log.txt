@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/runtime-needs-capability-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-clean
+exit: 0
+--- stderr ---
+

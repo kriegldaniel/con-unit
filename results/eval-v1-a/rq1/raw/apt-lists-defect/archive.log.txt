@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-apt-lists-defect.tar localhost/conunit-rq1/apt-lists-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:f487d0da9ce0cd3b17ddb89deff39644274b08f2ff71e321a9e0e476ec2d46fe
+Copying blob sha256:cc30ba9ee7403cb65747c5fd81491f213a6343be416bd1de11225093551ce238
+Copying blob sha256:7f60929dd91180a3a2f278cf66d566474a29c413f80cd3fc8e897a8c528c49c7
+Copying config sha256:b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4
+Writing manifest to image destination

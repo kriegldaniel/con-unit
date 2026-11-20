@@ -1,0 +1,108 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+TIMESTAMP: 2026-11-15T23:51:12Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: ConUnit Container Hardening Profile (CIS-informed)
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+CONFIG DIGEST: sha256:257074406b6eec380296bc2625368d41111bdc1cfad82c153bf9a2355b24773f
+TOTAL DURATION: 20.211827169s
+PHASE BREAKDOWN: Pull=2.635901433s, Inspect=24.331497ms, Resolve=569.76295ms, Stream=33.1158ms, Tier1=137.787µs, Tier2=563.931µs, Tier3=16.945187563s (window 3s), Tier4=171ns
+RESOURCES (ConUnit process only): Layers=17, IndexedEntries=1830, CompressedBytes=0, UncompressedBytes=116191875, LiveHeapMB=2.3, SelfCPU=0.17s, ChildCPU=8.21s
+SUMMARY: 15 passed, 1 failed, 1 unverified (total 17)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [PASS] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    1.305µs
+    Message:     Configured user "adminer" resolves to non-root UID 100
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    72ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [PASS] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    293ns
+    Message:     Zero SUID/SGID binaries detected
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    12.025µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    120.308µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    543ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    74ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-05 (World-Writable File Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    158ns
+    Message:     Zero world-writable regular files detected
+
+[9] [PASS] FS-09 (System Directory Ownership Hygiene)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    137ns
+    Message:     All system binaries in /bin and /usr/bin are owned by root (UID 0)
+
+[10] [PASS] FS-07 (Development and Test Harness Leakage)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    562.726µs
+    Message:     No test runner configuration was found outside fixture-like locations
+
+[11] [UNVERIFIED] SUP-02 (Cryptographic Image Provenance & Signature)
+    Tier:        Tier 4: Supply Chain
+    Duration:    171ns
+    Reason:      NO_TRUST_POLICY
+    Message:     Signature status is unverified: provide a cryptographic verifier and an explicit trust policy
+    Remediation: Configure a signature verifier with a trusted key or keyless identity and issuer
+
+[12] [PASS] EXEC-02 (Dropped Linux Capabilities Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    7.244951901s
+    Message:     The container was still running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL), as in the baseline
+
+[13] [PASS] SPEC-05 (Non-Privileged Declared Image Ports)
+    Tier:        Tier 1: Specification
+    Duration:    3.511µs
+    Message:     No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected
+
+[14] [PASS] SPEC-06 (Dangling Debug Port Exclusion)
+    Tier:        Tier 1: Specification
+    Duration:    566ns
+    Message:     No dangerous debug or administration ports exposed
+
+[15] [PASS] EXEC-07 (Resource Constraint Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.232530887s
+    Message:     The container was still running at the end of the 3s window with a memory limit of 256m, as in the baseline
+
+[16] [PASS] EXEC-01 (Read-Only Root Filesystem Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.238785782s
+    Message:     The container was still running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp), as in the baseline
+
+[17] [PASS] EXEC-04 (No-New-Privileges Kernel Contract)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.228918993s
+    Message:     The container was still running at the end of the 3s window with no-new-privileges enabled, as in the baseline
+

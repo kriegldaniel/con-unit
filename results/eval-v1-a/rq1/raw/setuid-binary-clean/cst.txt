@@ -1,0 +1,1 @@
+{"Pass":1,"Fail":0,"Total":1,"Duration":629710941,"Results":[{"Name":"Command Test: rq1-setuid-binary","Pass":true,"Duration":629710941}]}

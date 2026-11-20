@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/needs-setuid-setgid-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-clean
+exit: 0
+--- stderr ---
+

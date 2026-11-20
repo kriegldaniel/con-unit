@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-shell-form-entrypoint-clean.tar localhost/conunit-rq1/shell-form-entrypoint-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04
+Writing manifest to image destination

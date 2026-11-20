@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9",
+  "config_digest_study": "sha256:b0afa591207b2bf7b1eddb7a6aa45423c5530bd1c2ffe0d67012424e40e1bc0f",
+  "config_digest_archive": "sha256:b0afa591207b2bf7b1eddb7a6aa45423c5530bd1c2ffe0d67012424e40e1bc0f",
+  "status": "OK",
+  "export_seconds": 5.58983974,
+  "dockle_seconds": 0.568157703,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 0,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 13\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\",\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\"\n      ]\n    }\n  ]\n}"
+}

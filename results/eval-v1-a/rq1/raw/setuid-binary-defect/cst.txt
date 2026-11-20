@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":615600838,"Results":[{"Name":"Command Test: rq1-setuid-binary","Pass":false,"Stdout":"/usr/local/bin/seeded-tool\n","Errors":["Excluded string '.' found in output '/usr/local/bin/seeded-tool\n'"],"Duration":615600838}]}

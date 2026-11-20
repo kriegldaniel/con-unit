@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/writes-outside-tmp-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-defect
+exit: 0
+--- stderr ---
+

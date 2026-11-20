@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":620455234,"Results":[{"Name":"Command Test: rq1-world-writable-file","Pass":false,"Stdout":"/opt/app/app.conf\n","Errors":["Excluded string '.' found in output '/opt/app/app.conf\n'"],"Duration":620455234}]}

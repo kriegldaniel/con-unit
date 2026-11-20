@@ -1,0 +1,9 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-update-alone-defect.tar localhost/conunit-rq1/update-alone-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:f487d0da9ce0cd3b17ddb89deff39644274b08f2ff71e321a9e0e476ec2d46fe
+Copying blob sha256:cc30ba9ee7403cb65747c5fd81491f213a6343be416bd1de11225093551ce238
+Copying blob sha256:76e2abf1b8017372ff35be11807988371c0de30dcbc5c286c820b88fa92d090a
+Copying blob sha256:24cab946affdaea2941409898975f08c2b73b26de8b7d5a5b95afb0e0b8ca229
+Copying config sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d
+Writing manifest to image destination

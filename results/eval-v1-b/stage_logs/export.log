@@ -1,0 +1,48 @@
+
+------------------------
+  ConUnit LaTeX export
+------------------------
+[INFO]     study     /opt/con-unit/results/eval-v1-b/empirical_study.json (sha256 1a5f6242aa47)
+[INFO]     schema    2
+[INFO]     flow      attempted 100, completed 100, not completed 0
+
+-------------------
+  Headline checks
+-------------------
+[INFO]     CIS-4.6   fail 100 / verified 100   unverified   0   prevalence 100.0% [96.3, 100.0]
+[INFO]     SPEC-01   fail  82 / verified 100   unverified   0   prevalence  82.0% [73.3, 88.3]
+[INFO]     SPEC-05   fail  13 / verified 100   unverified   0   prevalence  13.0% [7.8, 21.0]
+[INFO]     SPEC-06   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     FS-04     fail  64 / verified 100   unverified   0   prevalence  64.0% [54.2, 72.7]
+[INFO]     FS-05     fail   9 / verified 100   unverified   0   prevalence   9.0% [4.8, 16.2]
+[INFO]     FS-08     fail   0 / verified  99   unverified   1   prevalence   0.0% [0.0, 3.7]
+
+----------------------
+  Exploratory checks
+----------------------
+[INFO]     SPEC-03   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     SPEC-07   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     FS-06     fail   5 / verified  98   unverified   2   prevalence   5.1% [2.2, 11.4]
+[INFO]     FS-07     fail   4 / verified 100   unverified   0   prevalence   4.0% [1.6, 9.8]
+[INFO]     FS-09     fail   3 / verified 100   unverified   0   prevalence   3.0% [1.0, 8.5]
+[INFO]     EXEC-01   fail  12 / verified  44   unverified  56   prevalence  27.3% [16.3, 41.8]
+[INFO]     EXEC-02   fail  25 / verified  44   unverified  56   prevalence  56.8% [42.2, 70.3]
+[INFO]     EXEC-04   fail   1 / verified  44   unverified  56   prevalence   2.3% [0.4, 11.8]
+[INFO]     EXEC-07   fail   5 / verified  44   unverified  56   prevalence  11.4% [5.0, 24.0]
+
+-------------------
+  Excluded checks
+-------------------
+[INFO]     SUP-02    fail   0 / verified   0   unverified 100   no prevalence (excluded)
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/macros_study.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_rq2_prevalence.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_rq2_exploratory.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_unverified.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_attrition.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_strata.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/table_rq3_phases.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/fig_rq2_prevalence.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/fig_rq3_phase_breakdown.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/fig_rq3_memory_scaling.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/preview_paper.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-b/study_stats.json

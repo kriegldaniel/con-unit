@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/non-unique-uid-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-defect
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-add-remote-url-defect.tar localhost/conunit-rq1/add-remote-url-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:b219ee8999eb86b443f640bb938ff6266d90d5008f03694bd794261100a90b9d
+Copying config sha256:91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10
+Writing manifest to image destination

@@ -1,0 +1,112 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/rethinkdb@sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8
+TIMESTAMP: 2026-11-15T23:42:53Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: ConUnit Container Hardening Profile (CIS-informed)
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8
+CONFIG DIGEST: sha256:9f6d443d1737bbcefa1a7f08b09430d9df519930e36baff78882d0756c4c1d01
+TOTAL DURATION: 22.339140729s
+PHASE BREAKDOWN: Pull=3.269367075s, Inspect=20.636268ms, Resolve=2.758972772s, Stream=40.842708ms, Tier1=129.391µs, Tier2=1.679793ms, Tier3=16.247162175s (window 3s), Tier4=136ns
+RESOURCES (ConUnit process only): Layers=5, IndexedEntries=5215, CompressedBytes=0, UncompressedBytes=123000700, LiveHeapMB=2.5, SelfCPU=0.15s, ChildCPU=6.43s
+SUMMARY: 13 passed, 3 failed, 1 unverified (total 17)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [FAIL] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    401ns
+    Message:     Image runs as root user (configured user: '')
+    Explanation: Running as root increases blast radius of container breakouts (e.g. CVE-2019-5736) to host-level root compromise.
+    Remediation: Add 'USER 10001:10001' to your Dockerfile or container build specification
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    132ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.276µs
+    Message:     Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    1.099µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    123.262µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    572ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    57ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-05 (World-Writable File Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    107ns
+    Message:     Zero world-writable regular files detected
+
+[9] [PASS] FS-09 (System Directory Ownership Hygiene)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    129ns
+    Message:     All system binaries in /bin and /usr/bin are owned by root (UID 0)
+
+[10] [PASS] FS-07 (Development and Test Harness Leakage)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    1.676652ms
+    Message:     No test runner configuration was found outside fixture-like locations
+
+[11] [UNVERIFIED] SUP-02 (Cryptographic Image Provenance & Signature)
+    Tier:        Tier 4: Supply Chain
+    Duration:    136ns
+    Reason:      NO_TRUST_POLICY
+    Message:     Signature status is unverified: provide a cryptographic verifier and an explicit trust policy
+    Remediation: Configure a signature verifier with a trusted key or keyless identity and issuer
+
+[12] [PASS] EXEC-02 (Dropped Linux Capabilities Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    6.764863424s
+    Message:     The container was still running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL), as in the baseline
+
+[13] [PASS] SPEC-05 (Non-Privileged Declared Image Ports)
+    Tier:        Tier 1: Specification
+    Duration:    3.219µs
+    Message:     No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected
+
+[14] [PASS] SPEC-06 (Dangling Debug Port Exclusion)
+    Tier:        Tier 1: Specification
+    Duration:    1.278µs
+    Message:     No dangerous debug or administration ports exposed
+
+[15] [PASS] EXEC-07 (Resource Constraint Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.162383245s
+    Message:     The container was still running at the end of the 3s window with a memory limit of 256m, as in the baseline
+
+[16] [PASS] EXEC-01 (Read-Only Root Filesystem Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.161856639s
+    Message:     The container was still running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp), as in the baseline
+
+[17] [PASS] EXEC-04 (No-New-Privileges Kernel Contract)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.158058867s
+    Message:     The container was still running at the end of the 3s window with no-new-privileges enabled, as in the baseline
+

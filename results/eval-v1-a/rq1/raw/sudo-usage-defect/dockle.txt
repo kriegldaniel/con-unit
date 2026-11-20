@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 2,
+    "skip": 0,
+    "pass": 13
+  },
+  "details": [
+    {
+      "code": "DKL-DI-0001",
+      "title": "Avoid sudo command",
+      "level": "FATAL",
+      "alerts": [
+        "Avoid sudo in container : /bin/sh -c apk add --no-cache sudo \u0026\u0026 sudo -u app mkdir -p /home/app/data"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    },
+    {
+      "code": "CIS-DI-0008",
+      "title": "Confirm safety of setuid/setgid files",
+      "level": "INFO",
+      "alerts": [
+        "setuid file: urwxr-xr-x usr/bin/sudo"
+      ]
+    }
+  ]
+}

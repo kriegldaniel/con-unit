@@ -1,0 +1,256 @@
+{
+  "schema": "conunit-remote-status/1",
+  "run_id": "eval-v1-a",
+  "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+  "tag": "eval-v1",
+  "bundle_kind": "tag",
+  "tainted": false,
+  "mode": "rootful",
+  "stages_requested": [
+    "eval",
+    "export",
+    "rq3",
+    "rq1",
+    "lint",
+    "crosscheck"
+  ],
+  "dataset": "fixtures/evaluation_dataset_pinned.txt",
+  "rq3_dataset": "fixtures/evaluation_dataset_top10_pinned.txt",
+  "canary": 0,
+  "platform": "linux/amd64",
+  "engine": "podman",
+  "image_source_policy": "auto",
+  "probe_window": "3s",
+  "pack": "cis",
+  "docker_hub_blocked": true,
+  "registry_remap": "docker.io/library -> public.ecr.aws/docker/library",
+  "rq1_cases": 0,
+  "tools_lock_sha256": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737",
+  "started_at": "2026-11-15T23:19:20Z",
+  "finished_at": "2026-11-16T00:51:10Z",
+  "result": "complete",
+  "exit_code": 0,
+  "error": null,
+  "stages": {
+    "host": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:20Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:20Z"
+    },
+    "bundle": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:20Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:20Z"
+    },
+    "go": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:20Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:23Z"
+    },
+    "packages": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:23Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:37Z"
+    },
+    "tools": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:37Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:43Z"
+    },
+    "registry": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:43Z"
+    },
+    "docker_hub_block": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:43Z"
+    },
+    "mode": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:43Z"
+    },
+    "datasets": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:43Z"
+    },
+    "mirror_proof": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:45Z"
+    },
+    "host_info": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:45Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:19:47Z"
+    },
+    "build": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:19:47Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:20:01Z"
+    },
+    "eval": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:20:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:55:13Z"
+    },
+    "run_block_check": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:55:13Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:55:13Z"
+    },
+    "export": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:55:13Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:55:13Z"
+    },
+    "rq3": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:55:13Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:11:13Z"
+    },
+    "rq1": {
+      "state": "ok",
+      "started_at": "2026-11-16T00:11:13Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:20:35Z",
+      "outputs": {
+        "dir": "rq1",
+        "files": 466,
+        "listing_sha256": "532bbfa0408dd0c4e1cb22c28d0935db3a3ce1089ead974a472169f98424a83a"
+      }
+    },
+    "lint": {
+      "state": "ok",
+      "started_at": "2026-11-16T00:20:36Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:35:33Z",
+      "outputs": {
+        "dir": "lint",
+        "files": 104,
+        "listing_sha256": "b814c80f1a5dd51e0dc4fd67160d5e9cf4822bb4ff4b747437fd979e0c8a77bb"
+      }
+    },
+    "crosscheck": {
+      "state": "ok",
+      "started_at": "2026-11-16T00:35:33Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:51:09Z",
+      "outputs": {
+        "dir": "crosscheck",
+        "files": 107,
+        "listing_sha256": "826e8a9a731a48c382f167574efb2bfad36e867e9e59b73a81133bdf4c17bbc1"
+      }
+    }
+  },
+  "external_tools": {
+    "schema": "conunit-tool-versions/1",
+    "lock_file": "tools.lock",
+    "lock_sha256": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737",
+    "locked": {
+      "dockle": "0.4.15",
+      "hadolint": "2.14.0",
+      "trivy": "0.76.1",
+      "container-structure-test": "1.22.1"
+    },
+    "tools": {
+      "dockle": {
+        "version": "0.4.15",
+        "url": "https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz",
+        "download_sha256": "8bfc9183d1d3d67800edb45bea4bb63ddf1d28bec5f89944075a07007d79caad",
+        "release_checksum_file": "https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_checksums.txt",
+        "binary_path": "/usr/local/bin/dockle",
+        "binary_sha256": "28d20c2f148781f7320802624a0decc46826f19cdd1d6756893a85042a2ab68e",
+        "version_output": "dockle version 0.4.15"
+      },
+      "hadolint": {
+        "version": "2.14.0",
+        "url": "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64",
+        "download_sha256": "6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47",
+        "release_checksum_file": "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64.sha256",
+        "binary_path": "/usr/local/bin/hadolint",
+        "binary_sha256": "6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47",
+        "version_output": "Haskell Dockerfile Linter 2.14.0"
+      },
+      "trivy": {
+        "version": "0.76.1",
+        "url": "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz",
+        "download_sha256": "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0",
+        "release_checksum_file": "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_checksums.txt",
+        "binary_path": "/usr/local/bin/trivy",
+        "binary_sha256": "d1dfca6ae10a1ad4540bb94e64f0510077c47008920a9b554986b39dca573d83",
+        "version_output": "Version: 0.76.1"
+      },
+      "container-structure-test": {
+        "version": "1.22.1",
+        "url": "https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/container-structure-test-linux-amd64",
+        "download_sha256": "fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca",
+        "release_checksum_file": "https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/checksums.txt",
+        "binary_path": "/usr/local/bin/container-structure-test",
+        "binary_sha256": "fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca",
+        "version_output": "1.22.1"
+      }
+    }
+  },
+  "dataset_used": {
+    "path": "fixtures/evaluation_dataset_pinned.txt",
+    "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+    "entries": 100
+  },
+  "rq3_dataset_used": {
+    "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+    "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+    "entries": 10
+  },
+  "mirror_proof": {
+    "proof_image": "index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072",
+    "public_ecr_in_debug_log": true,
+    "docker_hub_in_debug_log": false,
+    "log": "host/mirror_proof_pull.log"
+  },
+  "tool_versions": {
+    "go": "go version go1.26.10 linux/amd64",
+    "podman": "podman version 4.9.3",
+    "crun": "crun version 1.14.1",
+    "conmon": "conmon version 2.1.10",
+    "netavark": "1.4.0-4",
+    "kernel": "7.0.0-1014-aws",
+    "podman_rootless": "false",
+    "cgroups": "v2",
+    "oci_runtime": "crun crun version 1.14.1",
+    "storage_driver": "overlay",
+    "engine_mode": "rootful",
+    "syft": "absent"
+  },
+  "imds": {
+    "instance_id": "i-0b049861d95ebf8e2",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-04bbcae8eccec8bce",
+    "availability_zone": "eu-central-1a",
+    "region": "eu-central-1"
+  },
+  "rq3_parameters": {
+    "iterations": 10,
+    "warmup": 1
+  },
+  "rq1_case_selection": "all"
+}

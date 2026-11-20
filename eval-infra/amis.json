@@ -1,0 +1,13 @@
+{
+  "_comment": "Pinned Ubuntu 24.04 LTS (amd64, hvm, gp3) AMIs per region. Single source of truth for OpenTofu (main.tofu) and run_eval.sh. Fill with: just pin-ami <region>. Never edit by hand; commit the result so every run of a release uses the same image.",
+  "owner": "099720109477",
+  "name_pattern": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*",
+  "pins": {
+    "eu-central-1": {
+      "ami_id": "ami-04bbcae8eccec8bce",
+      "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108",
+      "creation_date": "2026-11-09T19:24:25.000Z",
+      "pinned_at": "2026-11-15T15:05:34Z"
+    }
+  }
+}

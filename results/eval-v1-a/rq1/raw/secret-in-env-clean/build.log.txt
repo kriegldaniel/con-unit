@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/secret-in-env-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-clean
+exit: 0
+--- stderr ---
+

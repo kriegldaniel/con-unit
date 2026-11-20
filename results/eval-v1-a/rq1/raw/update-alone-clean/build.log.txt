@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/update-alone-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean
+exit: 0
+--- stderr ---
+

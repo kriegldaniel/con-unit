@@ -1,0 +1,2391 @@
+
+========================================================================
+  ConUnit AWS evaluation, run eval-v1-a
+========================================================================
+00:15:16 [INFO    ] tag eval-v1, mode rootful, stages eval,export,rq3,rq1,lint,crosscheck, region eu-central-1, instance c6i.2xlarge
+
+========================================================================
+  PRE-FLIGHT
+========================================================================
+00:15:16 [INFO    ] tools: OpenTofu v1.13.2, aws-cli/2.36.31, jq-1.8.2
+00:15:16 [INFO    ] SSH key: ~/.ssh/conunit_eval (unencrypted)
+00:15:16 [INFO    ] tools.lock: 4 pins, sha256 5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737
+00:15:17 [SUCCESS ] AWS credentials are valid for region eu-central-1
+00:15:19 [INFO    ] AMI: ami-04bbcae8eccec8bce  ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108  (created 2026-11-09T19:24:25.000Z)
+00:15:19 [WARNING ] AMI is marked deprecated since 2028-11-09T19:24:25.000Z. It still launches, consider re-pinning for a new release.
+00:15:19 [INFO    ] SSH will be allowed from your public address only (/32, address not logged)
+00:15:19 [PROGRESS] tofu init (lock file is read-only: provider versions cannot drift)
+00:15:19 [PROGRESS] tofu validate
+Success! The configuration is valid.
+00:15:21 [SUCCESS ] OpenTofu configuration is valid
+00:15:21 [PROGRESS] building the source bundle with git archive
+00:15:21 [SUCCESS ] bundle con-unit-bundle.tar.gz: 827883 bytes, sha256 73efdf48954324f22fc686ff0e3fdd0ced2af1a8772c79ac98385ca417fa8021, commit 2f5d90257717d3977b84ac68b8ef9af2a0876fe1, kind tag
+00:15:21 [INFO    ] eval dataset: fixtures/evaluation_dataset_pinned.txt, 100 images, sha256 a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894
+00:15:21 [INFO    ] 10 image dataset (rq3, reliability): fixtures/evaluation_dataset_top10_pinned.txt, 10 images, sha256 61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0
+00:15:21 [PROGRESS] mirror check of the eval dataset (about 100 requests, 1 per 1.1 s)
+[INFO   ] dataset  ~/Documents/development/paper-con-unit/submission/eval-infra/.runs/eval-v1-a/bundle-src/fixtures/evaluation_dataset_pinned.txt (100 entries)
+[INFO   ] mirror   https://public.ecr.aws/v2/docker/library, delay 1.1s between requests
+[  1/100] OK          http 200 index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+[  2/100] OK          http 200 index.docker.io/library/memcached@sha256:084fb554292d1447bc2c68b80c2331b98834514f56c866bc21a61be3c2ee376d
+[  3/100] OK          http 200 index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072
+[  4/100] OK          http 200 index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+[  5/100] OK          http 200 index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+[  6/100] OK          http 200 index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+[  7/100] OK          http 200 index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+[  8/100] OK          http 200 index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+[  9/100] OK          http 200 index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+[ 10/100] OK          http 200 index.docker.io/library/mysql@sha256:df90258da46f6e7ff8574ff84f17618aba0765cac749928299c69fd4e7cb8ad8
+[ 11/100] OK          http 200 index.docker.io/library/mongo@sha256:452bdaf2127b8ff851e31410a267809b9829eded219979f2210e7c7efb85a058
+[ 12/100] OK          http 200 index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66
+[ 13/100] OK          http 200 index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+[ 14/100] OK          http 200 index.docker.io/library/docker@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb
+[ 15/100] OK          http 200 index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+[ 16/100] OK          http 200 index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed
+[ 17/100] OK          http 200 index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+[ 18/100] OK          http 200 index.docker.io/library/registry@sha256:82f6ff4a7f982960c8aa51617fea3aabc485df6e55cce80d22deb1de36f1bc3c
+[ 19/100] OK          http 200 index.docker.io/library/debian@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6
+[ 20/100] OK          http 200 index.docker.io/library/ruby@sha256:d8cb2c0714bdaba0f318af897a01d2dbde3cfa8e62d47e99cea55feb13c0e90d
+[ 21/100] OK          http 200 index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472
+[ 22/100] OK          http 200 index.docker.io/library/php@sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d
+[ 23/100] OK          http 200 index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840
+[ 24/100] OK          http 200 index.docker.io/library/haproxy@sha256:b9fe316f718d5015c5cfebd8ca019591f3e44656f61d93cb8b59a1028961e530
+[ 25/100] OK          http 200 index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01
+[ 26/100] OK          http 200 index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436
+[ 27/100] OK          http 200 index.docker.io/library/couchdb@sha256:907eab5b7e55ab7cfd241d39b90b2a335ea40bef82acee5a37388c08bf201dda
+[ 28/100] OK          http 200 index.docker.io/library/arangodb@sha256:ae1ce5af4783e008d359daaa963559aa4e32a5bd9ea54e2304f5b3adbc88c4aa
+[ 29/100] OK          http 200 index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a
+[ 30/100] OK          http 200 index.docker.io/library/solr@sha256:4eead47c03533079d324fa49e28a73d88b1e4d9568d0d779a0bcd58520117dfe
+[ 31/100] OK          http 200 index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a
+[ 32/100] OK          http 200 index.docker.io/library/nats@sha256:afae2fdbe2e326c65e1246cb83b9d05d319188734f3bd577ac8072daae78a10f
+[ 33/100] OK          http 200 index.docker.io/library/eclipse-mosquitto@sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98
+[ 34/100] OK          http 200 index.docker.io/library/telegraf@sha256:4a62bd294bf2f4c1e3781194fe7b625b7e527244eeb31afd5758227914a16229
+[ 35/100] OK          http 200 index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e
+[ 36/100] OK          http 200 index.docker.io/library/tomcat@sha256:801c473ea864cab344fcaadf22789a620acaeecd9daa85e706e06a97ebc37b94
+[ 37/100] OK          http 200 index.docker.io/library/amazoncorretto@sha256:019e58087ba4c114c817094f70d3d522bcd13e80ce9edbba6e1c67e5700bad63
+[ 38/100] OK          http 200 index.docker.io/library/eclipse-temurin@sha256:e1898fd6a11fc965a994d8ace186fd3585aeb636cf8f05f47a723fcfee0b0918
+[ 39/100] OK          http 200 index.docker.io/library/gradle@sha256:e46e15353757ef9c9be0197a243653e88d25ebcd4c3c841057cf839c11fcf898
+[ 40/100] OK          http 200 index.docker.io/library/rust@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd
+[ 41/100] OK          http 200 index.docker.io/library/swift@sha256:53cb05862760a5270ec5cb86b8998d819b5fbe8b72ea35811f1f790a1542b51c
+[ 42/100] OK          http 200 index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215
+[ 43/100] OK          http 200 index.docker.io/library/erlang@sha256:0ac9b63db11be156be4e2834546e44aa0d7446aaffb05fedd4aea8c5a33ad998
+[ 44/100] OK          http 200 index.docker.io/library/elixir@sha256:a2f0fe1bfd8a2f9cc91d913f4a12e6430e27e618720f753a514e2fff3d35f5a7
+[ 45/100] OK          http 200 index.docker.io/library/clojure@sha256:aa1b3f8a19462798a9662535d17173f501b3b45910aa7c3642aaddae41b096fa
+[ 46/100] OK          http 200 index.docker.io/library/haskell@sha256:10500ef6abd41d210a74add013125065f92352b298999a9dfe296fb73deaccf7
+[ 47/100] OK          http 200 index.docker.io/library/julia@sha256:0002771531bbae894f2532a5ae02ea71c30685440ca3bdaea0a43d17e65571e0
+[ 48/100] OK          http 200 index.docker.io/library/gcc@sha256:b8a42d6804296fbe7a54e17e9d60c3100d9e8dbe7ef88c748cae2ddb00d63ba2
+[ 49/100] OK          http 200 index.docker.io/library/perl@sha256:2b59ca705cf3234d62c33e27ed573809498e476d45c4d0904550d0daced6a215
+[ 50/100] OK          http 200 index.docker.io/library/phpmyadmin@sha256:e4b3eb5305cd42d21512bb55def2bab52625d56df927ad4ee1864a9354c84d40
+[ 51/100] OK          http 200 index.docker.io/library/ghost@sha256:4195f6c405e40230cd10c0770425cf500c1f542a96e9f6584c11649c150e5a89
+[ 52/100] OK          http 200 index.docker.io/library/drupal@sha256:2869a0abe45b7ce2bc6d7a35fabe447d06393c3ce613964b3a4f1d9660eb0e08
+[ 53/100] OK          http 200 index.docker.io/library/joomla@sha256:f534566df4df83d2f6751d3406dc624e5af5b3c8d7f2b2101bf3c2f4e47b31f0
+[ 54/100] OK          http 200 index.docker.io/library/mediawiki@sha256:406a08c7f2cf5a9c9cb590bbe27a21b4d3cb3268b0acf327fa7dd2727ff6b0be
+[ 55/100] OK          http 200 index.docker.io/library/nextcloud@sha256:81cb09055a20142521a267cea2bc27e6a81a065871c70850d209f08803567dbc
+[ 56/100] OK          http 200 index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e
+[ 57/100] OK          http 200 index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c
+[ 58/100] OK          http 200 index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26
+[ 59/100] OK          http 200 index.docker.io/library/odoo@sha256:d5e3a26baa044867c826dddc09058f10e2582706bf83c146ea04fea889720c76
+[ 60/100] OK          http 200 index.docker.io/library/rethinkdb@sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8
+[ 61/100] OK          http 200 index.docker.io/library/flink@sha256:ffb97a54a2b59960360d3b362e64f86ed5cab82621025eeed1399074b42a7b17
+[ 62/100] OK          http 200 index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d
+[ 63/100] OK          http 200 index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30
+[ 64/100] OK          http 200 index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89
+[ 65/100] OK          http 200 index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a
+[ 66/100] OK          http 200 index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554
+[ 67/100] OK          http 200 index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7
+[ 68/100] OK          http 200 index.docker.io/library/sapmachine@sha256:8c3afc896691208abee94e8db71cb972ed34a5c5b417610102261055b95d38a5
+[ 69/100] OK          http 200 index.docker.io/library/oraclelinux@sha256:9225108d00fb6611ebc4a5eced166f27d9dcfeaa539fb127be79425f0da5e745
+[ 70/100] OK          http 200 index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e
+[ 71/100] OK          http 200 index.docker.io/library/amazonlinux@sha256:c04a1012acc483977f61f7f91c28624a39a621e56a59781319a75dec528be9b6
+[ 72/100] OK          http 200 index.docker.io/library/bash@sha256:589adbc588d8ef3c1ec3c68333faf4baf5dccb65d3cb50f6cf3d78cad2d6e1b0
+[ 73/100] OK          http 200 index.docker.io/library/pypy@sha256:410aad485440d238a596fd5f847a99d3f7c11be895ce25c02b336f5c5d1733bb
+[ 74/100] OK          http 200 index.docker.io/library/composer@sha256:8de2184c6de224f4689e8f80ed5f5edaf0030b6b8b7839a22a2bcb6722ac87d0
+[ 75/100] OK          http 200 index.docker.io/library/ros@sha256:00b8d47a6e6384a2834e3d01fa87ae767876543baa574f2d64a75c04ea33c698
+[ 76/100] OK          http 200 index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244
+[ 77/100] OK          http 200 index.docker.io/library/spiped@sha256:7acba2c58083cf5246e055818bd95932bb6a26851e0123543a3c4b9681a07061
+[ 78/100] OK          http 200 index.docker.io/library/irssi@sha256:62fbc3514f8ef0bf587137800856ee4dffbfaddf6ca8402501698a6491e3205d
+[ 79/100] OK          http 200 index.docker.io/library/rakudo-star@sha256:0bc7542202ea3d9362ce15d90a601928f02b7657630fd131ad9d9847687b65b5
+[ 80/100] OK          http 200 index.docker.io/library/mageia@sha256:d7e96eb4e2f3ac6b7bdf0caecf673836323ae409b304f195a98d22ab126217d9
+[ 81/100] OK          http 200 index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5
+[ 82/100] OK          http 200 index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+[ 83/100] OK          http 200 index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa
+[ 84/100] OK          http 200 index.docker.io/library/swipl@sha256:2723fefd35116f92f68da22a487b1b01b584ac0b4b81fcd971c7ab2222f5d3e7
+[ 85/100] OK          http 200 index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8
+[ 86/100] OK          http 200 index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9
+[ 87/100] OK          http 200 index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0
+[ 88/100] OK          http 200 index.docker.io/library/buildpack-deps@sha256:890e8b5c0040e1deff5cc7dc7b4414e67069f79e3301afc4ec5bd49d64ef13e5
+[ 89/100] OK          http 200 index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b
+[ 90/100] OK          http 200 index.docker.io/library/almalinux@sha256:838c2fafefb1a8a0d7f8cdbc3b0551c2a2b1eb0cd87aad6d62aecadb18311f1b
+[ 91/100] OK          http 200 index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b
+[ 92/100] OK          http 200 index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97
+[ 93/100] OK          http 200 index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04
+[ 94/100] OK          http 200 index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7
+[ 95/100] OK          http 200 index.docker.io/library/rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6
+[ 96/100] OK          http 200 index.docker.io/library/photon@sha256:3d7e9a35fd55277a056d9e1c54841e6b862a8df7e0caa56fa9c0453969f5329d
+[ 97/100] OK          http 200 index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef
+[ 98/100] OK          http 200 index.docker.io/library/groovy@sha256:fa81cdb39e5418c234ee7c85c251274be021bec9fb439e374af4f0663b106a53
+[ 99/100] OK          http 200 index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010
+[100/100] OK          http 200 index.docker.io/library/maven@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+[INFO   ] result   ~/Documents/development/paper-con-unit/submission/eval-infra/.runs/eval-v1-a/preflight/mirror-eval/mirror_check.json
+[SUCCESS] all 100 pinned digests resolve on the mirror with matching digests
+00:18:11 [PROGRESS] mirror check of the 10 image dataset (10 requests)
+[INFO   ] dataset  ~/Documents/development/paper-con-unit/submission/eval-infra/.runs/eval-v1-a/bundle-src/fixtures/evaluation_dataset_top10_pinned.txt (10 entries)
+[INFO   ] mirror   https://public.ecr.aws/v2/docker/library, delay 1.1s between requests
+[  1/ 10] OK          http 200 index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+[  2/ 10] OK          http 200 index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+[  3/ 10] OK          http 200 index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+[  4/ 10] OK          http 200 index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+[  5/ 10] OK          http 200 index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+[  6/ 10] OK          http 200 index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+[  7/ 10] OK          http 200 index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+[  8/ 10] OK          http 200 index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+[  9/ 10] OK          http 200 index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+[ 10/ 10] OK          http 200 index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+[INFO   ] result   ~/Documents/development/paper-con-unit/submission/eval-infra/.runs/eval-v1-a/preflight/mirror-rq3/mirror_check.json
+[SUCCESS] all 10 pinned digests resolve on the mirror with matching digests
+00:18:27 [SUCCESS ] mirror check passed: every pinned digest resolves on public.ecr.aws with a matching digest
+00:18:27 [SUCCESS ] pre-flight passed
+
+========================================================================
+  PROVISION
+========================================================================
+00:18:27 [PROGRESS] tofu apply (run eval-v1-a, c6i.2xlarge in eu-central-1)
+data.aws_vpc.default[0]: Reading...
+data.aws_ami.selected[0]: Reading...
+data.aws_ami.selected[0]: Read complete after 1s [id=ami-04bbcae8eccec8bce]
+data.aws_vpc.default[0]: Read complete after 1s [id=vpc-0597030053779c8ac]
+data.aws_subnets.default[0]: Reading...
+data.aws_subnets.default[0]: Read complete after 0s [id=eu-central-1]
+
+OpenTofu used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+OpenTofu will perform the following actions:
+
+  # aws_instance.eval_node will be created
+  + resource "aws_instance" "eval_node" {
+      + ami                                  = "ami-04bbcae8eccec8bce"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = true
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + enable_primary_ipv6                  = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = "terminate"
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "c6i.2xlarge"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = "subnet-01f694c1184192f79"
+      + tags                                 = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = "c8afdf7a1531bfdf5d0d5e4e63cc25d32cc6d41c"
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = true
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification (known after apply)
+
+      + cpu_options (known after apply)
+
+      + ebs_block_device (known after apply)
+
+      + enclave_options (known after apply)
+
+      + ephemeral_block_device (known after apply)
+
+      + instance_market_options (known after apply)
+
+      + maintenance_options (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = "disabled"
+          + http_put_response_hop_limit = 1
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = "disabled"
+        }
+
+      + network_interface (known after apply)
+
+      + private_dns_name_options (known after apply)
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = true
+          + iops                  = 3000
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + tags_all              = (known after apply)
+          + throughput            = 125
+          + volume_id             = (known after apply)
+          + volume_size           = 150
+          + volume_type           = "gp3"
+        }
+    }
+
+  # aws_key_pair.eval_key will be created
+  + resource "aws_key_pair" "eval_key" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = (known after apply)
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + key_type        = (known after apply)
+      + public_key      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGbX0OhOuxaH+eFs6SQ9eE7sWZ+Wp0UeMZGpdseAz0WV conunit-eval"
+      + tags            = (known after apply)
+      + tags_all        = (known after apply)
+    }
+
+  # aws_security_group.eval_sg will be created
+  + resource "aws_security_group" "eval_sg" {
+      + arn                    = (known after apply)
+      + description            = "ConUnit evaluation: SSH from one operator address, outbound for package, toolchain and registry access"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Outbound for apt, Go toolchain and module downloads, and the ECR Public mirror"
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "<operator-ip>/32",
+                ]
+              + description      = "SSH from the operator"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = (known after apply)
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = (known after apply)
+      + tags_all               = (known after apply)
+      + vpc_id                 = "vpc-0597030053779c8ac"
+    }
+
+  # random_id.suffix will be created
+  + resource "random_id" "suffix" {
+      + b64_std     = (known after apply)
+      + b64_url     = (known after apply)
+      + byte_length = 3
+      + dec         = (known after apply)
+      + hex         = (known after apply)
+      + id          = (known after apply)
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + ami_creation_date        = "2026-11-09T19:24:25.000Z"
+  + ami_deprecation_time     = "2028-11-09T19:24:25.000Z"
+  + ami_id                   = "ami-04bbcae8eccec8bce"
+  + ami_name                 = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108"
+  + availability_zone        = (known after apply)
+  + download_results_command = (known after apply)
+  + estimated_cost           = "approx. 0.34 USD per hour compute plus 0.016 USD per hour for 150 GB gp3 (us-east-1 on-demand reference prices, other regions differ). Upper bound until the 240 minute watchdog: approx. 1.43 USD."
+  + instance_id              = (known after apply)
+  + instance_type            = "c6i.2xlarge"
+  + public_ip                = (known after apply)
+  + region                   = "eu-central-1"
+  + run_id                   = "eval-v1-a"
+  + ssh_command              = (known after apply)
+  + tail_log_command         = (known after apply)
+random_id.suffix: Creating...
+random_id.suffix: Creation complete after 0s [id=DU4f]
+aws_key_pair.eval_key: Creating...
+aws_security_group.eval_sg: Creating...
+aws_key_pair.eval_key: Creation complete after 0s [id=con-unit-eval-0d4e1f]
+aws_security_group.eval_sg: Creation complete after 3s [id=sg-087b2c0423a9ae9c6]
+aws_instance.eval_node: Creating...
+aws_instance.eval_node: Still creating... [10s elapsed]
+aws_instance.eval_node: Creation complete after 13s [id=i-0b049861d95ebf8e2]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+ami_creation_date = "2026-11-09T19:24:25.000Z"
+ami_deprecation_time = "2028-11-09T19:24:25.000Z"
+ami_id = "ami-04bbcae8eccec8bce"
+ami_name = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108"
+availability_zone = "eu-central-1a"
+download_results_command = "rsync -a -e 'ssh -i ~/.ssh/conunit_eval' ubuntu@35.157.243.190:/opt/con-unit/results/eval-v1-a/ ./results/eval-v1-a/"
+estimated_cost = "approx. 0.34 USD per hour compute plus 0.016 USD per hour for 150 GB gp3 (us-east-1 on-demand reference prices, other regions differ). Upper bound until the 240 minute watchdog: approx. 1.43 USD."
+instance_id = "i-0b049861d95ebf8e2"
+instance_type = "c6i.2xlarge"
+public_ip = "35.157.243.190"
+region = "eu-central-1"
+run_id = "eval-v1-a"
+ssh_command = "ssh -i ~/.ssh/conunit_eval ubuntu@35.157.243.190"
+tail_log_command = "ssh -i ~/.ssh/conunit_eval ubuntu@35.157.243.190 'tail -f /opt/con-unit/results/eval-v1-a/remote_eval.log'"
+00:18:47 [SUCCESS ] instance i-0b049861d95ebf8e2 is up at 35.157.243.190 (eu-central-1a)
+00:18:47 [INFO    ] approx. 0.34 USD per hour compute plus 0.016 USD per hour for 150 GB gp3 (us-east-1 on-demand reference prices, other regions differ). Upper bound until the 240 minute watchdog: approx. 1.43 USD.
+
+========================================================================
+  WAIT FOR SSH AND CLOUD-INIT
+========================================================================
+00:18:47 [INFO    ] waiting for SSH, attempt 1/60
+00:18:58 [SUCCESS ] SSH is reachable (attempt 2/60)
+00:18:58 [PROGRESS] waiting for cloud-init to finish (user_data bootstrap)
+................status: done
+extended_status: done
+boot_status_code: enabled-by-generator
+last_update: Thu, 01 Jan 1970 00:00:23 +0000
+detail: DataSourceEc2Local
+errors: []
+recoverable_errors: {}
+00:19:04 [SUCCESS ] cloud-init finished and the readiness marker is present
+00:19:04 [PROGRESS] cross-checking the SSH host key against the instance console output
+00:19:18 [SUCCESS ] SSH host key matches the console output
+
+========================================================================
+  UPLOAD BUNDLE
+========================================================================
+00:19:18 [PROGRESS] rsync bundle, checksum, commit file and tools.lock to the instance
+con-unit-bundle.tar.gz: OK
+tools.lock: OK
+00:19:20 [SUCCESS ] bundle and tools.lock uploaded and verified on the instance
+
+========================================================================
+  REMOTE EVALUATION
+========================================================================
+00:19:20 [PROGRESS] streaming remote_eval.sh over ssh (bash -s), arguments: --run-id eval-v1-a --commit 2f5d90257717d3977b84ac68b8ef9af2a0876fe1 --tag eval-v1 --bundle-kind tag --tainted false --bundle-sha256 73efdf48954324f22fc686ff0e3fdd0ced2af1a8772c79ac98385ca417fa8021 --dataset fixtures/evaluation_dataset_pinned.txt --rq3-dataset fixtures/evaluation_dataset_top10_pinned.txt --mode rootful --stages eval\,export\,rq3\,rq1\,lint\,crosscheck --pack cis --platform linux/amd64 --image-source auto --probe-window 3s --rq3-iterations 10 --rq3-warmup 1 --block-docker-hub true --rq1-cases 0 --tools-lock-sha256 5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737 
+
+========================================================================
+  ConUnit remote evaluation, run eval-v1-a
+========================================================================
+2026-11-15T23:19:20Z [INFO ] commit 2f5d90257717d3977b84ac68b8ef9af2a0876fe1, tag eval-v1, bundle tag, tainted false
+2026-11-15T23:19:20Z [INFO ] mode rootful, stages eval,export,rq3,rq1,lint,crosscheck, pack cis, platform linux/amd64, image-source auto, window 3s
+
+========================================================================
+  PREREQUISITE: host
+========================================================================
+2026-11-15T23:19:20Z [INFO ] host ok: Linux 7.0.0-1014-aws, Ubuntu 24.04, 143 GB free, run.env run id eval-v1-a, default RQ3 iterations 10
+
+========================================================================
+  PREREQUISITE: bundle
+========================================================================
+2026-11-15T23:19:20Z [OK   ] bundle sha256 verified: 73efdf48954324f22fc686ff0e3fdd0ced2af1a8772c79ac98385ca417fa8021
+2026-11-15T23:19:20Z [INFO ] bundle unpacked to /opt/con-unit/src (commit 2f5d90257717d3977b84ac68b8ef9af2a0876fe1, kind tag, tainted false)
+
+========================================================================
+  PREREQUISITE: go
+========================================================================
+2026-11-15T23:19:20Z [INFO ] go.mod requires Go 1.26.10
+/tmp/tmp.uC0CbXlrX8/go1.26.10.linux-amd64.tar.gz: OK
+2026-11-15T23:19:22Z [OK   ] Go tarball go1.26.10.linux-amd64.tar.gz verified against go.dev metadata (sha256 ccfe7ae822d2c2f41f4fe7c956199967a4dac22d0ee0d2b2bfdb440aab3b20c5)
+2026-11-15T23:19:23Z [OK   ] go version go1.26.10 linux/amd64 installed, GOTOOLCHAIN=local
+
+========================================================================
+  PREREQUISITE: packages
+========================================================================
+Hit:1 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:3 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+ca-certificates is already the newest version (20260816ubuntu0.24.04.2).
+curl is already the newest version (8.5.0-2ubuntu10.16).
+jq is already the newest version (1.7.1-3ubuntu0.24.04.2).
+rsync is already the newest version (3.2.7-1ubuntu1.5).
+The following additional packages will be installed:
+  buildah golang-github-containers-common golang-github-containers-image
+  libslirp0 libsubid4 libyajl2
+Suggested packages:
+  containers-storage libwasmedge0 docker-compose
+The following NEW packages will be installed:
+  aardvark-dns buildah catatonit conmon crun fuse-overlayfs
+  golang-github-containers-common golang-github-containers-image libslirp0
+  libsubid4 libyajl2 netavark passt podman slirp4netns uidmap
+0 upgraded, 16 newly installed, 0 to remove and 13 not upgraded.
+Need to get 25.3 MB of archives.
+After this operation, 82.1 MB of additional disk space will be used.
+Get:1 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 netavark amd64 1.4.0-4 [1666 kB]
+Get:2 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 aardvark-dns amd64 1.4.0-5 [881 kB]
+Get:3 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsubid4 amd64 1:4.13+dfsg1-4ubuntu3.2 [23.4 kB]
+Get:4 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 uidmap amd64 1:4.13+dfsg1-4ubuntu3.2 [26.0 kB]
+Get:5 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 golang-github-containers-image all 5.29.2-2 [33.4 kB]
+Get:6 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 golang-github-containers-common all 0.57.4+ds1-2ubuntu0.2 [39.9 kB]
+Get:7 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 buildah amd64 1.33.7+ds1-1ubuntu0.24.04.3 [8148 kB]
+Get:8 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 catatonit amd64 0.1.7-1 [307 kB]
+Get:9 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 conmon amd64 2.1.10+ds1-1build2 [35.2 kB]
+Get:10 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libyajl2 amd64 2.1.0-5build1 [20.2 kB]
+Get:11 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 crun amd64 1.14.1-1 [406 kB]
+Get:12 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 fuse-overlayfs amd64 1.13-1 [45.7 kB]
+Get:13 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libslirp0 amd64 4.7.0-1ubuntu3.1 [63.8 kB]
+Get:14 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 passt amd64 0.0~git20240220.1e6f92b-1 [163 kB]
+Get:15 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 podman amd64 4.9.3+ds1-1ubuntu0.2 [13.4 MB]
+Get:16 http://eu-central-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 slirp4netns amd64 1.2.1-1build2 [34.9 kB]
+Fetched 25.3 MB in 1s (35.8 MB/s)
+Selecting previously unselected package netavark.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 79292 files and directories currently installed.)
+Preparing to unpack .../00-netavark_1.4.0-4_amd64.deb ...
+Unpacking netavark (1.4.0-4) ...
+Selecting previously unselected package aardvark-dns.
+Preparing to unpack .../01-aardvark-dns_1.4.0-5_amd64.deb ...
+Unpacking aardvark-dns (1.4.0-5) ...
+Selecting previously unselected package libsubid4:amd64.
+Preparing to unpack .../02-libsubid4_1%3a4.13+dfsg1-4ubuntu3.2_amd64.deb ...
+Unpacking libsubid4:amd64 (1:4.13+dfsg1-4ubuntu3.2) ...
+Selecting previously unselected package uidmap.
+Preparing to unpack .../03-uidmap_1%3a4.13+dfsg1-4ubuntu3.2_amd64.deb ...
+Unpacking uidmap (1:4.13+dfsg1-4ubuntu3.2) ...
+Selecting previously unselected package golang-github-containers-image.
+Preparing to unpack .../04-golang-github-containers-image_5.29.2-2_all.deb ...
+Unpacking golang-github-containers-image (5.29.2-2) ...
+Selecting previously unselected package golang-github-containers-common.
+Preparing to unpack .../05-golang-github-containers-common_0.57.4+ds1-2ubuntu0.2_all.deb ...
+Unpacking golang-github-containers-common (0.57.4+ds1-2ubuntu0.2) ...
+Selecting previously unselected package buildah.
+Preparing to unpack .../06-buildah_1.33.7+ds1-1ubuntu0.24.04.3_amd64.deb ...
+Unpacking buildah (1.33.7+ds1-1ubuntu0.24.04.3) ...
+Selecting previously unselected package catatonit.
+Preparing to unpack .../07-catatonit_0.1.7-1_amd64.deb ...
+Unpacking catatonit (0.1.7-1) ...
+Selecting previously unselected package conmon.
+Preparing to unpack .../08-conmon_2.1.10+ds1-1build2_amd64.deb ...
+Unpacking conmon (2.1.10+ds1-1build2) ...
+Selecting previously unselected package libyajl2:amd64.
+Preparing to unpack .../09-libyajl2_2.1.0-5build1_amd64.deb ...
+Unpacking libyajl2:amd64 (2.1.0-5build1) ...
+Selecting previously unselected package crun.
+Preparing to unpack .../10-crun_1.14.1-1_amd64.deb ...
+Unpacking crun (1.14.1-1) ...
+Selecting previously unselected package fuse-overlayfs.
+Preparing to unpack .../11-fuse-overlayfs_1.13-1_amd64.deb ...
+Unpacking fuse-overlayfs (1.13-1) ...
+Selecting previously unselected package libslirp0:amd64.
+Preparing to unpack .../12-libslirp0_4.7.0-1ubuntu3.1_amd64.deb ...
+Unpacking libslirp0:amd64 (4.7.0-1ubuntu3.1) ...
+Selecting previously unselected package passt.
+Preparing to unpack .../13-passt_0.0~git20240220.1e6f92b-1_amd64.deb ...
+Unpacking passt (0.0~git20240220.1e6f92b-1) ...
+Selecting previously unselected package podman.
+Preparing to unpack .../14-podman_4.9.3+ds1-1ubuntu0.2_amd64.deb ...
+Unpacking podman (4.9.3+ds1-1ubuntu0.2) ...
+Selecting previously unselected package slirp4netns.
+Preparing to unpack .../15-slirp4netns_1.2.1-1build2_amd64.deb ...
+Unpacking slirp4netns (1.2.1-1build2) ...
+Setting up libyajl2:amd64 (2.1.0-5build1) ...
+Setting up libsubid4:amd64 (1:4.13+dfsg1-4ubuntu3.2) ...
+Setting up golang-github-containers-image (5.29.2-2) ...
+Setting up conmon (2.1.10+ds1-1build2) ...
+Setting up catatonit (0.1.7-1) ...
+Setting up netavark (1.4.0-4) ...
+Setting up aardvark-dns (1.4.0-5) ...
+Setting up libslirp0:amd64 (4.7.0-1ubuntu3.1) ...
+Setting up passt (0.0~git20240220.1e6f92b-1) ...
+Setting up fuse-overlayfs (1.13-1) ...
+Setting up golang-github-containers-common (0.57.4+ds1-2ubuntu0.2) ...
+Setting up slirp4netns (1.2.1-1build2) ...
+Setting up crun (1.14.1-1) ...
+Setting up uidmap (1:4.13+dfsg1-4ubuntu3.2) ...
+Setting up podman (4.9.3+ds1-1ubuntu0.2) ...
+[33mWARN[0m[0003] Error validating CNI config file /etc/cni/net.d/87-podman-bridge.conflist: [failed to find plugin "bridge" in path [/usr/local/libexec/cni /usr/libexec/cni /usr/local/lib/cni /usr/lib/cni /opt/cni/bin] failed to find plugin "portmap" in path [/usr/local/libexec/cni /usr/libexec/cni /usr/local/lib/cni /usr/lib/cni /opt/cni/bin] failed to find plugin "firewall" in path [/usr/local/libexec/cni /usr/libexec/cni /usr/local/lib/cni /usr/lib/cni /opt/cni/bin] failed to find plugin "tuning" in path [/usr/local/libexec/cni /usr/libexec/cni /usr/local/lib/cni /usr/lib/cni /opt/cni/bin]] 
+Created symlink /etc/systemd/system/default.target.wants/podman-auto-update.service → /usr/lib/systemd/system/podman-auto-update.service.
+Created symlink /etc/systemd/system/timers.target.wants/podman-auto-update.timer → /usr/lib/systemd/system/podman-auto-update.timer.
+Created symlink /etc/systemd/system/default.target.wants/podman-clean-transient.service → /usr/lib/systemd/system/podman-clean-transient.service.
+Created symlink /etc/systemd/system/default.target.wants/podman-restart.service → /usr/lib/systemd/system/podman-restart.service.
+Created symlink /etc/systemd/system/default.target.wants/podman.service → /usr/lib/systemd/system/podman.service.
+Created symlink /etc/systemd/system/sockets.target.wants/podman.socket → /usr/lib/systemd/system/podman.socket.
+Setting up buildah (1.33.7+ds1-1ubuntu0.24.04.3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-15T23:19:37Z [OK   ] installed: podman uidmap crun conmon netavark aardvark-dns passt slirp4netns fuse-overlayfs catatonit ca-certificates curl jq rsync
+
+========================================================================
+  PREREQUISITE: tools
+========================================================================
+2026-11-15T23:19:37Z [INFO ] tools needed by the requested stages (rq3,rq1,crosscheck): dockle hadolint trivy container-structure-test 
+2026-11-15T23:19:37Z [INFO ] tool dockle 0.4.15: downloading https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz
+2026-11-15T23:19:38Z [OK   ] tool dockle: download matches the pin and the checksum file of the release (https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_checksums.txt)
+2026-11-15T23:19:38Z [OK   ] tool dockle installed: /usr/local/bin/dockle ('dockle version 0.4.15', sha256 28d20c2f148781f7320802624a0decc46826f19cdd1d6756893a85042a2ab68e)
+2026-11-15T23:19:38Z [INFO ] tool hadolint 2.14.0: downloading https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64
+2026-11-15T23:19:39Z [OK   ] tool hadolint: download matches the pin and the checksum file of the release (https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64.sha256)
+2026-11-15T23:19:39Z [OK   ] tool hadolint installed: /usr/local/bin/hadolint ('Haskell Dockerfile Linter 2.14.0', sha256 6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47)
+2026-11-15T23:19:39Z [INFO ] tool trivy 0.76.1: downloading https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz
+2026-11-15T23:19:40Z [OK   ] tool trivy: download matches the pin and the checksum file of the release (https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_checksums.txt)
+2026-11-15T23:19:42Z [OK   ] tool trivy installed: /usr/local/bin/trivy ('Version: 0.76.1', sha256 d1dfca6ae10a1ad4540bb94e64f0510077c47008920a9b554986b39dca573d83)
+2026-11-15T23:19:42Z [INFO ] tool container-structure-test 1.22.1: downloading https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/container-structure-test-linux-amd64
+2026-11-15T23:19:42Z [OK   ] tool container-structure-test: download matches the pin and the checksum file of the release (https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/checksums.txt)
+2026-11-15T23:19:42Z [OK   ] tool container-structure-test installed: /usr/local/bin/container-structure-test ('1.22.1', sha256 fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca)
+2026-11-15T23:19:43Z [OK   ] external tools installed and recorded in host/tool_versions.json
+
+========================================================================
+  PREREQUISITE: registry
+========================================================================
+2026-11-15T23:19:43Z [OK   ] installed /etc/containers/registries.conf.d/50-conunit-mirror.conf (single remap: docker.io/library -> public.ecr.aws/docker/library, no Docker Hub fallback)
+
+========================================================================
+  PREREQUISITE: docker_hub_block
+========================================================================
+2026-11-15T23:19:43Z [OK   ] Docker Hub hosts resolve to 0.0.0.0: any fallback to Docker Hub fails loudly
+
+========================================================================
+  PREREQUISITE: mode
+========================================================================
+2026-11-15T23:19:43Z [INFO ] engine mode: rootful
+
+========================================================================
+  PREREQUISITE: datasets
+========================================================================
+2026-11-15T23:19:43Z [INFO ] 10 image dataset (rq3, reliability): fixtures/evaluation_dataset_top10_pinned.txt (10 images)
+2026-11-15T23:19:43Z [INFO ] eval dataset: fixtures/evaluation_dataset_pinned.txt (100 images)
+
+========================================================================
+  PREREQUISITE: mirror_proof
+========================================================================
+2026-11-15T23:19:43Z [INFO ] proof image: index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072
+2026-11-15T23:19:45Z [OK   ] remap proven: pull of index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072 went to public.ecr.aws (debug log saved)
+2026-11-15T23:19:45Z [OK   ] smoke: podman run works in rootful mode
+2026-11-15T23:19:45Z [INFO ] proof image removed from the local store
+
+========================================================================
+  PREREQUISITE: host_info
+========================================================================
+2026-11-15T23:19:47Z [OK   ] host facts recorded: kernel 7.0.0-1014-aws, podman rootless=false, cgroups v2, runtime crun crun version 1.14.1, storage overlay
+
+========================================================================
+  PREREQUISITE: build
+========================================================================
+all modules verified
+2026-11-15T23:20:01Z [OK   ] built con-unit, export_latex, benchmark_rq3, rq1, crosscheck, attribute_exec, reliability (commit 2f5d90257717d3977b84ac68b8ef9af2a0876fe1, tainted false)
+
+========================================================================
+  STAGE: eval
+========================================================================
+2026-11-15T23:20:01Z [INFO ] command: engine_user bin/con-unit eval --images fixtures/evaluation_dataset_pinned.txt --pack cis --out-dir /opt/con-unit/results/eval-v1-a --engine podman --platform linux/amd64 --image-source auto --probe-window 3s
+Evaluating 100 images with ConUnit Container Hardening Profile (CIS-informed) using podman (platform linux/amd64, source auto, window 3s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[  1/100] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 22ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 15.258s | local-store
+[  2/100] index.docker.io/library/memcached@sha256:084fb554292d1447bc2c68b80c2331b98834514f56c866bc21a61be3c2ee376d
+  INDEXED        559 entries | 6 layers | 12.4 MiB read | est. 290.2 KiB index memory | 5ms
+  COMPLETED      15 passed | 1 failed | 1 unverified | 17.426s | local-store
+[  3/100] index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072
+  INDEXED        431 entries | 1 layers | 1.2 MiB read | est. 220.1 KiB index memory | 1ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.564s | local-store
+[  4/100] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.596s | local-store
+[  5/100] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 70ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 22.793s | local-store
+[  6/100] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 25ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 19.684s | local-store
+[  7/100] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 29ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 3.004s | local-store
+[  8/100] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 45ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 4.561s | local-store
+[  9/100] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 46ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 5.668s | local-store
+[ 10/100] index.docker.io/library/mysql@sha256:df90258da46f6e7ff8574ff84f17618aba0765cac749928299c69fd4e7cb8ad8
+  INDEXED        28,350 entries | 10 layers | 887.6 MiB read | est. 16.0 MiB index memory | 303ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 34.932s | local-store
+[ 11/100] index.docker.io/library/mongo@sha256:452bdaf2127b8ff851e31410a267809b9829eded219979f2210e7c7efb85a058
+  INDEXED        8,053 entries | 9 layers | 1.0 GiB read | est. 4.2 MiB index memory | 246ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 44.691s | local-store
+[ 12/100] index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66
+  INDEXED        3,350 entries | 7 layers | 63.8 MiB read | est. 1.8 MiB index memory | 29ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 13.013s | local-store
+[ 13/100] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 54ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 19.028s | local-store
+[ 14/100] index.docker.io/library/docker@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb
+  INDEXED        1,205 entries | 10 layers | 163.3 MiB read | est. 639.1 KiB index memory | 35ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 4.78s | local-store
+[ 15/100] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 37ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 18.344s | local-store
+[ 16/100] index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed
+  INDEXED        7,439 entries | 8 layers | 325.7 MiB read | est. 3.9 MiB index memory | 95ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 22.906s | local-store
+[ 17/100] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 133ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 8.904s | local-store
+[ 18/100] index.docker.io/library/registry@sha256:82f6ff4a7f982960c8aa51617fea3aabc485df6e55cce80d22deb1de36f1bc3c
+  INDEXED        885 entries | 5 layers | 61.7 MiB read | est. 469.1 KiB index memory | 14ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 18.195s | local-store
+[ 19/100] index.docker.io/library/debian@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6
+  INDEXED        5,449 entries | 1 layers | 114.6 MiB read | est. 2.9 MiB index memory | 37ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 4.481s | local-store
+[ 20/100] index.docker.io/library/ruby@sha256:d8cb2c0714bdaba0f318af897a01d2dbde3cfa8e62d47e99cea55feb13c0e90d
+  INDEXED        7,398 entries | 5 layers | 165.3 MiB read | est. 4.0 MiB index memory | 61ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 4.789s | local-store
+[ 21/100] index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472
+  INDEXED        20,287 entries | 23 layers | 771.1 MiB read | est. 10.8 MiB index memory | 234ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 33.726s | local-store
+[ 22/100] index.docker.io/library/php@sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d
+  INDEXED        1,647 entries | 11 layers | 102.9 MiB read | est. 879.8 KiB index memory | 28ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 19.426s | local-store
+[ 23/100] index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840
+  INDEXED        7,316 entries | 8 layers | 1.3 GiB read | est. 3.9 MiB index memory | 260ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 1m5.935s | local-store
+[ 24/100] index.docker.io/library/haproxy@sha256:b9fe316f718d5015c5cfebd8ca019591f3e44656f61d93cb8b59a1028961e530
+  INDEXED        971 entries | 6 layers | 41.6 MiB read | est. 514.1 KiB index memory | 13ms
+  COMPLETED      11 passed | 1 failed | 5 unverified | 2.455s | local-store
+[ 25/100] index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01
+  INDEXED        9,036 entries | 6 layers | 401.2 MiB read | est. 4.8 MiB index memory | 112ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 13.952s | local-store
+[ 26/100] index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436
+  INDEXED        5,655 entries | 8 layers | 339.0 MiB read | est. 3.0 MiB index memory | 81ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 11.912s | local-store
+[ 27/100] index.docker.io/library/couchdb@sha256:907eab5b7e55ab7cfd241d39b90b2a335ea40bef82acee5a37388c08bf201dda
+  INDEXED        7,635 entries | 11 layers | 285.7 MiB read | est. 4.0 MiB index memory | 86ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 12.944s | local-store
+[ 28/100] index.docker.io/library/arangodb@sha256:ae1ce5af4783e008d359daaa963559aa4e32a5bd9ea54e2304f5b3adbc88c4aa
+  INDEXED        4,449 entries | 4 layers | 581.4 MiB read | est. 2.4 MiB index memory | 119ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 35.449s | local-store
+[ 29/100] index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a
+  INDEXED        7,984 entries | 6 layers | 618.6 MiB read | est. 4.2 MiB index memory | 139ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 26.635s | local-store
+[ 30/100] index.docker.io/library/solr@sha256:4eead47c03533079d324fa49e28a73d88b1e4d9568d0d779a0bcd58520117dfe
+  INDEXED        7,962 entries | 11 layers | 700.7 MiB read | est. 4.2 MiB index memory | 161ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 37.818s | local-store
+[ 31/100] index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a
+  INDEXED        9,158 entries | 10 layers | 302.7 MiB read | est. 4.9 MiB index memory | 100ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 20.936s | local-store
+[ 32/100] index.docker.io/library/nats@sha256:afae2fdbe2e326c65e1246cb83b9d05d319188734f3bd577ac8072daae78a10f
+  INDEXED        1,511 entries | 4 layers | 26.8 MiB read | est. 803.0 KiB index memory | 12ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 18.669s | local-store
+[ 33/100] index.docker.io/library/eclipse-mosquitto@sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98
+  INDEXED        1,660 entries | 3 layers | 24.1 MiB read | est. 881.4 KiB index memory | 12ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 16.095s | local-store
+[ 34/100] index.docker.io/library/telegraf@sha256:4a62bd294bf2f4c1e3781194fe7b625b7e527244eeb31afd5758227914a16229
+  INDEXED        1,713 entries | 5 layers | 330.2 MiB read | est. 909.2 KiB index memory | 63ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 14.535s | local-store
+[ 35/100] index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e
+  INDEXED        9,731 entries | 6 layers | 331.1 MiB read | est. 5.1 MiB index memory | 97ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 9.978s | local-store
+[ 36/100] index.docker.io/library/tomcat@sha256:801c473ea864cab344fcaadf22789a620acaeecd9daa85e706e06a97ebc37b94
+  INDEXED        10,057 entries | 10 layers | 423.4 MiB read | est. 5.3 MiB index memory | 159ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 29.232s | local-store
+[ 37/100] index.docker.io/library/amazoncorretto@sha256:019e58087ba4c114c817094f70d3d522bcd13e80ce9edbba6e1c67e5700bad63
+  INDEXED        9,942 entries | 2 layers | 508.0 MiB read | est. 5.3 MiB index memory | 137ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 14.881s | local-store
+[ 38/100] index.docker.io/library/eclipse-temurin@sha256:e1898fd6a11fc965a994d8ace186fd3585aeb636cf8f05f47a723fcfee0b0918
+  INDEXED        2,163 entries | 5 layers | 215.4 MiB read | est. 1.1 MiB index memory | 46ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 6.801s | local-store
+[ 39/100] index.docker.io/library/gradle@sha256:e46e15353757ef9c9be0197a243653e88d25ebcd4c3c841057cf839c11fcf898
+  INDEXED        17,727 entries | 11 layers | 769.0 MiB read | est. 9.4 MiB index memory | 253ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 30.266s | local-store
+[ 40/100] index.docker.io/library/rust@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd
+  INDEXED        7,237 entries | 2 layers | 868.2 MiB read | est. 3.8 MiB index memory | 174ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 24.698s | local-store
+[ 41/100] index.docker.io/library/swift@sha256:53cb05862760a5270ec5cb86b8998d819b5fbe8b72ea35811f1f790a1542b51c
+  INDEXED        9,188 entries | 4 layers | 274.2 MiB read | est. 4.8 MiB index memory | 122ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 8.571s | local-store
+[ 42/100] index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215
+  INDEXED        8,318 entries | 5 layers | 829.2 MiB read | est. 4.4 MiB index memory | 176ms
+  COMPLETED      8 passed | 3 failed | 6 unverified | 22.718s | local-store
+[ 43/100] index.docker.io/library/erlang@sha256:0ac9b63db11be156be4e2834546e44aa0d7446aaffb05fedd4aea8c5a33ad998
+  INDEXED        2,998 entries | 2 layers | 85.3 MiB read | est. 1.6 MiB index memory | 30ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 5.527s | local-store
+[ 44/100] index.docker.io/library/elixir@sha256:a2f0fe1bfd8a2f9cc91d913f4a12e6430e27e618720f753a514e2fff3d35f5a7
+  INDEXED        3,778 entries | 3 layers | 100.2 MiB read | est. 2.0 MiB index memory | 36ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 3.739s | local-store
+[ 45/100] index.docker.io/library/clojure@sha256:aa1b3f8a19462798a9662535d17173f501b3b45910aa7c3642aaddae41b096fa
+  INDEXED        2,940 entries | 9 layers | 323.6 MiB read | est. 1.5 MiB index memory | 69ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 10.405s | local-store
+[ 46/100] index.docker.io/library/haskell@sha256:10500ef6abd41d210a74add013125065f92352b298999a9dfe296fb73deaccf7
+  INDEXED        32,094 entries | 5 layers | 4.1 GiB read | est. 17.9 MiB index memory | 867ms
+  COMPLETED      9 passed | 7 failed | 1 unverified | 1m57.427s | local-store
+[ 47/100] index.docker.io/library/julia@sha256:0002771531bbae894f2532a5ae02ea71c30685440ca3bdaea0a43d17e65571e0
+  INDEXED        10,319 entries | 4 layers | 1.1 GiB read | est. 5.5 MiB index memory | 237ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 33.805s | local-store
+[ 48/100] index.docker.io/library/gcc@sha256:b8a42d6804296fbe7a54e17e9d60c3100d9e8dbe7ef88c748cae2ddb00d63ba2
+  INDEXED        33,063 entries | 8 layers | 1.5 GiB read | est. 17.5 MiB index memory | 417ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 36.996s | local-store
+[ 49/100] index.docker.io/library/perl@sha256:2b59ca705cf3234d62c33e27ed573809498e476d45c4d0904550d0daced6a215
+  INDEXED        9,820 entries | 4 layers | 185.3 MiB read | est. 5.2 MiB index memory | 77ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 6.863s | local-store
+[ 50/100] index.docker.io/library/phpmyadmin@sha256:e4b3eb5305cd42d21512bb55def2bab52625d56df927ad4ee1864a9354c84d40
+  INDEXED        18,670 entries | 21 layers | 548.7 MiB read | est. 9.9 MiB index memory | 192ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 29.733s | local-store
+[ 51/100] index.docker.io/library/ghost@sha256:4195f6c405e40230cd10c0770425cf500c1f542a96e9f6584c11649c150e5a89
+  INDEXED        137,558 entries | 10 layers | 580.9 MiB read | est. 85.3 MiB index memory | 1.422s
+  COMPLETED      10 passed | 2 failed | 5 unverified | 28.855s | local-store
+[ 52/100] index.docker.io/library/drupal@sha256:2869a0abe45b7ce2bc6d7a35fabe447d06393c3ce613964b3a4f1d9660eb0e08
+  INDEXED        43,364 entries | 21 layers | 607.4 MiB read | est. 23.9 MiB index memory | 334ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 35.007s | local-store
+[ 53/100] index.docker.io/library/joomla@sha256:f534566df4df83d2f6751d3406dc624e5af5b3c8d7f2b2101bf3c2f4e47b31f0
+  INDEXED        28,835 entries | 21 layers | 699.8 MiB read | est. 15.6 MiB index memory | 266ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 15.723s | local-store
+[ 54/100] index.docker.io/library/mediawiki@sha256:406a08c7f2cf5a9c9cb590bbe27a21b4d3cb3268b0acf327fa7dd2727ff6b0be
+  INDEXED        58,632 entries | 22 layers | 1.0 GiB read | est. 31.8 MiB index memory | 482ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 34.35s | local-store
+[ 55/100] index.docker.io/library/nextcloud@sha256:81cb09055a20142521a267cea2bc27e6a81a065871c70850d209f08803567dbc
+  INDEXED        45,316 entries | 23 layers | 1.3 GiB read | est. 24.5 MiB index memory | 476ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 1m4.981s | local-store
+[ 56/100] index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e
+  INDEXED        22,025 entries | 12 layers | 471.8 MiB read | est. 12.0 MiB index memory | 196ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 24.45s | local-store
+[ 57/100] index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c
+  INDEXED        13,839 entries | 23 layers | 511.3 MiB read | est. 7.3 MiB index memory | 159ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 24.72s | local-store
+[ 58/100] index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26
+  INDEXED        32,673 entries | 21 layers | 1.5 GiB read | est. 17.8 MiB index memory | 476ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 51.488s | local-store
+[ 59/100] index.docker.io/library/odoo@sha256:d5e3a26baa044867c826dddc09058f10e2582706bf83c146ea04fea889720c76
+  INDEXED        122,636 entries | 9 layers | 2.2 GiB read | est. 68.9 MiB index memory | 1.028s
+  COMPLETED      13 passed | 3 failed | 1 unverified | 1m21.962s | local-store
+[ 60/100] index.docker.io/library/rethinkdb@sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8
+  INDEXED        5,215 entries | 5 layers | 117.3 MiB read | est. 2.7 MiB index memory | 41ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 22.339s | local-store
+[ 61/100] index.docker.io/library/flink@sha256:ffb97a54a2b59960360d3b362e64f86ed5cab82621025eeed1399074b42a7b17
+  INDEXED        6,257 entries | 10 layers | 902.7 MiB read | est. 3.3 MiB index memory | 187ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 35.591s | local-store
+[ 62/100] index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d
+  INDEXED        9,564 entries | 9 layers | 168.2 MiB read | est. 5.2 MiB index memory | 77ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 20.04s | local-store
+[ 63/100] index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30
+  INDEXED        28,176 entries | 12 layers | 864.7 MiB read | est. 16.0 MiB index memory | 297ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 50.005s | local-store
+[ 64/100] index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89
+  INDEXED        4,823 entries | 10 layers | 1.5 GiB read | est. 2.6 MiB index memory | 300ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 53.38s | local-store
+[ 65/100] index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a
+  INDEXED        9,801 entries | 4 layers | 371.6 MiB read | est. 5.2 MiB index memory | 119ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 11.517s | local-store
+[ 66/100] index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554
+  INDEXED        14,896 entries | 12 layers | 722.2 MiB read | est. 8.1 MiB index memory | 203ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 41.528s | local-store
+[ 67/100] index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7
+  INDEXED        5,943 entries | 4 layers | 352.7 MiB read | est. 3.1 MiB index memory | 90ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 14.427s | local-store
+[ 68/100] index.docker.io/library/sapmachine@sha256:8c3afc896691208abee94e8db71cb972ed34a5c5b417610102261055b95d38a5
+  INDEXED        4,199 entries | 2 layers | 242.1 MiB read | est. 2.2 MiB index memory | 61ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 8.427s | local-store
+[ 69/100] index.docker.io/library/oraclelinux@sha256:9225108d00fb6611ebc4a5eced166f27d9dcfeaa539fb127be79425f0da5e745
+  INDEXED        11,076 entries | 1 layers | 239.8 MiB read | est. 5.9 MiB index memory | 95ms
+  COMPLETED      8 passed | 3 failed | 6 unverified | 10.797s | local-store
+[ 70/100] index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e
+  INDEXED        9,033 entries | 1 layers | 176.9 MiB read | est. 4.7 MiB index memory | 76ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 7.041s | local-store
+[ 71/100] index.docker.io/library/amazonlinux@sha256:c04a1012acc483977f61f7f91c28624a39a621e56a59781319a75dec528be9b6
+  INDEXED        8,340 entries | 1 layers | 143.2 MiB read | est. 4.4 MiB index memory | 70ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 7.196s | local-store
+[ 72/100] index.docker.io/library/bash@sha256:589adbc588d8ef3c1ec3c68333faf4baf5dccb65d3cb50f6cf3d78cad2d6e1b0
+  INDEXED        700 entries | 3 layers | 14.9 MiB read | est. 364.7 KiB index memory | 6ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 1.694s | local-store
+[ 73/100] index.docker.io/library/pypy@sha256:410aad485440d238a596fd5f847a99d3f7c11be895ce25c02b336f5c5d1733bb
+  INDEXED        6,415 entries | 3 layers | 196.9 MiB read | est. 3.4 MiB index memory | 62ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 5.99s | local-store
+[ 74/100] index.docker.io/library/composer@sha256:8de2184c6de224f4689e8f80ed5f5edaf0030b6b8b7839a22a2bcb6722ac87d0
+  INDEXED        4,698 entries | 14 layers | 214.7 MiB read | est. 2.5 MiB index memory | 64ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 7.055s | local-store
+[ 75/100] index.docker.io/library/ros@sha256:00b8d47a6e6384a2834e3d01fa87ae767876543baa574f2d64a75c04ea33c698
+  INDEXED        41,388 entries | 10 layers | 848.0 MiB read | est. 22.6 MiB index memory | 358ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 25.134s | local-store
+[ 76/100] index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244
+  INDEXED        11,575 entries | 11 layers | 702.4 MiB read | est. 6.1 MiB index memory | 210ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 28.142s | local-store
+[ 77/100] index.docker.io/library/spiped@sha256:7acba2c58083cf5246e055818bd95932bb6a26851e0123543a3c4b9681a07061
+  INDEXED        527 entries | 6 layers | 8.3 MiB read | est. 273.3 KiB index memory | 4ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 2.633s | local-store
+[ 78/100] index.docker.io/library/irssi@sha256:62fbc3514f8ef0bf587137800856ee4dffbfaddf6ca8402501698a6491e3205d
+  INDEXED        3,341 entries | 5 layers | 62.5 MiB read | est. 1.8 MiB index memory | 28ms
+  COMPLETED      11 passed | 1 failed | 5 unverified | 3.811s | local-store
+[ 79/100] index.docker.io/library/rakudo-star@sha256:0bc7542202ea3d9362ce15d90a601928f02b7657630fd131ad9d9847687b65b5
+  INDEXED        4,171 entries | 3 layers | 174.9 MiB read | est. 2.3 MiB index memory | 51ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 7.406s | local-store
+[ 80/100] index.docker.io/library/mageia@sha256:d7e96eb4e2f3ac6b7bdf0caecf673836323ae409b304f195a98d22ab126217d9
+  INDEXED        12,929 entries | 1 layers | 326.4 MiB read | est. 6.8 MiB index memory | 118ms
+  COMPLETED      8 passed | 4 failed | 5 unverified | 14.064s | local-store
+[ 81/100] index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5
+  INDEXED        922 entries | 5 layers | 63.3 MiB read | est. 488.4 KiB index memory | 16ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 15.489s | local-store
+[ 82/100] index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+  INDEXED        1,830 entries | 17 layers | 110.8 MiB read | est. 977.6 KiB index memory | 33ms
+  COMPLETED      15 passed | 1 failed | 1 unverified | 21.084s | local-store
+[ 83/100] index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa
+  INDEXED        9,567 entries | 9 layers | 392.5 MiB read | est. 5.0 MiB index memory | 148ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 23.642s | local-store
+[ 84/100] index.docker.io/library/swipl@sha256:2723fefd35116f92f68da22a487b1b01b584ac0b4b81fcd971c7ab2222f5d3e7
+  INDEXED        8,233 entries | 3 layers | 265.6 MiB read | est. 4.3 MiB index memory | 130ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 11.661s | local-store
+[ 85/100] index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8
+  INDEXED        24,144 entries | 15 layers | 795.3 MiB read | est. 13.3 MiB index memory | 273ms
+  COMPLETED      12 passed | 4 failed | 1 unverified | 41.856s | local-store
+[ 86/100] index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9
+  INDEXED        10,019 entries | 9 layers | 478.0 MiB read | est. 5.3 MiB index memory | 167ms
+  COMPLETED      14 passed | 2 failed | 1 unverified | 28.097s | local-store
+[ 87/100] index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0
+  INDEXED        8,487 entries | 18 layers | 619.8 MiB read | est. 4.5 MiB index memory | 169ms
+  COMPLETED      11 passed | 5 failed | 1 unverified | 33.431s | local-store
+[ 88/100] index.docker.io/library/buildpack-deps@sha256:890e8b5c0040e1deff5cc7dc7b4414e67069f79e3301afc4ec5bd49d64ef13e5
+  INDEXED        19,992 entries | 4 layers | 755.2 MiB read | est. 10.6 MiB index memory | 236ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 20.237s | local-store
+[ 89/100] index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b
+  INDEXED        6,663 entries | 8 layers | 861.9 MiB read | est. 3.5 MiB index memory | 180ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 37.332s | local-store
+[ 90/100] index.docker.io/library/almalinux@sha256:838c2fafefb1a8a0d7f8cdbc3b0551c2a2b1eb0cd87aad6d62aecadb18311f1b
+  INDEXED        8,927 entries | 1 layers | 179.0 MiB read | est. 4.8 MiB index memory | 81ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 8.638s | local-store
+[ 91/100] index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b
+  INDEXED        6,104 entries | 5 layers | 137.1 MiB read | est. 3.2 MiB index memory | 47ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 7.454s | local-store
+[ 92/100] index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97
+  INDEXED        4,826 entries | 4 layers | 81.5 MiB read | est. 2.5 MiB index memory | 33ms
+  COMPLETED      10 passed | 6 failed | 1 unverified | 16.29s | local-store
+[ 93/100] index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04
+  INDEXED        2,488 entries | 7 layers | 30.4 MiB read | est. 1.3 MiB index memory | 19ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 4.532s | local-store
+[ 94/100] index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7
+  INDEXED        12,815 entries | 6 layers | 501.7 MiB read | est. 6.8 MiB index memory | 150ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 16.561s | local-store
+[ 95/100] index.docker.io/library/rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6
+  INDEXED        8,116 entries | 1 layers | 167.4 MiB read | est. 4.3 MiB index memory | 72ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 7.938s | local-store
+[ 96/100] index.docker.io/library/photon@sha256:3d7e9a35fd55277a056d9e1c54841e6b862a8df7e0caa56fa9c0453969f5329d
+  INDEXED        1,058 entries | 1 layers | 46.6 MiB read | est. 551.5 KiB index memory | 16ms
+  COMPLETED      8 passed | 3 failed | 6 unverified | 2.927s | local-store
+[ 97/100] index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef
+  INDEXED        1,516 entries | 5 layers | 105.7 MiB read | est. 805.4 KiB index memory | 27ms
+  COMPLETED      13 passed | 3 failed | 1 unverified | 18.523s | local-store
+[ 98/100] index.docker.io/library/groovy@sha256:fa81cdb39e5418c234ee7c85c251274be021bec9fb439e374af4f0663b106a53
+  INDEXED        6,650 entries | 10 layers | 481.1 MiB read | est. 3.5 MiB index memory | 120ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 19.081s | local-store
+[ 99/100] index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010
+  INDEXED        18,278 entries | 6 layers | 410.9 MiB read | est. 9.7 MiB index memory | 169ms
+  COMPLETED      9 passed | 3 failed | 5 unverified | 12.726s | local-store
+[100/100] index.docker.io/library/maven@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+  INDEXED        2,909 entries | 9 layers | 364.7 MiB read | est. 1.5 MiB index memory | 84ms
+  COMPLETED      10 passed | 2 failed | 5 unverified | 12.192s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-a/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-a/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-a/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 131.4 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 100 images COMPLETED
+2026-11-15T23:55:13Z [OK   ] eval complete: every image produced a COMPLETED record
+
+========================================================================
+  STAGE: run_block_check
+========================================================================
+{
+  "engine_name": "podman",
+  "engine_version": "4.9.3",
+  "rootless": false,
+  "cgroup_version": "v2",
+  "storage_driver": "overlay",
+  "oci_runtime": "crun 1.14.1",
+  "virtualization": "aws-nitro-kvm",
+  "execution_mode": "Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2",
+  "instance_type": "c6i.2xlarge",
+  "ami_id": "ami-04bbcae8eccec8bce",
+  "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+  "tainted": false,
+  "registry_remap": "docker.io/library -> public.ecr.aws/docker/library"
+}
+2026-11-15T23:55:13Z [OK   ] run block carries engine_version, rootless, cgroup_version, ami_id, registry_remap and the tool versions of the requested stages
+
+========================================================================
+  STAGE: export
+========================================================================
+2026-11-15T23:55:13Z [INFO ] command: bin/export_latex -out /opt/con-unit/results/eval-v1-a -audit fixtures/evaluation_dataset_audit.json -pinned fixtures/evaluation_dataset_pinned.json /opt/con-unit/results/eval-v1-a/empirical_study.json
+
+------------------------
+  ConUnit LaTeX export
+------------------------
+[INFO]     study     /opt/con-unit/results/eval-v1-a/empirical_study.json (sha256 6102815c4907)
+[INFO]     schema    2
+[INFO]     flow      attempted 100, completed 100, not completed 0
+
+-------------------
+  Headline checks
+-------------------
+[INFO]     CIS-4.6   fail 100 / verified 100   unverified   0   prevalence 100.0% [96.3, 100.0]
+[INFO]     SPEC-01   fail  82 / verified 100   unverified   0   prevalence  82.0% [73.3, 88.3]
+[INFO]     SPEC-05   fail  13 / verified 100   unverified   0   prevalence  13.0% [7.8, 21.0]
+[INFO]     SPEC-06   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     FS-04     fail  64 / verified 100   unverified   0   prevalence  64.0% [54.2, 72.7]
+[INFO]     FS-05     fail   9 / verified 100   unverified   0   prevalence   9.0% [4.8, 16.2]
+[INFO]     FS-08     fail   0 / verified  99   unverified   1   prevalence   0.0% [0.0, 3.7]
+
+----------------------
+  Exploratory checks
+----------------------
+[INFO]     SPEC-03   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     SPEC-07   fail   0 / verified 100   unverified   0   prevalence   0.0% [0.0, 3.7]
+[INFO]     FS-06     fail   5 / verified  98   unverified   2   prevalence   5.1% [2.2, 11.4]
+[INFO]     FS-07     fail   4 / verified 100   unverified   0   prevalence   4.0% [1.6, 9.8]
+[INFO]     FS-09     fail   3 / verified 100   unverified   0   prevalence   3.0% [1.0, 8.5]
+[INFO]     EXEC-01   fail  13 / verified  45   unverified  55   prevalence  28.9% [17.7, 43.4]
+[INFO]     EXEC-02   fail  26 / verified  45   unverified  55   prevalence  57.8% [43.3, 71.0]
+[INFO]     EXEC-04   fail   2 / verified  45   unverified  55   prevalence   4.4% [1.2, 14.8]
+[INFO]     EXEC-07   fail   6 / verified  45   unverified  55   prevalence  13.3% [6.3, 26.2]
+
+-------------------
+  Excluded checks
+-------------------
+[INFO]     SUP-02    fail   0 / verified   0   unverified 100   no prevalence (excluded)
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/macros_study.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_rq2_prevalence.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_rq2_exploratory.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_unverified.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_attrition.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_strata.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/table_rq3_phases.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/fig_rq2_prevalence.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/fig_rq3_phase_breakdown.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/fig_rq3_memory_scaling.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/preview_paper.tex
+[SUCCESS]  wrote /opt/con-unit/results/eval-v1-a/study_stats.json
+2026-11-15T23:55:13Z [OK   ] export complete
+
+========================================================================
+  STAGE: rq3
+========================================================================
+2026-11-15T23:55:13Z [INFO ] command: engine_user bin/benchmark_rq3 -file fixtures/evaluation_dataset_top10_pinned.txt -pack cis -out-dir /opt/con-unit/results/eval-v1-a/rq3 -iterations 10 -warmup 1 -platform linux/amd64 -probe-window 3s -engine podman -image-source auto -dockle dockle
+
+RQ3 performance benchmark
+23:55:14 INFO  host    mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+23:55:14 INFO  images  10, warm-up 1, timed 10, cold 0, pack PACK-CONUNIT-HARDENING
+23:55:14 INFO  tier 3  4 treatments (EXEC-02, EXEC-07, EXEC-01, EXEC-04), floor 15 s per image at W = 3s
+23:55:14 INFO  dockle  /usr/local/bin/dockle (dockle version 0.4.15), timed after every warm-up and timed trial
+23:55:14 INFO  journal /opt/con-unit/results/eval-v1-a/rq3/rq3_journal.jsonl
+
+[1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+23:55:14 INFO  archetype base-os, base family alpine
+23:55:15 INFO      warmup  1/1  total 475.008 ms | resolve 129.692 stream 3.885 t1 0.093 t2 0.116 t3 290.576 t4 0.000
+23:55:15 INFO                   dockle 97.286 ms (export 68.774, analysis 28.512)
+23:55:15 INFO      timed   1/10 total 418.954 ms | resolve 67.961 stream 3.810 t1 0.142 t2 0.116 t3 299.865 t4 0.000
+23:55:15 INFO                   dockle 84.665 ms (export 64.376, analysis 20.289)
+23:55:16 INFO      timed   2/10 total 405.372 ms | resolve 62.005 stream 3.696 t1 0.121 t2 0.117 t3 289.921 t4 0.000
+23:55:16 INFO                   dockle 79.805 ms (export 60.386, analysis 19.419)
+23:55:16 INFO      timed   3/10 total 378.985 ms | resolve 61.020 stream 3.649 t1 0.103 t2 0.113 t3 267.740 t4 0.000
+23:55:16 INFO                   dockle 80.672 ms (export 61.224, analysis 19.448)
+23:55:17 INFO      timed   4/10 total 387.605 ms | resolve 62.778 stream 3.707 t1 0.121 t2 0.112 t3 272.045 t4 0.000
+23:55:17 INFO                   dockle 80.327 ms (export 60.703, analysis 19.624)
+23:55:17 INFO      timed   5/10 total 399.760 ms | resolve 61.842 stream 3.676 t1 0.123 t2 0.112 t3 285.083 t4 0.000
+23:55:17 INFO                   dockle 81.849 ms (export 62.001, analysis 19.848)
+23:55:18 INFO      timed   6/10 total 414.382 ms | resolve 64.415 stream 3.675 t1 0.115 t2 0.112 t3 297.208 t4 0.000
+23:55:18 INFO                   dockle 86.213 ms (export 65.536, analysis 20.677)
+23:55:18 INFO      timed   7/10 total 422.850 ms | resolve 67.033 stream 3.745 t1 0.124 t2 0.112 t3 305.321 t4 0.000
+23:55:18 INFO                   dockle 81.389 ms (export 61.817, analysis 19.572)
+23:55:19 INFO      timed   8/10 total 413.368 ms | resolve 60.522 stream 3.637 t1 0.124 t2 0.138 t3 297.769 t4 0.000
+23:55:19 INFO                   dockle 80.516 ms (export 60.341, analysis 20.175)
+23:55:19 INFO      timed   9/10 total 374.462 ms | resolve 62.742 stream 3.692 t1 0.117 t2 0.114 t3 262.239 t4 0.000
+23:55:19 INFO                   dockle 82.108 ms (export 61.960, analysis 20.148)
+23:55:20 INFO      timed  10/10 total 386.049 ms | resolve 63.839 stream 3.628 t1 0.176 t2 0.112 t3 270.339 t4 0.000
+23:55:20 INFO                   dockle 80.474 ms (export 61.196, analysis 19.278)
+23:55:20 OK    alpine: COMPLETED, n=10, median 402.566 ms, IQR 27.690 ms, mean 400.179 ms +/- 12.477 ms (95% CI)
+
+[2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+23:55:20 INFO  archetype base-os, base family ubuntu
+23:55:21 INFO      warmup  1/1  total 769.358 ms | resolve 399.958 stream 30.322 t1 0.108 t2 1.019 t3 291.460 t4 0.000
+23:55:21 INFO                   dockle 432.829 ms (export 327.830, analysis 104.999)
+23:55:22 INFO      timed   1/10 total 682.926 ms | resolve 341.735 stream 29.491 t1 0.097 t2 1.010 t3 266.038 t4 0.000
+23:55:22 INFO                   dockle 427.390 ms (export 325.309, analysis 102.081)
+23:55:23 INFO      timed   2/10 total 666.151 ms | resolve 326.103 stream 29.578 t1 0.108 t2 0.999 t3 264.292 t4 0.000
+23:55:23 INFO                   dockle 421.964 ms (export 319.542, analysis 102.422)
+23:55:24 INFO      timed   3/10 total 667.164 ms | resolve 330.304 stream 29.552 t1 0.101 t2 1.004 t3 261.791 t4 0.000
+23:55:24 INFO                   dockle 417.583 ms (export 315.851, analysis 101.732)
+23:55:25 INFO      timed   4/10 total 669.952 ms | resolve 327.543 stream 29.326 t1 0.092 t2 1.005 t3 265.261 t4 0.000
+23:55:25 INFO                   dockle 429.068 ms (export 327.559, analysis 101.509)
+23:55:26 INFO      timed   5/10 total 663.927 ms | resolve 325.582 stream 29.730 t1 0.093 t2 0.995 t3 261.120 t4 0.000
+23:55:26 INFO                   dockle 423.355 ms (export 321.684, analysis 101.671)
+23:55:28 INFO      timed   6/10 total 661.913 ms | resolve 324.075 stream 29.092 t1 0.091 t2 0.997 t3 261.645 t4 0.000
+23:55:28 INFO                   dockle 420.236 ms (export 317.589, analysis 102.647)
+23:55:29 INFO      timed   7/10 total 664.506 ms | resolve 328.430 stream 28.922 t1 0.093 t2 1.005 t3 260.274 t4 0.000
+23:55:29 INFO                   dockle 417.702 ms (export 316.276, analysis 101.426)
+23:55:30 INFO      timed   8/10 total 666.999 ms | resolve 331.296 stream 29.476 t1 0.093 t2 0.988 t3 261.718 t4 0.000
+23:55:30 INFO                   dockle 420.753 ms (export 318.594, analysis 102.159)
+23:55:31 INFO      timed   9/10 total 657.884 ms | resolve 323.049 stream 29.190 t1 0.097 t2 0.998 t3 261.337 t4 0.000
+23:55:31 INFO                   dockle 430.617 ms (export 328.954, analysis 101.663)
+23:55:32 INFO      timed  10/10 total 667.655 ms | resolve 322.547 stream 29.552 t1 0.094 t2 0.990 t3 272.078 t4 0.000
+23:55:32 INFO                   dockle 420.558 ms (export 318.574, analysis 101.984)
+23:55:32 OK    ubuntu: COMPLETED, n=10, median 666.575 ms, IQR 3.461 ms, mean 666.908 ms +/- 4.698 ms (95% CI)
+
+[3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+23:55:32 INFO  archetype web-ingress, base family alpine
+23:55:44 INFO      warmup  1/1  total 11190.530 ms | resolve 989.084 stream 22.226 t1 0.111 t2 0.567 t3 10131.836 t4 0.000
+23:55:44 INFO                   dockle 370.553 ms (export 289.771, analysis 80.782)
+23:55:55 INFO      timed   1/10 total 10751.064 ms | resolve 287.037 stream 22.136 t1 0.106 t2 0.571 t3 10394.976 t4 0.000
+23:55:55 INFO                   dockle 373.962 ms (export 292.743, analysis 81.219)
+23:56:06 INFO      timed   2/10 total 10779.016 ms | resolve 288.628 stream 22.198 t1 0.145 t2 0.564 t3 10420.234 t4 0.000
+23:56:06 INFO                   dockle 371.311 ms (export 290.716, analysis 80.595)
+23:56:17 INFO      timed   3/10 total 10724.630 ms | resolve 292.013 stream 22.495 t1 0.121 t2 0.587 t3 10362.435 t4 0.000
+23:56:17 INFO                   dockle 383.600 ms (export 302.865, analysis 80.735)
+23:56:28 INFO      timed   4/10 total 10698.593 ms | resolve 287.504 stream 22.306 t1 0.128 t2 0.570 t3 10341.667 t4 0.000
+23:56:28 INFO                   dockle 373.208 ms (export 292.651, analysis 80.557)
+23:56:39 INFO      timed   5/10 total 10761.694 ms | resolve 293.806 stream 22.018 t1 0.129 t2 0.584 t3 10398.980 t4 0.000
+23:56:39 INFO                   dockle 377.042 ms (export 296.233, analysis 80.809)
+23:56:50 INFO      timed   6/10 total 10777.911 ms | resolve 296.553 stream 21.970 t1 0.107 t2 0.583 t3 10411.528 t4 0.000
+23:56:50 INFO                   dockle 375.292 ms (export 294.626, analysis 80.666)
+23:57:02 INFO      timed   7/10 total 10735.820 ms | resolve 289.792 stream 22.128 t1 0.134 t2 0.598 t3 10376.067 t4 0.000
+23:57:02 INFO                   dockle 377.475 ms (export 296.968, analysis 80.507)
+23:57:13 INFO      timed   8/10 total 10701.767 ms | resolve 292.957 stream 22.502 t1 0.111 t2 0.699 t3 10339.934 t4 0.000
+23:57:13 INFO                   dockle 373.253 ms (export 293.006, analysis 80.247)
+23:57:24 INFO      timed   9/10 total 10776.191 ms | resolve 285.302 stream 22.120 t1 0.125 t2 0.580 t3 10421.764 t4 0.000
+23:57:24 INFO                   dockle 376.991 ms (export 296.463, analysis 80.528)
+23:57:35 INFO      timed  10/10 total 10773.190 ms | resolve 287.196 stream 21.621 t1 0.123 t2 0.584 t3 10418.324 t4 0.000
+23:57:35 INFO                   dockle 371.511 ms (export 290.608, analysis 80.903)
+23:57:35 OK    nginx: COMPLETED, n=10, median 10756.379 ms, IQR 48.013 ms, mean 10747.988 ms +/- 22.313 ms (95% CI)
+
+[4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+23:57:35 INFO  archetype language-runtime, base family debian
+23:57:38 INFO      warmup  1/1  total 2276.796 ms | resolve 1839.586 stream 45.800 t1 0.097 t2 1.912 t3 344.143 t4 0.000
+23:57:38 INFO                   dockle 657.491 ms (export 503.832, analysis 153.659)
+23:57:39 INFO      timed   1/10 total 895.669 ms | resolve 507.628 stream 44.843 t1 0.094 t2 1.891 t3 295.728 t4 0.000
+23:57:39 INFO                   dockle 666.897 ms (export 513.739, analysis 153.158)
+23:57:41 INFO      timed   2/10 total 930.783 ms | resolve 517.777 stream 45.548 t1 0.109 t2 1.906 t3 320.804 t4 0.000
+23:57:41 INFO                   dockle 666.948 ms (export 514.177, analysis 152.771)
+23:57:43 INFO      timed   3/10 total 893.489 ms | resolve 504.834 stream 45.612 t1 0.091 t2 1.895 t3 296.127 t4 0.000
+23:57:43 INFO                   dockle 659.692 ms (export 506.595, analysis 153.097)
+23:57:44 INFO      timed   4/10 total 897.680 ms | resolve 511.420 stream 45.429 t1 0.091 t2 1.894 t3 295.267 t4 0.000
+23:57:44 INFO                   dockle 668.147 ms (export 515.669, analysis 152.478)
+23:57:46 INFO      timed   5/10 total 901.787 ms | resolve 518.548 stream 45.207 t1 0.093 t2 1.903 t3 289.479 t4 0.000
+23:57:46 INFO                   dockle 668.835 ms (export 515.549, analysis 153.286)
+23:57:47 INFO      timed   6/10 total 902.347 ms | resolve 505.940 stream 45.743 t1 0.107 t2 1.906 t3 301.353 t4 0.000
+23:57:47 INFO                   dockle 664.636 ms (export 510.951, analysis 153.685)
+23:57:49 INFO      timed   7/10 total 963.501 ms | resolve 523.958 stream 45.854 t1 0.092 t2 1.910 t3 344.920 t4 0.000
+23:57:49 INFO                   dockle 666.057 ms (export 513.509, analysis 152.548)
+23:57:51 INFO      timed   8/10 total 929.429 ms | resolve 513.955 stream 45.355 t1 0.090 t2 1.955 t3 322.752 t4 0.000
+23:57:51 INFO                   dockle 680.286 ms (export 527.116, analysis 153.170)
+23:57:52 INFO      timed   9/10 total 903.516 ms | resolve 512.100 stream 45.074 t1 0.091 t2 1.888 t3 299.672 t4 0.000
+23:57:52 INFO                   dockle 670.605 ms (export 516.838, analysis 153.767)
+23:57:54 INFO      timed  10/10 total 906.593 ms | resolve 517.477 stream 45.274 t1 0.090 t2 1.911 t3 295.764 t4 0.000
+23:57:54 INFO                   dockle 664.682 ms (export 512.317, analysis 152.365)
+23:57:54 OK    python: COMPLETED, n=10, median 902.932 ms, IQR 25.013 ms, mean 912.479 ms +/- 15.853 ms (95% CI)
+
+[5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+23:57:54 INFO  archetype language-runtime, base family alpine
+23:57:58 INFO      warmup  1/1  total 3277.723 ms | resolve 2595.873 stream 44.511 t1 0.096 t2 1.471 t3 589.623 t4 0.000
+23:57:58 INFO                   dockle 759.936 ms (export 569.120, analysis 190.816)
+23:58:00 INFO      timed   1/10 total 1252.605 ms | resolve 588.596 stream 44.162 t1 0.123 t2 1.907 t3 572.842 t4 0.000
+23:58:00 INFO                   dockle 768.184 ms (export 578.917, analysis 189.267)
+23:58:02 INFO      timed   2/10 total 1240.448 ms | resolve 571.663 stream 44.543 t1 0.118 t2 1.952 t3 577.610 t4 0.000
+23:58:02 INFO                   dockle 765.264 ms (export 575.658, analysis 189.606)
+23:58:04 INFO      timed   3/10 total 1244.692 ms | resolve 577.278 stream 44.494 t1 0.119 t2 1.880 t3 576.580 t4 0.000
+23:58:04 INFO                   dockle 768.732 ms (export 578.969, analysis 189.763)
+23:58:06 INFO      timed   4/10 total 1239.242 ms | resolve 568.011 stream 44.150 t1 0.121 t2 1.988 t3 578.389 t4 0.000
+23:58:06 INFO                   dockle 753.970 ms (export 564.653, analysis 189.317)
+23:58:08 INFO      timed   5/10 total 1236.613 ms | resolve 564.191 stream 44.737 t1 0.119 t2 2.045 t3 578.956 t4 0.000
+23:58:08 INFO                   dockle 753.195 ms (export 564.064, analysis 189.131)
+23:58:10 INFO      timed   6/10 total 1259.520 ms | resolve 592.273 stream 45.041 t1 0.268 t2 1.586 t3 574.060 t4 0.000
+23:58:10 INFO                   dockle 782.032 ms (export 592.348, analysis 189.684)
+23:58:12 INFO      timed   7/10 total 1244.235 ms | resolve 576.989 stream 45.132 t1 0.319 t2 1.510 t3 573.695 t4 0.000
+23:58:12 INFO                   dockle 762.958 ms (export 572.980, analysis 189.978)
+23:58:14 INFO      timed   8/10 total 1238.076 ms | resolve 567.220 stream 44.764 t1 0.104 t2 1.543 t3 578.616 t4 0.000
+23:58:14 INFO                   dockle 767.567 ms (export 578.360, analysis 189.207)
+23:58:16 INFO      timed   9/10 total 1253.454 ms | resolve 573.654 stream 44.701 t1 0.377 t2 1.469 t3 587.893 t4 0.000
+23:58:16 INFO                   dockle 754.201 ms (export 564.483, analysis 189.718)
+23:58:18 INFO      timed  10/10 total 1233.827 ms | resolve 564.797 stream 44.661 t1 0.094 t2 1.556 t3 577.679 t4 0.000
+23:58:18 INFO                   dockle 755.444 ms (export 565.875, analysis 189.569)
+23:58:18 OK    node: COMPLETED, n=10, median 1242.342 ms, IQR 12.259 ms, mean 1244.271 ms +/- 5.997 ms (95% CI)
+
+[6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+23:58:18 INFO  archetype language-runtime, base family alpine
+23:58:33 INFO      warmup  1/1  total 12739.861 ms | resolve 11290.156 stream 133.670 t1 0.136 t2 8.753 t3 1262.731 t4 0.000
+23:58:33 INFO                   dockle 1520.098 ms (export 1180.230, analysis 339.868)
+23:58:37 INFO      timed   1/10 total 2638.075 ms | resolve 1187.387 stream 133.109 t1 0.128 t2 8.915 t3 1261.366 t4 0.000
+23:58:37 INFO                   dockle 1507.915 ms (export 1167.623, analysis 340.292)
+23:58:41 INFO      timed   2/10 total 2624.112 ms | resolve 1173.815 stream 133.214 t1 0.125 t2 9.024 t3 1261.911 t4 0.000
+23:58:41 INFO                   dockle 1528.377 ms (export 1188.359, analysis 340.018)
+23:58:45 INFO      timed   3/10 total 2635.966 ms | resolve 1173.185 stream 135.134 t1 0.249 t2 8.645 t3 1272.792 t4 0.000
+23:58:45 INFO                   dockle 1534.721 ms (export 1193.587, analysis 341.134)
+23:58:50 INFO      timed   4/10 total 2630.343 ms | resolve 1170.177 stream 133.489 t1 0.122 t2 9.170 t3 1269.208 t4 0.000
+23:58:50 INFO                   dockle 1531.407 ms (export 1191.121, analysis 340.286)
+23:58:54 INFO      timed   5/10 total 2629.636 ms | resolve 1171.598 stream 133.860 t1 0.126 t2 8.605 t3 1268.897 t4 0.000
+23:58:54 INFO                   dockle 1507.288 ms (export 1165.970, analysis 341.318)
+23:58:58 INFO      timed   6/10 total 2616.394 ms | resolve 1160.578 stream 133.531 t1 0.146 t2 9.159 t3 1267.294 t4 0.000
+23:58:58 INFO                   dockle 1511.451 ms (export 1171.160, analysis 340.291)
+23:59:02 INFO      timed   7/10 total 2627.773 ms | resolve 1168.818 stream 133.679 t1 0.104 t2 9.112 t3 1270.402 t4 0.000
+23:59:02 INFO                   dockle 1533.351 ms (export 1193.800, analysis 339.551)
+23:59:06 INFO      timed   8/10 total 2629.064 ms | resolve 1158.759 stream 133.244 t1 0.131 t2 9.284 t3 1280.594 t4 0.000
+23:59:06 INFO                   dockle 1521.916 ms (export 1181.412, analysis 340.504)
+23:59:10 INFO      timed   9/10 total 2625.441 ms | resolve 1178.333 stream 134.044 t1 0.129 t2 9.010 t3 1256.126 t4 0.000
+23:59:10 INFO                   dockle 1506.963 ms (export 1165.856, analysis 341.107)
+23:59:15 INFO      timed  10/10 total 2647.611 ms | resolve 1185.792 stream 133.510 t1 0.128 t2 9.203 t3 1270.953 t4 0.000
+23:59:15 INFO                   dockle 1524.536 ms (export 1183.891, analysis 340.645)
+23:59:15 OK    golang: COMPLETED, n=10, median 2629.350 ms, IQR 8.537 ms, mean 2630.442 ms +/- 6.106 ms (95% CI)
+
+[7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+23:59:15 INFO  archetype database, base family alpine
+23:59:34 INFO      warmup  1/1  total 18368.603 ms | resolve 3642.151 stream 70.612 t1 0.137 t2 1.987 t3 14604.501 t4 0.000
+23:59:34 INFO                   dockle 1296.392 ms (export 980.133, analysis 316.259)
+23:59:51 INFO      timed   1/10 total 15518.866 ms | resolve 979.327 stream 71.439 t1 0.144 t2 1.420 t3 14418.724 t4 0.000
+23:59:51 INFO                   dockle 1283.673 ms (export 968.901, analysis 314.772)
+00:00:08 INFO      timed   2/10 total 15496.387 ms | resolve 996.269 stream 69.755 t1 0.101 t2 1.382 t3 14380.696 t4 0.000
+00:00:08 INFO                   dockle 1318.259 ms (export 1002.476, analysis 315.783)
+00:00:25 INFO      timed   3/10 total 15302.713 ms | resolve 973.102 stream 70.615 t1 0.128 t2 1.408 t3 14210.690 t4 0.000
+00:00:25 INFO                   dockle 1271.119 ms (export 955.673, analysis 315.446)
+00:00:42 INFO      timed   4/10 total 15496.689 ms | resolve 963.359 stream 69.219 t1 0.128 t2 1.377 t3 14414.753 t4 0.000
+00:00:42 INFO                   dockle 1294.166 ms (export 979.702, analysis 314.464)
+00:00:59 INFO      timed   5/10 total 15830.293 ms | resolve 980.425 stream 69.326 t1 0.102 t2 1.412 t3 14731.056 t4 0.000
+00:00:59 INFO                   dockle 1378.349 ms (export 1057.765, analysis 320.584)
+00:01:16 INFO      timed   6/10 total 15690.905 ms | resolve 1053.836 stream 74.181 t1 0.114 t2 1.428 t3 14507.201 t4 0.000
+00:01:16 INFO                   dockle 1354.785 ms (export 1034.579, analysis 320.206)
+00:01:33 INFO      timed   7/10 total 15697.161 ms | resolve 1018.132 stream 73.055 t1 0.137 t2 1.973 t3 14551.687 t4 0.000
+00:01:33 INFO                   dockle 1379.171 ms (export 1059.072, analysis 320.099)
+00:01:50 INFO      timed   8/10 total 15660.475 ms | resolve 1061.248 stream 73.506 t1 0.142 t2 1.940 t3 14470.003 t4 0.000
+00:01:50 INFO                   dockle 1378.577 ms (export 1058.263, analysis 320.314)
+00:02:07 INFO      timed   9/10 total 15718.453 ms | resolve 1032.078 stream 72.896 t1 0.113 t2 1.441 t3 14559.915 t4 0.000
+00:02:07 INFO                   dockle 1335.250 ms (export 1015.274, analysis 319.976)
+00:02:24 INFO      timed  10/10 total 15517.940 ms | resolve 1029.784 stream 72.253 t1 0.139 t2 1.431 t3 14362.794 t4 0.000
+00:02:24 INFO                   dockle 1291.599 ms (export 972.716, analysis 318.883)
+00:02:24 OK    postgres: COMPLETED, n=10, median 15589.671 ms, IQR 193.594 ms, mean 15592.988 ms +/- 109.545 ms (95% CI)
+
+[8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+00:02:24 INFO  archetype database, base family alpine
+00:02:42 INFO      warmup  1/1  total 17337.703 ms | resolve 1027.983 stream 28.210 t1 0.131 t2 0.330 t3 16231.292 t4 0.000
+00:02:42 INFO                   dockle 576.349 ms (export 442.198, analysis 134.151)
+00:03:00 INFO      timed   1/10 total 16800.347 ms | resolve 439.582 stream 27.485 t1 0.176 t2 0.397 t3 16281.889 t4 0.000
+00:03:00 INFO                   dockle 554.682 ms (export 422.772, analysis 131.910)
+00:03:17 INFO      timed   2/10 total 16624.292 ms | resolve 412.884 stream 27.175 t1 0.152 t2 0.391 t3 16137.454 t4 0.000
+00:03:17 INFO                   dockle 535.069 ms (export 403.740, analysis 131.329)
+00:03:34 INFO      timed   3/10 total 16598.413 ms | resolve 394.451 stream 27.448 t1 0.612 t2 0.379 t3 16126.003 t4 0.000
+00:03:34 INFO                   dockle 535.621 ms (export 403.090, analysis 132.531)
+00:03:51 INFO      timed   4/10 total 16871.963 ms | resolve 419.858 stream 27.497 t1 0.138 t2 0.840 t3 16374.199 t4 0.001
+00:03:51 INFO                   dockle 558.156 ms (export 427.905, analysis 130.251)
+00:04:09 INFO      timed   5/10 total 16717.816 ms | resolve 421.309 stream 26.974 t1 0.155 t2 0.783 t3 16220.512 t4 0.000
+00:04:09 INFO                   dockle 548.798 ms (export 419.220, analysis 129.578)
+00:04:26 INFO      timed   6/10 total 16510.103 ms | resolve 413.532 stream 26.867 t1 0.157 t2 0.793 t3 16022.736 t4 0.000
+00:04:26 INFO                   dockle 544.431 ms (export 411.328, analysis 133.103)
+00:04:43 INFO      timed   7/10 total 16757.633 ms | resolve 405.629 stream 27.400 t1 0.152 t2 0.794 t3 16273.236 t4 0.000
+00:04:43 INFO                   dockle 558.441 ms (export 428.347, analysis 130.094)
+00:05:00 INFO      timed   8/10 total 16779.605 ms | resolve 424.131 stream 27.477 t1 0.160 t2 0.899 t3 16277.614 t4 0.000
+00:05:00 INFO                   dockle 554.548 ms (export 423.336, analysis 131.212)
+00:05:18 INFO      timed   9/10 total 16798.582 ms | resolve 433.616 stream 27.162 t1 0.152 t2 0.829 t3 16289.242 t4 0.000
+00:05:18 INFO                   dockle 555.876 ms (export 424.731, analysis 131.145)
+00:05:35 INFO      timed  10/10 total 16822.190 ms | resolve 422.248 stream 27.480 t1 0.638 t2 0.445 t3 16322.651 t4 0.000
+00:05:35 INFO                   dockle 555.626 ms (export 424.343, analysis 131.283)
+00:05:35 OK    redis: COMPLETED, n=10, median 16768.619 ms, IQR 152.233 ms, mean 16728.095 ms +/- 82.081 ms (95% CI)
+
+[9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+00:05:35 INFO  archetype messaging, base family alpine
+00:05:53 INFO      warmup  1/1  total 16472.782 ms | resolve 2657.804 stream 55.618 t1 0.114 t2 1.536 t3 13706.176 t4 0.000
+00:05:53 INFO                   dockle 939.373 ms (export 727.986, analysis 211.387)
+00:06:08 INFO      timed   1/10 total 14515.396 ms | resolve 738.472 stream 56.515 t1 0.419 t2 1.655 t3 13665.929 t4 0.000
+00:06:08 INFO                   dockle 913.146 ms (export 703.008, analysis 210.138)
+00:06:23 INFO      timed   2/10 total 14421.228 ms | resolve 685.383 stream 56.952 t1 0.136 t2 1.556 t3 13625.861 t4 0.000
+00:06:23 INFO                   dockle 886.585 ms (export 676.393, analysis 210.192)
+00:06:39 INFO      timed   3/10 total 14528.228 ms | resolve 679.026 stream 54.547 t1 0.143 t2 2.079 t3 13742.589 t4 0.000
+00:06:39 INFO                   dockle 879.274 ms (export 669.725, analysis 209.549)
+00:06:54 INFO      timed   4/10 total 14430.906 ms | resolve 691.340 stream 54.661 t1 0.135 t2 2.032 t3 13631.740 t4 0.000
+00:06:54 INFO                   dockle 894.129 ms (export 684.852, analysis 209.277)
+00:07:10 INFO      timed   5/10 total 14437.289 ms | resolve 707.127 stream 54.679 t1 0.316 t2 1.882 t3 13622.416 t4 0.000
+00:07:10 INFO                   dockle 872.930 ms (export 663.972, analysis 208.958)
+00:07:25 INFO      timed   6/10 total 14471.603 ms | resolve 666.525 stream 54.142 t1 0.108 t2 1.483 t3 13700.385 t4 0.000
+00:07:25 INFO                   dockle 920.113 ms (export 710.696, analysis 209.417)
+00:07:40 INFO      timed   7/10 total 14478.872 ms | resolve 709.749 stream 55.177 t1 0.155 t2 2.079 t3 13661.798 t4 0.000
+00:07:40 INFO                   dockle 877.222 ms (export 667.840, analysis 209.382)
+00:07:56 INFO      timed   8/10 total 14395.392 ms | resolve 681.977 stream 55.519 t1 0.135 t2 1.506 t3 13603.922 t4 0.000
+00:07:56 INFO                   dockle 891.891 ms (export 684.047, analysis 207.844)
+00:08:11 INFO      timed   9/10 total 14366.663 ms | resolve 669.430 stream 55.972 t1 0.352 t2 1.752 t3 13590.492 t4 0.000
+00:08:11 INFO                   dockle 875.452 ms (export 666.862, analysis 208.590)
+00:08:26 INFO      timed  10/10 total 14436.081 ms | resolve 658.203 stream 54.154 t1 0.404 t2 1.846 t3 13673.191 t4 0.000
+00:08:26 INFO                   dockle 920.689 ms (export 711.656, analysis 209.033)
+00:08:26 OK    rabbitmq: COMPLETED, n=10, median 14436.685 ms, IQR 53.408 ms, mean 14448.166 ms +/- 36.272 ms (95% CI)
+
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+00:08:26 INFO  archetype web-ingress, base family alpine
+00:08:42 INFO      warmup  1/1  total 14948.632 ms | resolve 1380.047 stream 39.330 t1 0.111 t2 0.475 t3 13483.753 t4 0.000
+00:08:42 INFO                   dockle 780.399 ms (export 583.945, analysis 196.454)
+00:08:57 INFO      timed   1/10 total 14315.897 ms | resolve 582.856 stream 38.737 t1 0.601 t2 0.534 t3 13650.194 t4 0.000
+00:08:57 INFO                   dockle 775.777 ms (export 580.043, analysis 195.734)
+00:09:13 INFO      timed   2/10 total 14420.005 ms | resolve 589.074 stream 38.230 t1 0.305 t2 0.634 t3 13748.452 t4 0.000
+00:09:13 INFO                   dockle 776.911 ms (export 580.464, analysis 196.447)
+00:09:28 INFO      timed   3/10 total 14209.770 ms | resolve 577.739 stream 37.813 t1 0.370 t2 0.578 t3 13549.726 t4 0.000
+00:09:28 INFO                   dockle 775.860 ms (export 579.690, analysis 196.170)
+00:09:43 INFO      timed   4/10 total 14166.907 ms | resolve 573.830 stream 37.968 t1 0.379 t2 0.603 t3 13509.893 t4 0.000
+00:09:43 INFO                   dockle 775.134 ms (export 577.520, analysis 197.614)
+00:09:58 INFO      timed   5/10 total 14363.139 ms | resolve 587.531 stream 38.009 t1 0.617 t2 0.493 t3 13691.815 t4 0.000
+00:09:58 INFO                   dockle 777.605 ms (export 580.639, analysis 196.966)
+00:10:13 INFO      timed   6/10 total 14171.648 ms | resolve 583.838 stream 38.449 t1 0.566 t2 0.480 t3 13504.497 t4 0.000
+00:10:13 INFO                   dockle 771.077 ms (export 574.038, analysis 197.039)
+00:10:28 INFO      timed   7/10 total 14308.575 ms | resolve 575.046 stream 39.190 t1 0.359 t2 0.519 t3 13648.230 t4 0.000
+00:10:28 INFO                   dockle 775.417 ms (export 578.312, analysis 197.105)
+00:10:43 INFO      timed   8/10 total 14343.424 ms | resolve 582.098 stream 38.392 t1 0.394 t2 0.508 t3 13676.883 t4 0.000
+00:10:43 INFO                   dockle 783.091 ms (export 586.682, analysis 196.409)
+00:10:58 INFO      timed   9/10 total 14195.181 ms | resolve 584.089 stream 38.552 t1 0.109 t2 0.479 t3 13525.923 t4 0.000
+00:10:58 INFO                   dockle 784.143 ms (export 586.798, analysis 197.345)
+00:11:13 INFO      timed  10/10 total 14404.814 ms | resolve 581.131 stream 38.586 t1 0.130 t2 0.527 t3 13739.381 t4 0.000
+00:11:13 INFO                   dockle 791.868 ms (export 595.554, analysis 196.314)
+00:11:13 OK    traefik: COMPLETED, n=10, median 14312.236 ms, IQR 159.382 ms, mean 14289.936 ms +/- 69.066 ms (95% CI)
+
+Summary
+00:11:13 INFO  images: 10 requested, 10 completed, 0 partial, 0 failed
+00:11:13 INFO  batch peak RSS (ConUnit process only): 24.1 MB
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/rq3_telemetry.json
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/RQ3_PERFORMANCE.md
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/table_rq3_trials.tex
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/macros_rq3.tex
+2026-11-16T00:11:13Z [OK   ] rq3 complete
+
+========================================================================
+  STAGE: rq1
+========================================================================
+2026-11-16T00:11:13Z [INFO ] command: engine_user env TRIVY_SKIP_DB_UPDATE=true TRIVY_SKIP_JAVA_DB_UPDATE=true TRIVY_SKIP_CHECK_UPDATE=true TRIVY_SKIP_VERSION_CHECK=true TRIVY_OFFLINE_SCAN=true TRIVY_DISABLE_TELEMETRY=true TRIVY_NO_PROGRESS=true bin/rq1 -oracle fixtures/rq1/oracle.json -out-dir /opt/con-unit/results/eval-v1-a/rq1 -conunit /opt/con-unit/src/bin/con-unit -engine podman -keep-images -require-all
+00:11:13 INFO  truth    3 seeded Tier 3 cases, 2 scored
+00:11:14 INFO  podman service socket for container-structure-test: unix:///tmp/rq1p3817412480/p.sock
+
+RQ1 detection benchmark
+00:11:14 INFO  oracle   fixtures/rq1/oracle.json (sha256 970e60c7c4a8)
+00:11:14 INFO  cases    39, properties 19
+00:11:14 INFO  out-dir  /opt/con-unit/results/eval-v1-a/rq1
+00:11:14 INFO  conunit   ConUnit version 0.3.0 (OCI Container Unit Testing Framework)
+00:11:14 INFO  hadolint  Haskell Dockerfile Linter 2.14.0
+00:11:14 INFO  trivy     Version: 0.76.1
+00:11:14 INFO  cst       1.22.1
+00:11:14 INFO  dockle    dockle version 0.4.15
+00:11:14 INFO  engine    podman version 4.9.3
+
+[1/39] root-user-implicit (root-user, defect_present=true)
+00:11:14 INFO  built localhost/conunit-rq1/root-user-implicit:rq1 (24a414cb5597)
+00:11:15 INFO  archive   config 24a414cb5597
+00:11:31 INFO  conunit   exit=1
+00:11:31 INFO  hadolint  exit=0
+00:11:33 INFO  trivy     exit=0
+00:11:33 INFO  cst       exit=1
+00:11:33 INFO  dockle    exit=0
+
+[2/39] root-user-explicit (root-user, defect_present=true)
+00:11:34 INFO  built localhost/conunit-rq1/root-user-explicit:rq1 (ff6e3c27781e)
+00:11:34 INFO  archive   config ff6e3c27781e
+00:11:51 INFO  conunit   exit=1
+00:11:51 INFO  hadolint  exit=1
+00:11:52 INFO  trivy     exit=0
+00:11:52 INFO  cst       exit=1
+00:11:52 INFO  dockle    exit=0
+
+[3/39] root-user-clean (root-user, defect_present=false)
+00:11:53 INFO  built localhost/conunit-rq1/root-user-clean:rq1 (4a25cdfdfe2a)
+00:11:53 INFO  archive   config 4a25cdfdfe2a
+00:12:10 INFO  conunit   exit=1
+00:12:10 INFO  hadolint  exit=0
+00:12:11 INFO  trivy     exit=0
+00:12:11 INFO  cst       exit=0
+00:12:11 INFO  dockle    exit=0
+
+[4/39] no-healthcheck-defect (no-healthcheck, defect_present=true)
+00:12:12 INFO  built localhost/conunit-rq1/no-healthcheck-defect:rq1 (620b5dcee6e4)
+00:12:12 INFO  archive   config 620b5dcee6e4
+00:12:28 INFO  conunit   exit=1
+00:12:28 INFO  hadolint  exit=1
+00:12:29 INFO  trivy     exit=0
+00:12:29 INFO  cst       skipped: no container-structure-test policy for this property
+00:12:29 INFO  dockle    exit=0
+
+[5/39] no-healthcheck-clean (no-healthcheck, defect_present=false)
+00:12:30 INFO  built localhost/conunit-rq1/no-healthcheck-clean:rq1 (4a25cdfdfe2a)
+00:12:30 INFO  archive   config 4a25cdfdfe2a
+00:12:46 INFO  conunit   exit=1
+00:12:46 INFO  hadolint  exit=0
+00:12:48 INFO  trivy     exit=0
+00:12:48 INFO  cst       skipped: no container-structure-test policy for this property
+00:12:48 INFO  dockle    exit=0
+
+[6/39] setuid-binary-defect (setuid-binary, defect_present=true)
+00:12:48 INFO  built localhost/conunit-rq1/setuid-binary-defect:rq1 (08640f56cabc)
+00:12:49 INFO  archive   config 08640f56cabc
+00:13:05 INFO  conunit   exit=1
+00:13:05 INFO  hadolint  exit=0
+00:13:06 INFO  trivy     exit=0
+00:13:07 INFO  cst       exit=1
+00:13:07 INFO  dockle    exit=0
+
+[7/39] setuid-binary-clean (setuid-binary, defect_present=false)
+00:13:08 INFO  built localhost/conunit-rq1/setuid-binary-clean:rq1 (73095bdbd420)
+00:13:08 INFO  archive   config 73095bdbd420
+00:13:25 INFO  conunit   exit=1
+00:13:25 INFO  hadolint  exit=0
+00:13:26 INFO  trivy     exit=0
+00:13:26 INFO  cst       exit=0
+00:13:26 INFO  dockle    exit=0
+
+[8/39] world-writable-file-defect (world-writable-file, defect_present=true)
+00:13:27 INFO  built localhost/conunit-rq1/world-writable-file-defect:rq1 (5ab9d6824ed6)
+00:13:27 INFO  archive   config 5ab9d6824ed6
+00:13:44 INFO  conunit   exit=1
+00:13:44 INFO  hadolint  exit=0
+00:13:45 INFO  trivy     exit=0
+00:13:46 INFO  cst       exit=1
+00:13:46 INFO  dockle    exit=0
+
+[9/39] world-writable-file-clean (world-writable-file, defect_present=false)
+00:13:46 INFO  built localhost/conunit-rq1/world-writable-file-clean:rq1 (2a3f704fcef3)
+00:13:47 INFO  archive   config 2a3f704fcef3
+00:14:03 INFO  conunit   exit=1
+00:14:03 INFO  hadolint  exit=0
+00:14:05 INFO  trivy     exit=0
+00:14:05 INFO  cst       exit=0
+00:14:05 INFO  dockle    exit=0
+
+[10/39] private-key-file-defect (private-key-file, defect_present=true)
+00:14:06 INFO  built localhost/conunit-rq1/private-key-file-defect:rq1 (806336a92294)
+00:14:06 INFO  archive   config 806336a92294
+00:14:23 INFO  conunit   exit=1
+00:14:23 INFO  hadolint  exit=1
+00:14:24 INFO  trivy     exit=0
+00:14:25 INFO  cst       exit=1
+00:14:25 INFO  dockle    exit=0
+
+[11/39] private-key-file-clean (private-key-file, defect_present=false)
+00:14:25 INFO  built localhost/conunit-rq1/private-key-file-clean:rq1 (e52295ce7cbf)
+00:14:25 INFO  archive   config e52295ce7cbf
+00:14:42 INFO  conunit   exit=1
+00:14:42 INFO  hadolint  exit=1
+00:14:43 INFO  trivy     exit=0
+00:14:44 INFO  cst       exit=0
+00:14:44 INFO  dockle    exit=0
+
+[12/39] package-cache-defect (package-cache, defect_present=true)
+00:14:45 INFO  built localhost/conunit-rq1/package-cache-defect:rq1 (addd4d1d78a6)
+00:14:46 INFO  archive   config addd4d1d78a6
+00:14:46 INFO  conunit   exit=1
+00:14:46 INFO  hadolint  exit=1
+00:14:47 INFO  trivy     exit=0
+00:14:48 INFO  cst       exit=1
+00:14:48 INFO  dockle    exit=0
+
+[13/39] package-cache-clean (package-cache, defect_present=false)
+00:14:49 INFO  built localhost/conunit-rq1/package-cache-clean:rq1 (186b5d7c2446)
+00:14:49 INFO  archive   config 186b5d7c2446
+00:14:49 INFO  conunit   exit=0
+00:14:49 INFO  hadolint  exit=1
+00:14:51 INFO  trivy     exit=0
+00:14:51 INFO  cst       exit=0
+00:14:51 INFO  dockle    exit=0
+
+[14/39] apt-lists-defect (apt-lists, defect_present=true)
+00:14:56 INFO  built localhost/conunit-rq1/apt-lists-defect:rq1 (b57ed4b6f706)
+00:14:57 INFO  archive   config b57ed4b6f706
+00:14:58 INFO  conunit   exit=1
+00:14:58 INFO  hadolint  exit=1
+00:15:00 INFO  trivy     exit=0
+00:15:01 INFO  cst       exit=1
+00:15:01 INFO  dockle    exit=0
+
+[15/39] apt-lists-clean (apt-lists, defect_present=false)
+00:15:05 INFO  built localhost/conunit-rq1/apt-lists-clean:rq1 (da9758c4ab4d)
+00:15:06 INFO  archive   config da9758c4ab4d
+00:15:07 INFO  conunit   exit=1
+00:15:07 INFO  hadolint  exit=1
+00:15:08 INFO  trivy     exit=0
+00:15:09 INFO  cst       exit=0
+00:15:09 INFO  dockle    exit=0
+
+[16/39] shell-form-entrypoint-defect (shell-form-entrypoint, defect_present=true)
+00:15:09 INFO  built localhost/conunit-rq1/shell-form-entrypoint-defect:rq1 (0eaf1ef11e7e)
+00:15:09 INFO  archive   config 0eaf1ef11e7e
+00:15:27 INFO  conunit   exit=1
+00:15:27 INFO  hadolint  exit=1
+00:15:29 INFO  trivy     exit=0
+00:15:29 INFO  cst       skipped: no container-structure-test policy for this property
+00:15:29 INFO  dockle    exit=0
+
+[17/39] shell-form-entrypoint-clean (shell-form-entrypoint, defect_present=false)
+00:15:29 INFO  built localhost/conunit-rq1/shell-form-entrypoint-clean:rq1 (4a25cdfdfe2a)
+00:15:29 INFO  archive   config 4a25cdfdfe2a
+00:15:42 INFO  conunit   exit=0
+00:15:42 INFO  hadolint  exit=0
+00:15:44 INFO  trivy     exit=0
+00:15:44 INFO  cst       skipped: no container-structure-test policy for this property
+00:15:44 INFO  dockle    exit=0
+
+[18/39] add-remote-url-defect (add-remote-url, defect_present=true)
+00:15:44 INFO  built localhost/conunit-rq1/add-remote-url-defect:rq1 (91294d40fd59)
+00:15:44 INFO  archive   config 91294d40fd59
+00:16:01 INFO  conunit   exit=1
+00:16:01 INFO  hadolint  exit=0
+00:16:02 INFO  trivy     exit=0
+00:16:02 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:02 INFO  dockle    exit=0
+
+[19/39] add-remote-url-clean (add-remote-url, defect_present=false)
+00:16:03 INFO  built localhost/conunit-rq1/add-remote-url-clean:rq1 (aa35081fc9ea)
+00:16:03 INFO  archive   config aa35081fc9ea
+00:16:20 INFO  conunit   exit=1
+00:16:20 INFO  hadolint  exit=0
+00:16:21 INFO  trivy     exit=0
+00:16:21 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:21 INFO  dockle    exit=0
+
+[20/39] add-local-file-defect (add-local-file, defect_present=true)
+00:16:21 INFO  built localhost/conunit-rq1/add-local-file-defect:rq1 (f63bef16bacc)
+00:16:21 INFO  archive   config f63bef16bacc
+00:16:38 INFO  conunit   exit=1
+00:16:38 INFO  hadolint  exit=1
+00:16:39 INFO  trivy     exit=0
+00:16:39 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:39 INFO  dockle    exit=0
+
+[21/39] add-local-file-clean (add-local-file, defect_present=false)
+00:16:40 INFO  built localhost/conunit-rq1/add-local-file-clean:rq1 (aa35081fc9ea)
+00:16:40 INFO  archive   config aa35081fc9ea
+00:16:56 INFO  conunit   exit=1
+00:16:56 INFO  hadolint  exit=0
+00:16:58 INFO  trivy     exit=0
+00:16:58 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:58 INFO  dockle    exit=0
+
+[22/39] secret-in-env-defect (secret-in-env, defect_present=true)
+00:16:58 INFO  built localhost/conunit-rq1/secret-in-env-defect:rq1 (f27d622d0268)
+00:16:58 INFO  archive   config f27d622d0268
+00:17:15 INFO  conunit   exit=1
+00:17:15 INFO  hadolint  exit=0
+00:17:16 INFO  trivy     exit=0
+00:17:17 INFO  cst       exit=1
+00:17:17 INFO  dockle    exit=0
+
+[23/39] secret-in-env-clean (secret-in-env, defect_present=false)
+00:17:17 INFO  built localhost/conunit-rq1/secret-in-env-clean:rq1 (b3e1da1c63f4)
+00:17:17 INFO  archive   config b3e1da1c63f4
+00:17:34 INFO  conunit   exit=1
+00:17:34 INFO  hadolint  exit=0
+00:17:35 INFO  trivy     exit=0
+00:17:36 INFO  cst       exit=0
+00:17:36 INFO  dockle    exit=0
+
+[24/39] privileged-port-defect (privileged-port, defect_present=true)
+00:17:36 INFO  built localhost/conunit-rq1/privileged-port-defect:rq1 (9128a1e5b234)
+00:17:36 INFO  archive   config 9128a1e5b234
+00:17:53 INFO  conunit   exit=1
+00:17:53 INFO  hadolint  exit=0
+00:17:54 INFO  trivy     exit=0
+00:17:54 INFO  cst       skipped: no container-structure-test policy for this property
+00:17:54 INFO  dockle    exit=0
+
+[25/39] privileged-port-clean (privileged-port, defect_present=false)
+00:17:54 INFO  built localhost/conunit-rq1/privileged-port-clean:rq1 (e185dca360e4)
+00:17:55 INFO  archive   config e185dca360e4
+00:18:11 INFO  conunit   exit=1
+00:18:11 INFO  hadolint  exit=0
+00:18:12 INFO  trivy     exit=0
+00:18:12 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:12 INFO  dockle    exit=0
+
+[26/39] runtime-needs-capability-defect (runtime-needs-capability, defect_present=true)
+00:18:13 INFO  built localhost/conunit-rq1/runtime-needs-capability-defect:rq1 (9e974731aea2)
+00:18:13 INFO  archive   config 9e974731aea2
+00:18:24 INFO  conunit   exit=1
+00:18:24 INFO  hadolint  exit=0
+00:18:25 INFO  trivy     exit=0
+00:18:25 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:25 INFO  dockle    exit=0
+
+[27/39] runtime-needs-capability-clean (runtime-needs-capability, defect_present=false)
+00:18:26 INFO  built localhost/conunit-rq1/runtime-needs-capability-clean:rq1 (300ba6b9566d)
+00:18:26 INFO  archive   config 300ba6b9566d
+00:18:43 INFO  conunit   exit=1
+00:18:43 INFO  hadolint  exit=0
+00:18:44 INFO  trivy     exit=0
+00:18:44 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:44 INFO  dockle    exit=0
+
+[28/39] update-alone-defect (update-alone, defect_present=true)
+00:18:49 INFO  built localhost/conunit-rq1/update-alone-defect:rq1 (9e24d5291ecb)
+00:18:50 INFO  archive   config 9e24d5291ecb
+00:18:50 INFO  conunit   exit=1
+00:18:51 INFO  hadolint  exit=1
+00:18:52 INFO  trivy     exit=0
+00:18:52 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:52 INFO  dockle    exit=0
+
+[29/39] update-alone-clean (update-alone, defect_present=false)
+00:18:52 INFO  built localhost/conunit-rq1/update-alone-clean:rq1 (da9758c4ab4d)
+00:18:53 INFO  archive   config da9758c4ab4d
+00:18:54 INFO  conunit   exit=1
+00:18:54 INFO  hadolint  exit=1
+00:18:55 INFO  trivy     exit=0
+00:18:55 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:55 INFO  dockle    exit=0
+
+[30/39] sudo-usage-defect (sudo-usage, defect_present=true)
+00:18:56 INFO  built localhost/conunit-rq1/sudo-usage-defect:rq1 (228b337be65b)
+00:18:56 INFO  archive   config 228b337be65b
+00:18:57 INFO  conunit   exit=1
+00:18:57 INFO  hadolint  exit=1
+00:18:58 INFO  trivy     exit=0
+00:18:58 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:58 INFO  dockle    exit=0
+
+[31/39] sudo-usage-clean (sudo-usage, defect_present=false)
+00:18:59 INFO  built localhost/conunit-rq1/sudo-usage-clean:rq1 (373eec730357)
+00:18:59 INFO  archive   config 373eec730357
+00:18:59 INFO  conunit   exit=0
+00:18:59 INFO  hadolint  exit=0
+00:19:00 INFO  trivy     exit=0
+00:19:00 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:00 INFO  dockle    exit=0
+
+[32/39] non-unique-uid-defect (non-unique-uid, defect_present=true)
+00:19:01 INFO  built localhost/conunit-rq1/non-unique-uid-defect:rq1 (77042815ecf2)
+00:19:01 INFO  archive   config 77042815ecf2
+00:19:02 INFO  conunit   exit=1
+00:19:02 INFO  hadolint  exit=0
+00:19:04 INFO  trivy     exit=0
+00:19:04 INFO  cst       exit=1
+00:19:04 INFO  dockle    exit=0
+
+[33/39] non-unique-uid-clean (non-unique-uid, defect_present=false)
+00:19:05 INFO  built localhost/conunit-rq1/non-unique-uid-clean:rq1 (c150ae6b31e4)
+00:19:05 INFO  archive   config c150ae6b31e4
+00:19:06 INFO  conunit   exit=1
+00:19:06 INFO  hadolint  exit=0
+00:19:07 INFO  trivy     exit=0
+00:19:08 INFO  cst       exit=0
+00:19:08 INFO  dockle    exit=0
+
+[34/39] needs-setuid-setgid-defect (needs-setuid-setgid, defect_present=true)
+00:19:08 INFO  built localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 (c147d01ba1b7)
+00:19:08 INFO  archive   config c147d01ba1b7
+00:19:21 INFO  conunit   exit=1
+00:19:21 INFO  hadolint  exit=0
+00:19:23 INFO  trivy     exit=0
+00:19:23 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:23 INFO  dockle    exit=0
+
+[35/39] needs-setuid-setgid-clean (needs-setuid-setgid, defect_present=false)
+00:19:23 INFO  built localhost/conunit-rq1/needs-setuid-setgid-clean:rq1 (4a25cdfdfe2a)
+00:19:23 INFO  archive   config 4a25cdfdfe2a
+00:19:40 INFO  conunit   exit=1
+00:19:40 INFO  hadolint  exit=0
+00:19:41 INFO  trivy     exit=0
+00:19:41 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:41 INFO  dockle    exit=0
+
+[36/39] writes-outside-tmp-defect (writes-outside-tmp, defect_present=true)
+00:19:41 INFO  built localhost/conunit-rq1/writes-outside-tmp-defect:rq1 (712ee66552d5)
+00:19:41 INFO  archive   config 712ee66552d5
+00:19:55 INFO  conunit   exit=1
+00:19:55 INFO  hadolint  exit=0
+00:19:56 INFO  trivy     exit=0
+00:19:56 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:56 INFO  dockle    exit=0
+
+[37/39] writes-outside-tmp-clean (writes-outside-tmp, defect_present=false)
+00:19:56 INFO  built localhost/conunit-rq1/writes-outside-tmp-clean:rq1 (2ad2b2060209)
+00:19:56 INFO  archive   config 2ad2b2060209
+00:20:13 INFO  conunit   exit=1
+00:20:13 INFO  hadolint  exit=0
+00:20:14 INFO  trivy     exit=0
+00:20:14 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:14 INFO  dockle    exit=0
+
+[38/39] nonroot-privileged-port-defect (nonroot-privileged-port, defect_present=true)
+00:20:15 INFO  built localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 (12148504982b)
+00:20:15 INFO  archive   config 12148504982b
+00:20:15 INFO  conunit   exit=1
+00:20:15 INFO  hadolint  exit=0
+00:20:16 INFO  trivy     exit=0
+00:20:16 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:16 INFO  dockle    exit=0
+
+[39/39] nonroot-privileged-port-clean (nonroot-privileged-port, defect_present=false)
+00:20:17 INFO  built localhost/conunit-rq1/nonroot-privileged-port-clean:rq1 (528b9fb1d1fc)
+00:20:17 INFO  archive   config 528b9fb1d1fc
+00:20:33 INFO  conunit   exit=1
+00:20:33 INFO  hadolint  exit=0
+00:20:35 INFO  trivy     exit=0
+00:20:35 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:35 INFO  dockle    exit=0
+
+Summary
+tool       status     TP   FP   FN   TN   OOS   N/R   ERR   UNV   N/E  recall
+conunit    RAN        19    0    0   19     0     0     0     1     0  19/19
+hadolint   RAN         7    0    1    7    24     0     0     0     0  7/8
+trivy      RAN         9    0    0    8    22     0     0     0     0  9/9
+cst        RAN         9    0    0    8    22     0     0     0     0  9/9
+dockle     RAN        12    0    1   12    14     0     0     0     0  12/13
+00:20:35 OK    wrote /opt/con-unit/results/eval-v1-a/rq1/rq1_results.json
+00:20:35 OK    wrote /opt/con-unit/results/eval-v1-a/rq1/table_rq1_detection.tex
+2026-11-16T00:20:35Z [OK   ] rq1 complete
+
+========================================================================
+  STAGE: lint
+========================================================================
+2026-11-16T00:20:36Z [INFO ] command: engine_user bin/con-unit eval --images fixtures/evaluation_dataset_pinned.txt --pack lint --out-dir /opt/con-unit/results/eval-v1-a/lint --engine podman --platform linux/amd64 --image-source auto
+Evaluating 100 images with Image Static Lint Pack using podman (platform linux/amd64, source auto, window 3s)
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+[  1/100] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+  INDEXED        2,122 entries | 8 layers | 59.4 MiB read | est. 1.1 MiB index memory | 23ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 372ms | local-store
+[  2/100] index.docker.io/library/memcached@sha256:084fb554292d1447bc2c68b80c2331b98834514f56c866bc21a61be3c2ee376d
+  INDEXED        559 entries | 6 layers | 12.4 MiB read | est. 290.2 KiB index memory | 6ms
+  COMPLETED      15 passed | 1 failed | 0 unverified | 217ms | local-store
+[  3/100] index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072
+  INDEXED        431 entries | 1 layers | 1.2 MiB read | est. 220.1 KiB index memory | 1ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 100ms | local-store
+[  4/100] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+  INDEXED        515 entries | 1 layers | 8.0 MiB read | est. 267.0 KiB index memory | 4ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 115ms | local-store
+[  5/100] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+  INDEXED        3,990 entries | 9 layers | 289.7 MiB read | est. 2.1 MiB index memory | 71ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 1.12s | local-store
+[  6/100] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+  INDEXED        1,183 entries | 7 layers | 114.1 MiB read | est. 622.8 KiB index memory | 27ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 518ms | local-store
+[  7/100] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+  INDEXED        3,443 entries | 1 layers | 74.6 MiB read | est. 1.8 MiB index memory | 31ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 409ms | local-store
+[  8/100] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+  INDEXED        5,781 entries | 4 layers | 116.8 MiB read | est. 3.1 MiB index memory | 46ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 630ms | local-store
+[  9/100] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+  INDEXED        3,499 entries | 4 layers | 164.0 MiB read | est. 1.9 MiB index memory | 47ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 697ms | local-store
+[ 10/100] index.docker.io/library/mysql@sha256:df90258da46f6e7ff8574ff84f17618aba0765cac749928299c69fd4e7cb8ad8
+  INDEXED        28,350 entries | 10 layers | 887.6 MiB read | est. 16.0 MiB index memory | 341ms
+  COMPLETED      11 passed | 5 failed | 0 unverified | 21.662s | local-store
+[ 11/100] index.docker.io/library/mongo@sha256:452bdaf2127b8ff851e31410a267809b9829eded219979f2210e7c7efb85a058
+  INDEXED        8,053 entries | 9 layers | 1.0 GiB read | est. 4.2 MiB index memory | 254ms
+  COMPLETED      10 passed | 3 failed | 3 unverified | 11.986s | local-store
+[ 12/100] index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66
+  INDEXED        3,350 entries | 7 layers | 63.8 MiB read | est. 1.8 MiB index memory | 30ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 1.262s | local-store
+[ 13/100] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+  INDEXED        4,316 entries | 11 layers | 177.1 MiB read | est. 2.3 MiB index memory | 55ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 824ms | local-store
+[ 14/100] index.docker.io/library/docker@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb
+  INDEXED        1,205 entries | 10 layers | 163.3 MiB read | est. 639.1 KiB index memory | 38ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 1.348s | local-store
+[ 15/100] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+  INDEXED        1,507 entries | 4 layers | 182.6 MiB read | est. 800.8 KiB index memory | 39ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 691ms | local-store
+[ 16/100] index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed
+  INDEXED        7,439 entries | 8 layers | 325.7 MiB read | est. 3.9 MiB index memory | 101ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 4.428s | local-store
+[ 17/100] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+  INDEXED        18,257 entries | 5 layers | 241.3 MiB read | est. 9.8 MiB index memory | 138ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 1.404s | local-store
+[ 18/100] index.docker.io/library/registry@sha256:82f6ff4a7f982960c8aa51617fea3aabc485df6e55cce80d22deb1de36f1bc3c
+  INDEXED        885 entries | 5 layers | 61.7 MiB read | est. 469.1 KiB index memory | 15ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 434ms | local-store
+[ 19/100] index.docker.io/library/debian@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6
+  INDEXED        5,449 entries | 1 layers | 114.6 MiB read | est. 2.9 MiB index memory | 40ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 583ms | local-store
+[ 20/100] index.docker.io/library/ruby@sha256:d8cb2c0714bdaba0f318af897a01d2dbde3cfa8e62d47e99cea55feb13c0e90d
+  INDEXED        7,398 entries | 5 layers | 165.3 MiB read | est. 4.0 MiB index memory | 63ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 2.957s | local-store
+[ 21/100] index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472
+  INDEXED        20,287 entries | 23 layers | 771.1 MiB read | est. 10.8 MiB index memory | 243ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 11.027s | local-store
+[ 22/100] index.docker.io/library/php@sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d
+  INDEXED        1,647 entries | 11 layers | 102.9 MiB read | est. 879.8 KiB index memory | 28ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 1.29s | local-store
+[ 23/100] index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840
+  INDEXED        7,316 entries | 8 layers | 1.3 GiB read | est. 3.9 MiB index memory | 325ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 13.451s | local-store
+[ 24/100] index.docker.io/library/haproxy@sha256:b9fe316f718d5015c5cfebd8ca019591f3e44656f61d93cb8b59a1028961e530
+  INDEXED        971 entries | 6 layers | 41.6 MiB read | est. 514.1 KiB index memory | 13ms
+  COMPLETED      15 passed | 1 failed | 0 unverified | 398ms | local-store
+[ 25/100] index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01
+  INDEXED        9,036 entries | 6 layers | 401.2 MiB read | est. 4.8 MiB index memory | 117ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 4.666s | local-store
+[ 26/100] index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436
+  INDEXED        5,655 entries | 8 layers | 339.0 MiB read | est. 3.0 MiB index memory | 86ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 3.41s | local-store
+[ 27/100] index.docker.io/library/couchdb@sha256:907eab5b7e55ab7cfd241d39b90b2a335ea40bef82acee5a37388c08bf201dda
+  INDEXED        7,635 entries | 11 layers | 285.7 MiB read | est. 4.0 MiB index memory | 86ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 3.982s | local-store
+[ 28/100] index.docker.io/library/arangodb@sha256:ae1ce5af4783e008d359daaa963559aa4e32a5bd9ea54e2304f5b3adbc88c4aa
+  INDEXED        4,449 entries | 4 layers | 581.4 MiB read | est. 2.4 MiB index memory | 124ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 5.767s | local-store
+[ 29/100] index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a
+  INDEXED        7,984 entries | 6 layers | 618.6 MiB read | est. 4.2 MiB index memory | 148ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 5.386s | local-store
+[ 30/100] index.docker.io/library/solr@sha256:4eead47c03533079d324fa49e28a73d88b1e4d9568d0d779a0bcd58520117dfe
+  INDEXED        7,962 entries | 11 layers | 700.7 MiB read | est. 4.2 MiB index memory | 168ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 6.857s | local-store
+[ 31/100] index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a
+  INDEXED        9,158 entries | 10 layers | 302.7 MiB read | est. 4.9 MiB index memory | 101ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 6.615s | local-store
+[ 32/100] index.docker.io/library/nats@sha256:afae2fdbe2e326c65e1246cb83b9d05d319188734f3bd577ac8072daae78a10f
+  INDEXED        1,511 entries | 4 layers | 26.8 MiB read | est. 803.0 KiB index memory | 12ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 632ms | local-store
+[ 33/100] index.docker.io/library/eclipse-mosquitto@sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98
+  INDEXED        1,660 entries | 3 layers | 24.1 MiB read | est. 881.4 KiB index memory | 12ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 615ms | local-store
+[ 34/100] index.docker.io/library/telegraf@sha256:4a62bd294bf2f4c1e3781194fe7b625b7e527244eeb31afd5758227914a16229
+  INDEXED        1,713 entries | 5 layers | 330.2 MiB read | est. 909.2 KiB index memory | 66ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 2.267s | local-store
+[ 35/100] index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e
+  INDEXED        9,731 entries | 6 layers | 331.1 MiB read | est. 5.1 MiB index memory | 101ms
+  COMPLETED      11 passed | 5 failed | 0 unverified | 4.673s | local-store
+[ 36/100] index.docker.io/library/tomcat@sha256:801c473ea864cab344fcaadf22789a620acaeecd9daa85e706e06a97ebc37b94
+  INDEXED        10,057 entries | 10 layers | 423.4 MiB read | est. 5.3 MiB index memory | 159ms
+  COMPLETED      10 passed | 3 failed | 3 unverified | 5.646s | local-store
+[ 37/100] index.docker.io/library/amazoncorretto@sha256:019e58087ba4c114c817094f70d3d522bcd13e80ce9edbba6e1c67e5700bad63
+  INDEXED        9,942 entries | 2 layers | 508.0 MiB read | est. 5.3 MiB index memory | 144ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 7.441s | local-store
+[ 38/100] index.docker.io/library/eclipse-temurin@sha256:e1898fd6a11fc965a994d8ace186fd3585aeb636cf8f05f47a723fcfee0b0918
+  INDEXED        2,163 entries | 5 layers | 215.4 MiB read | est. 1.1 MiB index memory | 49ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 2.062s | local-store
+[ 39/100] index.docker.io/library/gradle@sha256:e46e15353757ef9c9be0197a243653e88d25ebcd4c3c841057cf839c11fcf898
+  INDEXED        17,727 entries | 11 layers | 769.0 MiB read | est. 9.4 MiB index memory | 257ms
+  COMPLETED      10 passed | 3 failed | 3 unverified | 13.452s | local-store
+[ 40/100] index.docker.io/library/rust@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd
+  INDEXED        7,237 entries | 2 layers | 868.2 MiB read | est. 3.8 MiB index memory | 176ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 5.656s | local-store
+[ 41/100] index.docker.io/library/swift@sha256:53cb05862760a5270ec5cb86b8998d819b5fbe8b72ea35811f1f790a1542b51c
+  INDEXED        9,188 entries | 4 layers | 274.2 MiB read | est. 4.8 MiB index memory | 124ms
+  COMPLETED      9 passed | 4 failed | 3 unverified | 3.408s | local-store
+[ 42/100] index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215
+  INDEXED        8,318 entries | 5 layers | 829.2 MiB read | est. 4.4 MiB index memory | 177ms
+  COMPLETED      12 passed | 3 failed | 1 unverified | 3.769s | local-store
+[ 43/100] index.docker.io/library/erlang@sha256:0ac9b63db11be156be4e2834546e44aa0d7446aaffb05fedd4aea8c5a33ad998
+  INDEXED        2,998 entries | 2 layers | 85.3 MiB read | est. 1.6 MiB index memory | 30ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 749ms | local-store
+[ 44/100] index.docker.io/library/elixir@sha256:a2f0fe1bfd8a2f9cc91d913f4a12e6430e27e618720f753a514e2fff3d35f5a7
+  INDEXED        3,778 entries | 3 layers | 100.2 MiB read | est. 2.0 MiB index memory | 37ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 969ms | local-store
+[ 45/100] index.docker.io/library/clojure@sha256:aa1b3f8a19462798a9662535d17173f501b3b45910aa7c3642aaddae41b096fa
+  INDEXED        2,940 entries | 9 layers | 323.6 MiB read | est. 1.5 MiB index memory | 71ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 1.871s | local-store
+[ 46/100] index.docker.io/library/haskell@sha256:10500ef6abd41d210a74add013125065f92352b298999a9dfe296fb73deaccf7
+  INDEXED        32,094 entries | 5 layers | 4.1 GiB read | est. 17.9 MiB index memory | 44.048s
+  COMPLETED      13 passed | 3 failed | 0 unverified | 2m38.365s | local-store
+[ 47/100] index.docker.io/library/julia@sha256:0002771531bbae894f2532a5ae02ea71c30685440ca3bdaea0a43d17e65571e0
+  INDEXED        10,319 entries | 4 layers | 1.1 GiB read | est. 5.5 MiB index memory | 231ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 12.561s | local-store
+[ 48/100] index.docker.io/library/gcc@sha256:b8a42d6804296fbe7a54e17e9d60c3100d9e8dbe7ef88c748cae2ddb00d63ba2
+  INDEXED        33,063 entries | 8 layers | 1.5 GiB read | est. 17.5 MiB index memory | 418ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 28.269s | local-store
+[ 49/100] index.docker.io/library/perl@sha256:2b59ca705cf3234d62c33e27ed573809498e476d45c4d0904550d0daced6a215
+  INDEXED        9,820 entries | 4 layers | 185.3 MiB read | est. 5.2 MiB index memory | 75ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 3.926s | local-store
+[ 50/100] index.docker.io/library/phpmyadmin@sha256:e4b3eb5305cd42d21512bb55def2bab52625d56df927ad4ee1864a9354c84d40
+  INDEXED        18,670 entries | 21 layers | 548.7 MiB read | est. 9.9 MiB index memory | 191ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 7.479s | local-store
+[ 51/100] index.docker.io/library/ghost@sha256:4195f6c405e40230cd10c0770425cf500c1f542a96e9f6584c11649c150e5a89
+  INDEXED        137,558 entries | 10 layers | 580.9 MiB read | est. 85.3 MiB index memory | 1.431s
+  COMPLETED      12 passed | 4 failed | 0 unverified | 43.714s | local-store
+[ 52/100] index.docker.io/library/drupal@sha256:2869a0abe45b7ce2bc6d7a35fabe447d06393c3ce613964b3a4f1d9660eb0e08
+  INDEXED        43,364 entries | 21 layers | 607.4 MiB read | est. 23.9 MiB index memory | 335ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 23.07s | local-store
+[ 53/100] index.docker.io/library/joomla@sha256:f534566df4df83d2f6751d3406dc624e5af5b3c8d7f2b2101bf3c2f4e47b31f0
+  INDEXED        28,835 entries | 21 layers | 699.8 MiB read | est. 15.6 MiB index memory | 267ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 11.002s | local-store
+[ 54/100] index.docker.io/library/mediawiki@sha256:406a08c7f2cf5a9c9cb590bbe27a21b4d3cb3268b0acf327fa7dd2727ff6b0be
+  INDEXED        58,632 entries | 22 layers | 1.0 GiB read | est. 31.8 MiB index memory | 490ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 32.219s | local-store
+[ 55/100] index.docker.io/library/nextcloud@sha256:81cb09055a20142521a267cea2bc27e6a81a065871c70850d209f08803567dbc
+  INDEXED        45,316 entries | 23 layers | 1.3 GiB read | est. 24.5 MiB index memory | 482ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 9.132s | local-store
+[ 56/100] index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e
+  INDEXED        22,025 entries | 12 layers | 471.8 MiB read | est. 12.0 MiB index memory | 200ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 13.247s | local-store
+[ 57/100] index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c
+  INDEXED        13,839 entries | 23 layers | 511.3 MiB read | est. 7.3 MiB index memory | 161ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 7.891s | local-store
+[ 58/100] index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26
+  INDEXED        32,673 entries | 21 layers | 1.5 GiB read | est. 17.8 MiB index memory | 479ms
+  COMPLETED      10 passed | 4 failed | 2 unverified | 27.788s | local-store
+[ 59/100] index.docker.io/library/odoo@sha256:d5e3a26baa044867c826dddc09058f10e2582706bf83c146ea04fea889720c76
+  INDEXED        122,636 entries | 9 layers | 2.2 GiB read | est. 68.9 MiB index memory | 7.05s
+  COMPLETED      11 passed | 5 failed | 0 unverified | 1m33.415s | local-store
+[ 60/100] index.docker.io/library/rethinkdb@sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8
+  INDEXED        5,215 entries | 5 layers | 117.3 MiB read | est. 2.7 MiB index memory | 41ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 2.333s | local-store
+[ 61/100] index.docker.io/library/flink@sha256:ffb97a54a2b59960360d3b362e64f86ed5cab82621025eeed1399074b42a7b17
+  INDEXED        6,257 entries | 10 layers | 902.7 MiB read | est. 3.3 MiB index memory | 186ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 8.405s | local-store
+[ 62/100] index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d
+  INDEXED        9,564 entries | 9 layers | 168.2 MiB read | est. 5.2 MiB index memory | 77ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 2.966s | local-store
+[ 63/100] index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30
+  INDEXED        28,176 entries | 12 layers | 864.7 MiB read | est. 16.0 MiB index memory | 302ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 19.537s | local-store
+[ 64/100] index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89
+  INDEXED        4,823 entries | 10 layers | 1.5 GiB read | est. 2.6 MiB index memory | 1.216s
+  COMPLETED      15 passed | 1 failed | 0 unverified | 18.339s | local-store
+[ 65/100] index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a
+  INDEXED        9,801 entries | 4 layers | 371.6 MiB read | est. 5.2 MiB index memory | 118ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 5.022s | local-store
+[ 66/100] index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554
+  INDEXED        14,896 entries | 12 layers | 722.2 MiB read | est. 8.1 MiB index memory | 206ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 11.127s | local-store
+[ 67/100] index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7
+  INDEXED        5,943 entries | 4 layers | 352.7 MiB read | est. 3.1 MiB index memory | 92ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 3.536s | local-store
+[ 68/100] index.docker.io/library/sapmachine@sha256:8c3afc896691208abee94e8db71cb972ed34a5c5b417610102261055b95d38a5
+  INDEXED        4,199 entries | 2 layers | 242.1 MiB read | est. 2.2 MiB index memory | 63ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 1.804s | local-store
+[ 69/100] index.docker.io/library/oraclelinux@sha256:9225108d00fb6611ebc4a5eced166f27d9dcfeaa539fb127be79425f0da5e745
+  INDEXED        11,076 entries | 1 layers | 239.8 MiB read | est. 5.9 MiB index memory | 98ms
+  COMPLETED      12 passed | 3 failed | 1 unverified | 5.915s | local-store
+[ 70/100] index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e
+  INDEXED        9,033 entries | 1 layers | 176.9 MiB read | est. 4.7 MiB index memory | 78ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 3.784s | local-store
+[ 71/100] index.docker.io/library/amazonlinux@sha256:c04a1012acc483977f61f7f91c28624a39a621e56a59781319a75dec528be9b6
+  INDEXED        8,340 entries | 1 layers | 143.2 MiB read | est. 4.4 MiB index memory | 71ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 4.445s | local-store
+[ 72/100] index.docker.io/library/bash@sha256:589adbc588d8ef3c1ec3c68333faf4baf5dccb65d3cb50f6cf3d78cad2d6e1b0
+  INDEXED        700 entries | 3 layers | 14.9 MiB read | est. 364.7 KiB index memory | 6ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 273ms | local-store
+[ 73/100] index.docker.io/library/pypy@sha256:410aad485440d238a596fd5f847a99d3f7c11be895ce25c02b336f5c5d1733bb
+  INDEXED        6,415 entries | 3 layers | 196.9 MiB read | est. 3.4 MiB index memory | 63ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 2.797s | local-store
+[ 74/100] index.docker.io/library/composer@sha256:8de2184c6de224f4689e8f80ed5f5edaf0030b6b8b7839a22a2bcb6722ac87d0
+  INDEXED        4,698 entries | 14 layers | 214.7 MiB read | est. 2.5 MiB index memory | 64ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 3.754s | local-store
+[ 75/100] index.docker.io/library/ros@sha256:00b8d47a6e6384a2834e3d01fa87ae767876543baa574f2d64a75c04ea33c698
+  INDEXED        41,388 entries | 10 layers | 848.0 MiB read | est. 22.6 MiB index memory | 358ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 26.442s | local-store
+[ 76/100] index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244
+  INDEXED        11,575 entries | 11 layers | 702.4 MiB read | est. 6.1 MiB index memory | 211ms
+  COMPLETED      10 passed | 3 failed | 3 unverified | 10.216s | local-store
+[ 77/100] index.docker.io/library/spiped@sha256:7acba2c58083cf5246e055818bd95932bb6a26851e0123543a3c4b9681a07061
+  INDEXED        527 entries | 6 layers | 8.3 MiB read | est. 273.3 KiB index memory | 4ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 174ms | local-store
+[ 78/100] index.docker.io/library/irssi@sha256:62fbc3514f8ef0bf587137800856ee4dffbfaddf6ca8402501698a6491e3205d
+  INDEXED        3,341 entries | 5 layers | 62.5 MiB read | est. 1.8 MiB index memory | 29ms
+  COMPLETED      15 passed | 1 failed | 0 unverified | 1.892s | local-store
+[ 79/100] index.docker.io/library/rakudo-star@sha256:0bc7542202ea3d9362ce15d90a601928f02b7657630fd131ad9d9847687b65b5
+  INDEXED        4,171 entries | 3 layers | 174.9 MiB read | est. 2.3 MiB index memory | 53ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 2.895s | local-store
+[ 80/100] index.docker.io/library/mageia@sha256:d7e96eb4e2f3ac6b7bdf0caecf673836323ae409b304f195a98d22ab126217d9
+  INDEXED        12,929 entries | 1 layers | 326.4 MiB read | est. 6.8 MiB index memory | 118ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 8.011s | local-store
+[ 81/100] index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5
+  INDEXED        922 entries | 5 layers | 63.3 MiB read | est. 488.4 KiB index memory | 16ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 636ms | local-store
+[ 82/100] index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+  INDEXED        1,830 entries | 17 layers | 110.8 MiB read | est. 977.6 KiB index memory | 33ms
+  COMPLETED      15 passed | 1 failed | 0 unverified | 1.498s | local-store
+[ 83/100] index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa
+  INDEXED        9,567 entries | 9 layers | 392.5 MiB read | est. 5.0 MiB index memory | 149ms
+  COMPLETED      10 passed | 3 failed | 3 unverified | 3.99s | local-store
+[ 84/100] index.docker.io/library/swipl@sha256:2723fefd35116f92f68da22a487b1b01b584ac0b4b81fcd971c7ab2222f5d3e7
+  INDEXED        8,233 entries | 3 layers | 265.6 MiB read | est. 4.3 MiB index memory | 128ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 7.235s | local-store
+[ 85/100] index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8
+  INDEXED        24,144 entries | 15 layers | 795.3 MiB read | est. 13.3 MiB index memory | 265ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 14.927s | local-store
+[ 86/100] index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9
+  INDEXED        10,019 entries | 9 layers | 478.0 MiB read | est. 5.3 MiB index memory | 165ms
+  COMPLETED      11 passed | 2 failed | 3 unverified | 5.796s | local-store
+[ 87/100] index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0
+  INDEXED        8,487 entries | 18 layers | 619.8 MiB read | est. 4.5 MiB index memory | 168ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 6.342s | local-store
+[ 88/100] index.docker.io/library/buildpack-deps@sha256:890e8b5c0040e1deff5cc7dc7b4414e67069f79e3301afc4ec5bd49d64ef13e5
+  INDEXED        19,992 entries | 4 layers | 755.2 MiB read | est. 10.6 MiB index memory | 233ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 13.913s | local-store
+[ 89/100] index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b
+  INDEXED        6,663 entries | 8 layers | 861.9 MiB read | est. 3.5 MiB index memory | 184ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 8.69s | local-store
+[ 90/100] index.docker.io/library/almalinux@sha256:838c2fafefb1a8a0d7f8cdbc3b0551c2a2b1eb0cd87aad6d62aecadb18311f1b
+  INDEXED        8,927 entries | 1 layers | 179.0 MiB read | est. 4.8 MiB index memory | 80ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 4.581s | local-store
+[ 91/100] index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b
+  INDEXED        6,104 entries | 5 layers | 137.1 MiB read | est. 3.2 MiB index memory | 48ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 1.143s | local-store
+[ 92/100] index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97
+  INDEXED        4,826 entries | 4 layers | 81.5 MiB read | est. 2.5 MiB index memory | 32ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 2.853s | local-store
+[ 93/100] index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04
+  INDEXED        2,488 entries | 7 layers | 30.4 MiB read | est. 1.3 MiB index memory | 18ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 1.219s | local-store
+[ 94/100] index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7
+  INDEXED        12,815 entries | 6 layers | 501.7 MiB read | est. 6.8 MiB index memory | 149ms
+  COMPLETED      12 passed | 4 failed | 0 unverified | 10.385s | local-store
+[ 95/100] index.docker.io/library/rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6
+  INDEXED        8,116 entries | 1 layers | 167.4 MiB read | est. 4.3 MiB index memory | 73ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 5.169s | local-store
+[ 96/100] index.docker.io/library/photon@sha256:3d7e9a35fd55277a056d9e1c54841e6b862a8df7e0caa56fa9c0453969f5329d
+  INDEXED        1,058 entries | 1 layers | 46.6 MiB read | est. 551.5 KiB index memory | 15ms
+  COMPLETED      12 passed | 3 failed | 1 unverified | 723ms | local-store
+[ 97/100] index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef
+  INDEXED        1,516 entries | 5 layers | 105.7 MiB read | est. 805.4 KiB index memory | 26ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 1.017s | local-store
+[ 98/100] index.docker.io/library/groovy@sha256:fa81cdb39e5418c234ee7c85c251274be021bec9fb439e374af4f0663b106a53
+  INDEXED        6,650 entries | 10 layers | 481.1 MiB read | est. 3.5 MiB index memory | 118ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 4.699s | local-store
+[ 99/100] index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010
+  INDEXED        18,278 entries | 6 layers | 410.9 MiB read | est. 9.7 MiB index memory | 158ms
+  COMPLETED      13 passed | 3 failed | 0 unverified | 9.493s | local-store
+[100/100] index.docker.io/library/maven@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b
+  INDEXED        2,909 entries | 9 layers | 364.7 MiB read | est. 1.5 MiB index memory | 79ms
+  COMPLETED      14 passed | 2 failed | 0 unverified | 3.547s | local-store
+Wrote results: /opt/con-unit/results/eval-v1-a/lint/empirical_study.json
+Wrote summary: /opt/con-unit/results/eval-v1-a/lint/EMPIRICAL_SUMMARY.md
+Wrote attrition report: /opt/con-unit/results/eval-v1-a/lint/ATTRITION_REPORT.md
+ConUnit process peak RSS over the run: 132.4 MiB (ceiling of the process only; the engine and probe containers are excluded)
+Evaluation complete: all 100 images COMPLETED
+2026-11-16T00:35:33Z [OK   ] lint complete
+
+========================================================================
+  STAGE: crosscheck
+========================================================================
+2026-11-16T00:35:33Z [INFO ] command: engine_user bin/crosscheck -study /opt/con-unit/results/eval-v1-a/lint/empirical_study.json -dockle dockle -engine podman -platform linux/amd64 -out-dir /opt/con-unit/results/eval-v1-a/crosscheck
+
+------------------------------
+  Cross-check against Dockle
+------------------------------
+[INFO]     study     empirical_study.json (sha256 c8e274d3241d)
+[INFO]     images    100 selected of 100 completed
+[INFO]     dockle    0.4.15
+[INFO]     engine    podman version 4.9.3
+[INFO]       1/100 adminer@400af848                   export   1.45s  dockle   0.13s  OK
+[INFO]       2/100 almalinux@838c2faf                 export   0.76s  dockle   0.23s  OK
+[INFO]       3/100 alpine@be265606                    export   0.09s  dockle   0.02s  OK
+[INFO]       4/100 amazoncorretto@019e5808            export   7.24s  dockle   0.56s  OK
+[INFO]       5/100 amazonlinux@c04a1012               export   4.35s  dockle   0.19s  OK
+[INFO]       6/100 arangodb@ae1ce5af                  export   5.68s  dockle   0.61s  OK
+[INFO]       7/100 bash@589adbc5                      export   0.25s  dockle   0.03s  OK
+[INFO]       8/100 buildpack-deps@890e8b5c            export  13.54s  dockle   0.86s  OK
+[INFO]       9/100 busybox@7aa3d3c5                   export   0.08s  dockle   0.01s  OK
+[INFO]      10/100 caddy@e70b164d                     export   0.59s  dockle   0.08s  OK
+[INFO]      11/100 cassandra@acd754f0                 export   3.32s  dockle   0.37s  OK
+[INFO]      12/100 clickhouse@07b74479                export   8.61s  dockle   0.89s  OK
+[INFO]      13/100 clojure@aa1b3f8a                   export   1.73s  dockle   0.34s  OK
+[INFO]      14/100 composer@8de2184c                  export   3.71s  dockle   0.25s  OK
+[INFO]      15/100 convertigo@016dcebe                export   6.14s  dockle   0.67s  OK
+[INFO]      16/100 couchdb@907eab5b                   export   3.87s  dockle   0.33s  OK
+[INFO]      17/100 dart@854f3c50                      export   3.24s  dockle   0.87s  OK
+[INFO]      18/100 debian@9c6e3814                    export   0.50s  dockle   0.15s  OK
+[INFO]      19/100 docker@5e6baf67                    export   1.29s  dockle   0.18s  OK
+[INFO]      20/100 drupal@2869a0ab                    export  22.73s  dockle   0.83s  OK
+[INFO]      21/100 eclipse-mosquitto@75d6662d         export   0.57s  dockle   0.04s  OK
+[INFO]      22/100 eclipse-temurin@e1898fd6           export   1.95s  dockle   0.23s  OK
+[INFO]      23/100 eggdrop@2028d25c                   export   1.15s  dockle   0.05s  OK
+[INFO]      24/100 elasticsearch@b7b0f24e             export  17.33s  dockle   3.07s  OK
+[INFO]      25/100 elixir@a2f0fe1b                    export   0.93s  dockle   0.13s  OK
+[INFO]      26/100 erlang@0ac9b63d                    export   0.37s  dockle   0.11s  OK
+[INFO]      27/100 fedora@15da97ed                    export   3.19s  dockle   0.23s  OK
+[INFO]      28/100 flink@ffb97a54                     export   8.17s  dockle   0.93s  OK
+[INFO]      29/100 fluentd@d912cf85                   export   2.89s  dockle   0.22s  OK
+[INFO]      30/100 gcc@b8a42d68                       export  28.29s  dockle   1.63s  OK
+[INFO]      31/100 ghost@4195f6c4                     export  43.81s  dockle   1.89s  OK
+[INFO]      32/100 golang@fa3d5968                    export   1.27s  dockle   0.34s  OK
+[INFO]      33/100 gradle@e46e1535                    export  13.15s  dockle   0.90s  OK
+[INFO]      34/100 groovy@fa81cdb3                    export   4.58s  dockle   0.52s  OK
+[INFO]      35/100 haproxy@b9fe316f                   export   0.47s  dockle   0.06s  OK
+[INFO]      36/100 haskell@10500ef6                   export 113.19s  dockle  44.64s  OK
+[INFO]      37/100 haxe@64b8dbc0                      export   8.37s  dockle   0.51s  OK
+[INFO]      38/100 hitch@91a93a77                     export   2.85s  dockle   0.11s  OK
+[INFO]      39/100 httpd@698a0f59                     export   1.90s  dockle   0.09s  OK
+[INFO]      40/100 ibm-semeru-runtimes@0601f9cd       export   3.41s  dockle   0.39s  OK
+[INFO]      41/100 influxdb@10a1a06f                  export   4.95s  dockle   0.45s  OK
+[INFO]      42/100 irssi@62fbc351                     export   1.84s  dockle   0.09s  OK
+[INFO]      43/100 joomla@f534566d                    export  12.90s  dockle   0.84s  OK
+[INFO]      44/100 julia@00027715                     export  13.04s  dockle   1.16s  OK
+[INFO]      45/100 kong@ad6cc0c8                      export   5.70s  dockle   0.43s  OK
+[INFO]      46/100 krakend@9f61092f                   export   0.97s  dockle   0.12s  OK
+[INFO]      47/100 lightstreamer@bb5f3f3f             export   5.59s  dockle   0.57s  OK
+[INFO]      48/100 logstash@553b09a3                  export  19.00s  dockle   1.01s  OK
+[INFO]      49/100 mageia@d7e96eb4                    export   7.87s  dockle   0.40s  OK
+[INFO]      50/100 mariadb@4ebbcf10                   export   4.24s  dockle   0.37s  OK
+[INFO]      51/100 maven@308cba8b                     export   3.39s  dockle   0.38s  OK
+[INFO]      52/100 mediawiki@406a08c7                 export  33.47s  dockle   1.35s  OK
+[INFO]      53/100 memcached@084fb554                 export   0.19s  dockle   0.02s  OK
+[INFO]      54/100 mongo@452bdaf2                     export  11.68s  dockle   1.14s  OK
+[INFO]      55/100 mysql@df90258d                     export  20.67s  dockle   1.03s  OK
+[INFO]      56/100 nats@afae2fdb                      export   0.58s  dockle   0.04s  OK
+[INFO]      57/100 neo4j@7dbd307c                     export   5.35s  dockle   0.66s  OK
+[INFO]      58/100 neurodebian@4521313b               export   1.05s  dockle   0.17s  OK
+[INFO]      59/100 nextcloud@81cb0905                 export  14.40s  dockle   1.59s  OK
+[INFO]      60/100 nginx@901e593c                     export   0.29s  dockle   0.08s  OK
+[INFO]      61/100 node@a34ab6d7                      export   0.61s  dockle   0.19s  OK
+[INFO]      62/100 odoo@d5e3a26b                      export  85.54s  dockle   8.26s  OK
+[INFO]      63/100 open-liberty@29dc1f49              export  10.11s  dockle   0.80s  OK
+[INFO]      64/100 oraclelinux@9225108d               export   5.79s  dockle   0.30s  OK
+[INFO]      65/100 orientdb@26ddb8e1                  export   6.71s  dockle   0.48s  OK
+[INFO]      66/100 perl@2b59ca70                      export   3.99s  dockle   0.24s  OK
+[INFO]      67/100 photon@3d7e9a35                    export   0.68s  dockle   0.06s  OK
+[INFO]      68/100 php@951fb5b1                       export   1.23s  dockle   0.12s  OK
+[INFO]      69/100 phpmyadmin@e4b3eb53                export   7.45s  dockle   0.64s  OK
+[INFO]      70/100 postgres@9ba53c7d                  export   1.01s  dockle   0.32s  OK
+[INFO]      71/100 pypy@410aad48                      export   2.73s  dockle   0.24s  OK
+[INFO]      72/100 python@65a65fc7                    export   0.57s  dockle   0.15s  OK
+[INFO]      73/100 rabbitmq@4841f638                  export   0.74s  dockle   0.21s  OK
+[INFO]      74/100 rakudo-star@0bc75422               export   2.81s  dockle   0.20s  OK
+[INFO]      75/100 redis@7958cfbb                     export   0.44s  dockle   0.13s  OK
+[INFO]      76/100 redmine@bfceeae1                   export  13.03s  dockle   0.59s  OK
+[INFO]      77/100 registry@82f6ff4a                  export   0.39s  dockle   0.07s  OK
+[INFO]      78/100 rethinkdb@81ab2da9                 export   3.23s  dockle   0.15s  OK
+[INFO]      79/100 rockylinux@d7be1c09                export   5.06s  dockle   0.22s  OK
+[INFO]      80/100 ros@00b8d47a                       export  26.15s  dockle   1.06s  OK
+[INFO]      81/100 ruby@d8cb2c07                      export   2.86s  dockle   0.21s  OK
+[INFO]      82/100 rust@f2c004e3                      export   3.25s  dockle   0.90s  OK
+[INFO]      83/100 sapmachine@8c3afc89                export   1.73s  dockle   0.27s  OK
+[INFO]      84/100 solr@4eead47c                      export   6.60s  dockle   0.74s  OK
+[INFO]      85/100 sonarqube@f95aaa90                 export  13.14s  dockle   1.40s  OK
+[INFO]      86/100 spiped@7acba2c5                    export   0.13s  dockle   0.02s  OK
+[INFO]      87/100 storm@3f8c17e6                     export   9.25s  dockle   0.80s  OK
+[INFO]      88/100 swift@53cb0586                     export   3.47s  dockle   0.36s  OK
+[INFO]      89/100 swipl@2723fefd                     export   7.08s  dockle   0.32s  OK
+[INFO]      90/100 telegraf@4a62bd29                  export   2.41s  dockle   0.34s  OK
+[INFO]      91/100 tomcat@801c473e                    export   4.56s  dockle   0.52s  OK
+[INFO]      92/100 traefik@f4bb143d                   export   0.61s  dockle   0.20s  OK
+[INFO]      93/100 ubuntu@fe815609                    export   0.36s  dockle   0.10s  OK
+[INFO]      94/100 varnish@f97e894d                   export   4.57s  dockle   0.38s  OK
+[INFO]      95/100 websphere-liberty@33db0375         export  14.62s  dockle   0.92s  OK
+[INFO]      96/100 wordpress@ad1f0968                 export  10.72s  dockle   0.88s  OK
+[INFO]      97/100 xwiki@ebef890a                     export  26.07s  dockle   1.75s  OK
+[INFO]      98/100 yourls@3631239a                    export   7.16s  dockle   0.59s  OK
+[INFO]      99/100 znc@472ffdd9                       export  10.20s  dockle   0.57s  OK
+[INFO]     100/100 zookeeper@bbf67833                 export   6.47s  dockle   0.36s  OK
+
+--------------------
+  Result per check
+--------------------
+[INFO]     check    dockle                    both c-only d-only neither | unver error n-eval | agree
+[INFO]     SPEC-01  CIS-DI-0001                 82     0     0    18 |     0     0     0 | 100.0%
+[INFO]     CIS-4.6  CIS-DI-0006                 99     1     0     0 |     0     0     0 | 99.0%
+[INFO]     FS-04    CIS-DI-0008                 64     0     0    36 |     0     0     0 | 100.0%
+[INFO]     SPEC-07  CIS-DI-0009                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     SPEC-03  CIS-DI-0010                  4     0     9    87 |     0     0     0 | 91.0%
+[INFO]     FS-06    CIS-DI-0010                  3     2    10    83 |     2     0     0 | 87.8%
+[INFO]     FS-12    CIS-DI-0010                  3     0    10    87 |     0     0     0 | 90.0%
+[INFO]     FS-08    DKL-LI-0001                  0     0     0    99 |     1     0     0 | 100.0%
+[INFO]     SPEC-09  CIS-DI-0007                  0     1     0    92 |     7     0     0 | 98.9%
+[INFO]     SPEC-10  DKL-DI-0001                  0     0     1    91 |     8     0     0 | 98.9%
+[INFO]     SPEC-11  DKL-DI-0003                  0     0     0    92 |     8     0     0 | 100.0%
+[INFO]     SPEC-12  DKL-DI-0002                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     SPEC-13  DKL-DI-0006              not comparable: Dockle never reports it for an archive
+[INFO]     FS-10    DKL-LI-0002                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     FS-11    DKL-LI-0003                  8     3     1    88 |     0     0     0 | 96.0%
+[INFO]     FS-01    DKL-DI-0004,DKL-DI-0005      9     7    11    73 |     0     0     0 | 82.0%
+[INFO]     images: 100 completed, 100 with a Dockle result, 0 without
+[INFO]     discordant image and check pairs: 56
+[INFO]     seconds per image: export median 3.79, dockle median 0.35
+[SUCCESS]  wrote crosscheck.json, discordances.csv, table_crosscheck.tex, table_discordances.tex, macros_crosscheck.tex and table_coverage.tex in /opt/con-unit/results/eval-v1-a/crosscheck
+2026-11-16T00:51:09Z [OK   ] crosscheck complete
+
+========================================================================
+  RESULT: complete
+========================================================================
+  host               ok  exit=0
+  bundle             ok  exit=0
+  go                 ok  exit=0
+  packages           ok  exit=0
+  tools              ok  exit=0
+  registry           ok  exit=0
+  docker_hub_block   ok  exit=0
+  mode               ok  exit=0
+  datasets           ok  exit=0
+  mirror_proof       ok  exit=0
+  host_info          ok  exit=0
+  build              ok  exit=0
+  eval               ok  exit=0
+  run_block_check    ok  exit=0
+  export             ok  exit=0
+  rq3                ok  exit=0
+  rq1                ok  exit=0
+  lint               ok  exit=0
+  crosscheck         ok  exit=0
+2026-11-16T00:51:10Z [INFO ] status file:      /opt/con-unit/results/eval-v1-a/status.json
+2026-11-16T00:51:10Z [INFO ] completion marker: /opt/con-unit/results/eval-v1-a/BENCHMARK_COMPLETE (written after all requested stages ran)
+01:51:11 [INFO    ] remote script exit code: 0
+
+========================================================================
+  COLLECT RESULTS
+========================================================================
+01:51:11 [PROGRESS] rsync conunit-eval:/opt/con-unit/results/eval-v1-a/ -> ~/Documents/development/paper-con-unit/submission/results/eval-v1-a/
+01:51:13 [SUCCESS ] all downloaded files match the checksums computed on the instance
+01:51:13 [SUCCESS ] results downloaded to ~/Documents/development/paper-con-unit/submission/results/eval-v1-a
+01:51:13 [SUCCESS ] remote result: complete
+
+========================================================================
+  TEARDOWN
+========================================================================
+01:51:13 [INFO    ] if this is interrupted, finish it with: ./run_eval.sh --destroy-run eval-v1-a
+01:51:13 [PROGRESS] tofu destroy (attempt 1/3)
+random_id.suffix: Refreshing state... [id=DU4f]
+data.aws_ami.selected[0]: Reading...
+data.aws_vpc.default[0]: Reading...
+aws_key_pair.eval_key: Refreshing state... [id=con-unit-eval-0d4e1f]
+data.aws_ami.selected[0]: Read complete after 1s [id=ami-04bbcae8eccec8bce]
+data.aws_vpc.default[0]: Read complete after 1s [id=vpc-0597030053779c8ac]
+data.aws_subnets.default[0]: Reading...
+aws_security_group.eval_sg: Refreshing state... [id=sg-087b2c0423a9ae9c6]
+data.aws_subnets.default[0]: Read complete after 0s [id=eu-central-1]
+aws_instance.eval_node: Refreshing state... [id=i-0b049861d95ebf8e2]
+
+OpenTofu used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+OpenTofu will perform the following actions:
+
+  # aws_instance.eval_node will be destroyed
+  - resource "aws_instance" "eval_node" {
+      - ami                                  = "ami-04bbcae8eccec8bce" -> null
+      - arn                                  = "arn:aws:ec2:eu-central-1:<aws-account-id>:instance/i-0b049861d95ebf8e2" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-central-1a" -> null
+      - cpu_core_count                       = 4 -> null
+      - cpu_threads_per_core                 = 2 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0b049861d95ebf8e2" -> null
+      - instance_initiated_shutdown_behavior = "terminate" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "c6i.2xlarge" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "con-unit-eval-0d4e1f" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0a63a99f810c5455d" -> null
+      - private_dns                          = "ip-172-31-25-171.eu-central-1.compute.internal" -> null
+      - private_ip                           = "172.31.25.171" -> null
+      - public_dns                           = "ec2-35-157-243-190.eu-central-1.compute.amazonaws.com" -> null
+      - public_ip                            = "35.157.243.190" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [
+          - "con-unit-eval-0d4e1f",
+        ] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-01f694c1184192f79" -> null
+      - tags                                 = {
+          - "Name" = "con-unit-eval-0d4e1f"
+        } -> null
+      - tags_all                             = {
+          - "Component" = "empirical-evaluation"
+          - "ManagedBy" = "opentofu"
+          - "Name"      = "con-unit-eval-0d4e1f"
+          - "Project"   = "con-unit"
+          - "RunId"     = "eval-v1-a"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = "c8afdf7a1531bfdf5d0d5e4e63cc25d32cc6d41c" -> null
+      - user_data_replace_on_change          = true -> null
+      - vpc_security_group_ids               = [
+          - "sg-087b2c0423a9ae9c6",
+        ] -> null
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 4 -> null
+          - threads_per_core = 2 -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:eu-central-1:<aws-account-id>:key/9aa65d10-852b-4a67-97ac-95918ca2bdee" -> null
+          - tags                  = {
+              - "Name"  = "con-unit-eval-0d4e1f-root"
+              - "RunId" = "eval-v1-a"
+            } -> null
+          - tags_all              = {
+              - "Component" = "empirical-evaluation"
+              - "ManagedBy" = "opentofu"
+              - "Name"      = "con-unit-eval-0d4e1f-root"
+              - "Project"   = "con-unit"
+              - "RunId"     = "eval-v1-a"
+            } -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0fe77f48ae0b2d7ab" -> null
+          - volume_size           = 150 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+  # aws_key_pair.eval_key will be destroyed
+  - resource "aws_key_pair" "eval_key" {
+      - arn         = "arn:aws:ec2:eu-central-1:<aws-account-id>:key-pair/con-unit-eval-0d4e1f" -> null
+      - fingerprint = "du4gUyUcTG+zSkqwN4IXWs5Wr321jCGEGJLGLF4wxXA=" -> null
+      - id          = "con-unit-eval-0d4e1f" -> null
+      - key_name    = "con-unit-eval-0d4e1f" -> null
+      - key_pair_id = "key-0209bdc6abbf2e2d3" -> null
+      - key_type    = "ed25519" -> null
+      - public_key  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGbX0OhOuxaH+eFs6SQ9eE7sWZ+Wp0UeMZGpdseAz0WV conunit-eval" -> null
+      - tags        = {
+          - "Name" = "con-unit-eval-0d4e1f"
+        } -> null
+      - tags_all    = {
+          - "Component" = "empirical-evaluation"
+          - "ManagedBy" = "opentofu"
+          - "Name"      = "con-unit-eval-0d4e1f"
+          - "Project"   = "con-unit"
+          - "RunId"     = "eval-v1-a"
+        } -> null
+    }
+
+  # aws_security_group.eval_sg will be destroyed
+  - resource "aws_security_group" "eval_sg" {
+      - arn                    = "arn:aws:ec2:eu-central-1:<aws-account-id>:security-group/sg-087b2c0423a9ae9c6" -> null
+      - description            = "ConUnit evaluation: SSH from one operator address, outbound for package, toolchain and registry access" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Outbound for apt, Go toolchain and module downloads, and the ECR Public mirror"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-087b2c0423a9ae9c6" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "<operator-ip>/32",
+                ]
+              - description      = "SSH from the operator"
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+            },
+        ] -> null
+      - name                   = "con-unit-eval-0d4e1f" -> null
+      - owner_id               = "<aws-account-id>" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "con-unit-eval-0d4e1f"
+        } -> null
+      - tags_all               = {
+          - "Component" = "empirical-evaluation"
+          - "ManagedBy" = "opentofu"
+          - "Name"      = "con-unit-eval-0d4e1f"
+          - "Project"   = "con-unit"
+          - "RunId"     = "eval-v1-a"
+        } -> null
+      - vpc_id                 = "vpc-0597030053779c8ac" -> null
+    }
+
+  # random_id.suffix will be destroyed
+  - resource "random_id" "suffix" {
+      - b64_std     = "DU4f" -> null
+      - b64_url     = "DU4f" -> null
+      - byte_length = 3 -> null
+      - dec         = "871967" -> null
+      - hex         = "0d4e1f" -> null
+      - id          = "DU4f" -> null
+    }
+
+Plan: 0 to add, 0 to change, 4 to destroy.
+
+Changes to Outputs:
+  - ami_creation_date        = "2026-11-09T19:24:25.000Z" -> null
+  - ami_deprecation_time     = "2028-11-09T19:24:25.000Z" -> null
+  - ami_id                   = "ami-04bbcae8eccec8bce" -> null
+  - ami_name                 = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108" -> null
+  - availability_zone        = "eu-central-1a" -> null
+  - download_results_command = "rsync -a -e 'ssh -i ~/.ssh/conunit_eval' ubuntu@35.157.243.190:/opt/con-unit/results/eval-v1-a/ ./results/eval-v1-a/" -> null
+  - estimated_cost           = "approx. 0.34 USD per hour compute plus 0.016 USD per hour for 150 GB gp3 (us-east-1 on-demand reference prices, other regions differ). Upper bound until the 240 minute watchdog: approx. 1.43 USD." -> null
+  - instance_id              = "i-0b049861d95ebf8e2" -> null
+  - instance_type            = "c6i.2xlarge" -> null
+  - public_ip                = "35.157.243.190" -> null
+  - region                   = "eu-central-1" -> null
+  - run_id                   = "eval-v1-a" -> null
+  - ssh_command              = "ssh -i ~/.ssh/conunit_eval ubuntu@35.157.243.190" -> null
+  - tail_log_command         = "ssh -i ~/.ssh/conunit_eval ubuntu@35.157.243.190 'tail -f /opt/con-unit/results/eval-v1-a/remote_eval.log'" -> null
+aws_instance.eval_node: Destroying... [id=i-0b049861d95ebf8e2]
+aws_instance.eval_node: Still destroying... [id=i-0b049861d95ebf8e2, 10s elapsed]
+aws_instance.eval_node: Still destroying... [id=i-0b049861d95ebf8e2, 20s elapsed]
+aws_instance.eval_node: Still destroying... [id=i-0b049861d95ebf8e2, 30s elapsed]
+aws_instance.eval_node: Destruction complete after 31s
+aws_key_pair.eval_key: Destroying... [id=con-unit-eval-0d4e1f]
+aws_security_group.eval_sg: Destroying... [id=sg-087b2c0423a9ae9c6]
+aws_key_pair.eval_key: Destruction complete after 0s
+aws_security_group.eval_sg: Destruction complete after 0s
+random_id.suffix: Destroying... [id=DU4f]
+random_id.suffix: Destruction complete after 0s
+
+Destroy complete! Resources: 4 destroyed.
+
+========================================================================
+  VERIFY TEARDOWN
+========================================================================
+01:51:51 [INFO    ] OpenTofu state resources remaining: 0
+01:51:56 [INFO    ] tagged resources remaining: instances=0 volumes=0 security_groups=0 key_pairs=0
+01:51:56 [SUCCESS ] teardown verified: no resource tagged RunId=eval-v1-a remains

@@ -1,0 +1,1 @@
+{"Pass":1,"Fail":0,"Total":1,"Duration":650742575,"Results":[{"Name":"Command Test: rq1-world-writable-file","Pass":true,"Duration":650742575}]}

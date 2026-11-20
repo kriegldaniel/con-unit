@@ -1,0 +1,1 @@
+[{"code":"DL3020","column":1,"file":"/opt/con-unit/src/fixtures/rq1/cases/add-local-file-defect/Dockerfile","level":"error","line":5,"message":"Use COPY instead of ADD for files and folders"}]

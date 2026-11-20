@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/setuid-binary-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/setuid-binary.yaml --output json
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,107 @@
+# go.sum sha256
+5c82a93d87c9c4dcbf4e41b9185d0847601c9dca500bf6799c926efb753d1600
+
+# build flags: CGO_ENABLED=0 GOTOOLCHAIN=local GOFLAGS=-mod=readonly -trimpath -ldflags "-X github.com/con-unit/con-unit/pkg/runenv.BuildCommit=2f5d90257717d3977b84ac68b8ef9af2a0876fe1 -X github.com/con-unit/con-unit/pkg/runenv.BuildTainted=false"
+
+# bin/con-unit sha256 1ad44eb8c91845ed4ab24fbe0e107dffc0d28ea55c53f5adf0ba7dfe9333acc6
+bin/con-unit: go1.26.10
+	path	github.com/con-unit/con-unit/cmd/con-unit
+	mod	github.com/con-unit/con-unit	(devel)	
+	dep	github.com/docker/cli	v29.7.2+incompatible	h1:dlkwallR8XqfeVnA2ELEhdwvb4lsSwuB4IgsG8Q9cLY=
+	dep	github.com/docker/docker-credential-helpers	v0.9.3	h1:gAm/VtF9wgqJMoxzT3Gj5p4AqIjCBS4wrsOh9yRqcz8=
+	dep	github.com/google/go-containerregistry	v0.22.1	h1:RZuuSYhTvlDvtsK+NkutoCZ//C0X2ebLK8X8l3ULs84=
+	dep	github.com/klauspost/compress	v1.19.2	h1:hMRETovs/pu/dVWN7zIT1PGG8t509MwT6bO7XSi26R8=
+	dep	github.com/opencontainers/go-digest	v1.0.0	h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
+	dep	github.com/opencontainers/image-spec	v1.1.1	h1:y0fUlFfIZhPF1W537XOLg0/fcx6zcHCJwooC2xJA040=
+	dep	github.com/sirupsen/logrus	v1.9.4	h1:TsZE7l11zFCLZnZ+teH4Umoq5BhEIfIzfRDZ1Uzql2w=
+	dep	golang.org/x/sync	v0.22.0	h1:SZjpbeLmrCk4xhRSZFNZW5gFUeCeFgjekvI/+gfScek=
+	dep	golang.org/x/sys	v0.47.0	h1:o7XGOvZQCADBQQ4Y7VNq2dRWQR7JmOUW8Kxx4ZsNgWs=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/export_latex sha256 b6a9c813d6727f0c67e709b22389273d6d86a63d0655916faecb1cd8e5f8f518
+bin/export_latex: go1.26.10
+	path	command-line-arguments
+	dep	github.com/con-unit/con-unit	(devel)	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/benchmark_rq3 sha256 f57bbc6e591c8982ebb39590cc280007cf3c74ed815e757b9c6620068b3f64c6
+bin/benchmark_rq3: go1.26.10
+	path	github.com/con-unit/con-unit/tools/benchmark_rq3
+	mod	github.com/con-unit/con-unit	(devel)	
+	dep	github.com/docker/cli	v29.7.2+incompatible	h1:dlkwallR8XqfeVnA2ELEhdwvb4lsSwuB4IgsG8Q9cLY=
+	dep	github.com/docker/docker-credential-helpers	v0.9.3	h1:gAm/VtF9wgqJMoxzT3Gj5p4AqIjCBS4wrsOh9yRqcz8=
+	dep	github.com/google/go-containerregistry	v0.22.1	h1:RZuuSYhTvlDvtsK+NkutoCZ//C0X2ebLK8X8l3ULs84=
+	dep	github.com/klauspost/compress	v1.19.2	h1:hMRETovs/pu/dVWN7zIT1PGG8t509MwT6bO7XSi26R8=
+	dep	github.com/opencontainers/go-digest	v1.0.0	h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
+	dep	github.com/opencontainers/image-spec	v1.1.1	h1:y0fUlFfIZhPF1W537XOLg0/fcx6zcHCJwooC2xJA040=
+	dep	github.com/sirupsen/logrus	v1.9.4	h1:TsZE7l11zFCLZnZ+teH4Umoq5BhEIfIzfRDZ1Uzql2w=
+	dep	golang.org/x/sync	v0.22.0	h1:SZjpbeLmrCk4xhRSZFNZW5gFUeCeFgjekvI/+gfScek=
+	dep	golang.org/x/sys	v0.47.0	h1:o7XGOvZQCADBQQ4Y7VNq2dRWQR7JmOUW8Kxx4ZsNgWs=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/rq1 sha256 459e3924059434e2310100557af6c0ee76c6da15984689c56b1ab64d178ae8bd
+bin/rq1: go1.26.10
+	path	github.com/con-unit/con-unit/tools/rq1
+	mod	github.com/con-unit/con-unit	(devel)	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/crosscheck sha256 3dcdff8881d9cbb2bfbd466cbbf817bf0b3eb750b0e5bd62f24eab0d3aa583b0
+bin/crosscheck: go1.26.10
+	path	github.com/con-unit/con-unit/tools/crosscheck
+	mod	github.com/con-unit/con-unit	(devel)	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/attribute_exec sha256 7e75725418195f89c8b0f521a998242c944d17e25f3c73238e09a00f5c02fc93
+bin/attribute_exec: go1.26.10
+	path	github.com/con-unit/con-unit/tools/attribute_exec
+	mod	github.com/con-unit/con-unit	(devel)	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+
+# bin/reliability sha256 76d40629f66f0a7e80b2ca8795d19910b1e2b82d51af2ca813c3a98d9d13caea
+bin/reliability: go1.26.10
+	path	github.com/con-unit/con-unit/tools/reliability
+	mod	github.com/con-unit/con-unit	(devel)	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+

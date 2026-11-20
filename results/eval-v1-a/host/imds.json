@@ -1,0 +1,7 @@
+{
+  "instance_id": "i-0b049861d95ebf8e2",
+  "instance_type": "c6i.2xlarge",
+  "ami_id": "ami-04bbcae8eccec8bce",
+  "availability_zone": "eu-central-1a",
+  "region": "eu-central-1"
+}

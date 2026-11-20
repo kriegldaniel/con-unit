@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/add-local-file-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/add-local-file-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/add-local-file-defect
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,399 @@
+
+Tier 3 failure attribution
+00:13:18 INFO  host    mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+00:13:18 INFO  window  3s, minimize true, out-dir /opt/con-unit/results/eval-v1-b/attribution
+00:13:18 INFO  study   /opt/con-unit/results/eval-v1-b/empirical_study.json (sha256 1a5f6242aa47, 100 images)
+
+Ablation without the baseline gate
+00:13:18 INFO  images  54 with a Tier 3 result that is UNVERIFIED because of the baseline
+
+[1/54] index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072  (study: NOT_OBSERVABLE)
+00:13:19 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:19 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:19 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:19 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:19 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[2/54] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a  (study: NOT_OBSERVABLE)
+00:13:20 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:20 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:20 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:20 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:20 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[3/54] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852  (study: NOT_OBSERVABLE)
+00:13:21 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:21 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:21 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:21 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:21 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[4/54] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928  (study: NOT_OBSERVABLE)
+00:13:22 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:22 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:22 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:22 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:22 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[5/54] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8  (study: NOT_OBSERVABLE)
+00:13:23 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:23 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:24 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:24 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:24 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[6/54] index.docker.io/library/docker@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb  (study: NOT_OBSERVABLE)
+00:13:25 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:25 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:25 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:25 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:25 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[7/54] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18  (study: NOT_OBSERVABLE)
+00:13:26 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:26 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:26 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:26 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:26 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[8/54] index.docker.io/library/debian@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6  (study: NOT_OBSERVABLE)
+00:13:27 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:27 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:27 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:27 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:27 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[9/54] index.docker.io/library/ruby@sha256:d8cb2c0714bdaba0f318af897a01d2dbde3cfa8e62d47e99cea55feb13c0e90d  (study: NOT_OBSERVABLE)
+00:13:28 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:28 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:29 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:29 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:29 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[10/54] index.docker.io/library/haproxy@sha256:b9fe316f718d5015c5cfebd8ca019591f3e44656f61d93cb8b59a1028961e530  (study: BASELINE_FAILED)
+00:13:29 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:13:30 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:13:30 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:13:30 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:13:30 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[11/54] index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01  (study: BASELINE_FAILED)
+00:13:30 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 2)
+00:13:31 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 2)
+00:13:31 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 2)
+00:13:31 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 2)
+00:13:31 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[12/54] index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436  (study: BASELINE_FAILED)
+00:13:31 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:13:32 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:13:35 INFO  EXEC-04   no-new-privileges                                    PASS     running
+00:13:35 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 137)
+00:13:35 OK    3 of 4 treatments would be called FAIL by a single-run tool
+
+[13/54] index.docker.io/library/couchdb@sha256:907eab5b7e55ab7cfd241d39b90b2a335ea40bef82acee5a37388c08bf201dda  (study: BASELINE_FAILED)
+00:13:36 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:13:36 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:13:36 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:13:36 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:13:36 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[14/54] index.docker.io/library/telegraf@sha256:4a62bd294bf2f4c1e3781194fe7b625b7e527244eeb31afd5758227914a16229  (study: BASELINE_FAILED)
+00:13:38 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:13:38 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 127)
+00:13:41 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 126)
+00:13:44 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 126)
+00:13:44 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[15/54] index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e  (study: BASELINE_FAILED)
+00:13:44 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 2)
+00:13:44 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 2)
+00:13:45 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 2)
+00:13:45 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 2)
+00:13:45 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[16/54] index.docker.io/library/amazoncorretto@sha256:019e58087ba4c114c817094f70d3d522bcd13e80ce9edbba6e1c67e5700bad63  (study: NOT_OBSERVABLE)
+00:13:45 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:45 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:46 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:46 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:46 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[17/54] index.docker.io/library/eclipse-temurin@sha256:e1898fd6a11fc965a994d8ace186fd3585aeb636cf8f05f47a723fcfee0b0918  (study: NOT_OBSERVABLE)
+00:13:46 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:46 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:47 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:47 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:47 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[18/54] index.docker.io/library/rust@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd  (study: NOT_OBSERVABLE)
+00:13:47 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:47 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:48 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:48 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:48 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[19/54] index.docker.io/library/swift@sha256:53cb05862760a5270ec5cb86b8998d819b5fbe8b72ea35811f1f790a1542b51c  (study: NOT_OBSERVABLE)
+00:13:48 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:48 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:49 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:49 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:49 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[20/54] index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215  (study: NOT_OBSERVABLE)
+00:13:49 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:49 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:50 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:50 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:50 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[21/54] index.docker.io/library/erlang@sha256:0ac9b63db11be156be4e2834546e44aa0d7446aaffb05fedd4aea8c5a33ad998  (study: NOT_OBSERVABLE)
+00:13:50 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:51 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:51 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:52 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:52 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[22/54] index.docker.io/library/elixir@sha256:a2f0fe1bfd8a2f9cc91d913f4a12e6430e27e618720f753a514e2fff3d35f5a7  (study: NOT_OBSERVABLE)
+00:13:52 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:53 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:53 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:54 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:54 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[23/54] index.docker.io/library/clojure@sha256:aa1b3f8a19462798a9662535d17173f501b3b45910aa7c3642aaddae41b096fa  (study: NOT_OBSERVABLE)
+00:13:55 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:56 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:13:56 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:13:57 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:13:57 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[24/54] index.docker.io/library/julia@sha256:0002771531bbae894f2532a5ae02ea71c30685440ca3bdaea0a43d17e65571e0  (study: NOT_OBSERVABLE)
+00:13:59 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:13:59 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:00 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:00 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:00 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[25/54] index.docker.io/library/perl@sha256:2b59ca705cf3234d62c33e27ed573809498e476d45c4d0904550d0daced6a215  (study: NOT_OBSERVABLE)
+00:14:01 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:01 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:01 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:02 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:02 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[26/54] index.docker.io/library/ghost@sha256:4195f6c405e40230cd10c0770425cf500c1f542a96e9f6584c11649c150e5a89  (study: BASELINE_FAILED)
+00:14:03 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 2)
+00:14:04 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:07 INFO  EXEC-04   no-new-privileges                                    PASS     running
+00:14:08 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 2)
+00:14:08 OK    3 of 4 treatments would be called FAIL by a single-run tool
+
+[27/54] index.docker.io/library/joomla@sha256:f534566df4df83d2f6751d3406dc624e5af5b3c8d7f2b2101bf3c2f4e47b31f0  (study: BASELINE_FAILED)
+00:14:08 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:09 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:09 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:09 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:09 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[28/54] index.docker.io/library/flink@sha256:ffb97a54a2b59960360d3b362e64f86ed5cab82621025eeed1399074b42a7b17  (study: NOT_OBSERVABLE)
+00:14:10 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:11 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:11 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:12 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:12 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[29/54] index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a  (study: BASELINE_FAILED)
+00:14:13 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:14 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:15 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:16 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:16 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[30/54] index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7  (study: NOT_OBSERVABLE)
+00:14:16 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:16 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:17 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:17 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:17 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[31/54] index.docker.io/library/sapmachine@sha256:8c3afc896691208abee94e8db71cb972ed34a5c5b417610102261055b95d38a5  (study: NOT_OBSERVABLE)
+00:14:17 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:17 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:17 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:18 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:18 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[32/54] index.docker.io/library/oraclelinux@sha256:9225108d00fb6611ebc4a5eced166f27d9dcfeaa539fb127be79425f0da5e745  (study: NOT_OBSERVABLE)
+00:14:18 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:18 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:18 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:19 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:19 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[33/54] index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e  (study: NOT_OBSERVABLE)
+00:14:19 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:19 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:19 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:19 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:19 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[34/54] index.docker.io/library/amazonlinux@sha256:c04a1012acc483977f61f7f91c28624a39a621e56a59781319a75dec528be9b6  (study: NOT_OBSERVABLE)
+00:14:20 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:20 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:20 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:20 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:20 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[35/54] index.docker.io/library/bash@sha256:589adbc588d8ef3c1ec3c68333faf4baf5dccb65d3cb50f6cf3d78cad2d6e1b0  (study: NOT_OBSERVABLE)
+00:14:21 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:21 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:21 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:21 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:21 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[36/54] index.docker.io/library/pypy@sha256:410aad485440d238a596fd5f847a99d3f7c11be895ce25c02b336f5c5d1733bb  (study: NOT_OBSERVABLE)
+00:14:22 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:22 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:23 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:23 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:23 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[37/54] index.docker.io/library/composer@sha256:8de2184c6de224f4689e8f80ed5f5edaf0030b6b8b7839a22a2bcb6722ac87d0  (study: NOT_OBSERVABLE)
+00:14:23 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:24 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:24 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:24 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:24 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[38/54] index.docker.io/library/ros@sha256:00b8d47a6e6384a2834e3d01fa87ae767876543baa574f2d64a75c04ea33c698  (study: NOT_OBSERVABLE)
+00:14:25 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:26 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:26 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:26 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:26 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[39/54] index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244  (study: NOT_OBSERVABLE)
+00:14:26 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:27 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:27 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:27 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:27 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[40/54] index.docker.io/library/spiped@sha256:7acba2c58083cf5246e055818bd95932bb6a26851e0123543a3c4b9681a07061  (study: BASELINE_FAILED)
+00:14:27 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:28 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:28 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:28 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:28 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[41/54] index.docker.io/library/irssi@sha256:62fbc3514f8ef0bf587137800856ee4dffbfaddf6ca8402501698a6491e3205d  (study: BASELINE_FAILED)
+00:14:29 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:29 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:29 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:29 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:29 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[42/54] index.docker.io/library/rakudo-star@sha256:0bc7542202ea3d9362ce15d90a601928f02b7657630fd131ad9d9847687b65b5  (study: NOT_OBSERVABLE)
+00:14:30 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:30 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:31 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:31 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:31 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[43/54] index.docker.io/library/mageia@sha256:d7e96eb4e2f3ac6b7bdf0caecf673836323ae409b304f195a98d22ab126217d9  (study: NOT_OBSERVABLE)
+00:14:31 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:32 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:32 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:32 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:32 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[44/54] index.docker.io/library/swipl@sha256:2723fefd35116f92f68da22a487b1b01b584ac0b4b81fcd971c7ab2222f5d3e7  (study: NOT_OBSERVABLE)
+00:14:32 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:33 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:33 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:33 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:33 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[45/54] index.docker.io/library/buildpack-deps@sha256:890e8b5c0040e1deff5cc7dc7b4414e67069f79e3301afc4ec5bd49d64ef13e5  (study: NOT_OBSERVABLE)
+00:14:33 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:33 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:34 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:34 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:34 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[46/54] index.docker.io/library/almalinux@sha256:838c2fafefb1a8a0d7f8cdbc3b0551c2a2b1eb0cd87aad6d62aecadb18311f1b  (study: NOT_OBSERVABLE)
+00:14:34 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:34 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:35 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:35 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:35 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[47/54] index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b  (study: NOT_OBSERVABLE)
+00:14:35 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:35 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:36 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:36 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:36 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[48/54] index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04  (study: BASELINE_FAILED)
+00:14:36 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:36 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:38 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:38 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:38 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[49/54] index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7  (study: BASELINE_FAILED)
+00:14:40 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:40 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:41 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:42 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:42 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[50/54] index.docker.io/library/rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6  (study: NOT_OBSERVABLE)
+00:14:43 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:43 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:43 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:43 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:43 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[51/54] index.docker.io/library/photon@sha256:3d7e9a35fd55277a056d9e1c54841e6b862a8df7e0caa56fa9c0453969f5329d  (study: NOT_OBSERVABLE)
+00:14:43 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:44 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:44 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:44 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:44 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[52/54] index.docker.io/library/groovy@sha256:fa81cdb39e5418c234ee7c85c251274be021bec9fb439e374af4f0663b106a53  (study: NOT_OBSERVABLE)
+00:14:46 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:48 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:50 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:52 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:52 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[53/54] index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010  (study: NOT_OBSERVABLE)
+00:14:52 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 0)
+00:14:52 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 0)
+00:14:52 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 0)
+00:14:53 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 0)
+00:14:53 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+[54/54] index.docker.io/library/maven@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b  (study: BASELINE_FAILED)
+00:14:54 INFO  EXEC-01   read-only root filesystem with a 64 MiB tmpfs at /tmp FAIL     exited (exit 1)
+00:14:55 INFO  EXEC-02   all capabilities dropped                             FAIL     exited (exit 1)
+00:14:57 INFO  EXEC-04   no-new-privileges                                    FAIL     exited (exit 1)
+00:14:58 INFO  EXEC-07   memory limit of 256 MiB                              FAIL     exited (exit 1)
+00:14:58 OK    4 of 4 treatments would be called FAIL by a single-run tool
+
+Summary of the ablation
+00:14:58 INFO  images: 54 selected, 54 examined, 0 absent, 0 with an engine error
+00:14:58 INFO  a single-run tool would call FAIL for 54 of 54 examined images (214 of 216 treatment runs)
+00:14:58 INFO  BASELINE_FAILED  examined 14, FAIL for at least one treatment 14
+00:14:58 INFO  NOT_OBSERVABLE   examined 40, FAIL for at least one treatment 40
+00:14:58 INFO  EXEC-01          runs 54, FAIL 54, PASS 0
+00:14:58 INFO  EXEC-02          runs 54, FAIL 54, PASS 0
+00:14:58 INFO  EXEC-04          runs 54, FAIL 52, PASS 2
+00:14:58 INFO  EXEC-07          runs 54, FAIL 54, PASS 0
+00:14:58 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/ablation.json
+00:14:58 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/macros_attribution.tex
+00:14:58 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/table_attribution.tex

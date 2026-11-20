@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":614889882,"Results":[{"Name":"Command Test: rq1-secret-in-env","Pass":false,"Stdout":"AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n","Errors":["Excluded string '.' found in output 'AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n'"],"Duration":614889882}]}

@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7",
+  "config_digest_study": "sha256:05948bbb3943f830beb78986184adede1193988750414c6448039583d637b3b2",
+  "config_digest_archive": "sha256:05948bbb3943f830beb78986184adede1193988750414c6448039583d637b3b2",
+  "status": "OK",
+  "export_seconds": 10.19876969,
+  "dockle_seconds": 0.569346574,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\"\n      ]\n    }\n  ]\n}"
+}

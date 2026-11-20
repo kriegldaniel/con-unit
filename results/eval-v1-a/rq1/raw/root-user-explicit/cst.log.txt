@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/root-user-explicit:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/root-user.yaml --output json
+exit: 1
+--- stderr ---
+time="2026-11-16T00:11:52Z" level=fatal msg=FAIL

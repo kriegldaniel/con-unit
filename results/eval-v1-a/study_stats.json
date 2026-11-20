@@ -1,0 +1,2968 @@
+{
+  "source": "empirical_study.json",
+  "source_sha256": "6102815c4907e01f8b4b5055486eaf0ab1f0140220b9941d0692dd1bbca2a5e1",
+  "legacy_input": false,
+  "schema_version": "2",
+  "run": {
+    "conunit_version": "0.3.0",
+    "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "go_version": "go1.26.10",
+    "dataset_path": "fixtures/evaluation_dataset_pinned.txt",
+    "dataset_sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+    "pack": "cis",
+    "pack_id": "PACK-CONUNIT-HARDENING",
+    "platform": "linux/amd64",
+    "image_source_policy": "auto",
+    "probe_window_ms": 3000,
+    "flags": [
+      "eval",
+      "--images",
+      "fixtures/evaluation_dataset_pinned.txt",
+      "--pack",
+      "cis",
+      "--out-dir",
+      "/opt/con-unit/results/eval-v1-a",
+      "--engine",
+      "podman",
+      "--platform",
+      "linux/amd64",
+      "--image-source",
+      "auto",
+      "--probe-window",
+      "3s",
+      "--image-timeout=5m0s",
+      "--max-index-entries=1000000"
+    ],
+    "engine_name": "podman",
+    "engine_version": "4.9.3",
+    "rootless": false,
+    "cgroup_version": "v2",
+    "storage_driver": "overlay",
+    "oci_runtime": "crun 1.14.1",
+    "security_options": [
+      "apparmor",
+      "seccomp(profile=/usr/share/containers/seccomp.json)"
+    ],
+    "registry_remap": "docker.io/library -\u003e public.ecr.aws/docker/library",
+    "host_os": "linux",
+    "host_arch": "amd64",
+    "linux_kernel": "7.0.0-1014-aws",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz",
+    "vcpus": 8,
+    "memory_bytes": 16462835712,
+    "virtualization": "aws-nitro-kvm",
+    "execution_mode": "Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2",
+    "cloud_provider": "aws",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-04bbcae8eccec8bce",
+    "region": "eu-central-1",
+    "zone": "eu-central-1a",
+    "tools": {
+      "container-structure-test": "1.22.1",
+      "cosign": "absent",
+      "dockle": "0.4.15",
+      "grype": "absent",
+      "hadolint": "2.14.0",
+      "syft": "absent",
+      "trivy": "0.76.1"
+    },
+    "started_at": "2026-11-15T23:20:01.626441829Z",
+    "finished_at": "2026-11-15T23:55:13.030393062Z"
+  },
+  "audit": {
+    "schema_version": "1",
+    "tool": "pin_dataset",
+    "tool_version": "pin_dataset 2",
+    "generated_at": "2026-11-14T15:08:50Z",
+    "mode": "audit-only",
+    "sampling_frame": {
+      "repository": "docker-library/official-images",
+      "commit": "38202481675fa945ea2a2df1e6c64b400f3b2e49",
+      "date": "2026-11-14"
+    },
+    "inclusion_rule": "A candidate is included when its tag resolves to a multi-platform OCI index or Docker manifest list that contains both linux/amd64 and linux/arm64 manifests. The index digest is pinned. Single-architecture candidates are excluded and logged. The evaluation itself runs on linux/amd64.",
+    "evaluation_platform": "linux/amd64",
+    "input": {
+      "path": "fixtures/evaluation_dataset_full.txt",
+      "sha256": "df0f67915850e7f6c063459d2c6608f7771ce22544d292461047d26684b7d3de",
+      "entries": 108,
+      "declared_n": 108
+    },
+    "outputs": {
+      "pinned_txt": {
+        "path": "fixtures/evaluation_dataset_pinned.txt",
+        "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+        "entries": 100,
+        "declared_n": 100
+      },
+      "pinned_json": {
+        "path": "fixtures/evaluation_dataset_pinned.json",
+        "sha256": "43b5dedf2b9b1db78c4fa6710edd134584c1176de9b31fc732a68d5f6c98ee6b",
+        "entries": 108
+      },
+      "top10": {
+        "input": {
+          "path": "fixtures/evaluation_dataset_top10.txt",
+          "sha256": "020b02a882e2e7f906a9fae6fec687282bdcf0a3eea20893a812ae0aa71c1e21",
+          "entries": 10
+        },
+        "pinned": {
+          "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+          "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+          "entries": 10,
+          "declared_n": 10
+        },
+        "all_in_main_pinned_list": true
+      }
+    },
+    "counts": {
+      "candidates": 108,
+      "pinned": 100,
+      "excluded": 8,
+      "failed": 0,
+      "deprecated_flagged": 0
+    },
+    "exclusion_log": [
+      {
+        "original_tag": "chronograf:1.11.6-alpine",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "kapacitor:1.8.8-alpine",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "jetty:12.1.13-jdk21-alpine",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "maven:3.10.0-eclipse-temurin-11-alpine",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "rocket.chat:8.9.0",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "archlinux:base-20261025.0.616225",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "silverpeas:6.4.6",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      },
+      {
+        "original_tag": "bonita:11.1.0",
+        "status": "EXCLUDED_SINGLE_ARCH",
+        "reason": "lacks dual-architecture support (amd64: true, arm64: false)"
+      }
+    ]
+  },
+  "pinned_tags": {
+    "source": "evaluation_dataset_pinned.json",
+    "entries": 108,
+    "completed_images": 100,
+    "tagged": 100,
+    "alpine": 24,
+    "slim": 7,
+    "no_pinned_entry": 0,
+    "no_tag": 0
+  },
+  "flow": {
+    "attempted": 100,
+    "completed": 100,
+    "not_completed": 0,
+    "by_status": {},
+    "reasons_by_status": {},
+    "infrastructure": 0,
+    "infrastructure_share": {
+      "estimate": 0,
+      "lo": 0,
+      "hi": 0.03699349820698568
+    }
+  },
+  "checks": [
+    {
+      "id": "CIS-4.6",
+      "name": "Image HEALTHCHECK",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 0,
+      "fail": 100,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 1,
+        "lo": 0.9630065017930143,
+        "hi": 1
+      }
+    },
+    {
+      "id": "SPEC-01",
+      "name": "Non-Root Execution Identity",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 18,
+      "fail": 82,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.82,
+        "lo": 0.7333264161369926,
+        "hi": 0.8829977450105364
+      }
+    },
+    {
+      "id": "SPEC-03",
+      "name": "Clean Ambient Environment",
+      "tier": 1,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 100,
+      "fail": 0,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.03699349820698568
+      }
+    },
+    {
+      "id": "SPEC-05",
+      "name": "Non-Privileged Declared Image Ports",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 87,
+      "fail": 13,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.13,
+        "lo": 0.07757167427240512,
+        "hi": 0.20980351440076428
+      }
+    },
+    {
+      "id": "SPEC-06",
+      "name": "Dangling Debug Port Exclusion",
+      "tier": 1,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 100,
+      "fail": 0,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.03699349820698568
+      }
+    },
+    {
+      "id": "SPEC-07",
+      "name": "Instruction Hygiene (COPY over ADD)",
+      "tier": 1,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 100,
+      "fail": 0,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.03699349820698568
+      }
+    },
+    {
+      "id": "FS-04",
+      "name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 36,
+      "fail": 64,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.64,
+        "lo": 0.5423540245160874,
+        "hi": 0.7272877959859567
+      }
+    },
+    {
+      "id": "FS-05",
+      "name": "World-Writable File Elimination",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 91,
+      "fail": 9,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.09,
+        "lo": 0.04807254000256516,
+        "hi": 0.1622621285271631
+      }
+    },
+    {
+      "id": "FS-06",
+      "name": "Private Key Material Scan",
+      "tier": 2,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 93,
+      "fail": 5,
+      "unverified": 2,
+      "verified": 98,
+      "fixture_only_images": 2,
+      "unverified_by_reason": {
+        "EVIDENCE_INCOMPLETE": 2
+      },
+      "prevalence": {
+        "estimate": 0.05102040816326531,
+        "lo": 0.021987311404024726,
+        "hi": 0.11392451646034153
+      }
+    },
+    {
+      "id": "FS-07",
+      "name": "Development and Test Harness Leakage",
+      "tier": 2,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 96,
+      "fail": 4,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 3,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.04,
+        "lo": 0.01566330399154762,
+        "hi": 0.0983707143588792
+      }
+    },
+    {
+      "id": "FS-08",
+      "name": "Account Security (Empty Passwords)",
+      "tier": 2,
+      "class": "headline",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 99,
+      "fail": 0,
+      "unverified": 1,
+      "verified": 99,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "EVIDENCE_INCOMPLETE": 1
+      },
+      "prevalence": {
+        "estimate": 0,
+        "lo": 0,
+        "hi": 0.03735321206782739
+      }
+    },
+    {
+      "id": "FS-09",
+      "name": "System Directory Ownership Hygiene",
+      "tier": 2,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 97,
+      "fail": 3,
+      "unverified": 0,
+      "verified": 100,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {},
+      "prevalence": {
+        "estimate": 0.03,
+        "lo": 0.010254524024038925,
+        "hi": 0.0845193642905276
+      }
+    },
+    {
+      "id": "EXEC-01",
+      "name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 32,
+      "fail": 13,
+      "unverified": 55,
+      "verified": 45,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 14,
+        "NOT_OBSERVABLE": 39,
+        "PROBE_TIMEOUT": 2
+      },
+      "prevalence": {
+        "estimate": 0.28888888888888886,
+        "lo": 0.1773008248284927,
+        "hi": 0.43368540574761577
+      }
+    },
+    {
+      "id": "EXEC-02",
+      "name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 19,
+      "fail": 26,
+      "unverified": 55,
+      "verified": 45,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 14,
+        "NOT_OBSERVABLE": 39,
+        "PROBE_TIMEOUT": 2
+      },
+      "prevalence": {
+        "estimate": 0.5777777777777777,
+        "lo": 0.4330078870920313,
+        "hi": 0.710312975327297
+      }
+    },
+    {
+      "id": "EXEC-04",
+      "name": "No-New-Privileges Kernel Contract",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 43,
+      "fail": 2,
+      "unverified": 55,
+      "verified": 45,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 14,
+        "NOT_OBSERVABLE": 39,
+        "PROBE_TIMEOUT": 2
+      },
+      "prevalence": {
+        "estimate": 0.044444444444444446,
+        "lo": 0.012274126706719846,
+        "hi": 0.14827510769435623
+      }
+    },
+    {
+      "id": "EXEC-07",
+      "name": "Resource Constraint Conformance",
+      "tier": 3,
+      "class": "exploratory",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 39,
+      "fail": 6,
+      "unverified": 55,
+      "verified": 45,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "BASELINE_FAILED": 14,
+        "NOT_OBSERVABLE": 39,
+        "PROBE_TIMEOUT": 2
+      },
+      "prevalence": {
+        "estimate": 0.13333333333333333,
+        "lo": 0.06257148747568075,
+        "hi": 0.2617730182617707
+      }
+    },
+    {
+      "id": "SUP-02",
+      "name": "Cryptographic Image Provenance \u0026 Signature",
+      "tier": 4,
+      "class": "excluded",
+      "listed_in_classification": true,
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      },
+      "standard": "ConUnit (custom)",
+      "pass": 0,
+      "fail": 0,
+      "unverified": 100,
+      "verified": 0,
+      "fixture_only_images": 0,
+      "unverified_by_reason": {
+        "NO_TRUST_POLICY": 100
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "nginx",
+      "ref": "index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "memcached",
+      "ref": "index.docker.io/library/memcached@sha256:084fb554292d1447bc2c68b80c2331b98834514f56c866bc21a61be3c2ee376d",
+      "archetype": "database",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 1,
+        "verified": 7
+      },
+      "all": {
+        "fail": 1,
+        "verified": 16
+      }
+    },
+    {
+      "name": "busybox",
+      "ref": "index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072",
+      "archetype": "base-os",
+      "base_family": "other",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "alpine",
+      "ref": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+      "archetype": "base-os",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "postgres",
+      "ref": "index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b",
+      "archetype": "database",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "redis",
+      "ref": "index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3",
+      "archetype": "database",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "ubuntu",
+      "ref": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+      "archetype": "base-os",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "python",
+      "ref": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "node",
+      "ref": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "mysql",
+      "ref": "index.docker.io/library/mysql@sha256:df90258da46f6e7ff8574ff84f17618aba0765cac749928299c69fd4e7cb8ad8",
+      "archetype": "database",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "mongo",
+      "ref": "index.docker.io/library/mongo@sha256:452bdaf2127b8ff851e31410a267809b9829eded219979f2210e7c7efb85a058",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "httpd",
+      "ref": "index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "rabbitmq",
+      "ref": "index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267",
+      "archetype": "messaging",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "docker",
+      "ref": "index.docker.io/library/docker@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb",
+      "archetype": "build-tool",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "traefik",
+      "ref": "index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 16
+      }
+    },
+    {
+      "name": "mariadb",
+      "ref": "index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 16
+      }
+    },
+    {
+      "name": "golang",
+      "ref": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "registry",
+      "ref": "index.docker.io/library/registry@sha256:82f6ff4a7f982960c8aa51617fea3aabc485df6e55cce80d22deb1de36f1bc3c",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "debian",
+      "ref": "index.docker.io/library/debian@sha256:9c6e381421d0f48d1b8133e573f33c185ee16cbf505eda9c4a8a4791b25ea8a6",
+      "archetype": "base-os",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "ruby",
+      "ref": "index.docker.io/library/ruby@sha256:d8cb2c0714bdaba0f318af897a01d2dbde3cfa8e62d47e99cea55feb13c0e90d",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "wordpress",
+      "ref": "index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "php",
+      "ref": "index.docker.io/library/php@sha256:951fb5b1780219b81d5daffa4cebef8e0077c537f3893d9790a5dfcd66ca334d",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "sonarqube",
+      "ref": "index.docker.io/library/sonarqube@sha256:f95aaa9016dd4e92c7d70691167a6d96dbb5d8acffd61eba1cb4335d364a7840",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "haproxy",
+      "ref": "index.docker.io/library/haproxy@sha256:b9fe316f718d5015c5cfebd8ca019591f3e44656f61d93cb8b59a1028961e530",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 1,
+        "verified": 7
+      },
+      "all": {
+        "fail": 1,
+        "verified": 12
+      }
+    },
+    {
+      "name": "influxdb",
+      "ref": "index.docker.io/library/influxdb@sha256:10a1a06faa4b92ba0217506255c421ddf77f5ae8139a8b7741ac770f0f881e01",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "cassandra",
+      "ref": "index.docker.io/library/cassandra@sha256:acd754f07c73f3a166bb477354b56ce9a05690c3e5e2aaacc1aab2afddba6436",
+      "archetype": "database",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "couchdb",
+      "ref": "index.docker.io/library/couchdb@sha256:907eab5b7e55ab7cfd241d39b90b2a335ea40bef82acee5a37388c08bf201dda",
+      "archetype": "database",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "arangodb",
+      "ref": "index.docker.io/library/arangodb@sha256:ae1ce5af4783e008d359daaa963559aa4e32a5bd9ea54e2304f5b3adbc88c4aa",
+      "archetype": "database",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "neo4j",
+      "ref": "index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a",
+      "archetype": "database",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "solr",
+      "ref": "index.docker.io/library/solr@sha256:4eead47c03533079d324fa49e28a73d88b1e4d9568d0d779a0bcd58520117dfe",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "zookeeper",
+      "ref": "index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a",
+      "archetype": "other",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "nats",
+      "ref": "index.docker.io/library/nats@sha256:afae2fdbe2e326c65e1246cb83b9d05d319188734f3bd577ac8072daae78a10f",
+      "archetype": "messaging",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "eclipse-mosquitto",
+      "ref": "index.docker.io/library/eclipse-mosquitto@sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98",
+      "archetype": "messaging",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "telegraf",
+      "ref": "index.docker.io/library/telegraf@sha256:4a62bd294bf2f4c1e3781194fe7b625b7e527244eeb31afd5758227914a16229",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "varnish",
+      "ref": "index.docker.io/library/varnish@sha256:f97e894d90bccc585e5847e766696b7785c98046c29f76007f06d2e2c3228a4e",
+      "archetype": "web-ingress",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "tomcat",
+      "ref": "index.docker.io/library/tomcat@sha256:801c473ea864cab344fcaadf22789a620acaeecd9daa85e706e06a97ebc37b94",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "amazoncorretto",
+      "ref": "index.docker.io/library/amazoncorretto@sha256:019e58087ba4c114c817094f70d3d522bcd13e80ce9edbba6e1c67e5700bad63",
+      "archetype": "language-runtime",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "eclipse-temurin",
+      "ref": "index.docker.io/library/eclipse-temurin@sha256:e1898fd6a11fc965a994d8ace186fd3585aeb636cf8f05f47a723fcfee0b0918",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "gradle",
+      "ref": "index.docker.io/library/gradle@sha256:e46e15353757ef9c9be0197a243653e88d25ebcd4c3c841057cf839c11fcf898",
+      "archetype": "build-tool",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "rust",
+      "ref": "index.docker.io/library/rust@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "swift",
+      "ref": "index.docker.io/library/swift@sha256:53cb05862760a5270ec5cb86b8998d819b5fbe8b72ea35811f1f790a1542b51c",
+      "archetype": "language-runtime",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "dart",
+      "ref": "index.docker.io/library/dart@sha256:854f3c50b1cbd4a5a54c9fa67d4f5b6702ac49b4a26d21a80e7712a72528b215",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 11
+      }
+    },
+    {
+      "name": "erlang",
+      "ref": "index.docker.io/library/erlang@sha256:0ac9b63db11be156be4e2834546e44aa0d7446aaffb05fedd4aea8c5a33ad998",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "elixir",
+      "ref": "index.docker.io/library/elixir@sha256:a2f0fe1bfd8a2f9cc91d913f4a12e6430e27e618720f753a514e2fff3d35f5a7",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "clojure",
+      "ref": "index.docker.io/library/clojure@sha256:aa1b3f8a19462798a9662535d17173f501b3b45910aa7c3642aaddae41b096fa",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "haskell",
+      "ref": "index.docker.io/library/haskell@sha256:10500ef6abd41d210a74add013125065f92352b298999a9dfe296fb73deaccf7",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 7,
+        "verified": 16
+      }
+    },
+    {
+      "name": "julia",
+      "ref": "index.docker.io/library/julia@sha256:0002771531bbae894f2532a5ae02ea71c30685440ca3bdaea0a43d17e65571e0",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "gcc",
+      "ref": "index.docker.io/library/gcc@sha256:b8a42d6804296fbe7a54e17e9d60c3100d9e8dbe7ef88c748cae2ddb00d63ba2",
+      "archetype": "build-tool",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "perl",
+      "ref": "index.docker.io/library/perl@sha256:2b59ca705cf3234d62c33e27ed573809498e476d45c4d0904550d0daced6a215",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "phpmyadmin",
+      "ref": "index.docker.io/library/phpmyadmin@sha256:e4b3eb5305cd42d21512bb55def2bab52625d56df927ad4ee1864a9354c84d40",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "ghost",
+      "ref": "index.docker.io/library/ghost@sha256:4195f6c405e40230cd10c0770425cf500c1f542a96e9f6584c11649c150e5a89",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "drupal",
+      "ref": "index.docker.io/library/drupal@sha256:2869a0abe45b7ce2bc6d7a35fabe447d06393c3ce613964b3a4f1d9660eb0e08",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "joomla",
+      "ref": "index.docker.io/library/joomla@sha256:f534566df4df83d2f6751d3406dc624e5af5b3c8d7f2b2101bf3c2f4e47b31f0",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "mediawiki",
+      "ref": "index.docker.io/library/mediawiki@sha256:406a08c7f2cf5a9c9cb590bbe27a21b4d3cb3268b0acf327fa7dd2727ff6b0be",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "nextcloud",
+      "ref": "index.docker.io/library/nextcloud@sha256:81cb09055a20142521a267cea2bc27e6a81a065871c70850d209f08803567dbc",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "redmine",
+      "ref": "index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "yourls",
+      "ref": "index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "xwiki",
+      "ref": "index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 16
+      }
+    },
+    {
+      "name": "odoo",
+      "ref": "index.docker.io/library/odoo@sha256:d5e3a26baa044867c826dddc09058f10e2582706bf83c146ea04fea889720c76",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "rethinkdb",
+      "ref": "index.docker.io/library/rethinkdb@sha256:81ab2da93f66126dbd20580c1720e723111cc9a698ddb1a930ec3bd6cc47f8a8",
+      "archetype": "database",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "flink",
+      "ref": "index.docker.io/library/flink@sha256:ffb97a54a2b59960360d3b362e64f86ed5cab82621025eeed1399074b42a7b17",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "fluentd",
+      "ref": "index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d",
+      "archetype": "application",
+      "base_family": "debian",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "logstash",
+      "ref": "index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30",
+      "archetype": "application",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "elasticsearch",
+      "ref": "index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89",
+      "archetype": "database",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 1,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "kong",
+      "ref": "index.docker.io/library/kong@sha256:ad6cc0c8cca5b66b3cdab3bde7bc7ca973d4d820dd2c6651a7e3042f5428a76a",
+      "archetype": "web-ingress",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "open-liberty",
+      "ref": "index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 16
+      }
+    },
+    {
+      "name": "ibm-semeru-runtimes",
+      "ref": "index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7",
+      "archetype": "language-runtime",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "sapmachine",
+      "ref": "index.docker.io/library/sapmachine@sha256:8c3afc896691208abee94e8db71cb972ed34a5c5b417610102261055b95d38a5",
+      "archetype": "language-runtime",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "oraclelinux",
+      "ref": "index.docker.io/library/oraclelinux@sha256:9225108d00fb6611ebc4a5eced166f27d9dcfeaa539fb127be79425f0da5e745",
+      "archetype": "base-os",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 11
+      }
+    },
+    {
+      "name": "fedora",
+      "ref": "index.docker.io/library/fedora@sha256:15da97ed9aa94dd3d92c3925eb89520f6c80e07ea7ee24cba848d1f8b6912b3e",
+      "archetype": "base-os",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "amazonlinux",
+      "ref": "index.docker.io/library/amazonlinux@sha256:c04a1012acc483977f61f7f91c28624a39a621e56a59781319a75dec528be9b6",
+      "archetype": "base-os",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "bash",
+      "ref": "index.docker.io/library/bash@sha256:589adbc588d8ef3c1ec3c68333faf4baf5dccb65d3cb50f6cf3d78cad2d6e1b0",
+      "archetype": "other",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "pypy",
+      "ref": "index.docker.io/library/pypy@sha256:410aad485440d238a596fd5f847a99d3f7c11be895ce25c02b336f5c5d1733bb",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "composer",
+      "ref": "index.docker.io/library/composer@sha256:8de2184c6de224f4689e8f80ed5f5edaf0030b6b8b7839a22a2bcb6722ac87d0",
+      "archetype": "build-tool",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "ros",
+      "ref": "index.docker.io/library/ros@sha256:00b8d47a6e6384a2834e3d01fa87ae767876543baa574f2d64a75c04ea33c698",
+      "archetype": "other",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "storm",
+      "ref": "index.docker.io/library/storm@sha256:3f8c17e6ce43ac9ca6106458eb060ecf3096ba22422c4a04687b98e89cb68244",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "spiped",
+      "ref": "index.docker.io/library/spiped@sha256:7acba2c58083cf5246e055818bd95932bb6a26851e0123543a3c4b9681a07061",
+      "archetype": "other",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "irssi",
+      "ref": "index.docker.io/library/irssi@sha256:62fbc3514f8ef0bf587137800856ee4dffbfaddf6ca8402501698a6491e3205d",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 1,
+        "verified": 7
+      },
+      "all": {
+        "fail": 1,
+        "verified": 12
+      }
+    },
+    {
+      "name": "rakudo-star",
+      "ref": "index.docker.io/library/rakudo-star@sha256:0bc7542202ea3d9362ce15d90a601928f02b7657630fd131ad9d9847687b65b5",
+      "archetype": "language-runtime",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "mageia",
+      "ref": "index.docker.io/library/mageia@sha256:d7e96eb4e2f3ac6b7bdf0caecf673836323ae409b304f195a98d22ab126217d9",
+      "archetype": "base-os",
+      "base_family": "other",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 12
+      }
+    },
+    {
+      "name": "caddy",
+      "ref": "index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "adminer",
+      "ref": "index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 1,
+        "verified": 7
+      },
+      "all": {
+        "fail": 1,
+        "verified": 16
+      }
+    },
+    {
+      "name": "orientdb",
+      "ref": "index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "swipl",
+      "ref": "index.docker.io/library/swipl@sha256:2723fefd35116f92f68da22a487b1b01b584ac0b4b81fcd971c7ab2222f5d3e7",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "websphere-liberty",
+      "ref": "index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 4,
+        "verified": 16
+      }
+    },
+    {
+      "name": "lightstreamer",
+      "ref": "index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9",
+      "archetype": "messaging",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 16
+      }
+    },
+    {
+      "name": "convertigo",
+      "ref": "index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0",
+      "archetype": "application",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 5,
+        "verified": 16
+      }
+    },
+    {
+      "name": "buildpack-deps",
+      "ref": "index.docker.io/library/buildpack-deps@sha256:890e8b5c0040e1deff5cc7dc7b4414e67069f79e3301afc4ec5bd49d64ef13e5",
+      "archetype": "build-tool",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "clickhouse",
+      "ref": "index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b",
+      "archetype": "database",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "almalinux",
+      "ref": "index.docker.io/library/almalinux@sha256:838c2fafefb1a8a0d7f8cdbc3b0551c2a2b1eb0cd87aad6d62aecadb18311f1b",
+      "archetype": "base-os",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "neurodebian",
+      "ref": "index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b",
+      "archetype": "base-os",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "hitch",
+      "ref": "index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97",
+      "archetype": "web-ingress",
+      "base_family": "debian",
+      "headline": {
+        "fail": 4,
+        "verified": 7
+      },
+      "all": {
+        "fail": 6,
+        "verified": 16
+      }
+    },
+    {
+      "name": "eggdrop",
+      "ref": "index.docker.io/library/eggdrop@sha256:2028d25c44a8fa7dbbfee1e1c9db809c5ba23eaa6516fbe84eb86c44886e1e04",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "znc",
+      "ref": "index.docker.io/library/znc@sha256:472ffdd9e52f45e0fde51db668c513d594a17679ff4ef59973aee1f60d2450e7",
+      "archetype": "application",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "rockylinux",
+      "ref": "index.docker.io/library/rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6",
+      "archetype": "base-os",
+      "base_family": "fedora-rhel",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "photon",
+      "ref": "index.docker.io/library/photon@sha256:3d7e9a35fd55277a056d9e1c54841e6b862a8df7e0caa56fa9c0453969f5329d",
+      "archetype": "base-os",
+      "base_family": "other",
+      "headline": {
+        "fail": 3,
+        "verified": 6
+      },
+      "all": {
+        "fail": 3,
+        "verified": 11
+      }
+    },
+    {
+      "name": "krakend",
+      "ref": "index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef",
+      "archetype": "web-ingress",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 16
+      }
+    },
+    {
+      "name": "groovy",
+      "ref": "index.docker.io/library/groovy@sha256:fa81cdb39e5418c234ee7c85c251274be021bec9fb439e374af4f0663b106a53",
+      "archetype": "language-runtime",
+      "base_family": "ubuntu",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    },
+    {
+      "name": "haxe",
+      "ref": "index.docker.io/library/haxe@sha256:64b8dbc020d84ad1e519f80c382619fb6dadeb2e2b01220c83c409a8648fa010",
+      "archetype": "language-runtime",
+      "base_family": "debian",
+      "headline": {
+        "fail": 3,
+        "verified": 7
+      },
+      "all": {
+        "fail": 3,
+        "verified": 12
+      }
+    },
+    {
+      "name": "maven",
+      "ref": "index.docker.io/library/maven@sha256:308cba8b638ed7e4658cea3f8399066219466211c805f6d5728c3c9c7614661b",
+      "archetype": "build-tool",
+      "base_family": "alpine",
+      "headline": {
+        "fail": 2,
+        "verified": 7
+      },
+      "all": {
+        "fail": 2,
+        "verified": 12
+      }
+    }
+  ],
+  "distribution": {
+    "all": {
+      "confirmed_failures": {
+        "n": 100,
+        "min": 1,
+        "q1": 2,
+        "median": 3,
+        "q3": 4,
+        "max": 7,
+        "mean": 3.27,
+        "sd": 1.3397949488822927,
+        "sd_defined": true
+      },
+      "verified_checks": {
+        "n": 100,
+        "min": 11,
+        "q1": 12,
+        "median": 12,
+        "q3": 16,
+        "max": 16,
+        "mean": 13.77,
+        "sd": 2.034326632693199,
+        "sd_defined": true
+      },
+      "images_without_confirmed_failure": 0,
+      "images_without_verified_check": 0
+    },
+    "headline": {
+      "confirmed_failures": {
+        "n": 100,
+        "min": 1,
+        "q1": 2,
+        "median": 3,
+        "q3": 3,
+        "max": 4,
+        "mean": 2.68,
+        "sd": 0.7898344027949051,
+        "sd_defined": true
+      },
+      "verified_checks": {
+        "n": 100,
+        "min": 6,
+        "q1": 7,
+        "median": 7,
+        "q3": 7,
+        "max": 7,
+        "mean": 6.99,
+        "sd": 0.1,
+        "sd_defined": true
+      },
+      "images_without_confirmed_failure": 0,
+      "images_without_verified_check": 0
+    }
+  },
+  "strata": [
+    {
+      "kind": "archetype",
+      "name": "base-os",
+      "images": 12,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 12,
+          "verified": 12
+        },
+        "FS-04": {
+          "fail": 9,
+          "verified": 12
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 12
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 11
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 12
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 11
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 12
+        },
+        "SPEC-01": {
+          "fail": 12,
+          "verified": 12
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 12
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 12
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 12
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 12
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "language-runtime",
+      "images": 23,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 23,
+          "verified": 23
+        },
+        "EXEC-01": {
+          "fail": 1,
+          "verified": 2
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 2
+        },
+        "EXEC-04": {
+          "fail": 1,
+          "verified": 2
+        },
+        "EXEC-07": {
+          "fail": 1,
+          "verified": 2
+        },
+        "FS-04": {
+          "fail": 14,
+          "verified": 23
+        },
+        "FS-05": {
+          "fail": 2,
+          "verified": 23
+        },
+        "FS-06": {
+          "fail": 2,
+          "verified": 22
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 23
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 23
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 23
+        },
+        "SPEC-01": {
+          "fail": 22,
+          "verified": 23
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 23
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 23
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 23
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 23
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "database",
+      "images": 16,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 16,
+          "verified": 16
+        },
+        "EXEC-01": {
+          "fail": 3,
+          "verified": 13
+        },
+        "EXEC-02": {
+          "fail": 7,
+          "verified": 13
+        },
+        "EXEC-04": {
+          "fail": 1,
+          "verified": 13
+        },
+        "EXEC-07": {
+          "fail": 2,
+          "verified": 13
+        },
+        "FS-04": {
+          "fail": 11,
+          "verified": 16
+        },
+        "FS-05": {
+          "fail": 3,
+          "verified": 16
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 16
+        },
+        "FS-07": {
+          "fail": 1,
+          "verified": 16
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 16
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 16
+        },
+        "SPEC-01": {
+          "fail": 12,
+          "verified": 16
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 16
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 16
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 16
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 16
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "web-ingress",
+      "images": 9,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 9,
+          "verified": 9
+        },
+        "EXEC-01": {
+          "fail": 2,
+          "verified": 6
+        },
+        "EXEC-02": {
+          "fail": 6,
+          "verified": 6
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 6
+        },
+        "EXEC-07": {
+          "fail": 0,
+          "verified": 6
+        },
+        "FS-04": {
+          "fail": 4,
+          "verified": 9
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 9
+        },
+        "FS-06": {
+          "fail": 2,
+          "verified": 9
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 9
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 9
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 9
+        },
+        "SPEC-01": {
+          "fail": 6,
+          "verified": 9
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-05": {
+          "fail": 6,
+          "verified": 9
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 9
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "messaging",
+      "images": 4,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 4,
+          "verified": 4
+        },
+        "EXEC-01": {
+          "fail": 0,
+          "verified": 4
+        },
+        "EXEC-02": {
+          "fail": 2,
+          "verified": 4
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 4
+        },
+        "EXEC-07": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-04": {
+          "fail": 1,
+          "verified": 4
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-01": {
+          "fail": 3,
+          "verified": 4
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 4
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "application",
+      "images": 26,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 26,
+          "verified": 26
+        },
+        "EXEC-01": {
+          "fail": 6,
+          "verified": 18
+        },
+        "EXEC-02": {
+          "fail": 8,
+          "verified": 18
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 18
+        },
+        "EXEC-07": {
+          "fail": 2,
+          "verified": 18
+        },
+        "FS-04": {
+          "fail": 20,
+          "verified": 26
+        },
+        "FS-05": {
+          "fail": 4,
+          "verified": 26
+        },
+        "FS-06": {
+          "fail": 1,
+          "verified": 26
+        },
+        "FS-07": {
+          "fail": 3,
+          "verified": 26
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 26
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-01": {
+          "fail": 17,
+          "verified": 26
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-05": {
+          "fail": 7,
+          "verified": 26
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 26
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "build-tool",
+      "images": 6,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 6,
+          "verified": 6
+        },
+        "EXEC-01": {
+          "fail": 0,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "EXEC-07": {
+          "fail": 1,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 3,
+          "verified": 6
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 6
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 6
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 6
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 6
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 6
+        },
+        "SPEC-01": {
+          "fail": 6,
+          "verified": 6
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 6
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 6
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 6
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 6
+        }
+      }
+    },
+    {
+      "kind": "archetype",
+      "name": "other",
+      "images": 4,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 4,
+          "verified": 4
+        },
+        "EXEC-01": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 1
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 1
+        },
+        "EXEC-07": {
+          "fail": 0,
+          "verified": 1
+        },
+        "FS-04": {
+          "fail": 2,
+          "verified": 4
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 4
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-01": {
+          "fail": 4,
+          "verified": 4
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 4
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 4
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "alpine",
+      "images": 35,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 35,
+          "verified": 35
+        },
+        "EXEC-01": {
+          "fail": 3,
+          "verified": 16
+        },
+        "EXEC-02": {
+          "fail": 9,
+          "verified": 16
+        },
+        "EXEC-04": {
+          "fail": 1,
+          "verified": 16
+        },
+        "EXEC-07": {
+          "fail": 0,
+          "verified": 16
+        },
+        "FS-04": {
+          "fail": 3,
+          "verified": 35
+        },
+        "FS-05": {
+          "fail": 1,
+          "verified": 35
+        },
+        "FS-06": {
+          "fail": 2,
+          "verified": 35
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 35
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 35
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 35
+        },
+        "SPEC-01": {
+          "fail": 31,
+          "verified": 35
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 35
+        },
+        "SPEC-05": {
+          "fail": 4,
+          "verified": 35
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 35
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 35
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "debian",
+      "images": 27,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 27,
+          "verified": 27
+        },
+        "EXEC-01": {
+          "fail": 4,
+          "verified": 11
+        },
+        "EXEC-02": {
+          "fail": 9,
+          "verified": 11
+        },
+        "EXEC-04": {
+          "fail": 1,
+          "verified": 11
+        },
+        "EXEC-07": {
+          "fail": 1,
+          "verified": 11
+        },
+        "FS-04": {
+          "fail": 27,
+          "verified": 27
+        },
+        "FS-05": {
+          "fail": 3,
+          "verified": 27
+        },
+        "FS-06": {
+          "fail": 2,
+          "verified": 26
+        },
+        "FS-07": {
+          "fail": 3,
+          "verified": 27
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 27
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 27
+        },
+        "SPEC-01": {
+          "fail": 25,
+          "verified": 27
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 27
+        },
+        "SPEC-05": {
+          "fail": 9,
+          "verified": 27
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 27
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 27
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "ubuntu",
+      "images": 26,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 26,
+          "verified": 26
+        },
+        "EXEC-01": {
+          "fail": 5,
+          "verified": 15
+        },
+        "EXEC-02": {
+          "fail": 7,
+          "verified": 15
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 15
+        },
+        "EXEC-07": {
+          "fail": 4,
+          "verified": 15
+        },
+        "FS-04": {
+          "fail": 26,
+          "verified": 26
+        },
+        "FS-05": {
+          "fail": 5,
+          "verified": 26
+        },
+        "FS-06": {
+          "fail": 1,
+          "verified": 26
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 26
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 26
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 26
+        },
+        "SPEC-01": {
+          "fail": 16,
+          "verified": 26
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 26
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 26
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "fedora-rhel",
+      "images": 9,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 9,
+          "verified": 9
+        },
+        "EXEC-01": {
+          "fail": 1,
+          "verified": 3
+        },
+        "EXEC-02": {
+          "fail": 1,
+          "verified": 3
+        },
+        "EXEC-04": {
+          "fail": 0,
+          "verified": 3
+        },
+        "EXEC-07": {
+          "fail": 1,
+          "verified": 3
+        },
+        "FS-04": {
+          "fail": 6,
+          "verified": 9
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 9
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 8
+        },
+        "FS-07": {
+          "fail": 1,
+          "verified": 9
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 9
+        },
+        "FS-09": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-01": {
+          "fail": 7,
+          "verified": 9
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 9
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 9
+        }
+      }
+    },
+    {
+      "kind": "base_family",
+      "name": "other",
+      "images": 3,
+      "per_check": {
+        "CIS-4.6": {
+          "fail": 3,
+          "verified": 3
+        },
+        "FS-04": {
+          "fail": 2,
+          "verified": 3
+        },
+        "FS-05": {
+          "fail": 0,
+          "verified": 3
+        },
+        "FS-06": {
+          "fail": 0,
+          "verified": 3
+        },
+        "FS-07": {
+          "fail": 0,
+          "verified": 3
+        },
+        "FS-08": {
+          "fail": 0,
+          "verified": 2
+        },
+        "FS-09": {
+          "fail": 1,
+          "verified": 3
+        },
+        "SPEC-01": {
+          "fail": 3,
+          "verified": 3
+        },
+        "SPEC-03": {
+          "fail": 0,
+          "verified": 3
+        },
+        "SPEC-05": {
+          "fail": 0,
+          "verified": 3
+        },
+        "SPEC-06": {
+          "fail": 0,
+          "verified": 3
+        },
+        "SPEC-07": {
+          "fail": 0,
+          "verified": 3
+        }
+      }
+    }
+  ],
+  "warnings": null
+}

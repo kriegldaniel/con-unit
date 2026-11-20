@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/shell-form-entrypoint-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-defect
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-non-unique-uid-clean.tar localhost/conunit-rq1/non-unique-uid-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:f487d0da9ce0cd3b17ddb89deff39644274b08f2ff71e321a9e0e476ec2d46fe
+Copying blob sha256:cc30ba9ee7403cb65747c5fd81491f213a6343be416bd1de11225093551ce238
+Copying config sha256:c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede
+Writing manifest to image destination

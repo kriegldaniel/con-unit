@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-package-cache-defect.tar localhost/conunit-rq1/package-cache-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:8620667099bbc1d9437ea11aa9d921cf53ea2e0a31eeac5ed9fade13794fbbab
+Copying config sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144
+Writing manifest to image destination

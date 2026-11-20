@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-nonroot-privileged-port-clean.tar localhost/conunit-rq1/nonroot-privileged-port-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6
+Writing manifest to image destination

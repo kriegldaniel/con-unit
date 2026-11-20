@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5",
+  "config_digest_study": "sha256:3067cc4e02c091399edbd5d65f85a3ff4d511574aecadb47f280c3761e68852e",
+  "config_digest_archive": "sha256:3067cc4e02c091399edbd5d65f85a3ff4d511574aecadb47f280c3761e68852e",
+  "status": "OK",
+  "export_seconds": 0.587320396,
+  "dockle_seconds": 0.076751386,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 2,\n    \"skip\": 0,\n    \"pass\": 13\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    }\n  ]\n}"
+}

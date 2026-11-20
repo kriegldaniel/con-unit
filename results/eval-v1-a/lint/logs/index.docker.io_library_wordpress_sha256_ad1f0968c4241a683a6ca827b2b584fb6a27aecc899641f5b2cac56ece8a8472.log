@@ -1,0 +1,105 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472
+TIMESTAMP: 2026-11-16T00:21:29Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: Image Static Lint Pack
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472
+CONFIG DIGEST: sha256:c6f673294a9aa8852f802d38a412575bcf5e04c2cd234e47877f8047ea5ff8ff
+TOTAL DURATION: 11.026690379s
+PHASE BREAKDOWN: Pull=25.512165ms, Inspect=28.329488ms, Resolve=10.705781004s, Stream=242.528608ms, Tier1=929.84µs, Tier2=18.668936ms, Tier3=0s (window 3s), Tier4=0s
+RESOURCES (ConUnit process only): Layers=23, IndexedEntries=20287, CompressedBytes=0, UncompressedBytes=808595771, LiveHeapMB=2.8, SelfCPU=0.30s, ChildCPU=4.11s
+SUMMARY: 13 passed, 3 failed, 0 unverified (total 16)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [FAIL] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    283ns
+    Message:     Image runs as root user (configured user: '')
+    Explanation: Running as root increases blast radius of container breakouts (e.g. CVE-2019-5736) to host-level root compromise.
+    Remediation: Add 'USER 10001:10001' to your Dockerfile or container build specification
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    63ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.417µs
+    Message:     Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    2.585µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    144.497µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    610ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    71ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-01 (Package Manager Cache Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    817.691µs
+    Message:     All hygiene path checks passed
+
+[9] [PASS] SPEC-09 (Update Instruction Combined With Install)
+    Tier:        Tier 1: Specification
+    Duration:    296.774µs
+    Message:     No recorded RUN step refreshes the apt package index without a later install or upgrade in the same step; the history can be incomplete and does not prove every Dockerfile instruction
+
+[10] [PASS] SPEC-10 (No Sudo in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    244.827µs
+    Message:     No recorded RUN step runs sudo as a command; the history can be incomplete and does not prove every Dockerfile instruction
+
+[11] [PASS] SPEC-11 (No Distribution Upgrade in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    229.422µs
+    Message:     No recorded RUN step runs a distribution upgrade with apt-get or apt; the history can be incomplete and does not prove every Dockerfile instruction
+
+[12] [PASS] SPEC-12 (No Sensitive Host Paths as Volumes)
+    Tier:        Tier 1: Specification
+    Duration:    1.128µs
+    Message:     None of the 1 declared volume(s) is at or below /dev, /proc or /sys; mounts given at run time were not inspected
+
+[13] [PASS] SPEC-13 (Explicit Non-Latest Image Reference)
+    Tier:        Tier 1: Specification
+    Duration:    10.261µs
+    Message:     The requested reference "index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472" carries a digest, which names fixed content
+
+[14] [PASS] FS-10 (Unique Account and Group IDs)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    17.618µs
+    Message:     No two different names share an ID in the 18 account(s) of /etc/passwd and the 38 group(s) of /etc/group
+
+[15] [PASS] FS-11 (No Development, Editor, Cache or Cloud Leftovers)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    13.340516ms
+    Message:     No development, editor, cache or cloud directory and no stray development file was found outside node_modules and vendor trees
+
+[16] [PASS] FS-12 (No Credential-Named Files)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    4.490013ms
+    Message:     No file with a credential-like name or extension was found outside fixture-like locations; file contents were not read
+

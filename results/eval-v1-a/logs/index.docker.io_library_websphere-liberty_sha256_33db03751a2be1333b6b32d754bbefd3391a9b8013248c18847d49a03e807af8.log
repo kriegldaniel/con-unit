@@ -1,0 +1,114 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8
+TIMESTAMP: 2026-11-15T23:50:24Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: ConUnit Container Hardening Profile (CIS-informed)
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8
+CONFIG DIGEST: sha256:feaf8775641d6c44b60f9e377f5cf325b598f925c98ef4bf4a502f67e49cd4cb
+TOTAL DURATION: 41.85634598s
+PHASE BREAKDOWN: Pull=16.616136925s, Inspect=26.675146ms, Resolve=5.312140501s, Stream=273.107321ms, Tier1=150.479µs, Tier2=10.517616ms, Tier3=19.614091096s (window 3s), Tier4=202ns
+RESOURCES (ConUnit process only): Layers=15, IndexedEntries=24144, CompressedBytes=0, UncompressedBytes=833909158, LiveHeapMB=5.0, SelfCPU=0.43s, ChildCPU=19.79s
+SUMMARY: 12 passed, 4 failed, 1 unverified (total 17)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [PASS] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    597ns
+    Message:     Image config selects numeric non-root UID 1001
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    144ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.263µs
+    Message:     Found 12 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/pam_extrausers_chkpwd /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    4.382µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    141.422µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    637ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    72ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [FAIL] FS-05 (World-Writable File Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    770ns
+    Message:     Found 3 world-writable regular files (privilege tampering risk): [/opt/java/.scc/C290M17F1A64P_openj9_system_scc_G45L00 /tmp/.com_ibm_tools_attach/_controller /tmp/.com_ibm_tools_attach/_notifier]
+    Explanation: World-writable files can be modified by any unprivileged user or shared volume process, allowing binary tampering.
+    Remediation: Remove world-writable bits during image build: chmod -R o-w /app
+
+[9] [PASS] FS-09 (System Directory Ownership Hygiene)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    114ns
+    Message:     All system binaries in /bin and /usr/bin are owned by root (UID 0)
+
+[10] [PASS] FS-07 (Development and Test Harness Leakage)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    10.51376ms
+    Message:     No test runner configuration was found outside fixture-like locations
+
+[11] [UNVERIFIED] SUP-02 (Cryptographic Image Provenance & Signature)
+    Tier:        Tier 4: Supply Chain
+    Duration:    202ns
+    Reason:      NO_TRUST_POLICY
+    Message:     Signature status is unverified: provide a cryptographic verifier and an explicit trust policy
+    Remediation: Configure a signature verifier with a trusted key or keyless identity and issuer
+
+[12] [PASS] EXEC-02 (Dropped Linux Capabilities Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    12.883708778s
+    Message:     The container was still running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL), as in the baseline
+
+[13] [PASS] SPEC-05 (Non-Privileged Declared Image Ports)
+    Tier:        Tier 1: Specification
+    Duration:    3.311µs
+    Message:     No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected
+
+[14] [PASS] SPEC-06 (Dangling Debug Port Exclusion)
+    Tier:        Tier 1: Specification
+    Duration:    623ns
+    Message:     No dangerous debug or administration ports exposed
+
+[15] [PASS] EXEC-07 (Resource Constraint Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.17260487s
+    Message:     The container was still running at the end of the 3s window with a memory limit of 256m, as in the baseline
+
+[16] [FAIL] EXEC-01 (Read-Only Root Filesystem Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    391.18458ms
+    Message:     The container was not running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp) (exited_nonzero, exit code 24) although the baseline run was running
+    Explanation: FAIL records that the container was not running at the end of the observation window although the baseline run (same defensive flags and mock environment, without the treatment) was. It describes behavior under this profile only; it is not a defect claim and not a root cause.
+    Remediation: Ensure the application writes solely to ephemeral mounted tmpfs volumes (for example /tmp)
+
+[17] [PASS] EXEC-04 (No-New-Privileges Kernel Contract)
+    Tier:        Tier 3: Execution Contract
+    Duration:    3.166592868s
+    Message:     The container was still running at the end of the 3s window with no-new-privileges enabled, as in the baseline
+

@@ -1,0 +1,54 @@
+{
+  "case": "root-user-implicit",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/root-user-implicit:rq1",
+    "image_id": "24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60.json",
+    "config_digest": "sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+    "image_id": "sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+    "matches_image_id": true,
+    "size_bytes": 8734208
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/root-user-implicit:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/root-user-implicit/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/root-user-implicit:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/root-user.yaml --output json",
+      "output": "cst.txt"
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-root-user-implicit.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-root-user-implicit.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

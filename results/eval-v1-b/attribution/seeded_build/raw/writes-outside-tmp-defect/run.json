@@ -1,0 +1,36 @@
+{
+  "case": "writes-outside-tmp-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/writes-outside-tmp-defect:rq1",
+    "image_id": "a4e483b1ada55ebc757767cc03fd8c3c990530a1f0f7d72c28f248319880014c"
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/writes-outside-tmp-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/writes-outside-tmp-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "hadolint": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "trivy": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    }
+  }
+}

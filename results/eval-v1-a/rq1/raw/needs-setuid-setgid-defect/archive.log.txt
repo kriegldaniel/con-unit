@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-needs-setuid-setgid-defect.tar localhost/conunit-rq1/needs-setuid-setgid-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89
+Writing manifest to image destination

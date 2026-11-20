@@ -1,0 +1,107 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d
+TIMESTAMP: 2026-11-16T00:31:31Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: Image Static Lint Pack
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d
+CONFIG DIGEST: sha256:269f08d8785716a7841ac1add17c3f6ff7bb4487394ca0ef04f040bb865da98a
+TOTAL DURATION: 2.965696675s
+PHASE BREAKDOWN: Pull=25.858799ms, Inspect=26.859624ms, Resolve=2.823684814s, Stream=77.361439ms, Tier1=510.733µs, Tier2=10.211174ms, Tier3=0s (window 3s), Tier4=0s
+RESOURCES (ConUnit process only): Layers=9, IndexedEntries=9564, CompressedBytes=0, UncompressedBytes=176336615, LiveHeapMB=2.2, SelfCPU=0.11s, ChildCPU=1.19s
+SUMMARY: 12 passed, 4 failed, 0 unverified (total 16)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [PASS] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    1.37µs
+    Message:     Configured user "fluent" resolves to non-root UID 999
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    59ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.52µs
+    Message:     Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    1.143µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    91.812µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    545ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    45ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [FAIL] FS-01 (Package Manager Cache Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    299.934µs
+    Message:     Prohibited build caches or sensitive paths hold content in the image: [/root/.cache]
+    Explanation: Package manager caches needlessly bloat image storage footprint and expand vulnerability attack surfaces.
+    Remediation: Purge package caches (e.g. rm -rf /var/cache/apt/* /var/lib/apt/lists/*) in multi-stage builds
+
+[9] [PASS] SPEC-09 (Update Instruction Combined With Install)
+    Tier:        Tier 1: Specification
+    Duration:    153.658µs
+    Message:     No recorded RUN step refreshes the apt package index without a later install or upgrade in the same step; the history can be incomplete and does not prove every Dockerfile instruction
+
+[10] [PASS] SPEC-10 (No Sudo in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    130.206µs
+    Message:     No recorded RUN step runs sudo as a command; the history can be incomplete and does not prove every Dockerfile instruction
+
+[11] [PASS] SPEC-11 (No Distribution Upgrade in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    122.861µs
+    Message:     No recorded RUN step runs a distribution upgrade with apt-get or apt; the history can be incomplete and does not prove every Dockerfile instruction
+
+[12] [PASS] SPEC-12 (No Sensitive Host Paths as Volumes)
+    Tier:        Tier 1: Specification
+    Duration:    335ns
+    Message:     None of the 0 declared volume(s) is at or below /dev, /proc or /sys; mounts given at run time were not inspected
+
+[13] [PASS] SPEC-13 (Explicit Non-Latest Image Reference)
+    Tier:        Tier 1: Specification
+    Duration:    9.289µs
+    Message:     The requested reference "index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d" carries a digest, which names fixed content
+
+[14] [PASS] FS-10 (Unique Account and Group IDs)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    18.419µs
+    Message:     No two different names share an ID in the 19 account(s) of /etc/passwd and the 39 group(s) of /etc/group
+
+[15] [FAIL] FS-11 (No Development, Editor, Cache or Cloud Leftovers)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    7.03301ms
+    Message:     1 development, editor, cache or cloud leftover(s) found: [/root/.cache]
+    Explanation: Directories such as .git, .cache or .aws and files such as Dockerfile in a production image add size, can leak history or credentials, and show how the image was built. The check matches names only.
+    Remediation: Exclude these paths from the build context with .dockerignore, or delete them in the layer that created them
+
+[16] [PASS] FS-12 (No Credential-Named Files)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.856701ms
+    Message:     No file with a credential-like name or extension was found outside fixture-like locations; file contents were not read
+

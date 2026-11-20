@@ -1,0 +1,342 @@
+{
+  "image_name": "localhost/conunit-rq1/non-unique-uid-defect:rq1",
+  "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+  "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+  "platform": "linux/amd64",
+  "suite_name": "Image Static Lint Pack",
+  "requested_ref": "localhost/conunit-rq1/non-unique-uid-defect:rq1",
+  "image_source": "local-store",
+  "timestamp": "2026-11-16T00:19:02.136841402Z",
+  "duration": 597177604,
+  "total": 16,
+  "passed": 14,
+  "failed": 2,
+  "unverified": 0,
+  "phases": {
+    "pull_duration": 22705751,
+    "inspect_duration": 25091826,
+    "resolve_duration": 503913183,
+    "stream_duration": 40226223,
+    "tier1_duration": 118785,
+    "tier2_duration": 4596371,
+    "tier3_duration": 0,
+    "tier4_duration": 0,
+    "probe_window": 3000000000
+  },
+  "resources": {
+    "alloc_mb": 2.294647216796875,
+    "total_alloc_mb": 6.697296142578125,
+    "sys_mb": 17.86548614501953,
+    "peak_rss_mb": 14.96875,
+    "num_gc": 3,
+    "layer_count": 2,
+    "uncompressed_bytes": 120151479,
+    "live_heap_mb": 1.0386810302734375,
+    "self_cpu_seconds": 0.05359599999999999,
+    "child_cpu_seconds": 0.731586,
+    "indexed_entries": 5454
+  },
+  "results": [
+    {
+      "test_id": "SPEC-01",
+      "test_name": "Non-Root Execution Identity",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 595,
+      "message": "Image config selects numeric non-root UID 10001",
+      "rule_type": "SPEC-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "CIS-4.6",
+      "test_name": "Image HEALTHCHECK",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 289,
+      "message": "Image metadata defines a HEALTHCHECK",
+      "rule_type": "CIS-4.6",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-04",
+      "test_name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "outcome": "FAIL",
+      "passed": false,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 2236,
+      "message": "Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/newgrp /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/unix_chkpwd]",
+      "rule_type": "FS-04",
+      "explanation": "SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.",
+      "remediation": "Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +",
+      "reference": "https://www.cisecurity.org/benchmark/docker (related topic of the CIS Docker Benchmark, no control number stated)",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SPEC-07",
+      "test_name": "Instruction Hygiene (COPY over ADD)",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 731,
+      "message": "No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions",
+      "rule_type": "SPEC-07",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-03",
+      "test_name": "Clean Ambient Environment",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 85271,
+      "message": "No prohibited or secret environment variables detected",
+      "rule_type": "SPEC-03",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-06",
+      "test_name": "Private Key Material Scan",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 599,
+      "message": "No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope",
+      "rule_type": "FS-06",
+      "evidence": {},
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-08",
+      "test_name": "Account Security (Empty Passwords)",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 80,
+      "message": "No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records",
+      "rule_type": "FS-08",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-01",
+      "test_name": "Package Manager Cache Elimination",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 166054,
+      "message": "All hygiene path checks passed",
+      "rule_type": "FS-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SPEC-09",
+      "test_name": "Update Instruction Combined With Install",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 13651,
+      "message": "No recorded RUN step refreshes the apt package index without a later install or upgrade in the same step; the history can be incomplete and does not prove every Dockerfile instruction",
+      "rule_type": "SPEC-09",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-10",
+      "test_name": "No Sudo in the Build History",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 6237,
+      "message": "No recorded RUN step runs sudo as a command; the history can be incomplete and does not prove every Dockerfile instruction",
+      "rule_type": "SPEC-10",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-11",
+      "test_name": "No Distribution Upgrade in the Build History",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 5383,
+      "message": "No recorded RUN step runs a distribution upgrade with apt-get or apt; the history can be incomplete and does not prove every Dockerfile instruction",
+      "rule_type": "SPEC-11",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-12",
+      "test_name": "No Sensitive Host Paths as Volumes",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 278,
+      "message": "None of the 0 declared volume(s) is at or below /dev, /proc or /sys; mounts given at run time were not inspected",
+      "rule_type": "SPEC-12",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-13",
+      "test_name": "Explicit Non-Latest Image Reference",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 6350,
+      "message": "The requested reference \"localhost/conunit-rq1/non-unique-uid-defect:rq1\" carries an explicit tag, which can still be moved",
+      "rule_type": "SPEC-13",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-10",
+      "test_name": "Unique Account and Group IDs",
+      "tier": 2,
+      "outcome": "FAIL",
+      "passed": false,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 21036,
+      "message": "Account or group IDs are shared by different names: /etc/passwd: UID 10001 is shared by app, app2",
+      "rule_type": "FS-10",
+      "explanation": "Two names with one ID are one identity for the kernel and for file permissions, so a file of one account is also a file of the other.",
+      "remediation": "Give every account and every group of the image its own ID",
+      "reference": "https://github.com/goodwithtech/dockle/blob/v0.4.15/CHECKPOINT.md#dkl-li-0002",
+      "evidence": {
+        "paths": [
+          "/etc/passwd: UID 10001 is shared by app, app2"
+        ]
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-11",
+      "test_name": "No Development, Editor, Cache or Cloud Leftovers",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 3348646,
+      "message": "No development, editor, cache or cloud directory and no stray development file was found outside node_modules and vendor trees",
+      "rule_type": "FS-11",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-12",
+      "test_name": "No Credential-Named Files",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:b6df5de9078698547d2fc1bb75508598a04a4b435b0f8be5e0c0050e1778944d",
+      "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+      "platform": "linux/amd64",
+      "duration": 1057720,
+      "message": "No file with a credential-like name or extension was found outside fixture-like locations; file contents were not read",
+      "rule_type": "FS-12",
+      "evidence": {},
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    }
+  ]
+}

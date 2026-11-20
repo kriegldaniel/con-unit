@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed",
+  "config_digest_study": "sha256:51a2bafd0a356432e53f4981bd79930da04215609a44cf6b26b05b3b02e1d3ad",
+  "config_digest_archive": "sha256:51a2bafd0a356432e53f4981bd79930da04215609a44cf6b26b05b3b02e1d3ad",
+  "status": "OK",
+  "export_seconds": 4.235963789,
+  "dockle_seconds": 0.373946536,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/lib/mysql/plugin/auth_pam_tool_dir/auth_pam_tool\"\n      ]\n    }\n  ]\n}"
+}

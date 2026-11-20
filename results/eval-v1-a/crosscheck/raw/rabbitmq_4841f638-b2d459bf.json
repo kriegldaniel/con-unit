@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267",
+  "config_digest_study": "sha256:9c5c92b5a7efbf167cbcc17c6902dd013057924ef9c5358967fb3f2ddad5081f",
+  "config_digest_archive": "sha256:9c5c92b5a7efbf167cbcc17c6902dd013057924ef9c5358967fb3f2ddad5081f",
+  "status": "OK",
+  "export_seconds": 0.735195462,
+  "dockle_seconds": 0.209148411,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 1,\n    \"warn\": 1,\n    \"info\": 2,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0010\",\n      \"title\": \"Do not store credential in environment variables/files\",\n      \"level\": \"FATAL\",\n      \"alerts\": [\n        \"Suspicious ENV key found : RABBITMQ_PGP_KEY_ID on ENV RABBITMQ_PGP_KEY_ID=******* (You can suppress it with --accept-key)\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    }\n  ]\n}"
+}

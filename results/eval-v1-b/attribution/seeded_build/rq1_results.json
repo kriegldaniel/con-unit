@@ -1,0 +1,2177 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-16T00:12:30.057172348Z",
+  "oracle_path": "fixtures/rq1/oracle.json",
+  "oracle_sha256": "970e60c7c4a8a292410baeef032f3bfc60137473fdb514ea4ee6a677e4f709a9",
+  "run": {
+    "conunit_version": "ConUnit version 0.3.0 (OCI Container Unit Testing Framework)",
+    "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "go_version": "go1.26.10",
+    "engine_name": "podman",
+    "engine_version": "4.9.3",
+    "rootless": false,
+    "cgroup_version": "v2",
+    "storage_driver": "overlay",
+    "oci_runtime": "crun 1.14.1",
+    "security_options": [
+      "apparmor",
+      "seccomp(profile=/usr/share/containers/seccomp.json)"
+    ],
+    "host_os": "linux",
+    "host_arch": "amd64",
+    "linux_kernel": "7.0.0-1014-aws",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz",
+    "vcpus": 8,
+    "memory_bytes": 16462843904,
+    "virtualization": "aws-nitro-kvm",
+    "execution_mode": "Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2",
+    "cloud_provider": "aws",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-04bbcae8eccec8bce",
+    "region": "eu-central-1",
+    "zone": "eu-central-1a",
+    "tools": {
+      "container-structure-test": "absent",
+      "cosign": "absent",
+      "dockle": "absent",
+      "grype": "absent",
+      "hadolint": "absent",
+      "syft": "absent",
+      "trivy": "absent"
+    },
+    "started_at": "2026-11-16T00:12:30.05822501Z",
+    "finished_at": "2026-11-16T00:12:30.304400885Z"
+  },
+  "engine": {
+    "name": "engine",
+    "binary": "podman",
+    "path": "/usr/bin/podman",
+    "version": "podman version 4.9.3",
+    "available": true,
+    "selected": false
+  },
+  "tools": {
+    "conunit": {
+      "name": "conunit",
+      "binary": "/opt/con-unit/src/bin/con-unit",
+      "path": "/opt/con-unit/src/bin/con-unit",
+      "version": "ConUnit version 0.3.0 (OCI Container Unit Testing Framework)",
+      "available": true,
+      "selected": true
+    },
+    "cst": {
+      "name": "cst",
+      "binary": "container-structure-test",
+      "available": false,
+      "selected": false,
+      "reason": "binary not found on PATH"
+    },
+    "dockle": {
+      "name": "dockle",
+      "binary": "dockle",
+      "available": false,
+      "selected": false,
+      "reason": "binary not found on PATH"
+    },
+    "hadolint": {
+      "name": "hadolint",
+      "binary": "hadolint",
+      "available": false,
+      "selected": false,
+      "reason": "binary not found on PATH"
+    },
+    "trivy": {
+      "name": "trivy",
+      "binary": "trivy",
+      "available": false,
+      "selected": false,
+      "reason": "binary not found on PATH"
+    }
+  },
+  "catalogs": {
+    "conunit": {
+      "name": "ConUnit rule catalog (pkg/conunit/rules.go) of the evaluated build",
+      "url": "pkg/conunit/rules.go",
+      "retrieved": "2026-11-15",
+      "note": "ConUnit is the tool under test, so there is no pinned version: the build that ran is recorded in raw/tools.json. The rules SPEC-09, SPEC-10 and FS-10 of the lint pack are defined by docs/INTERFACE_V2.md section 3 and implemented by another work package, so their entries could not be checked against a catalog in this tree and are marked unverified.",
+      "state": "not_pinned"
+    },
+    "cst": {
+      "name": "container-structure-test documented test types (README)",
+      "version": "1.22.1",
+      "ref": "1e1bb81e5272bf616f3ee87d5e085e2f90d94917",
+      "url": "https://github.com/GoogleContainerTools/container-structure-test/blob/v1.22.1/README.md",
+      "retrieved": "2026-11-15",
+      "note": "container-structure-test has no rule catalog. It ships four test types (command, file existence, file content, metadata) and the policy is written by the user. A property is in scope when one of these documented types can express it against the built image, and the policy file in fixtures/rq1/cst is authored by the benchmark author.",
+      "state": "not_run"
+    },
+    "dockle": {
+      "name": "Dockle checkpoints (CHECKPOINT.md) and assessors",
+      "version": "0.4.15",
+      "ref": "54368575d2a0c34a82fb05c904b8207284a64891",
+      "url": "https://github.com/goodwithtech/dockle/blob/v0.4.15/CHECKPOINT.md",
+      "retrieved": "2026-11-15",
+      "note": "CHECKPOINT.md and the assessors under pkg/assessor are read at tag v0.4.15. Run from a docker-archive with --input, Dockle does not evaluate DKL-DI-0006 (the latest tag check needs an image name), CIS-DI-0005 reads DOCKER_CONTENT_TRUST of the scanning host and CIS-DI-0002 has no code path. A checkpoint missing from the report can also hide a failed assessor, because an assessor error is only logged.",
+      "state": "not_run"
+    },
+    "hadolint": {
+      "name": "Hadolint rules (README rules table and rule pages)",
+      "version": "2.14.0",
+      "ref": "4e697ba704fd23b2409b947a319c19c3ee54d24f",
+      "url": "https://github.com/hadolint/hadolint/blob/v2.14.0/README.md",
+      "retrieved": "2026-11-15",
+      "note": "The README table is read at tag v2.14.0. The rule pages in the wiki are not versioned with releases and were read on the retrieval date.",
+      "state": "not_run"
+    },
+    "trivy": {
+      "name": "Trivy Dockerfile checks (trivy-checks) and builtin secret rules",
+      "version": "0.76.1",
+      "ref": "ac85645895ed",
+      "url": "https://github.com/aquasecurity/trivy-checks/tree/ac85645895ed/checks/docker",
+      "retrieved": "2026-11-15",
+      "note": "Trivy 0.76.1 (commit e713f67f7d54decdcd9b3132c9751833dcced698) embeds the trivy-checks module version v1.12.2-0.20261012053351-ac85645895ed, read from its go.mod. The run uses --skip-check-update, so the embedded checks apply. Secret rule IDs are read from pkg/fanal/secret/builtin-rules.go at tag v0.76.1.",
+      "state": "not_run"
+    }
+  },
+  "cases": [
+    {
+      "id": "root-user-implicit",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-implicit/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "root-user-explicit",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-explicit/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "root-user-clean",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "no-healthcheck-defect",
+      "property": "no-healthcheck",
+      "dockerfile": "cases/no-healthcheck-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "CIS-4.6"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0006"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "args": [
+            "--info",
+            "DL3057"
+          ],
+          "detect_ids": [
+            "DL3057"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0026"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "no-healthcheck-clean",
+      "property": "no-healthcheck",
+      "dockerfile": "cases/no-healthcheck-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "CIS-4.6"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0006"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "args": [
+            "--info",
+            "DL3057"
+          ],
+          "detect_ids": [
+            "DL3057"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0026"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "setuid-binary-defect",
+      "property": "setuid-binary",
+      "dockerfile": "cases/setuid-binary-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-04"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-setuid-binary"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0008"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "setuid-binary-clean",
+      "property": "setuid-binary",
+      "dockerfile": "cases/setuid-binary-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-04"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-setuid-binary"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0008"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "world-writable-file-defect",
+      "property": "world-writable-file",
+      "dockerfile": "cases/world-writable-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-05"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-world-writable-file"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "world-writable-file-clean",
+      "property": "world-writable-file",
+      "dockerfile": "cases/world-writable-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-05"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-world-writable-file"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "private-key-file-defect",
+      "property": "private-key-file",
+      "dockerfile": "cases/private-key-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-06"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-private-key-file"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:private-key"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "private-key-file-clean",
+      "property": "private-key-file",
+      "dockerfile": "cases/private-key-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-06"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-private-key-file"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:private-key"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "package-cache-defect",
+      "property": "package-cache",
+      "dockerfile": "cases/package-cache-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-package-cache"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0004"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3019"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0025"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "package-cache-clean",
+      "property": "package-cache",
+      "dockerfile": "cases/package-cache-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-package-cache"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0004"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3019"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0025"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "apt-lists-defect",
+      "property": "apt-lists",
+      "dockerfile": "cases/apt-lists-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-apt-lists"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0005"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "apt-lists-clean",
+      "property": "apt-lists",
+      "dockerfile": "cases/apt-lists-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-apt-lists"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0005"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "shell-form-entrypoint-defect",
+      "property": "shell-form-entrypoint",
+      "dockerfile": "cases/shell-form-entrypoint-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "hygiene",
+          "detect_ids": [
+            "EXEC-03"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3025"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "shell-form-entrypoint-clean",
+      "property": "shell-form-entrypoint",
+      "dockerfile": "cases/shell-form-entrypoint-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "hygiene",
+          "detect_ids": [
+            "EXEC-03"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3025"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "add-remote-url-defect",
+      "property": "add-remote-url",
+      "dockerfile": "cases/add-remote-url-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "add-remote-url-clean",
+      "property": "add-remote-url",
+      "dockerfile": "cases/add-remote-url-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "add-local-file-defect",
+      "property": "add-local-file",
+      "dockerfile": "cases/add-local-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "add-local-file-clean",
+      "property": "add-local-file",
+      "dockerfile": "cases/add-local-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "secret-in-env-defect",
+      "property": "secret-in-env",
+      "dockerfile": "cases/secret-in-env-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-03"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-secret-in-env"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:*",
+            "DS-0031"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "secret-in-env-clean",
+      "property": "secret-in-env",
+      "dockerfile": "cases/secret-in-env-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-03"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-secret-in-env"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:*",
+            "DS-0031"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "privileged-port-defect",
+      "property": "privileged-port",
+      "dockerfile": "cases/privileged-port-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-05"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3011"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0004",
+            "DS-0008"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "privileged-port-clean",
+      "property": "privileged-port",
+      "dockerfile": "cases/privileged-port-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-05"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3011"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0004",
+            "DS-0008"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "runtime-needs-capability-defect",
+      "property": "runtime-needs-capability",
+      "dockerfile": "cases/runtime-needs-capability-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "runtime-needs-capability-clean",
+      "property": "runtime-needs-capability",
+      "dockerfile": "cases/runtime-needs-capability-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "update-alone-defect",
+      "property": "update-alone",
+      "dockerfile": "cases/update-alone-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-09"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0007"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0017"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "update-alone-clean",
+      "property": "update-alone",
+      "dockerfile": "cases/update-alone-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-09"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0007"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0017"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "sudo-usage-defect",
+      "property": "sudo-usage",
+      "dockerfile": "cases/sudo-usage-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-10"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0001"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3004"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0010"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "sudo-usage-clean",
+      "property": "sudo-usage",
+      "dockerfile": "cases/sudo-usage-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-10"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0001"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3004"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0010"
+          ],
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "non-unique-uid-defect",
+      "property": "non-unique-uid",
+      "dockerfile": "cases/non-unique-uid-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-10"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-LI-0002"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "non-unique-uid-clean",
+      "property": "non-unique-uid",
+      "dockerfile": "cases/non-unique-uid-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-10"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-LI-0002"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "needs-setuid-setgid-defect",
+      "property": "needs-setuid-setgid",
+      "dockerfile": "cases/needs-setuid-setgid-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/needs-setuid-setgid-defect:rq1",
+        "image_id": "c80289d037ac53f6086f31b68c698d1a88e1f4dc375a9dc919d967969eea927f"
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "detected_ids": [
+            "EXEC-02"
+          ],
+          "observed_ids": [
+            "EXEC-02",
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/needs-setuid-setgid-defect/conunit.txt --image-source local",
+          "raw_path": "raw/needs-setuid-setgid-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        }
+      }
+    },
+    {
+      "id": "needs-setuid-setgid-clean",
+      "property": "needs-setuid-setgid",
+      "dockerfile": "cases/needs-setuid-setgid-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "writes-outside-tmp-defect",
+      "property": "writes-outside-tmp",
+      "dockerfile": "cases/writes-outside-tmp-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/writes-outside-tmp-defect:rq1",
+        "image_id": "a4e483b1ada55ebc757767cc03fd8c3c990530a1f0f7d72c28f248319880014c"
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-01"
+          ],
+          "detected_ids": [
+            "EXEC-01"
+          ],
+          "observed_ids": [
+            "EXEC-01",
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/writes-outside-tmp-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/writes-outside-tmp-defect/conunit.txt --image-source local",
+          "raw_path": "raw/writes-outside-tmp-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        }
+      }
+    },
+    {
+      "id": "writes-outside-tmp-clean",
+      "property": "writes-outside-tmp",
+      "dockerfile": "cases/writes-outside-tmp-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-01"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    },
+    {
+      "id": "nonroot-privileged-port-defect",
+      "property": "nonroot-privileged-port",
+      "dockerfile": "cases/nonroot-privileged-port-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+        "image_id": "87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8"
+      },
+      "tools": {
+        "conunit": {
+          "class": "UNVERIFIED",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "expected checks [EXEC-02] ended UNVERIFIED",
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/nonroot-privileged-port-defect/conunit.txt --image-source local",
+          "raw_path": "raw/nonroot-privileged-port-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "binary not found on PATH"
+        }
+      }
+    },
+    {
+      "id": "nonroot-privileged-port-clean",
+      "property": "nonroot-privileged-port",
+      "dockerfile": "cases/nonroot-privileged-port-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "skipped",
+        "error": "no raw output for this case"
+      },
+      "tools": {
+        "conunit": {
+          "class": "NOT_RUN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "no raw output for this case"
+        },
+        "cst": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "dockle": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "hadolint": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        },
+        "trivy": {
+          "class": "NOT_RUN",
+          "in_scope": false,
+          "reason": "no raw output for this case"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "conunit": {
+      "status": "PARTIAL",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 36,
+        "OUT_OF_SCOPE": 0,
+        "TN": 0,
+        "TOOL_ERROR": 0,
+        "TP": 2,
+        "UNVERIFIED": 1
+      },
+      "recall": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1
+      },
+      "precision": {
+        "numerator": 2,
+        "denominator": 2,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "out_of_scope_flagged": 0
+    },
+    "cst": {
+      "status": "NOT_RUN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 39,
+        "OUT_OF_SCOPE": 0,
+        "TN": 0,
+        "TOOL_ERROR": 0,
+        "TP": 0,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "out_of_scope_flagged": 0
+    },
+    "dockle": {
+      "status": "NOT_RUN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 39,
+        "OUT_OF_SCOPE": 0,
+        "TN": 0,
+        "TOOL_ERROR": 0,
+        "TP": 0,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "out_of_scope_flagged": 0
+    },
+    "hadolint": {
+      "status": "NOT_RUN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 39,
+        "OUT_OF_SCOPE": 0,
+        "TN": 0,
+        "TOOL_ERROR": 0,
+        "TP": 0,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "out_of_scope_flagged": 0
+    },
+    "trivy": {
+      "status": "NOT_RUN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 39,
+        "OUT_OF_SCOPE": 0,
+        "TN": 0,
+        "TOOL_ERROR": 0,
+        "TP": 0,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "out_of_scope_flagged": 0
+    }
+  }
+}

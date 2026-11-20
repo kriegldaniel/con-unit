@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-add-remote-url-clean.tar localhost/conunit-rq1/add-remote-url-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:687757f1b03d3628041d33c328112ee9bdc99d7ac2c3581ce8d370a5a13c2cbb
+Copying config sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b
+Writing manifest to image destination

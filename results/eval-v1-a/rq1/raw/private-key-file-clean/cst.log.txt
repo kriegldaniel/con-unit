@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/private-key-file-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/private-key-file.yaml --output json
+exit: 0
+--- stderr ---
+

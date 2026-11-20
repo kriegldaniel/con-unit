@@ -1,0 +1,109 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9
+TIMESTAMP: 2026-11-16T00:34:13Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: Image Static Lint Pack
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9
+CONFIG DIGEST: sha256:b0afa591207b2bf7b1eddb7a6aa45423c5530bd1c2ffe0d67012424e40e1bc0f
+TOTAL DURATION: 5.79605497s
+PHASE BREAKDOWN: Pull=24.416585ms, Inspect=26.34864ms, Resolve=5.570597571s, Stream=164.500845ms, Tier1=601.306µs, Tier2=8.257277ms, Tier3=0s (window 3s), Tier4=0s
+RESOURCES (ConUnit process only): Layers=9, IndexedEntries=10019, CompressedBytes=0, UncompressedBytes=501213636, LiveHeapMB=2.3, SelfCPU=0.20s, ChildCPU=2.48s
+SUMMARY: 11 passed, 2 failed, 3 unverified (total 16)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [PASS] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    822ns
+    Message:     Image config selects numeric non-root UID 10000
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    129ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [FAIL] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    2.923µs
+    Message:     Found 11 SUID/SGID binaries (potential privilege escalation risk): [/usr/bin/chage /usr/bin/chfn /usr/bin/chsh /usr/bin/expiry /usr/bin/gpasswd /usr/bin/mount /usr/bin/passwd /usr/bin/su /usr/bin/umount /usr/sbin/pam_extrausers_chkpwd /usr/sbin/unix_chkpwd]
+    Explanation: SUID/SGID executables run with file-owner permissions, enabling local privilege escalation exploits.
+    Remediation: Remove unnecessary SUID/SGID bits during image build: find / -perm /6000 -type f -exec chmod a-s {} +
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    2.398µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    134.173µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    713ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    71ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-01 (Package Manager Cache Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    427.774µs
+    Message:     All hygiene path checks passed
+
+[9] [UNVERIFIED] SPEC-09 (Update Instruction Combined With Install)
+    Tier:        Tier 1: Specification
+    Duration:    165.303µs
+    Reason:      EVIDENCE_INCOMPLETE
+    Message:     The recorded build history cannot be read completely, so the check is unverified: history entry 5 ends inside a quote or a here-document
+    Remediation: Build the image so that its OCI history records every RUN instruction, and do not strip the history
+
+[10] [UNVERIFIED] SPEC-10 (No Sudo in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    160.98µs
+    Reason:      EVIDENCE_INCOMPLETE
+    Message:     The recorded build history cannot be read completely, so the check is unverified: history entry 5 ends inside a quote or a here-document
+    Remediation: Build the image so that its OCI history records every RUN instruction, and do not strip the history
+
+[11] [UNVERIFIED] SPEC-11 (No Distribution Upgrade in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    127.93µs
+    Reason:      EVIDENCE_INCOMPLETE
+    Message:     The recorded build history cannot be read completely, so the check is unverified: history entry 5 ends inside a quote or a here-document
+    Remediation: Build the image so that its OCI history records every RUN instruction, and do not strip the history
+
+[12] [PASS] SPEC-12 (No Sensitive Host Paths as Volumes)
+    Tier:        Tier 1: Specification
+    Duration:    544ns
+    Message:     None of the 0 declared volume(s) is at or below /dev, /proc or /sys; mounts given at run time were not inspected
+
+[13] [PASS] SPEC-13 (Explicit Non-Latest Image Reference)
+    Tier:        Tier 1: Specification
+    Duration:    9.027µs
+    Message:     The requested reference "index.docker.io/library/lightstreamer@sha256:bb5f3f3f9585bb282acbe708235ede0d0a0990524d1383a5c3b2203a558b21f9" carries a digest, which names fixed content
+
+[14] [PASS] FS-10 (Unique Account and Group IDs)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    17.769µs
+    Message:     No two different names share an ID in the 20 account(s) of /etc/passwd and the 40 group(s) of /etc/group
+
+[15] [PASS] FS-11 (No Development, Editor, Cache or Cloud Leftovers)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    5.894295ms
+    Message:     No development, editor, cache or cloud directory and no stray development file was found outside node_modules and vendor trees
+
+[16] [PASS] FS-12 (No Credential-Named Files)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    1.913732ms
+    Message:     No file with a credential-like name or extension was found outside fixture-like locations; file contents were not read
+

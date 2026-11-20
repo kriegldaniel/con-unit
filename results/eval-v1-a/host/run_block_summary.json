@@ -1,0 +1,15 @@
+{
+  "engine_name": "podman",
+  "engine_version": "4.9.3",
+  "rootless": false,
+  "cgroup_version": "v2",
+  "storage_driver": "overlay",
+  "oci_runtime": "crun 1.14.1",
+  "virtualization": "aws-nitro-kvm",
+  "execution_mode": "Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2",
+  "instance_type": "c6i.2xlarge",
+  "ami_id": "ami-04bbcae8eccec8bce",
+  "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+  "tainted": false,
+  "registry_remap": "docker.io/library -> public.ecr.aws/docker/library"
+}

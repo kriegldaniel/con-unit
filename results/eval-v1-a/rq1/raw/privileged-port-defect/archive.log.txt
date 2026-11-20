@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-privileged-port-defect.tar localhost/conunit-rq1/privileged-port-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7
+Writing manifest to image destination

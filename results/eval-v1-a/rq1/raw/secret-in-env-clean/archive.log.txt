@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-secret-in-env-clean.tar localhost/conunit-rq1/secret-in-env-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c
+Writing manifest to image destination

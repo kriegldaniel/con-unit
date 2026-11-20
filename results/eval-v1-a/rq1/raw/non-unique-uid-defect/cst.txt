@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":631369633,"Results":[{"Name":"Command Test: rq1-non-unique-uid","Pass":false,"Stdout":"10001\n","Errors":["Excluded string '.' found in output '10001\n'"],"Duration":631369633}]}

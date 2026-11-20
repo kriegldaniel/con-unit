@@ -1,0 +1,7 @@
+{
+  "schema": "conunit-tool-versions/1",
+  "lock_file": "tools.lock",
+  "lock_sha256": null,
+  "locked": {},
+  "tools": {}
+}

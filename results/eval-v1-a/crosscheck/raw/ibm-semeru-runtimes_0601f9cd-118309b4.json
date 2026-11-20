@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/ibm-semeru-runtimes@sha256:0601f9cd0e44ef93ddffef599b535d773475156f27bdcb0a2a7b6d4353baeed7",
+  "config_digest_study": "sha256:10a14117e92c6e63297f7b917c45ea7fab3d6360b3ca983f9c132f9a0c4accc7",
+  "config_digest_archive": "sha256:10a14117e92c6e63297f7b917c45ea7fab3d6360b3ca983f9c132f9a0c4accc7",
+  "status": "OK",
+  "export_seconds": 3.411126216,
+  "dockle_seconds": 0.388949207,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\"\n      ]\n    }\n  ]\n}"
+}

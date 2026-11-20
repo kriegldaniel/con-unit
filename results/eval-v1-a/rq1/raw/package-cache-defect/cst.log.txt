@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/package-cache-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/package-cache.yaml --output json
+exit: 1
+--- stderr ---
+time="2026-11-16T00:14:48Z" level=fatal msg=FAIL

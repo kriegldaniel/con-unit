@@ -1,0 +1,8 @@
+$ /usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-defect
+exit: 0
+--- stderr ---
+
+$ /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-sudo-usage-defect.tar
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,374 @@
+00:11:13 INFO  truth    3 seeded Tier 3 cases, 2 scored
+00:11:14 INFO  podman service socket for container-structure-test: unix:///tmp/rq1p3817412480/p.sock
+
+RQ1 detection benchmark
+00:11:14 INFO  oracle   fixtures/rq1/oracle.json (sha256 970e60c7c4a8)
+00:11:14 INFO  cases    39, properties 19
+00:11:14 INFO  out-dir  /opt/con-unit/results/eval-v1-a/rq1
+00:11:14 INFO  conunit   ConUnit version 0.3.0 (OCI Container Unit Testing Framework)
+00:11:14 INFO  hadolint  Haskell Dockerfile Linter 2.14.0
+00:11:14 INFO  trivy     Version: 0.76.1
+00:11:14 INFO  cst       1.22.1
+00:11:14 INFO  dockle    dockle version 0.4.15
+00:11:14 INFO  engine    podman version 4.9.3
+
+[1/39] root-user-implicit (root-user, defect_present=true)
+00:11:14 INFO  built localhost/conunit-rq1/root-user-implicit:rq1 (24a414cb5597)
+00:11:15 INFO  archive   config 24a414cb5597
+00:11:31 INFO  conunit   exit=1
+00:11:31 INFO  hadolint  exit=0
+00:11:33 INFO  trivy     exit=0
+00:11:33 INFO  cst       exit=1
+00:11:33 INFO  dockle    exit=0
+
+[2/39] root-user-explicit (root-user, defect_present=true)
+00:11:34 INFO  built localhost/conunit-rq1/root-user-explicit:rq1 (ff6e3c27781e)
+00:11:34 INFO  archive   config ff6e3c27781e
+00:11:51 INFO  conunit   exit=1
+00:11:51 INFO  hadolint  exit=1
+00:11:52 INFO  trivy     exit=0
+00:11:52 INFO  cst       exit=1
+00:11:52 INFO  dockle    exit=0
+
+[3/39] root-user-clean (root-user, defect_present=false)
+00:11:53 INFO  built localhost/conunit-rq1/root-user-clean:rq1 (4a25cdfdfe2a)
+00:11:53 INFO  archive   config 4a25cdfdfe2a
+00:12:10 INFO  conunit   exit=1
+00:12:10 INFO  hadolint  exit=0
+00:12:11 INFO  trivy     exit=0
+00:12:11 INFO  cst       exit=0
+00:12:11 INFO  dockle    exit=0
+
+[4/39] no-healthcheck-defect (no-healthcheck, defect_present=true)
+00:12:12 INFO  built localhost/conunit-rq1/no-healthcheck-defect:rq1 (620b5dcee6e4)
+00:12:12 INFO  archive   config 620b5dcee6e4
+00:12:28 INFO  conunit   exit=1
+00:12:28 INFO  hadolint  exit=1
+00:12:29 INFO  trivy     exit=0
+00:12:29 INFO  cst       skipped: no container-structure-test policy for this property
+00:12:29 INFO  dockle    exit=0
+
+[5/39] no-healthcheck-clean (no-healthcheck, defect_present=false)
+00:12:30 INFO  built localhost/conunit-rq1/no-healthcheck-clean:rq1 (4a25cdfdfe2a)
+00:12:30 INFO  archive   config 4a25cdfdfe2a
+00:12:46 INFO  conunit   exit=1
+00:12:46 INFO  hadolint  exit=0
+00:12:48 INFO  trivy     exit=0
+00:12:48 INFO  cst       skipped: no container-structure-test policy for this property
+00:12:48 INFO  dockle    exit=0
+
+[6/39] setuid-binary-defect (setuid-binary, defect_present=true)
+00:12:48 INFO  built localhost/conunit-rq1/setuid-binary-defect:rq1 (08640f56cabc)
+00:12:49 INFO  archive   config 08640f56cabc
+00:13:05 INFO  conunit   exit=1
+00:13:05 INFO  hadolint  exit=0
+00:13:06 INFO  trivy     exit=0
+00:13:07 INFO  cst       exit=1
+00:13:07 INFO  dockle    exit=0
+
+[7/39] setuid-binary-clean (setuid-binary, defect_present=false)
+00:13:08 INFO  built localhost/conunit-rq1/setuid-binary-clean:rq1 (73095bdbd420)
+00:13:08 INFO  archive   config 73095bdbd420
+00:13:25 INFO  conunit   exit=1
+00:13:25 INFO  hadolint  exit=0
+00:13:26 INFO  trivy     exit=0
+00:13:26 INFO  cst       exit=0
+00:13:26 INFO  dockle    exit=0
+
+[8/39] world-writable-file-defect (world-writable-file, defect_present=true)
+00:13:27 INFO  built localhost/conunit-rq1/world-writable-file-defect:rq1 (5ab9d6824ed6)
+00:13:27 INFO  archive   config 5ab9d6824ed6
+00:13:44 INFO  conunit   exit=1
+00:13:44 INFO  hadolint  exit=0
+00:13:45 INFO  trivy     exit=0
+00:13:46 INFO  cst       exit=1
+00:13:46 INFO  dockle    exit=0
+
+[9/39] world-writable-file-clean (world-writable-file, defect_present=false)
+00:13:46 INFO  built localhost/conunit-rq1/world-writable-file-clean:rq1 (2a3f704fcef3)
+00:13:47 INFO  archive   config 2a3f704fcef3
+00:14:03 INFO  conunit   exit=1
+00:14:03 INFO  hadolint  exit=0
+00:14:05 INFO  trivy     exit=0
+00:14:05 INFO  cst       exit=0
+00:14:05 INFO  dockle    exit=0
+
+[10/39] private-key-file-defect (private-key-file, defect_present=true)
+00:14:06 INFO  built localhost/conunit-rq1/private-key-file-defect:rq1 (806336a92294)
+00:14:06 INFO  archive   config 806336a92294
+00:14:23 INFO  conunit   exit=1
+00:14:23 INFO  hadolint  exit=1
+00:14:24 INFO  trivy     exit=0
+00:14:25 INFO  cst       exit=1
+00:14:25 INFO  dockle    exit=0
+
+[11/39] private-key-file-clean (private-key-file, defect_present=false)
+00:14:25 INFO  built localhost/conunit-rq1/private-key-file-clean:rq1 (e52295ce7cbf)
+00:14:25 INFO  archive   config e52295ce7cbf
+00:14:42 INFO  conunit   exit=1
+00:14:42 INFO  hadolint  exit=1
+00:14:43 INFO  trivy     exit=0
+00:14:44 INFO  cst       exit=0
+00:14:44 INFO  dockle    exit=0
+
+[12/39] package-cache-defect (package-cache, defect_present=true)
+00:14:45 INFO  built localhost/conunit-rq1/package-cache-defect:rq1 (addd4d1d78a6)
+00:14:46 INFO  archive   config addd4d1d78a6
+00:14:46 INFO  conunit   exit=1
+00:14:46 INFO  hadolint  exit=1
+00:14:47 INFO  trivy     exit=0
+00:14:48 INFO  cst       exit=1
+00:14:48 INFO  dockle    exit=0
+
+[13/39] package-cache-clean (package-cache, defect_present=false)
+00:14:49 INFO  built localhost/conunit-rq1/package-cache-clean:rq1 (186b5d7c2446)
+00:14:49 INFO  archive   config 186b5d7c2446
+00:14:49 INFO  conunit   exit=0
+00:14:49 INFO  hadolint  exit=1
+00:14:51 INFO  trivy     exit=0
+00:14:51 INFO  cst       exit=0
+00:14:51 INFO  dockle    exit=0
+
+[14/39] apt-lists-defect (apt-lists, defect_present=true)
+00:14:56 INFO  built localhost/conunit-rq1/apt-lists-defect:rq1 (b57ed4b6f706)
+00:14:57 INFO  archive   config b57ed4b6f706
+00:14:58 INFO  conunit   exit=1
+00:14:58 INFO  hadolint  exit=1
+00:15:00 INFO  trivy     exit=0
+00:15:01 INFO  cst       exit=1
+00:15:01 INFO  dockle    exit=0
+
+[15/39] apt-lists-clean (apt-lists, defect_present=false)
+00:15:05 INFO  built localhost/conunit-rq1/apt-lists-clean:rq1 (da9758c4ab4d)
+00:15:06 INFO  archive   config da9758c4ab4d
+00:15:07 INFO  conunit   exit=1
+00:15:07 INFO  hadolint  exit=1
+00:15:08 INFO  trivy     exit=0
+00:15:09 INFO  cst       exit=0
+00:15:09 INFO  dockle    exit=0
+
+[16/39] shell-form-entrypoint-defect (shell-form-entrypoint, defect_present=true)
+00:15:09 INFO  built localhost/conunit-rq1/shell-form-entrypoint-defect:rq1 (0eaf1ef11e7e)
+00:15:09 INFO  archive   config 0eaf1ef11e7e
+00:15:27 INFO  conunit   exit=1
+00:15:27 INFO  hadolint  exit=1
+00:15:29 INFO  trivy     exit=0
+00:15:29 INFO  cst       skipped: no container-structure-test policy for this property
+00:15:29 INFO  dockle    exit=0
+
+[17/39] shell-form-entrypoint-clean (shell-form-entrypoint, defect_present=false)
+00:15:29 INFO  built localhost/conunit-rq1/shell-form-entrypoint-clean:rq1 (4a25cdfdfe2a)
+00:15:29 INFO  archive   config 4a25cdfdfe2a
+00:15:42 INFO  conunit   exit=0
+00:15:42 INFO  hadolint  exit=0
+00:15:44 INFO  trivy     exit=0
+00:15:44 INFO  cst       skipped: no container-structure-test policy for this property
+00:15:44 INFO  dockle    exit=0
+
+[18/39] add-remote-url-defect (add-remote-url, defect_present=true)
+00:15:44 INFO  built localhost/conunit-rq1/add-remote-url-defect:rq1 (91294d40fd59)
+00:15:44 INFO  archive   config 91294d40fd59
+00:16:01 INFO  conunit   exit=1
+00:16:01 INFO  hadolint  exit=0
+00:16:02 INFO  trivy     exit=0
+00:16:02 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:02 INFO  dockle    exit=0
+
+[19/39] add-remote-url-clean (add-remote-url, defect_present=false)
+00:16:03 INFO  built localhost/conunit-rq1/add-remote-url-clean:rq1 (aa35081fc9ea)
+00:16:03 INFO  archive   config aa35081fc9ea
+00:16:20 INFO  conunit   exit=1
+00:16:20 INFO  hadolint  exit=0
+00:16:21 INFO  trivy     exit=0
+00:16:21 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:21 INFO  dockle    exit=0
+
+[20/39] add-local-file-defect (add-local-file, defect_present=true)
+00:16:21 INFO  built localhost/conunit-rq1/add-local-file-defect:rq1 (f63bef16bacc)
+00:16:21 INFO  archive   config f63bef16bacc
+00:16:38 INFO  conunit   exit=1
+00:16:38 INFO  hadolint  exit=1
+00:16:39 INFO  trivy     exit=0
+00:16:39 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:39 INFO  dockle    exit=0
+
+[21/39] add-local-file-clean (add-local-file, defect_present=false)
+00:16:40 INFO  built localhost/conunit-rq1/add-local-file-clean:rq1 (aa35081fc9ea)
+00:16:40 INFO  archive   config aa35081fc9ea
+00:16:56 INFO  conunit   exit=1
+00:16:56 INFO  hadolint  exit=0
+00:16:58 INFO  trivy     exit=0
+00:16:58 INFO  cst       skipped: no container-structure-test policy for this property
+00:16:58 INFO  dockle    exit=0
+
+[22/39] secret-in-env-defect (secret-in-env, defect_present=true)
+00:16:58 INFO  built localhost/conunit-rq1/secret-in-env-defect:rq1 (f27d622d0268)
+00:16:58 INFO  archive   config f27d622d0268
+00:17:15 INFO  conunit   exit=1
+00:17:15 INFO  hadolint  exit=0
+00:17:16 INFO  trivy     exit=0
+00:17:17 INFO  cst       exit=1
+00:17:17 INFO  dockle    exit=0
+
+[23/39] secret-in-env-clean (secret-in-env, defect_present=false)
+00:17:17 INFO  built localhost/conunit-rq1/secret-in-env-clean:rq1 (b3e1da1c63f4)
+00:17:17 INFO  archive   config b3e1da1c63f4
+00:17:34 INFO  conunit   exit=1
+00:17:34 INFO  hadolint  exit=0
+00:17:35 INFO  trivy     exit=0
+00:17:36 INFO  cst       exit=0
+00:17:36 INFO  dockle    exit=0
+
+[24/39] privileged-port-defect (privileged-port, defect_present=true)
+00:17:36 INFO  built localhost/conunit-rq1/privileged-port-defect:rq1 (9128a1e5b234)
+00:17:36 INFO  archive   config 9128a1e5b234
+00:17:53 INFO  conunit   exit=1
+00:17:53 INFO  hadolint  exit=0
+00:17:54 INFO  trivy     exit=0
+00:17:54 INFO  cst       skipped: no container-structure-test policy for this property
+00:17:54 INFO  dockle    exit=0
+
+[25/39] privileged-port-clean (privileged-port, defect_present=false)
+00:17:54 INFO  built localhost/conunit-rq1/privileged-port-clean:rq1 (e185dca360e4)
+00:17:55 INFO  archive   config e185dca360e4
+00:18:11 INFO  conunit   exit=1
+00:18:11 INFO  hadolint  exit=0
+00:18:12 INFO  trivy     exit=0
+00:18:12 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:12 INFO  dockle    exit=0
+
+[26/39] runtime-needs-capability-defect (runtime-needs-capability, defect_present=true)
+00:18:13 INFO  built localhost/conunit-rq1/runtime-needs-capability-defect:rq1 (9e974731aea2)
+00:18:13 INFO  archive   config 9e974731aea2
+00:18:24 INFO  conunit   exit=1
+00:18:24 INFO  hadolint  exit=0
+00:18:25 INFO  trivy     exit=0
+00:18:25 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:25 INFO  dockle    exit=0
+
+[27/39] runtime-needs-capability-clean (runtime-needs-capability, defect_present=false)
+00:18:26 INFO  built localhost/conunit-rq1/runtime-needs-capability-clean:rq1 (300ba6b9566d)
+00:18:26 INFO  archive   config 300ba6b9566d
+00:18:43 INFO  conunit   exit=1
+00:18:43 INFO  hadolint  exit=0
+00:18:44 INFO  trivy     exit=0
+00:18:44 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:44 INFO  dockle    exit=0
+
+[28/39] update-alone-defect (update-alone, defect_present=true)
+00:18:49 INFO  built localhost/conunit-rq1/update-alone-defect:rq1 (9e24d5291ecb)
+00:18:50 INFO  archive   config 9e24d5291ecb
+00:18:50 INFO  conunit   exit=1
+00:18:51 INFO  hadolint  exit=1
+00:18:52 INFO  trivy     exit=0
+00:18:52 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:52 INFO  dockle    exit=0
+
+[29/39] update-alone-clean (update-alone, defect_present=false)
+00:18:52 INFO  built localhost/conunit-rq1/update-alone-clean:rq1 (da9758c4ab4d)
+00:18:53 INFO  archive   config da9758c4ab4d
+00:18:54 INFO  conunit   exit=1
+00:18:54 INFO  hadolint  exit=1
+00:18:55 INFO  trivy     exit=0
+00:18:55 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:55 INFO  dockle    exit=0
+
+[30/39] sudo-usage-defect (sudo-usage, defect_present=true)
+00:18:56 INFO  built localhost/conunit-rq1/sudo-usage-defect:rq1 (228b337be65b)
+00:18:56 INFO  archive   config 228b337be65b
+00:18:57 INFO  conunit   exit=1
+00:18:57 INFO  hadolint  exit=1
+00:18:58 INFO  trivy     exit=0
+00:18:58 INFO  cst       skipped: no container-structure-test policy for this property
+00:18:58 INFO  dockle    exit=0
+
+[31/39] sudo-usage-clean (sudo-usage, defect_present=false)
+00:18:59 INFO  built localhost/conunit-rq1/sudo-usage-clean:rq1 (373eec730357)
+00:18:59 INFO  archive   config 373eec730357
+00:18:59 INFO  conunit   exit=0
+00:18:59 INFO  hadolint  exit=0
+00:19:00 INFO  trivy     exit=0
+00:19:00 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:00 INFO  dockle    exit=0
+
+[32/39] non-unique-uid-defect (non-unique-uid, defect_present=true)
+00:19:01 INFO  built localhost/conunit-rq1/non-unique-uid-defect:rq1 (77042815ecf2)
+00:19:01 INFO  archive   config 77042815ecf2
+00:19:02 INFO  conunit   exit=1
+00:19:02 INFO  hadolint  exit=0
+00:19:04 INFO  trivy     exit=0
+00:19:04 INFO  cst       exit=1
+00:19:04 INFO  dockle    exit=0
+
+[33/39] non-unique-uid-clean (non-unique-uid, defect_present=false)
+00:19:05 INFO  built localhost/conunit-rq1/non-unique-uid-clean:rq1 (c150ae6b31e4)
+00:19:05 INFO  archive   config c150ae6b31e4
+00:19:06 INFO  conunit   exit=1
+00:19:06 INFO  hadolint  exit=0
+00:19:07 INFO  trivy     exit=0
+00:19:08 INFO  cst       exit=0
+00:19:08 INFO  dockle    exit=0
+
+[34/39] needs-setuid-setgid-defect (needs-setuid-setgid, defect_present=true)
+00:19:08 INFO  built localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 (c147d01ba1b7)
+00:19:08 INFO  archive   config c147d01ba1b7
+00:19:21 INFO  conunit   exit=1
+00:19:21 INFO  hadolint  exit=0
+00:19:23 INFO  trivy     exit=0
+00:19:23 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:23 INFO  dockle    exit=0
+
+[35/39] needs-setuid-setgid-clean (needs-setuid-setgid, defect_present=false)
+00:19:23 INFO  built localhost/conunit-rq1/needs-setuid-setgid-clean:rq1 (4a25cdfdfe2a)
+00:19:23 INFO  archive   config 4a25cdfdfe2a
+00:19:40 INFO  conunit   exit=1
+00:19:40 INFO  hadolint  exit=0
+00:19:41 INFO  trivy     exit=0
+00:19:41 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:41 INFO  dockle    exit=0
+
+[36/39] writes-outside-tmp-defect (writes-outside-tmp, defect_present=true)
+00:19:41 INFO  built localhost/conunit-rq1/writes-outside-tmp-defect:rq1 (712ee66552d5)
+00:19:41 INFO  archive   config 712ee66552d5
+00:19:55 INFO  conunit   exit=1
+00:19:55 INFO  hadolint  exit=0
+00:19:56 INFO  trivy     exit=0
+00:19:56 INFO  cst       skipped: no container-structure-test policy for this property
+00:19:56 INFO  dockle    exit=0
+
+[37/39] writes-outside-tmp-clean (writes-outside-tmp, defect_present=false)
+00:19:56 INFO  built localhost/conunit-rq1/writes-outside-tmp-clean:rq1 (2ad2b2060209)
+00:19:56 INFO  archive   config 2ad2b2060209
+00:20:13 INFO  conunit   exit=1
+00:20:13 INFO  hadolint  exit=0
+00:20:14 INFO  trivy     exit=0
+00:20:14 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:14 INFO  dockle    exit=0
+
+[38/39] nonroot-privileged-port-defect (nonroot-privileged-port, defect_present=true)
+00:20:15 INFO  built localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 (12148504982b)
+00:20:15 INFO  archive   config 12148504982b
+00:20:15 INFO  conunit   exit=1
+00:20:15 INFO  hadolint  exit=0
+00:20:16 INFO  trivy     exit=0
+00:20:16 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:16 INFO  dockle    exit=0
+
+[39/39] nonroot-privileged-port-clean (nonroot-privileged-port, defect_present=false)
+00:20:17 INFO  built localhost/conunit-rq1/nonroot-privileged-port-clean:rq1 (528b9fb1d1fc)
+00:20:17 INFO  archive   config 528b9fb1d1fc
+00:20:33 INFO  conunit   exit=1
+00:20:33 INFO  hadolint  exit=0
+00:20:35 INFO  trivy     exit=0
+00:20:35 INFO  cst       skipped: no container-structure-test policy for this property
+00:20:35 INFO  dockle    exit=0
+
+Summary
+tool       status     TP   FP   FN   TN   OOS   N/R   ERR   UNV   N/E  recall
+conunit    RAN        19    0    0   19     0     0     0     1     0  19/19
+hadolint   RAN         7    0    1    7    24     0     0     0     0  7/8
+trivy      RAN         9    0    0    8    22     0     0     0     0  9/9
+cst        RAN         9    0    0    8    22     0     0     0     0  9/9
+dockle     RAN        12    0    1   12    14     0     0     0     0  12/13
+00:20:35 OK    wrote /opt/con-unit/results/eval-v1-a/rq1/rq1_results.json
+00:20:35 OK    wrote /opt/con-unit/results/eval-v1-a/rq1/table_rq1_detection.tex

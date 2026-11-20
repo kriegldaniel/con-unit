@@ -1,0 +1,45 @@
+# uname -a
+Linux ip-172-31-25-171 7.0.0-1014-aws #14~24.04.1-Ubuntu SMP PREEMPT Fri Sep 18 21:24:59 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+# /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+# systemd-detect-virt
+amazon
+
+# DMI
+sys_vendor=Amazon EC2
+product_name=c6i.2xlarge
+bios_vendor=Amazon EC2
+bios_version=1.0
+
+# cgroup
+fs_type=cgroup2fs
+cpuset cpu io memory hugetlb pids rdma misc dmem
+
+# storage
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/root      ext4  145G  2.9G  142G   2% /
+/dev/root      ext4  145G  2.9G  142G   2% /
+/dev/nvme0n1p1 ext4   rw,relatime,discard,errors=remount-ro,commit=30
+
+# memory
+MemTotal:       16076988 kB
+MemAvailable:   15260736 kB
+SwapTotal:             0 kB
+
+# kernel parameters
+user.max_user_namespaces = 56743
+kernel.unprivileged_userns_clone = 1

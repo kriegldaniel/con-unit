@@ -1,0 +1,111 @@
+# ConUnit AWS evaluation targets. Run from this directory: cd eval-infra && just --list
+#
+# These targets live here, not in the submission justfile, so the paper build targets stay
+# hermetic. Anything that costs money goes through run_eval.sh, which destroys its resources
+# on every exit path and verifies the teardown.
+
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+region := env_var_or_default("AWS_REGION", "eu-central-1")
+
+# Common part of the run ids of the final evaluation. Run A gets the suffix -a, run B the suffix -b.
+# Set FINAL_RUN_BASE to name a pilot, for example FINAL_RUN_BASE=eval-v1-rc3 just final-a --tag eval-v1-rc3
+final_base := env_var_or_default("FINAL_RUN_BASE", "eval-v1")
+
+default:
+    @just --list
+
+# Install providers. The lock file is read-only: provider versions cannot drift.
+init:
+    tofu init -input=false -lockfile=readonly
+
+# Offline static checks: tofu fmt and validate, rendered user_data, bash -n, offline tests.
+validate:
+    tofu init -backend=false -input=false -lockfile=readonly
+    tofu fmt -check
+    tofu validate
+    bash tests/render_user_data.sh
+    for f in run_eval.sh remote_eval.sh pin_ami.sh scan_secrets.sh tests/*.sh; do bash -n "$f" && echo "  [PASS] bash -n $f"; done
+    bash tests/test_remote_eval.sh
+    bash tests/test_tools_install.sh
+    bash tests/test_stages.sh
+    bash tests/test_run_eval.sh
+    bash tests/test_scan_secrets.sh
+    bash tests/test_justfile.sh
+
+# shellcheck every script. Falls back to nix shell when shellcheck is not installed.
+lint:
+    if command -v shellcheck > /dev/null; then sc=(shellcheck); else sc=(nix shell nixpkgs#shellcheck --command shellcheck); fi; "${sc[@]}" -s bash -x run_eval.sh remote_eval.sh pin_ami.sh scan_secrets.sh tests/*.sh
+
+# Pin (or re-pin) the Ubuntu 24.04 AMI for a region into amis.json. Needs ec2:DescribeImages.
+pin-ami target_region=region:
+    bash pin_ami.sh {{ target_region }}
+
+# Show the newest Canonical AMI next to the current pin without changing anything.
+show-ami target_region=region:
+    bash pin_ami.sh {{ target_region }} --show
+
+# All pre-flight checks (credentials, AMI, tag, bundle, mirror check). Creates nothing in AWS.
+preflight *args:
+    bash run_eval.sh --preflight-only {{ args }}
+
+# The canary exercises every stage on 3 images, 4 RQ1 cases and a 3 image reliability subset. The old canary
+# of three stages took about 4 minutes, the time of this one is not measured yet.
+
+# Pipeline check of every stage, 90 minute watchdog (not a study result).
+canary *args:
+    bash run_eval.sh --canary {{ args }}
+
+# The final evaluation is two runs on two instances, started together, about 2 hours each. The run ids are
+# <base>-a and <base>-b, the watchdog of each is 240 minutes.
+
+# Final run A, about 2 hours: eval, export, rq3, rq1, lint, crosscheck. Run id <base>-a.
+final-a *args:
+    bash run_eval.sh --run-id {{ final_base }}-a --stages eval,export,rq3,rq1,lint,crosscheck --watchdog-min 240 {{ args }}
+
+# Final run B, about 2 hours: eval, export, attribute, ablate, reliability. Run id <base>-b.
+final-b *args:
+    bash run_eval.sh --run-id {{ final_base }}-b --stages eval,export,attribute,ablate,reliability --watchdog-min 240 {{ args }}
+
+# Evaluation of the tagged release with the stages eval, export, rq3 (the final one is final-a plus final-b).
+full *args:
+    bash run_eval.sh {{ args }}
+
+# Sensitivity run: rootless Podman on the 10 image set (eval and export only).
+sensitivity-rootless *args:
+    bash run_eval.sh --mode rootless --dataset fixtures/evaluation_dataset_top10_pinned.txt --stages eval,export {{ args }}
+
+# RQ3 timing run on a bare metal instance (about 6 USD per hour, keep it short).
+rq3-metal *args:
+    bash run_eval.sh --instance-type c6i.metal --stages rq3 --watchdog-min 120 {{ args }}
+
+# Destroy and verify the resources of a run (also the recovery path after an interrupted run).
+destroy run_id:
+    bash run_eval.sh --destroy-run {{ run_id }}
+
+# OpenTofu outputs of a run.
+output run_id:
+    tofu output -state=.runs/{{ run_id }}/terraform.tfstate
+
+# Known runs and whether their state still lists resources.
+runs:
+    if [ -d .runs ]; then for d in .runs/*/; do id="$(basename "$d")"; n="$(tofu state list -state="$d/terraform.tfstate" 2> /dev/null | wc -l | tr -d ' ')"; echo "$id  state_resources=$n"; done; else echo "no runs yet"; fi
+
+# Safety net: any con-unit instance still alive in the region, whatever run it belongs to.
+leaks target_region=region:
+    aws ec2 describe-instances --region {{ target_region }} --filters Name=tag:Project,Values=con-unit Name=instance-state-name,Values=pending,running,stopping,stopped --query "Reservations[].Instances[].[InstanceId,InstanceType,State.Name,LaunchTime,Tags[?Key=='RunId']|[0].Value]" --output table
+
+# Scan for credentials and personal identifiers before committing, pushing or sharing. Findings print
+# file:line and a label, never the matched text. No arguments: everything git would add in the submission
+# repo (results bundles included), plus your AWS account id, IAM user name and public address.
+# Examples: just scan, just scan --identifiers ../results/<RUN_ID>, just scan --repo ../../con-unit
+scan *args:
+    bash scan_secrets.sh {{ if args == "" { "--identifiers --repo .." } else { args } }}
+
+# Verify the checksums of a downloaded results bundle.
+verify run_id:
+    cd ../results/{{ run_id }} && { sha256sum -c SHA256SUMS 2> /dev/null || shasum -a 256 -c SHA256SUMS; }
+
+# Pretty print the run manifest of a results bundle.
+manifest run_id:
+    jq . ../results/{{ run_id }}/run_manifest.json

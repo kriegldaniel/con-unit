@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-sudo-usage-clean.tar localhost/conunit-rq1/sudo-usage-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:07dad8ec201398786600355c52645fc0f5661083043518bcd0fd70a38610736d
+Copying config sha256:373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515
+Writing manifest to image destination

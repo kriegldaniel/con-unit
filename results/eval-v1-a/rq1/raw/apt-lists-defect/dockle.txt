@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 2,
+    "skip": 0,
+    "pass": 13
+  },
+  "details": [
+    {
+      "code": "DKL-DI-0005",
+      "title": "Clear apt-get caches",
+      "level": "FATAL",
+      "alerts": [
+        "Use 'rm -rf /var/lib/apt/lists' after 'apt-get install|update' : /bin/sh -c apt-get update \u0026\u0026 apt-get install -y --no-install-recommends ca-certificates"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    },
+    {
+      "code": "CIS-DI-0008",
+      "title": "Confirm safety of setuid/setgid files",
+      "level": "INFO",
+      "alerts": [
+        "setuid file: urwxr-xr-x usr/bin/chfn",
+        "setuid file: urwxr-xr-x usr/bin/newgrp",
+        "setuid file: urwxr-xr-x usr/bin/gpasswd",
+        "setuid file: urwxr-xr-x usr/bin/passwd",
+        "setgid file: grwxr-xr-x usr/sbin/unix_chkpwd",
+        "setuid file: urwxr-xr-x usr/bin/mount",
+        "setuid file: urwxr-xr-x usr/bin/su",
+        "setuid file: urwxr-xr-x usr/bin/chsh",
+        "setuid file: urwxr-xr-x usr/bin/umount",
+        "setgid file: grwxr-xr-x usr/bin/expiry",
+        "setgid file: grwxr-xr-x usr/bin/chage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/world-writable-file-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-defect
+exit: 0
+--- stderr ---
+

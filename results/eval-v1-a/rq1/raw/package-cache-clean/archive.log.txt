@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-package-cache-clean.tar localhost/conunit-rq1/package-cache-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:a3bc79c07c8a908620276c0cee4c378c5485ad6202bb773b02fce1fa2c1ffeee
+Copying config sha256:186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf
+Writing manifest to image destination

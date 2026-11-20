@@ -1,0 +1,219 @@
+{
+  "image_name": "localhost/conunit-rq1/shell-form-entrypoint-clean:rq1",
+  "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+  "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+  "platform": "linux/amd64",
+  "suite_name": "Production Container Hygiene \u0026 Security Baseline",
+  "requested_ref": "localhost/conunit-rq1/shell-form-entrypoint-clean:rq1",
+  "image_source": "local-store",
+  "timestamp": "2026-11-16T00:15:29.52708736Z",
+  "duration": 13308972373,
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "unverified": 0,
+  "phases": {
+    "pull_duration": 20980297,
+    "inspect_duration": 24553021,
+    "resolve_duration": 72360450,
+    "stream_duration": 3933850,
+    "tier1_duration": 78465,
+    "tier2_duration": 14348,
+    "tier3_duration": 13186502206,
+    "tier4_duration": 0,
+    "probe_window": 3000000000
+  },
+  "resources": {
+    "alloc_mb": 2.515594482421875,
+    "total_alloc_mb": 1.7892303466796875,
+    "sys_mb": 18.28736114501953,
+    "peak_rss_mb": 13.41015625,
+    "num_gc": 1,
+    "layer_count": 2,
+    "uncompressed_bytes": 8425422,
+    "live_heap_mb": 0.7206954956054688,
+    "self_cpu_seconds": 0.11059500000000001,
+    "child_cpu_seconds": 4.773877000000001,
+    "indexed_entries": 520
+  },
+  "results": [
+    {
+      "test_id": "SPEC-01",
+      "test_name": "Non-Root Execution Identity",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 465,
+      "message": "Image config selects numeric non-root UID 10001",
+      "rule_type": "SPEC-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-02",
+      "test_name": "Deterministic Entrypoint or Command",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 135,
+      "message": "Entrypoint configured: [/bin/sh -c trap 'exit 0' TERM; sleep 3600 \u0026 wait $!] []",
+      "rule_type": "SPEC-02",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-03",
+      "test_name": "Clean Ambient Environment",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 77865,
+      "message": "No prohibited or secret environment variables detected",
+      "rule_type": "SPEC-03",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-01",
+      "test_name": "Package Manager Cache Elimination",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 11107,
+      "message": "All hygiene path checks passed",
+      "rule_type": "FS-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-03",
+      "test_name": "Exclusion of Build Compilers from Production",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 2392,
+      "message": "No prohibited compiler binaries present",
+      "rule_type": "FS-03",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-04",
+      "test_name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 849,
+      "message": "Zero SUID/SGID binaries detected",
+      "rule_type": "FS-04",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "EXEC-01",
+      "test_name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 6575376197,
+      "message": "The container was still running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp), as in the baseline",
+      "rule_type": "EXEC-01",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-02",
+      "test_name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 3258348369,
+      "message": "The container was still running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL), as in the baseline",
+      "rule_type": "EXEC-02",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-03",
+      "test_name": "Graceful Signal Handling (SIGTERM)",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:c4e65d41ba1f8f75594307fe2e5d95cc7055fbc2d0adba32656c89e7a8ed9769",
+      "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+      "platform": "linux/amd64",
+      "duration": 3352777640,
+      "message": "Terminated upon SIGTERM within the 5s timeout (exit code 0, after 130ms)",
+      "rule_type": "EXEC-03",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "exited0",
+        "treatment_exit_code": 0,
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    }
+  ]
+}

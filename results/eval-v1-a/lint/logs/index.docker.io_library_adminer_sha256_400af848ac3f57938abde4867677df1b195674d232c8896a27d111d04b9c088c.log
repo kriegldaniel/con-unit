@@ -1,0 +1,101 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+TIMESTAMP: 2026-11-16T00:33:45Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: Image Static Lint Pack
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c
+CONFIG DIGEST: sha256:257074406b6eec380296bc2625368d41111bdc1cfad82c153bf9a2355b24773f
+TOTAL DURATION: 1.497601965s
+PHASE BREAKDOWN: Pull=23.100786ms, Inspect=26.007829ms, Resolve=1.410939645s, Stream=32.935261ms, Tier1=609.158µs, Tier2=1.319508ms, Tier3=0s (window 3s), Tier4=0s
+RESOURCES (ConUnit process only): Layers=17, IndexedEntries=1830, CompressedBytes=0, UncompressedBytes=116191875, LiveHeapMB=1.6, SelfCPU=0.05s, ChildCPU=0.69s
+SUMMARY: 15 passed, 1 failed, 0 unverified (total 16)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [PASS] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    1.398µs
+    Message:     Configured user "adminer" resolves to non-root UID 100
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    71ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [PASS] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    422ns
+    Message:     Zero SUID/SGID binaries detected
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    10.982µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    152.214µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    657ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    85ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-01 (Package Manager Cache Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    45.776µs
+    Message:     All hygiene path checks passed
+
+[9] [PASS] SPEC-09 (Update Instruction Combined With Install)
+    Tier:        Tier 1: Specification
+    Duration:    151.238µs
+    Message:     No recorded RUN step refreshes the apt package index without a later install or upgrade in the same step; the history can be incomplete and does not prove every Dockerfile instruction
+
+[10] [PASS] SPEC-10 (No Sudo in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    153.88µs
+    Message:     No recorded RUN step runs sudo as a command; the history can be incomplete and does not prove every Dockerfile instruction
+
+[11] [PASS] SPEC-11 (No Distribution Upgrade in the Build History)
+    Tier:        Tier 1: Specification
+    Duration:    125.132µs
+    Message:     No recorded RUN step runs a distribution upgrade with apt-get or apt; the history can be incomplete and does not prove every Dockerfile instruction
+
+[12] [PASS] SPEC-12 (No Sensitive Host Paths as Volumes)
+    Tier:        Tier 1: Specification
+    Duration:    330ns
+    Message:     None of the 0 declared volume(s) is at or below /dev, /proc or /sys; mounts given at run time were not inspected
+
+[13] [PASS] SPEC-13 (Explicit Non-Latest Image Reference)
+    Tier:        Tier 1: Specification
+    Duration:    13.913µs
+    Message:     The requested reference "index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c" carries a digest, which names fixed content
+
+[14] [PASS] FS-10 (Unique Account and Group IDs)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    18.297µs
+    Message:     No two different names share an ID in the 19 account(s) of /etc/passwd and the 36 group(s) of /etc/group
+
+[15] [PASS] FS-11 (No Development, Editor, Cache or Cloud Leftovers)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    925.139µs
+    Message:     No development, editor, cache or cloud directory and no stray development file was found outside node_modules and vendor trees
+
+[16] [PASS] FS-12 (No Credential-Named Files)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    329.132µs
+    Message:     No file with a credential-like name or extension was found outside fixture-like locations; file contents were not read
+

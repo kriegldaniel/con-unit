@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 1,
+    "skip": 0,
+    "pass": 14
+  },
+  "details": [
+    {
+      "code": "CIS-DI-0010",
+      "title": "Do not store credential in environment variables/files",
+      "level": "FATAL",
+      "alerts": [
+        "Suspicious ENV key found : AWS_ACCESS_KEY_ID on /bin/sh -c #(nop) ENV AWS_ACCESS_KEY_ID=******* AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY (You can suppress it with --accept-key)"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+NEXT                            LEFT LAST PASSED UNIT                    ACTIVATES
+Mon 2026-11-16 03:19:34 UTC 3h 59min -         - con-unit-watchdog.timer con-unit-watchdog.service
+
+1 timers listed.
+Pass --all to see loaded but inactive timers, too.

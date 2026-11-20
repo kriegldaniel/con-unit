@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/add-remote-url-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-defect
+exit: 0
+--- stderr ---
+

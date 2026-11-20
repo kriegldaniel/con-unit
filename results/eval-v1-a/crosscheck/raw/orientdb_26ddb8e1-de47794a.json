@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa",
+  "config_digest_study": "sha256:9c85eb90f21d7d8963a897702bafbbe39bbfc7dda2f09532b442d6667e532345",
+  "config_digest_archive": "sha256:9c85eb90f21d7d8963a897702bafbbe39bbfc7dda2f09532b442d6667e532345",
+  "status": "OK",
+  "export_seconds": 6.708667869,
+  "dockle_seconds": 0.48340601,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setgid file: grwxr-xr-x usr/sbin/pam_extrausers_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\",\n        \"setuid file: urwxr-xr-x usr/bin/su\"\n      ]\n    }\n  ]\n}"
+}

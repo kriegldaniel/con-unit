@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/adminer@sha256:400af848ac3f57938abde4867677df1b195674d232c8896a27d111d04b9c088c",
+  "config_digest_study": "sha256:257074406b6eec380296bc2625368d41111bdc1cfad82c153bf9a2355b24773f",
+  "config_digest_archive": "sha256:257074406b6eec380296bc2625368d41111bdc1cfad82c153bf9a2355b24773f",
+  "status": "OK",
+  "export_seconds": 1.447043857,
+  "dockle_seconds": 0.131282797,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 0,\n    \"info\": 2,\n    \"skip\": 0,\n    \"pass\": 14\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    }\n  ]\n}"
+}

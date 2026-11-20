@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/setuid-binary-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/setuid-binary.yaml --output json
+exit: 1
+--- stderr ---
+time="2026-11-16T00:13:07Z" level=fatal msg=FAIL

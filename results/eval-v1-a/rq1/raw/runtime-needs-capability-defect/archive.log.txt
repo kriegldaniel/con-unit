@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-runtime-needs-capability-defect.tar localhost/conunit-rq1/runtime-needs-capability-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:cb59e6115336fa9e0cbe98fc5feb3b73368fa99d70f66daae80d13403d65dd33
+Copying config sha256:9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe
+Writing manifest to image destination

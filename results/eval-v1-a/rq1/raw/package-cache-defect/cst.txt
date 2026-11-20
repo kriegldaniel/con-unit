@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":624885561,"Results":[{"Name":"Command Test: rq1-package-cache","Pass":false,"Stdout":"/var/cache/apk/APKINDEX.9c5ff2cc.tar.gz\n/var/cache/apk/APKINDEX.630cb808.tar.gz\n","Errors":["Excluded string '.' found in output '/var/cache/apk/APKINDEX.9c5ff2cc.tar.gz\n/var/cache/apk/APKINDEX.630cb808.tar.gz\n'"],"Duration":624885561}]}

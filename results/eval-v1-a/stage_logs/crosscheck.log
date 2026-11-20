@@ -1,0 +1,133 @@
+
+------------------------------
+  Cross-check against Dockle
+------------------------------
+[INFO]     study     empirical_study.json (sha256 c8e274d3241d)
+[INFO]     images    100 selected of 100 completed
+[INFO]     dockle    0.4.15
+[INFO]     engine    podman version 4.9.3
+[INFO]       1/100 adminer@400af848                   export   1.45s  dockle   0.13s  OK
+[INFO]       2/100 almalinux@838c2faf                 export   0.76s  dockle   0.23s  OK
+[INFO]       3/100 alpine@be265606                    export   0.09s  dockle   0.02s  OK
+[INFO]       4/100 amazoncorretto@019e5808            export   7.24s  dockle   0.56s  OK
+[INFO]       5/100 amazonlinux@c04a1012               export   4.35s  dockle   0.19s  OK
+[INFO]       6/100 arangodb@ae1ce5af                  export   5.68s  dockle   0.61s  OK
+[INFO]       7/100 bash@589adbc5                      export   0.25s  dockle   0.03s  OK
+[INFO]       8/100 buildpack-deps@890e8b5c            export  13.54s  dockle   0.86s  OK
+[INFO]       9/100 busybox@7aa3d3c5                   export   0.08s  dockle   0.01s  OK
+[INFO]      10/100 caddy@e70b164d                     export   0.59s  dockle   0.08s  OK
+[INFO]      11/100 cassandra@acd754f0                 export   3.32s  dockle   0.37s  OK
+[INFO]      12/100 clickhouse@07b74479                export   8.61s  dockle   0.89s  OK
+[INFO]      13/100 clojure@aa1b3f8a                   export   1.73s  dockle   0.34s  OK
+[INFO]      14/100 composer@8de2184c                  export   3.71s  dockle   0.25s  OK
+[INFO]      15/100 convertigo@016dcebe                export   6.14s  dockle   0.67s  OK
+[INFO]      16/100 couchdb@907eab5b                   export   3.87s  dockle   0.33s  OK
+[INFO]      17/100 dart@854f3c50                      export   3.24s  dockle   0.87s  OK
+[INFO]      18/100 debian@9c6e3814                    export   0.50s  dockle   0.15s  OK
+[INFO]      19/100 docker@5e6baf67                    export   1.29s  dockle   0.18s  OK
+[INFO]      20/100 drupal@2869a0ab                    export  22.73s  dockle   0.83s  OK
+[INFO]      21/100 eclipse-mosquitto@75d6662d         export   0.57s  dockle   0.04s  OK
+[INFO]      22/100 eclipse-temurin@e1898fd6           export   1.95s  dockle   0.23s  OK
+[INFO]      23/100 eggdrop@2028d25c                   export   1.15s  dockle   0.05s  OK
+[INFO]      24/100 elasticsearch@b7b0f24e             export  17.33s  dockle   3.07s  OK
+[INFO]      25/100 elixir@a2f0fe1b                    export   0.93s  dockle   0.13s  OK
+[INFO]      26/100 erlang@0ac9b63d                    export   0.37s  dockle   0.11s  OK
+[INFO]      27/100 fedora@15da97ed                    export   3.19s  dockle   0.23s  OK
+[INFO]      28/100 flink@ffb97a54                     export   8.17s  dockle   0.93s  OK
+[INFO]      29/100 fluentd@d912cf85                   export   2.89s  dockle   0.22s  OK
+[INFO]      30/100 gcc@b8a42d68                       export  28.29s  dockle   1.63s  OK
+[INFO]      31/100 ghost@4195f6c4                     export  43.81s  dockle   1.89s  OK
+[INFO]      32/100 golang@fa3d5968                    export   1.27s  dockle   0.34s  OK
+[INFO]      33/100 gradle@e46e1535                    export  13.15s  dockle   0.90s  OK
+[INFO]      34/100 groovy@fa81cdb3                    export   4.58s  dockle   0.52s  OK
+[INFO]      35/100 haproxy@b9fe316f                   export   0.47s  dockle   0.06s  OK
+[INFO]      36/100 haskell@10500ef6                   export 113.19s  dockle  44.64s  OK
+[INFO]      37/100 haxe@64b8dbc0                      export   8.37s  dockle   0.51s  OK
+[INFO]      38/100 hitch@91a93a77                     export   2.85s  dockle   0.11s  OK
+[INFO]      39/100 httpd@698a0f59                     export   1.90s  dockle   0.09s  OK
+[INFO]      40/100 ibm-semeru-runtimes@0601f9cd       export   3.41s  dockle   0.39s  OK
+[INFO]      41/100 influxdb@10a1a06f                  export   4.95s  dockle   0.45s  OK
+[INFO]      42/100 irssi@62fbc351                     export   1.84s  dockle   0.09s  OK
+[INFO]      43/100 joomla@f534566d                    export  12.90s  dockle   0.84s  OK
+[INFO]      44/100 julia@00027715                     export  13.04s  dockle   1.16s  OK
+[INFO]      45/100 kong@ad6cc0c8                      export   5.70s  dockle   0.43s  OK
+[INFO]      46/100 krakend@9f61092f                   export   0.97s  dockle   0.12s  OK
+[INFO]      47/100 lightstreamer@bb5f3f3f             export   5.59s  dockle   0.57s  OK
+[INFO]      48/100 logstash@553b09a3                  export  19.00s  dockle   1.01s  OK
+[INFO]      49/100 mageia@d7e96eb4                    export   7.87s  dockle   0.40s  OK
+[INFO]      50/100 mariadb@4ebbcf10                   export   4.24s  dockle   0.37s  OK
+[INFO]      51/100 maven@308cba8b                     export   3.39s  dockle   0.38s  OK
+[INFO]      52/100 mediawiki@406a08c7                 export  33.47s  dockle   1.35s  OK
+[INFO]      53/100 memcached@084fb554                 export   0.19s  dockle   0.02s  OK
+[INFO]      54/100 mongo@452bdaf2                     export  11.68s  dockle   1.14s  OK
+[INFO]      55/100 mysql@df90258d                     export  20.67s  dockle   1.03s  OK
+[INFO]      56/100 nats@afae2fdb                      export   0.58s  dockle   0.04s  OK
+[INFO]      57/100 neo4j@7dbd307c                     export   5.35s  dockle   0.66s  OK
+[INFO]      58/100 neurodebian@4521313b               export   1.05s  dockle   0.17s  OK
+[INFO]      59/100 nextcloud@81cb0905                 export  14.40s  dockle   1.59s  OK
+[INFO]      60/100 nginx@901e593c                     export   0.29s  dockle   0.08s  OK
+[INFO]      61/100 node@a34ab6d7                      export   0.61s  dockle   0.19s  OK
+[INFO]      62/100 odoo@d5e3a26b                      export  85.54s  dockle   8.26s  OK
+[INFO]      63/100 open-liberty@29dc1f49              export  10.11s  dockle   0.80s  OK
+[INFO]      64/100 oraclelinux@9225108d               export   5.79s  dockle   0.30s  OK
+[INFO]      65/100 orientdb@26ddb8e1                  export   6.71s  dockle   0.48s  OK
+[INFO]      66/100 perl@2b59ca70                      export   3.99s  dockle   0.24s  OK
+[INFO]      67/100 photon@3d7e9a35                    export   0.68s  dockle   0.06s  OK
+[INFO]      68/100 php@951fb5b1                       export   1.23s  dockle   0.12s  OK
+[INFO]      69/100 phpmyadmin@e4b3eb53                export   7.45s  dockle   0.64s  OK
+[INFO]      70/100 postgres@9ba53c7d                  export   1.01s  dockle   0.32s  OK
+[INFO]      71/100 pypy@410aad48                      export   2.73s  dockle   0.24s  OK
+[INFO]      72/100 python@65a65fc7                    export   0.57s  dockle   0.15s  OK
+[INFO]      73/100 rabbitmq@4841f638                  export   0.74s  dockle   0.21s  OK
+[INFO]      74/100 rakudo-star@0bc75422               export   2.81s  dockle   0.20s  OK
+[INFO]      75/100 redis@7958cfbb                     export   0.44s  dockle   0.13s  OK
+[INFO]      76/100 redmine@bfceeae1                   export  13.03s  dockle   0.59s  OK
+[INFO]      77/100 registry@82f6ff4a                  export   0.39s  dockle   0.07s  OK
+[INFO]      78/100 rethinkdb@81ab2da9                 export   3.23s  dockle   0.15s  OK
+[INFO]      79/100 rockylinux@d7be1c09                export   5.06s  dockle   0.22s  OK
+[INFO]      80/100 ros@00b8d47a                       export  26.15s  dockle   1.06s  OK
+[INFO]      81/100 ruby@d8cb2c07                      export   2.86s  dockle   0.21s  OK
+[INFO]      82/100 rust@f2c004e3                      export   3.25s  dockle   0.90s  OK
+[INFO]      83/100 sapmachine@8c3afc89                export   1.73s  dockle   0.27s  OK
+[INFO]      84/100 solr@4eead47c                      export   6.60s  dockle   0.74s  OK
+[INFO]      85/100 sonarqube@f95aaa90                 export  13.14s  dockle   1.40s  OK
+[INFO]      86/100 spiped@7acba2c5                    export   0.13s  dockle   0.02s  OK
+[INFO]      87/100 storm@3f8c17e6                     export   9.25s  dockle   0.80s  OK
+[INFO]      88/100 swift@53cb0586                     export   3.47s  dockle   0.36s  OK
+[INFO]      89/100 swipl@2723fefd                     export   7.08s  dockle   0.32s  OK
+[INFO]      90/100 telegraf@4a62bd29                  export   2.41s  dockle   0.34s  OK
+[INFO]      91/100 tomcat@801c473e                    export   4.56s  dockle   0.52s  OK
+[INFO]      92/100 traefik@f4bb143d                   export   0.61s  dockle   0.20s  OK
+[INFO]      93/100 ubuntu@fe815609                    export   0.36s  dockle   0.10s  OK
+[INFO]      94/100 varnish@f97e894d                   export   4.57s  dockle   0.38s  OK
+[INFO]      95/100 websphere-liberty@33db0375         export  14.62s  dockle   0.92s  OK
+[INFO]      96/100 wordpress@ad1f0968                 export  10.72s  dockle   0.88s  OK
+[INFO]      97/100 xwiki@ebef890a                     export  26.07s  dockle   1.75s  OK
+[INFO]      98/100 yourls@3631239a                    export   7.16s  dockle   0.59s  OK
+[INFO]      99/100 znc@472ffdd9                       export  10.20s  dockle   0.57s  OK
+[INFO]     100/100 zookeeper@bbf67833                 export   6.47s  dockle   0.36s  OK
+
+--------------------
+  Result per check
+--------------------
+[INFO]     check    dockle                    both c-only d-only neither | unver error n-eval | agree
+[INFO]     SPEC-01  CIS-DI-0001                 82     0     0    18 |     0     0     0 | 100.0%
+[INFO]     CIS-4.6  CIS-DI-0006                 99     1     0     0 |     0     0     0 | 99.0%
+[INFO]     FS-04    CIS-DI-0008                 64     0     0    36 |     0     0     0 | 100.0%
+[INFO]     SPEC-07  CIS-DI-0009                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     SPEC-03  CIS-DI-0010                  4     0     9    87 |     0     0     0 | 91.0%
+[INFO]     FS-06    CIS-DI-0010                  3     2    10    83 |     2     0     0 | 87.8%
+[INFO]     FS-12    CIS-DI-0010                  3     0    10    87 |     0     0     0 | 90.0%
+[INFO]     FS-08    DKL-LI-0001                  0     0     0    99 |     1     0     0 | 100.0%
+[INFO]     SPEC-09  CIS-DI-0007                  0     1     0    92 |     7     0     0 | 98.9%
+[INFO]     SPEC-10  DKL-DI-0001                  0     0     1    91 |     8     0     0 | 98.9%
+[INFO]     SPEC-11  DKL-DI-0003                  0     0     0    92 |     8     0     0 | 100.0%
+[INFO]     SPEC-12  DKL-DI-0002                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     SPEC-13  DKL-DI-0006              not comparable: Dockle never reports it for an archive
+[INFO]     FS-10    DKL-LI-0002                  0     0     0   100 |     0     0     0 | 100.0%
+[INFO]     FS-11    DKL-LI-0003                  8     3     1    88 |     0     0     0 | 96.0%
+[INFO]     FS-01    DKL-DI-0004,DKL-DI-0005      9     7    11    73 |     0     0     0 | 82.0%
+[INFO]     images: 100 completed, 100 with a Dockle result, 0 without
+[INFO]     discordant image and check pairs: 56
+[INFO]     seconds per image: export median 3.79, dockle median 0.35
+[SUCCESS]  wrote crosscheck.json, discordances.csv, table_crosscheck.tex, table_discordances.tex, macros_crosscheck.tex and table_coverage.tex in /opt/con-unit/results/eval-v1-a/crosscheck

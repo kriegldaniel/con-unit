@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-non-unique-uid-defect.tar localhost/conunit-rq1/non-unique-uid-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:f487d0da9ce0cd3b17ddb89deff39644274b08f2ff71e321a9e0e476ec2d46fe
+Copying blob sha256:14ac4bbb62100faef2593c089d907071d3d67afdc1d53b1381bfd145283ec67d
+Copying config sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a
+Writing manifest to image destination

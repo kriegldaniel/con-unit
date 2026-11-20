@@ -1,0 +1,6 @@
+$ /opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/shell-form-entrypoint-clean:rq1 --pack hygiene --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/shell-form-entrypoint-clean/conunit.txt --image-source local
+exit: 0
+--- stderr ---
+Running Production Container Hygiene & Security Baseline on localhost/conunit-rq1/shell-form-entrypoint-clean:rq1 with podman
+Environment: mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+Wrote JSON report: /opt/con-unit/results/eval-v1-a/rq1/raw/shell-form-entrypoint-clean/conunit.txt

@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/neurodebian@sha256:4521313bfbf4b0dae3acd4e90b8fc5eb547d7df6b733dcfd89de1be8693e861b",
+  "config_digest_study": "sha256:86d896af0f48a8e9dea38632738a4cb718c8cc570d4fecbc1796f296209b4b91",
+  "config_digest_archive": "sha256:86d896af0f48a8e9dea38632738a4cb718c8cc570d4fecbc1796f296209b4b91",
+  "status": "OK",
+  "export_seconds": 1.054993949,
+  "dockle_seconds": 0.173259553,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 1,\n    \"info\": 3,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0001\",\n      \"title\": \"Create a user for the container\",\n      \"level\": \"WARN\",\n      \"alerts\": [\n        \"Last user should not be root\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setgid file: grwxr-xr-x usr/sbin/unix_chkpwd\",\n        \"setuid file: urwxr-xr-x usr/bin/su\",\n        \"setgid file: grwxr-xr-x usr/bin/chage\",\n        \"setuid file: urwxr-xr-x usr/bin/passwd\",\n        \"setuid file: urwxr-xr-x usr/bin/chsh\",\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/chfn\",\n        \"setuid file: urwxr-xr-x usr/bin/umount\",\n        \"setuid file: urwxr-xr-x usr/bin/mount\",\n        \"setgid file: grwxr-xr-x usr/bin/expiry\"\n      ]\n    }\n  ]\n}"
+}

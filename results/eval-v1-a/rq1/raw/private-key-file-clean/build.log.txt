@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/private-key-file-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/private-key-file-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/private-key-file-clean
+exit: 0
+--- stderr ---
+

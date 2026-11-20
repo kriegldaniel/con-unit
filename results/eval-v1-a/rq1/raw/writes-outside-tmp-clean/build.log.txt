@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/writes-outside-tmp-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-clean
+exit: 0
+--- stderr ---
+

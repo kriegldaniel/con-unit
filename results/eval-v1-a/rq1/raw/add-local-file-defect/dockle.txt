@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 1,
+    "skip": 0,
+    "pass": 14
+  },
+  "details": [
+    {
+      "code": "CIS-DI-0009",
+      "title": "Use COPY instead of ADD in Dockerfile",
+      "level": "FATAL",
+      "alerts": [
+        "Use COPY : /bin/sh -c #(nop) ADD file:7c58938489bc263047c98f89a3fb6df3edc186f0ce8397271f3fcc9cd01ae344 in /opt/app/payload.txt "
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    }
+  ]
+}

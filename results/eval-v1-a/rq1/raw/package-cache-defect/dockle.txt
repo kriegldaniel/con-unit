@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 1,
+    "skip": 0,
+    "pass": 14
+  },
+  "details": [
+    {
+      "code": "DKL-DI-0004",
+      "title": "Use \"apk add\" with --no-cache",
+      "level": "FATAL",
+      "alerts": [
+        "Use --no-cache option if use 'apk add': /bin/sh -c apk update \u0026\u0026 apk add tzdata"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"Pass":0,"Fail":1,"Total":1,"Duration":627505857,"Results":[{"Name":"Command Test: rq1-private-key-file","Pass":false,"Stdout":"/opt/app/server.key\n","Errors":["Excluded string '.' found in output '/opt/app/server.key\n'"],"Duration":627505857}]}

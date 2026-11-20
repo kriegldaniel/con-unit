@@ -1,0 +1,8 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-world-writable-file-defect.tar localhost/conunit-rq1/world-writable-file-defect:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying blob sha256:8ef0ecb50694880af4946f3705b84ce5d7761e58f4ebc86e50b01780353e5168
+Copying config sha256:5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54
+Writing manifest to image destination

@@ -1,0 +1,1 @@
+{"Pass":1,"Fail":0,"Total":1,"Duration":615454719,"Results":[{"Name":"Command Test: rq1-root-user","Pass":true,"Stdout":"10001\n","Duration":615454719}]}

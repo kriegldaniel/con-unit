@@ -1,0 +1,10 @@
+run_eval.log and the files under preflight/ were written on the operator machine. Before the
+checksums were computed, three kinds of values were replaced in them:
+
+  the operator's home directory      ->  ~
+  the SSH source address             ->  <operator-ip>
+  the AWS account id                 ->  <aws-account-id>
+
+A user@host comment on the SSH public key is replaced by <key-comment>. Nothing else was changed.
+preflight/worktree.diff (tainted runs only) is a patch of the tool source and is left as it is.
+Files that came from the instance are not modified, REMOTE_SHA256SUMS covers them.

@@ -1,0 +1,624 @@
+{
+  "schema_version": "1",
+  "generated_at": "2026-11-16T00:33:15Z",
+  "repeats": 3,
+  "images": 10,
+  "pairs": 140,
+  "flipped_images": 0,
+  "flipped_checks": 0,
+  "pairs_unverified_in_some_repeat": 30,
+  "window_changed": 0,
+  "window_short_s": "3",
+  "window_mid_s": "10",
+  "window_long_s": "30",
+  "method": "A pair is one check on one image, over the images that completed in every run of the set. Repeats: only pairs with a PASS or FAIL verdict in every repeat are counted (pairs). A pair is flipped when those verdicts are not all the same. A pair with an UNVERIFIED verdict in any repeat is in neither number and is counted in pairs_unverified_in_some_repeat. Windows: a pair is changed when its verdict (PASS, FAIL or UNVERIFIED) is not the same at every window. Window values are read from the run metadata of each study.",
+  "inputs": [
+    {
+      "label": "r1",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/r1/empirical_study.json",
+      "sha256": "97129a98a975669bf94a0c0f158ce581c93e62897ac47f49f99b5a83bf2b42f5",
+      "window_ms": 3000,
+      "started_at": "2026-11-16T00:14:59Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    },
+    {
+      "label": "r2",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/r2/empirical_study.json",
+      "sha256": "99afb5cf546a7589ae0f458a2e70709817e6bd61c7d028826d3c2a29d2e12b63",
+      "window_ms": 3000,
+      "started_at": "2026-11-16T00:16:40Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    },
+    {
+      "label": "r3",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/r3/empirical_study.json",
+      "sha256": "fe440d913b1615fbf017ff3fba42a254eda7cc8bdfdc6193d220d0b8bb5741d7",
+      "window_ms": 3000,
+      "started_at": "2026-11-16T00:17:59Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    }
+  ],
+  "repeat_detail": {
+    "labels": [
+      "r1",
+      "r2",
+      "r3"
+    ],
+    "window_ms": 3000,
+    "images": 10,
+    "pairs": 140,
+    "flipped_pairs": 0,
+    "flipped_images": 0,
+    "pairs_unverified_in_some_repeat": 30,
+    "pairs_missing_in_some_repeat": 0,
+    "tier3_pairs": 20,
+    "tier3_flipped_pairs": 0,
+    "tier3_flipped_images": 0,
+    "flipped": [],
+    "unverified_pairs": [
+      {
+        "image": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+        "check": "EXEC-01",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+        "check": "EXEC-02",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+        "check": "EXEC-04",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+        "check": "EXEC-07",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+        "check": "EXEC-01",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+        "check": "EXEC-02",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+        "check": "EXEC-04",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+        "check": "EXEC-07",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+        "check": "EXEC-01",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+        "check": "EXEC-02",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+        "check": "EXEC-04",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+        "check": "EXEC-07",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+        "check": "EXEC-01",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+        "check": "EXEC-02",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+        "check": "EXEC-04",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+        "check": "EXEC-07",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+        "check": "EXEC-01",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+        "check": "EXEC-02",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+        "check": "EXEC-04",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+        "check": "EXEC-07",
+        "tier": 3,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      },
+      {
+        "image": "index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852",
+        "check": "SUP-02",
+        "tier": 4,
+        "verdicts": {
+          "r1": "UNVERIFIED",
+          "r2": "UNVERIFIED",
+          "r3": "UNVERIFIED"
+        }
+      }
+    ],
+    "excluded_images": []
+  },
+  "window_inputs": [
+    {
+      "label": "w3",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/r1/empirical_study.json",
+      "sha256": "97129a98a975669bf94a0c0f158ce581c93e62897ac47f49f99b5a83bf2b42f5",
+      "window_ms": 3000,
+      "started_at": "2026-11-16T00:14:59Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    },
+    {
+      "label": "w10",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/w10/empirical_study.json",
+      "sha256": "539f1bf3f5262f7b2b27e4bfbc65af0f1fdc318e86ee6b1ff1da2bccb746ef3a",
+      "window_ms": 10000,
+      "started_at": "2026-11-16T00:19:18Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    },
+    {
+      "label": "w30",
+      "path": "/opt/con-unit/results/eval-v1-b/reliability/w30/empirical_study.json",
+      "sha256": "cc419e43c379a1060b9603b7db5e4342b2e1b7af6ce991bf3aec8a5da9505a45",
+      "window_ms": 30000,
+      "started_at": "2026-11-16T00:22:57Z",
+      "engine": "podman 4.9.3",
+      "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+      "dataset_sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "attempted": 10,
+      "completed": 10
+    }
+  ],
+  "window_detail": {
+    "labels": [
+      "w3",
+      "w10",
+      "w30"
+    ],
+    "windows_ms": [
+      3000,
+      10000,
+      30000
+    ],
+    "images": 10,
+    "pairs": 170,
+    "changed": 0,
+    "unchanged": 170,
+    "changed_verified": 0,
+    "changed_with_unverified": 0,
+    "tier3_pairs": 40,
+    "tier3_changed": 0,
+    "changes": [],
+    "excluded_images": []
+  },
+  "checks": [
+    {
+      "rule": "CIS-4.6",
+      "name": "Image HEALTHCHECK",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SPEC-01",
+      "name": "Non-Root Execution Identity",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SPEC-03",
+      "name": "Clean Ambient Environment",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SPEC-05",
+      "name": "Non-Privileged Declared Image Ports",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SPEC-06",
+      "name": "Dangling Debug Port Exclusion",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SPEC-07",
+      "name": "Instruction Hygiene (COPY over ADD)",
+      "tier": 1,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-04",
+      "name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-05",
+      "name": "World-Writable File Elimination",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-06",
+      "name": "Private Key Material Scan",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-07",
+      "name": "Development and Test Harness Leakage",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-08",
+      "name": "Account Security (Empty Passwords)",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "FS-09",
+      "name": "System Directory Ownership Hygiene",
+      "tier": 2,
+      "pairs": 10,
+      "flipped": 0,
+      "unverified_in_some_repeat": 0,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "EXEC-01",
+      "name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "pairs": 5,
+      "flipped": 0,
+      "unverified_in_some_repeat": 5,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "EXEC-02",
+      "name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "pairs": 5,
+      "flipped": 0,
+      "unverified_in_some_repeat": 5,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "EXEC-04",
+      "name": "No-New-Privileges Kernel Contract",
+      "tier": 3,
+      "pairs": 5,
+      "flipped": 0,
+      "unverified_in_some_repeat": 5,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "EXEC-07",
+      "name": "Resource Constraint Conformance",
+      "tier": 3,
+      "pairs": 5,
+      "flipped": 0,
+      "unverified_in_some_repeat": 5,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    },
+    {
+      "rule": "SUP-02",
+      "name": "Cryptographic Image Provenance \u0026 Signature",
+      "tier": 4,
+      "pairs": 0,
+      "flipped": 0,
+      "unverified_in_some_repeat": 10,
+      "missing_in_some_repeat": 0,
+      "window_pairs": 10,
+      "window_changed": 0
+    }
+  ],
+  "warnings": []
+}

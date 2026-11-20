@@ -1,0 +1,10 @@
+{
+  "image": "index.docker.io/library/logstash@sha256:553b09a32c788ace7c204a68feb7d0a406b7d700a059a318c00c2ca72e626c30",
+  "config_digest_study": "sha256:c111be35451266f8a06a58c4449f84f9338fbdec19361879c8ff21e5c5433195",
+  "config_digest_archive": "sha256:c111be35451266f8a06a58c4449f84f9338fbdec19361879c8ff21e5c5433195",
+  "status": "OK",
+  "export_seconds": 18.997492144,
+  "dockle_seconds": 1.010940995,
+  "dockle_exit_code": 0,
+  "dockle_stdout": "{\n  \"summary\": {\n    \"fatal\": 0,\n    \"warn\": 0,\n    \"info\": 4,\n    \"skip\": 0,\n    \"pass\": 12\n  },\n  \"details\": [\n    {\n      \"code\": \"CIS-DI-0005\",\n      \"title\": \"Enable Content trust for Docker\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"export DOCKER_CONTENT_TRUST=1 before docker pull/build\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0006\",\n      \"title\": \"Add HEALTHCHECK instruction to the container image\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"not found HEALTHCHECK statement\"\n      ]\n    },\n    {\n      \"code\": \"CIS-DI-0008\",\n      \"title\": \"Confirm safety of setuid/setgid files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"setuid file: urwxr-xr-x usr/bin/gpasswd\",\n        \"setuid file: urwxr-xr-x usr/bin/newgrp\",\n        \"setuid file: urwxr-xr-x usr/bin/chage\"\n      ]\n    },\n    {\n      \"code\": \"DKL-LI-0003\",\n      \"title\": \"Only put necessary files\",\n      \"level\": \"INFO\",\n      \"alerts\": [\n        \"unnecessary file : usr/share/logstash/vendor/bundle/jruby/3.4.0/gems/puma-8.0.2-java/tools/Dockerfile \"\n      ]\n    }\n  ]\n}"
+}

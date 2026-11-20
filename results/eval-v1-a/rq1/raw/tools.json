@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-11-16T00:11:14.111286781Z",
+  "engine": {
+    "name": "engine",
+    "binary": "podman",
+    "path": "/usr/bin/podman",
+    "version": "podman version 4.9.3",
+    "available": true,
+    "selected": false
+  },
+  "tools": {
+    "conunit": {
+      "name": "conunit",
+      "binary": "/opt/con-unit/src/bin/con-unit",
+      "path": "/opt/con-unit/src/bin/con-unit",
+      "version": "ConUnit version 0.3.0 (OCI Container Unit Testing Framework)",
+      "available": true,
+      "selected": true
+    },
+    "cst": {
+      "name": "cst",
+      "binary": "container-structure-test",
+      "path": "/usr/local/bin/container-structure-test",
+      "version": "1.22.1",
+      "available": true,
+      "selected": true
+    },
+    "dockle": {
+      "name": "dockle",
+      "binary": "dockle",
+      "path": "/usr/local/bin/dockle",
+      "version": "dockle version 0.4.15",
+      "available": true,
+      "selected": true
+    },
+    "hadolint": {
+      "name": "hadolint",
+      "binary": "hadolint",
+      "path": "/usr/local/bin/hadolint",
+      "version": "Haskell Dockerfile Linter 2.14.0",
+      "available": true,
+      "selected": true
+    },
+    "trivy": {
+      "name": "trivy",
+      "binary": "trivy",
+      "path": "/usr/local/bin/trivy",
+      "version": "Version: 0.76.1",
+      "available": true,
+      "selected": true
+    }
+  }
+}

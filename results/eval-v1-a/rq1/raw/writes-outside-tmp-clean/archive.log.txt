@@ -1,0 +1,6 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-writes-outside-tmp-clean.tar localhost/conunit-rq1/writes-outside-tmp-clean:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying config sha256:2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a
+Writing manifest to image destination

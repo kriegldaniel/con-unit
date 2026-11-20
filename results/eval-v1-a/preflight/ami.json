@@ -1,0 +1,11 @@
+{
+    "id": "ami-04bbcae8eccec8bce",
+    "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108",
+    "creation_date": "2026-11-09T19:24:25.000Z",
+    "owner": "099720109477",
+    "arch": "x86_64",
+    "state": "available",
+    "deprecation_time": "2028-11-09T19:24:25.000Z",
+    "root_device": "ebs",
+    "virtualization": "hvm"
+}

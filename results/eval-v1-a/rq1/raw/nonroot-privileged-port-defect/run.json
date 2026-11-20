@@ -1,0 +1,53 @@
+{
+  "case": "nonroot-privileged-port-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+    "image_id": "12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3.json",
+    "config_digest": "sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+    "image_id": "sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+    "matches_image_id": true,
+    "size_bytes": 8734720
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/nonroot-privileged-port-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "skipped",
+      "reason": "no container-structure-test policy for this property",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-nonroot-privileged-port-defect.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-defect/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-nonroot-privileged-port-defect.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

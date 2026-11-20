@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/setuid-binary-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-clean
+exit: 0
+--- stderr ---
+

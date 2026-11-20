@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/secret-in-env-defect:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-defect/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-defect
+exit: 0
+--- stderr ---
+

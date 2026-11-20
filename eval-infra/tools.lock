@@ -1,0 +1,32 @@
+# ConUnit external tools for the evaluation instance (linux amd64).
+#
+# One line per tool: name version url sha256
+#
+# The versions are the ones the RQ1 oracle records its catalog scopes at and that the local
+# smoke run uses. Change them together with the oracle sources or not at all.
+#
+# The sha256 is the hash of the downloaded file: the release archive for dockle and trivy
+# (the installer takes the binary of the same name out of it), the executable itself for
+# hadolint and container-structure-test. remote_eval.sh installs a tool only when
+#   1. this file matches --tools-lock-sha256 (the operator machine computed it),
+#   2. the download matches the sha256 below, and
+#   3. the checksum file published next to the release, fetched from a different path than
+#      the download, lists the same sha256 for the same file name.
+#
+# How the values were read (2026-11-15): the release of each project on github.com was fetched
+# together with its own checksum file, and the sha256 computed locally was compared with the
+# published one (and with the digest the GitHub API reports where it has one). The four
+# binaries were then run once, in a throwaway container, to read their version output.
+# To update a pin, repeat that and change version, url and sha256 together. A value that
+# cannot be verified stays a failing placeholder (the word UNVERIFIED instead of a hash),
+# never a guess: the installer and the pre-flight both refuse such a line.
+#
+# Checksum file of each release, in the release directory next to the download:
+#   dockle                    dockle_<version>_checksums.txt
+#   trivy                     trivy_<version>_checksums.txt
+#   hadolint                  <asset>.sha256 (seen at 2.14.0), checksums.sha256 (seen at 2.15.1)
+#   container-structure-test  checksums.txt
+dockle 0.4.15 https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz 8bfc9183d1d3d67800edb45bea4bb63ddf1d28bec5f89944075a07007d79caad
+hadolint 2.14.0 https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64 6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47
+trivy 0.76.1 https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0
+container-structure-test 1.22.1 https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/container-structure-test-linux-amd64 fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca

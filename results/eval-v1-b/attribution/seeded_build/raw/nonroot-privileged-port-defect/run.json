@@ -1,0 +1,36 @@
+{
+  "case": "nonroot-privileged-port-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+    "image_id": "87d633007cff0dea27fefb6019e3b5d0e85cc02d54e06fc4e7863d9ba78dffb8"
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-b/attribution/seeded_build/raw/nonroot-privileged-port-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "hadolint": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    },
+    "trivy": {
+      "status": "not_run",
+      "reason": "binary not found on PATH",
+      "exit_code": 0
+    }
+  }
+}

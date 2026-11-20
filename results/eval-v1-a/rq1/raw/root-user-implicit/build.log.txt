@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/root-user-implicit:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit
+exit: 0
+--- stderr ---
+

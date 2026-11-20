@@ -1,0 +1,5 @@
+{
+  "dockle_version": "0.4.15",
+  "engine": "podman version 4.9.3",
+  "platform": "linux/amd64"
+}

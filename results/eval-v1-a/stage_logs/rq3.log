@@ -1,0 +1,275 @@
+
+RQ3 performance benchmark
+23:55:14 INFO  host    mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+23:55:14 INFO  images  10, warm-up 1, timed 10, cold 0, pack PACK-CONUNIT-HARDENING
+23:55:14 INFO  tier 3  4 treatments (EXEC-02, EXEC-07, EXEC-01, EXEC-04), floor 15 s per image at W = 3s
+23:55:14 INFO  dockle  /usr/local/bin/dockle (dockle version 0.4.15), timed after every warm-up and timed trial
+23:55:14 INFO  journal /opt/con-unit/results/eval-v1-a/rq3/rq3_journal.jsonl
+
+[1/10] index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+23:55:14 INFO  archetype base-os, base family alpine
+23:55:15 INFO      warmup  1/1  total 475.008 ms | resolve 129.692 stream 3.885 t1 0.093 t2 0.116 t3 290.576 t4 0.000
+23:55:15 INFO                   dockle 97.286 ms (export 68.774, analysis 28.512)
+23:55:15 INFO      timed   1/10 total 418.954 ms | resolve 67.961 stream 3.810 t1 0.142 t2 0.116 t3 299.865 t4 0.000
+23:55:15 INFO                   dockle 84.665 ms (export 64.376, analysis 20.289)
+23:55:16 INFO      timed   2/10 total 405.372 ms | resolve 62.005 stream 3.696 t1 0.121 t2 0.117 t3 289.921 t4 0.000
+23:55:16 INFO                   dockle 79.805 ms (export 60.386, analysis 19.419)
+23:55:16 INFO      timed   3/10 total 378.985 ms | resolve 61.020 stream 3.649 t1 0.103 t2 0.113 t3 267.740 t4 0.000
+23:55:16 INFO                   dockle 80.672 ms (export 61.224, analysis 19.448)
+23:55:17 INFO      timed   4/10 total 387.605 ms | resolve 62.778 stream 3.707 t1 0.121 t2 0.112 t3 272.045 t4 0.000
+23:55:17 INFO                   dockle 80.327 ms (export 60.703, analysis 19.624)
+23:55:17 INFO      timed   5/10 total 399.760 ms | resolve 61.842 stream 3.676 t1 0.123 t2 0.112 t3 285.083 t4 0.000
+23:55:17 INFO                   dockle 81.849 ms (export 62.001, analysis 19.848)
+23:55:18 INFO      timed   6/10 total 414.382 ms | resolve 64.415 stream 3.675 t1 0.115 t2 0.112 t3 297.208 t4 0.000
+23:55:18 INFO                   dockle 86.213 ms (export 65.536, analysis 20.677)
+23:55:18 INFO      timed   7/10 total 422.850 ms | resolve 67.033 stream 3.745 t1 0.124 t2 0.112 t3 305.321 t4 0.000
+23:55:18 INFO                   dockle 81.389 ms (export 61.817, analysis 19.572)
+23:55:19 INFO      timed   8/10 total 413.368 ms | resolve 60.522 stream 3.637 t1 0.124 t2 0.138 t3 297.769 t4 0.000
+23:55:19 INFO                   dockle 80.516 ms (export 60.341, analysis 20.175)
+23:55:19 INFO      timed   9/10 total 374.462 ms | resolve 62.742 stream 3.692 t1 0.117 t2 0.114 t3 262.239 t4 0.000
+23:55:19 INFO                   dockle 82.108 ms (export 61.960, analysis 20.148)
+23:55:20 INFO      timed  10/10 total 386.049 ms | resolve 63.839 stream 3.628 t1 0.176 t2 0.112 t3 270.339 t4 0.000
+23:55:20 INFO                   dockle 80.474 ms (export 61.196, analysis 19.278)
+23:55:20 OK    alpine: COMPLETED, n=10, median 402.566 ms, IQR 27.690 ms, mean 400.179 ms +/- 12.477 ms (95% CI)
+
+[2/10] index.docker.io/library/ubuntu@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+23:55:20 INFO  archetype base-os, base family ubuntu
+23:55:21 INFO      warmup  1/1  total 769.358 ms | resolve 399.958 stream 30.322 t1 0.108 t2 1.019 t3 291.460 t4 0.000
+23:55:21 INFO                   dockle 432.829 ms (export 327.830, analysis 104.999)
+23:55:22 INFO      timed   1/10 total 682.926 ms | resolve 341.735 stream 29.491 t1 0.097 t2 1.010 t3 266.038 t4 0.000
+23:55:22 INFO                   dockle 427.390 ms (export 325.309, analysis 102.081)
+23:55:23 INFO      timed   2/10 total 666.151 ms | resolve 326.103 stream 29.578 t1 0.108 t2 0.999 t3 264.292 t4 0.000
+23:55:23 INFO                   dockle 421.964 ms (export 319.542, analysis 102.422)
+23:55:24 INFO      timed   3/10 total 667.164 ms | resolve 330.304 stream 29.552 t1 0.101 t2 1.004 t3 261.791 t4 0.000
+23:55:24 INFO                   dockle 417.583 ms (export 315.851, analysis 101.732)
+23:55:25 INFO      timed   4/10 total 669.952 ms | resolve 327.543 stream 29.326 t1 0.092 t2 1.005 t3 265.261 t4 0.000
+23:55:25 INFO                   dockle 429.068 ms (export 327.559, analysis 101.509)
+23:55:26 INFO      timed   5/10 total 663.927 ms | resolve 325.582 stream 29.730 t1 0.093 t2 0.995 t3 261.120 t4 0.000
+23:55:26 INFO                   dockle 423.355 ms (export 321.684, analysis 101.671)
+23:55:28 INFO      timed   6/10 total 661.913 ms | resolve 324.075 stream 29.092 t1 0.091 t2 0.997 t3 261.645 t4 0.000
+23:55:28 INFO                   dockle 420.236 ms (export 317.589, analysis 102.647)
+23:55:29 INFO      timed   7/10 total 664.506 ms | resolve 328.430 stream 28.922 t1 0.093 t2 1.005 t3 260.274 t4 0.000
+23:55:29 INFO                   dockle 417.702 ms (export 316.276, analysis 101.426)
+23:55:30 INFO      timed   8/10 total 666.999 ms | resolve 331.296 stream 29.476 t1 0.093 t2 0.988 t3 261.718 t4 0.000
+23:55:30 INFO                   dockle 420.753 ms (export 318.594, analysis 102.159)
+23:55:31 INFO      timed   9/10 total 657.884 ms | resolve 323.049 stream 29.190 t1 0.097 t2 0.998 t3 261.337 t4 0.000
+23:55:31 INFO                   dockle 430.617 ms (export 328.954, analysis 101.663)
+23:55:32 INFO      timed  10/10 total 667.655 ms | resolve 322.547 stream 29.552 t1 0.094 t2 0.990 t3 272.078 t4 0.000
+23:55:32 INFO                   dockle 420.558 ms (export 318.574, analysis 101.984)
+23:55:32 OK    ubuntu: COMPLETED, n=10, median 666.575 ms, IQR 3.461 ms, mean 666.908 ms +/- 4.698 ms (95% CI)
+
+[3/10] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a
+23:55:32 INFO  archetype web-ingress, base family alpine
+23:55:44 INFO      warmup  1/1  total 11190.530 ms | resolve 989.084 stream 22.226 t1 0.111 t2 0.567 t3 10131.836 t4 0.000
+23:55:44 INFO                   dockle 370.553 ms (export 289.771, analysis 80.782)
+23:55:55 INFO      timed   1/10 total 10751.064 ms | resolve 287.037 stream 22.136 t1 0.106 t2 0.571 t3 10394.976 t4 0.000
+23:55:55 INFO                   dockle 373.962 ms (export 292.743, analysis 81.219)
+23:56:06 INFO      timed   2/10 total 10779.016 ms | resolve 288.628 stream 22.198 t1 0.145 t2 0.564 t3 10420.234 t4 0.000
+23:56:06 INFO                   dockle 371.311 ms (export 290.716, analysis 80.595)
+23:56:17 INFO      timed   3/10 total 10724.630 ms | resolve 292.013 stream 22.495 t1 0.121 t2 0.587 t3 10362.435 t4 0.000
+23:56:17 INFO                   dockle 383.600 ms (export 302.865, analysis 80.735)
+23:56:28 INFO      timed   4/10 total 10698.593 ms | resolve 287.504 stream 22.306 t1 0.128 t2 0.570 t3 10341.667 t4 0.000
+23:56:28 INFO                   dockle 373.208 ms (export 292.651, analysis 80.557)
+23:56:39 INFO      timed   5/10 total 10761.694 ms | resolve 293.806 stream 22.018 t1 0.129 t2 0.584 t3 10398.980 t4 0.000
+23:56:39 INFO                   dockle 377.042 ms (export 296.233, analysis 80.809)
+23:56:50 INFO      timed   6/10 total 10777.911 ms | resolve 296.553 stream 21.970 t1 0.107 t2 0.583 t3 10411.528 t4 0.000
+23:56:50 INFO                   dockle 375.292 ms (export 294.626, analysis 80.666)
+23:57:02 INFO      timed   7/10 total 10735.820 ms | resolve 289.792 stream 22.128 t1 0.134 t2 0.598 t3 10376.067 t4 0.000
+23:57:02 INFO                   dockle 377.475 ms (export 296.968, analysis 80.507)
+23:57:13 INFO      timed   8/10 total 10701.767 ms | resolve 292.957 stream 22.502 t1 0.111 t2 0.699 t3 10339.934 t4 0.000
+23:57:13 INFO                   dockle 373.253 ms (export 293.006, analysis 80.247)
+23:57:24 INFO      timed   9/10 total 10776.191 ms | resolve 285.302 stream 22.120 t1 0.125 t2 0.580 t3 10421.764 t4 0.000
+23:57:24 INFO                   dockle 376.991 ms (export 296.463, analysis 80.528)
+23:57:35 INFO      timed  10/10 total 10773.190 ms | resolve 287.196 stream 21.621 t1 0.123 t2 0.584 t3 10418.324 t4 0.000
+23:57:35 INFO                   dockle 371.511 ms (export 290.608, analysis 80.903)
+23:57:35 OK    nginx: COMPLETED, n=10, median 10756.379 ms, IQR 48.013 ms, mean 10747.988 ms +/- 22.313 ms (95% CI)
+
+[4/10] index.docker.io/library/python@sha256:65a65fc7b30b06cb6df4930fd4650697cb23f4c2698ab81fc87e4b031bc36928
+23:57:35 INFO  archetype language-runtime, base family debian
+23:57:38 INFO      warmup  1/1  total 2276.796 ms | resolve 1839.586 stream 45.800 t1 0.097 t2 1.912 t3 344.143 t4 0.000
+23:57:38 INFO                   dockle 657.491 ms (export 503.832, analysis 153.659)
+23:57:39 INFO      timed   1/10 total 895.669 ms | resolve 507.628 stream 44.843 t1 0.094 t2 1.891 t3 295.728 t4 0.000
+23:57:39 INFO                   dockle 666.897 ms (export 513.739, analysis 153.158)
+23:57:41 INFO      timed   2/10 total 930.783 ms | resolve 517.777 stream 45.548 t1 0.109 t2 1.906 t3 320.804 t4 0.000
+23:57:41 INFO                   dockle 666.948 ms (export 514.177, analysis 152.771)
+23:57:43 INFO      timed   3/10 total 893.489 ms | resolve 504.834 stream 45.612 t1 0.091 t2 1.895 t3 296.127 t4 0.000
+23:57:43 INFO                   dockle 659.692 ms (export 506.595, analysis 153.097)
+23:57:44 INFO      timed   4/10 total 897.680 ms | resolve 511.420 stream 45.429 t1 0.091 t2 1.894 t3 295.267 t4 0.000
+23:57:44 INFO                   dockle 668.147 ms (export 515.669, analysis 152.478)
+23:57:46 INFO      timed   5/10 total 901.787 ms | resolve 518.548 stream 45.207 t1 0.093 t2 1.903 t3 289.479 t4 0.000
+23:57:46 INFO                   dockle 668.835 ms (export 515.549, analysis 153.286)
+23:57:47 INFO      timed   6/10 total 902.347 ms | resolve 505.940 stream 45.743 t1 0.107 t2 1.906 t3 301.353 t4 0.000
+23:57:47 INFO                   dockle 664.636 ms (export 510.951, analysis 153.685)
+23:57:49 INFO      timed   7/10 total 963.501 ms | resolve 523.958 stream 45.854 t1 0.092 t2 1.910 t3 344.920 t4 0.000
+23:57:49 INFO                   dockle 666.057 ms (export 513.509, analysis 152.548)
+23:57:51 INFO      timed   8/10 total 929.429 ms | resolve 513.955 stream 45.355 t1 0.090 t2 1.955 t3 322.752 t4 0.000
+23:57:51 INFO                   dockle 680.286 ms (export 527.116, analysis 153.170)
+23:57:52 INFO      timed   9/10 total 903.516 ms | resolve 512.100 stream 45.074 t1 0.091 t2 1.888 t3 299.672 t4 0.000
+23:57:52 INFO                   dockle 670.605 ms (export 516.838, analysis 153.767)
+23:57:54 INFO      timed  10/10 total 906.593 ms | resolve 517.477 stream 45.274 t1 0.090 t2 1.911 t3 295.764 t4 0.000
+23:57:54 INFO                   dockle 664.682 ms (export 512.317, analysis 152.365)
+23:57:54 OK    python: COMPLETED, n=10, median 902.932 ms, IQR 25.013 ms, mean 912.479 ms +/- 15.853 ms (95% CI)
+
+[5/10] index.docker.io/library/node@sha256:a34ab6d7f6f4813f4d0c5469d74685604b962fbdbf5793a7bc7b4998ecb867c8
+23:57:54 INFO  archetype language-runtime, base family alpine
+23:57:58 INFO      warmup  1/1  total 3277.723 ms | resolve 2595.873 stream 44.511 t1 0.096 t2 1.471 t3 589.623 t4 0.000
+23:57:58 INFO                   dockle 759.936 ms (export 569.120, analysis 190.816)
+23:58:00 INFO      timed   1/10 total 1252.605 ms | resolve 588.596 stream 44.162 t1 0.123 t2 1.907 t3 572.842 t4 0.000
+23:58:00 INFO                   dockle 768.184 ms (export 578.917, analysis 189.267)
+23:58:02 INFO      timed   2/10 total 1240.448 ms | resolve 571.663 stream 44.543 t1 0.118 t2 1.952 t3 577.610 t4 0.000
+23:58:02 INFO                   dockle 765.264 ms (export 575.658, analysis 189.606)
+23:58:04 INFO      timed   3/10 total 1244.692 ms | resolve 577.278 stream 44.494 t1 0.119 t2 1.880 t3 576.580 t4 0.000
+23:58:04 INFO                   dockle 768.732 ms (export 578.969, analysis 189.763)
+23:58:06 INFO      timed   4/10 total 1239.242 ms | resolve 568.011 stream 44.150 t1 0.121 t2 1.988 t3 578.389 t4 0.000
+23:58:06 INFO                   dockle 753.970 ms (export 564.653, analysis 189.317)
+23:58:08 INFO      timed   5/10 total 1236.613 ms | resolve 564.191 stream 44.737 t1 0.119 t2 2.045 t3 578.956 t4 0.000
+23:58:08 INFO                   dockle 753.195 ms (export 564.064, analysis 189.131)
+23:58:10 INFO      timed   6/10 total 1259.520 ms | resolve 592.273 stream 45.041 t1 0.268 t2 1.586 t3 574.060 t4 0.000
+23:58:10 INFO                   dockle 782.032 ms (export 592.348, analysis 189.684)
+23:58:12 INFO      timed   7/10 total 1244.235 ms | resolve 576.989 stream 45.132 t1 0.319 t2 1.510 t3 573.695 t4 0.000
+23:58:12 INFO                   dockle 762.958 ms (export 572.980, analysis 189.978)
+23:58:14 INFO      timed   8/10 total 1238.076 ms | resolve 567.220 stream 44.764 t1 0.104 t2 1.543 t3 578.616 t4 0.000
+23:58:14 INFO                   dockle 767.567 ms (export 578.360, analysis 189.207)
+23:58:16 INFO      timed   9/10 total 1253.454 ms | resolve 573.654 stream 44.701 t1 0.377 t2 1.469 t3 587.893 t4 0.000
+23:58:16 INFO                   dockle 754.201 ms (export 564.483, analysis 189.718)
+23:58:18 INFO      timed  10/10 total 1233.827 ms | resolve 564.797 stream 44.661 t1 0.094 t2 1.556 t3 577.679 t4 0.000
+23:58:18 INFO                   dockle 755.444 ms (export 565.875, analysis 189.569)
+23:58:18 OK    node: COMPLETED, n=10, median 1242.342 ms, IQR 12.259 ms, mean 1244.271 ms +/- 5.997 ms (95% CI)
+
+[6/10] index.docker.io/library/golang@sha256:fa3d596898d9f126af7c01d14ee7597bab3f39cccf392ef36b69fe77cd681f18
+23:58:18 INFO  archetype language-runtime, base family alpine
+23:58:33 INFO      warmup  1/1  total 12739.861 ms | resolve 11290.156 stream 133.670 t1 0.136 t2 8.753 t3 1262.731 t4 0.000
+23:58:33 INFO                   dockle 1520.098 ms (export 1180.230, analysis 339.868)
+23:58:37 INFO      timed   1/10 total 2638.075 ms | resolve 1187.387 stream 133.109 t1 0.128 t2 8.915 t3 1261.366 t4 0.000
+23:58:37 INFO                   dockle 1507.915 ms (export 1167.623, analysis 340.292)
+23:58:41 INFO      timed   2/10 total 2624.112 ms | resolve 1173.815 stream 133.214 t1 0.125 t2 9.024 t3 1261.911 t4 0.000
+23:58:41 INFO                   dockle 1528.377 ms (export 1188.359, analysis 340.018)
+23:58:45 INFO      timed   3/10 total 2635.966 ms | resolve 1173.185 stream 135.134 t1 0.249 t2 8.645 t3 1272.792 t4 0.000
+23:58:45 INFO                   dockle 1534.721 ms (export 1193.587, analysis 341.134)
+23:58:50 INFO      timed   4/10 total 2630.343 ms | resolve 1170.177 stream 133.489 t1 0.122 t2 9.170 t3 1269.208 t4 0.000
+23:58:50 INFO                   dockle 1531.407 ms (export 1191.121, analysis 340.286)
+23:58:54 INFO      timed   5/10 total 2629.636 ms | resolve 1171.598 stream 133.860 t1 0.126 t2 8.605 t3 1268.897 t4 0.000
+23:58:54 INFO                   dockle 1507.288 ms (export 1165.970, analysis 341.318)
+23:58:58 INFO      timed   6/10 total 2616.394 ms | resolve 1160.578 stream 133.531 t1 0.146 t2 9.159 t3 1267.294 t4 0.000
+23:58:58 INFO                   dockle 1511.451 ms (export 1171.160, analysis 340.291)
+23:59:02 INFO      timed   7/10 total 2627.773 ms | resolve 1168.818 stream 133.679 t1 0.104 t2 9.112 t3 1270.402 t4 0.000
+23:59:02 INFO                   dockle 1533.351 ms (export 1193.800, analysis 339.551)
+23:59:06 INFO      timed   8/10 total 2629.064 ms | resolve 1158.759 stream 133.244 t1 0.131 t2 9.284 t3 1280.594 t4 0.000
+23:59:06 INFO                   dockle 1521.916 ms (export 1181.412, analysis 340.504)
+23:59:10 INFO      timed   9/10 total 2625.441 ms | resolve 1178.333 stream 134.044 t1 0.129 t2 9.010 t3 1256.126 t4 0.000
+23:59:10 INFO                   dockle 1506.963 ms (export 1165.856, analysis 341.107)
+23:59:15 INFO      timed  10/10 total 2647.611 ms | resolve 1185.792 stream 133.510 t1 0.128 t2 9.203 t3 1270.953 t4 0.000
+23:59:15 INFO                   dockle 1524.536 ms (export 1183.891, analysis 340.645)
+23:59:15 OK    golang: COMPLETED, n=10, median 2629.350 ms, IQR 8.537 ms, mean 2630.442 ms +/- 6.106 ms (95% CI)
+
+[7/10] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b
+23:59:15 INFO  archetype database, base family alpine
+23:59:34 INFO      warmup  1/1  total 18368.603 ms | resolve 3642.151 stream 70.612 t1 0.137 t2 1.987 t3 14604.501 t4 0.000
+23:59:34 INFO                   dockle 1296.392 ms (export 980.133, analysis 316.259)
+23:59:51 INFO      timed   1/10 total 15518.866 ms | resolve 979.327 stream 71.439 t1 0.144 t2 1.420 t3 14418.724 t4 0.000
+23:59:51 INFO                   dockle 1283.673 ms (export 968.901, analysis 314.772)
+00:00:08 INFO      timed   2/10 total 15496.387 ms | resolve 996.269 stream 69.755 t1 0.101 t2 1.382 t3 14380.696 t4 0.000
+00:00:08 INFO                   dockle 1318.259 ms (export 1002.476, analysis 315.783)
+00:00:25 INFO      timed   3/10 total 15302.713 ms | resolve 973.102 stream 70.615 t1 0.128 t2 1.408 t3 14210.690 t4 0.000
+00:00:25 INFO                   dockle 1271.119 ms (export 955.673, analysis 315.446)
+00:00:42 INFO      timed   4/10 total 15496.689 ms | resolve 963.359 stream 69.219 t1 0.128 t2 1.377 t3 14414.753 t4 0.000
+00:00:42 INFO                   dockle 1294.166 ms (export 979.702, analysis 314.464)
+00:00:59 INFO      timed   5/10 total 15830.293 ms | resolve 980.425 stream 69.326 t1 0.102 t2 1.412 t3 14731.056 t4 0.000
+00:00:59 INFO                   dockle 1378.349 ms (export 1057.765, analysis 320.584)
+00:01:16 INFO      timed   6/10 total 15690.905 ms | resolve 1053.836 stream 74.181 t1 0.114 t2 1.428 t3 14507.201 t4 0.000
+00:01:16 INFO                   dockle 1354.785 ms (export 1034.579, analysis 320.206)
+00:01:33 INFO      timed   7/10 total 15697.161 ms | resolve 1018.132 stream 73.055 t1 0.137 t2 1.973 t3 14551.687 t4 0.000
+00:01:33 INFO                   dockle 1379.171 ms (export 1059.072, analysis 320.099)
+00:01:50 INFO      timed   8/10 total 15660.475 ms | resolve 1061.248 stream 73.506 t1 0.142 t2 1.940 t3 14470.003 t4 0.000
+00:01:50 INFO                   dockle 1378.577 ms (export 1058.263, analysis 320.314)
+00:02:07 INFO      timed   9/10 total 15718.453 ms | resolve 1032.078 stream 72.896 t1 0.113 t2 1.441 t3 14559.915 t4 0.000
+00:02:07 INFO                   dockle 1335.250 ms (export 1015.274, analysis 319.976)
+00:02:24 INFO      timed  10/10 total 15517.940 ms | resolve 1029.784 stream 72.253 t1 0.139 t2 1.431 t3 14362.794 t4 0.000
+00:02:24 INFO                   dockle 1291.599 ms (export 972.716, analysis 318.883)
+00:02:24 OK    postgres: COMPLETED, n=10, median 15589.671 ms, IQR 193.594 ms, mean 15592.988 ms +/- 109.545 ms (95% CI)
+
+[8/10] index.docker.io/library/redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3
+00:02:24 INFO  archetype database, base family alpine
+00:02:42 INFO      warmup  1/1  total 17337.703 ms | resolve 1027.983 stream 28.210 t1 0.131 t2 0.330 t3 16231.292 t4 0.000
+00:02:42 INFO                   dockle 576.349 ms (export 442.198, analysis 134.151)
+00:03:00 INFO      timed   1/10 total 16800.347 ms | resolve 439.582 stream 27.485 t1 0.176 t2 0.397 t3 16281.889 t4 0.000
+00:03:00 INFO                   dockle 554.682 ms (export 422.772, analysis 131.910)
+00:03:17 INFO      timed   2/10 total 16624.292 ms | resolve 412.884 stream 27.175 t1 0.152 t2 0.391 t3 16137.454 t4 0.000
+00:03:17 INFO                   dockle 535.069 ms (export 403.740, analysis 131.329)
+00:03:34 INFO      timed   3/10 total 16598.413 ms | resolve 394.451 stream 27.448 t1 0.612 t2 0.379 t3 16126.003 t4 0.000
+00:03:34 INFO                   dockle 535.621 ms (export 403.090, analysis 132.531)
+00:03:51 INFO      timed   4/10 total 16871.963 ms | resolve 419.858 stream 27.497 t1 0.138 t2 0.840 t3 16374.199 t4 0.001
+00:03:51 INFO                   dockle 558.156 ms (export 427.905, analysis 130.251)
+00:04:09 INFO      timed   5/10 total 16717.816 ms | resolve 421.309 stream 26.974 t1 0.155 t2 0.783 t3 16220.512 t4 0.000
+00:04:09 INFO                   dockle 548.798 ms (export 419.220, analysis 129.578)
+00:04:26 INFO      timed   6/10 total 16510.103 ms | resolve 413.532 stream 26.867 t1 0.157 t2 0.793 t3 16022.736 t4 0.000
+00:04:26 INFO                   dockle 544.431 ms (export 411.328, analysis 133.103)
+00:04:43 INFO      timed   7/10 total 16757.633 ms | resolve 405.629 stream 27.400 t1 0.152 t2 0.794 t3 16273.236 t4 0.000
+00:04:43 INFO                   dockle 558.441 ms (export 428.347, analysis 130.094)
+00:05:00 INFO      timed   8/10 total 16779.605 ms | resolve 424.131 stream 27.477 t1 0.160 t2 0.899 t3 16277.614 t4 0.000
+00:05:00 INFO                   dockle 554.548 ms (export 423.336, analysis 131.212)
+00:05:18 INFO      timed   9/10 total 16798.582 ms | resolve 433.616 stream 27.162 t1 0.152 t2 0.829 t3 16289.242 t4 0.000
+00:05:18 INFO                   dockle 555.876 ms (export 424.731, analysis 131.145)
+00:05:35 INFO      timed  10/10 total 16822.190 ms | resolve 422.248 stream 27.480 t1 0.638 t2 0.445 t3 16322.651 t4 0.000
+00:05:35 INFO                   dockle 555.626 ms (export 424.343, analysis 131.283)
+00:05:35 OK    redis: COMPLETED, n=10, median 16768.619 ms, IQR 152.233 ms, mean 16728.095 ms +/- 82.081 ms (95% CI)
+
+[9/10] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267
+00:05:35 INFO  archetype messaging, base family alpine
+00:05:53 INFO      warmup  1/1  total 16472.782 ms | resolve 2657.804 stream 55.618 t1 0.114 t2 1.536 t3 13706.176 t4 0.000
+00:05:53 INFO                   dockle 939.373 ms (export 727.986, analysis 211.387)
+00:06:08 INFO      timed   1/10 total 14515.396 ms | resolve 738.472 stream 56.515 t1 0.419 t2 1.655 t3 13665.929 t4 0.000
+00:06:08 INFO                   dockle 913.146 ms (export 703.008, analysis 210.138)
+00:06:23 INFO      timed   2/10 total 14421.228 ms | resolve 685.383 stream 56.952 t1 0.136 t2 1.556 t3 13625.861 t4 0.000
+00:06:23 INFO                   dockle 886.585 ms (export 676.393, analysis 210.192)
+00:06:39 INFO      timed   3/10 total 14528.228 ms | resolve 679.026 stream 54.547 t1 0.143 t2 2.079 t3 13742.589 t4 0.000
+00:06:39 INFO                   dockle 879.274 ms (export 669.725, analysis 209.549)
+00:06:54 INFO      timed   4/10 total 14430.906 ms | resolve 691.340 stream 54.661 t1 0.135 t2 2.032 t3 13631.740 t4 0.000
+00:06:54 INFO                   dockle 894.129 ms (export 684.852, analysis 209.277)
+00:07:10 INFO      timed   5/10 total 14437.289 ms | resolve 707.127 stream 54.679 t1 0.316 t2 1.882 t3 13622.416 t4 0.000
+00:07:10 INFO                   dockle 872.930 ms (export 663.972, analysis 208.958)
+00:07:25 INFO      timed   6/10 total 14471.603 ms | resolve 666.525 stream 54.142 t1 0.108 t2 1.483 t3 13700.385 t4 0.000
+00:07:25 INFO                   dockle 920.113 ms (export 710.696, analysis 209.417)
+00:07:40 INFO      timed   7/10 total 14478.872 ms | resolve 709.749 stream 55.177 t1 0.155 t2 2.079 t3 13661.798 t4 0.000
+00:07:40 INFO                   dockle 877.222 ms (export 667.840, analysis 209.382)
+00:07:56 INFO      timed   8/10 total 14395.392 ms | resolve 681.977 stream 55.519 t1 0.135 t2 1.506 t3 13603.922 t4 0.000
+00:07:56 INFO                   dockle 891.891 ms (export 684.047, analysis 207.844)
+00:08:11 INFO      timed   9/10 total 14366.663 ms | resolve 669.430 stream 55.972 t1 0.352 t2 1.752 t3 13590.492 t4 0.000
+00:08:11 INFO                   dockle 875.452 ms (export 666.862, analysis 208.590)
+00:08:26 INFO      timed  10/10 total 14436.081 ms | resolve 658.203 stream 54.154 t1 0.404 t2 1.846 t3 13673.191 t4 0.000
+00:08:26 INFO                   dockle 920.689 ms (export 711.656, analysis 209.033)
+00:08:26 OK    rabbitmq: COMPLETED, n=10, median 14436.685 ms, IQR 53.408 ms, mean 14448.166 ms +/- 36.272 ms (95% CI)
+
+[10/10] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a
+00:08:26 INFO  archetype web-ingress, base family alpine
+00:08:42 INFO      warmup  1/1  total 14948.632 ms | resolve 1380.047 stream 39.330 t1 0.111 t2 0.475 t3 13483.753 t4 0.000
+00:08:42 INFO                   dockle 780.399 ms (export 583.945, analysis 196.454)
+00:08:57 INFO      timed   1/10 total 14315.897 ms | resolve 582.856 stream 38.737 t1 0.601 t2 0.534 t3 13650.194 t4 0.000
+00:08:57 INFO                   dockle 775.777 ms (export 580.043, analysis 195.734)
+00:09:13 INFO      timed   2/10 total 14420.005 ms | resolve 589.074 stream 38.230 t1 0.305 t2 0.634 t3 13748.452 t4 0.000
+00:09:13 INFO                   dockle 776.911 ms (export 580.464, analysis 196.447)
+00:09:28 INFO      timed   3/10 total 14209.770 ms | resolve 577.739 stream 37.813 t1 0.370 t2 0.578 t3 13549.726 t4 0.000
+00:09:28 INFO                   dockle 775.860 ms (export 579.690, analysis 196.170)
+00:09:43 INFO      timed   4/10 total 14166.907 ms | resolve 573.830 stream 37.968 t1 0.379 t2 0.603 t3 13509.893 t4 0.000
+00:09:43 INFO                   dockle 775.134 ms (export 577.520, analysis 197.614)
+00:09:58 INFO      timed   5/10 total 14363.139 ms | resolve 587.531 stream 38.009 t1 0.617 t2 0.493 t3 13691.815 t4 0.000
+00:09:58 INFO                   dockle 777.605 ms (export 580.639, analysis 196.966)
+00:10:13 INFO      timed   6/10 total 14171.648 ms | resolve 583.838 stream 38.449 t1 0.566 t2 0.480 t3 13504.497 t4 0.000
+00:10:13 INFO                   dockle 771.077 ms (export 574.038, analysis 197.039)
+00:10:28 INFO      timed   7/10 total 14308.575 ms | resolve 575.046 stream 39.190 t1 0.359 t2 0.519 t3 13648.230 t4 0.000
+00:10:28 INFO                   dockle 775.417 ms (export 578.312, analysis 197.105)
+00:10:43 INFO      timed   8/10 total 14343.424 ms | resolve 582.098 stream 38.392 t1 0.394 t2 0.508 t3 13676.883 t4 0.000
+00:10:43 INFO                   dockle 783.091 ms (export 586.682, analysis 196.409)
+00:10:58 INFO      timed   9/10 total 14195.181 ms | resolve 584.089 stream 38.552 t1 0.109 t2 0.479 t3 13525.923 t4 0.000
+00:10:58 INFO                   dockle 784.143 ms (export 586.798, analysis 197.345)
+00:11:13 INFO      timed  10/10 total 14404.814 ms | resolve 581.131 stream 38.586 t1 0.130 t2 0.527 t3 13739.381 t4 0.000
+00:11:13 INFO                   dockle 791.868 ms (export 595.554, analysis 196.314)
+00:11:13 OK    traefik: COMPLETED, n=10, median 14312.236 ms, IQR 159.382 ms, mean 14289.936 ms +/- 69.066 ms (95% CI)
+
+Summary
+00:11:13 INFO  images: 10 requested, 10 completed, 0 partial, 0 failed
+00:11:13 INFO  batch peak RSS (ConUnit process only): 24.1 MB
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/rq3_telemetry.json
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/RQ3_PERFORMANCE.md
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/table_rq3_trials.tex
+00:11:13 OK    wrote /opt/con-unit/results/eval-v1-a/rq3/macros_rq3.tex

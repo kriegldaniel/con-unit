@@ -1,0 +1,7 @@
+$ /usr/bin/podman save --format docker-archive -o /tmp/rq1-225601-root-user-explicit.tar localhost/conunit-rq1/root-user-explicit:rq1
+exit: 0
+--- stderr ---
+Copying blob sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba
+Copying blob sha256:41944c98947110c843e9080d8807c9273bfd3bb309ab86506b0f040854a2fa69
+Copying config sha256:ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b
+Writing manifest to image destination

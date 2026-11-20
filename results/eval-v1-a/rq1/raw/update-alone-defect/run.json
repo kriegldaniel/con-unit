@@ -1,0 +1,53 @@
+{
+  "case": "update-alone-defect",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/update-alone-defect:rq1",
+    "image_id": "9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d.json",
+    "config_digest": "sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+    "image_id": "sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+    "matches_image_id": true,
+    "size_bytes": 151099904
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/update-alone-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/update-alone-defect/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "skipped",
+      "reason": "no container-structure-test policy for this property",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-update-alone-defect.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/update-alone-defect/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/update-alone-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-update-alone-defect.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

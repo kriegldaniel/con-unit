@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/package-cache-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/package-cache.yaml --output json
+exit: 0
+--- stderr ---
+

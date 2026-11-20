@@ -1,0 +1,53 @@
+{
+  "case": "update-alone-clean",
+  "build": {
+    "status": "built",
+    "image": "localhost/conunit-rq1/update-alone-clean:rq1",
+    "image_id": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96"
+  },
+  "archive": {
+    "format": "docker-archive",
+    "config_name": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96.json",
+    "config_digest": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+    "image_id": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+    "matches_image_id": true,
+    "size_bytes": 129431040
+  },
+  "tools": {
+    "conunit": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/update-alone-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/update-alone-clean/conunit.txt --image-source local",
+      "output": "conunit.txt"
+    },
+    "cst": {
+      "status": "skipped",
+      "reason": "no container-structure-test policy for this property",
+      "exit_code": 0
+    },
+    "dockle": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-update-alone-clean.tar --format json --exit-code 0",
+      "output": "dockle.txt",
+      "notes": [
+        "working directory was an empty temporary directory, so no .dockleignore applied",
+        "config digest of the archive sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+        "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+        "no DOCKLE_ variable was set in the environment"
+      ]
+    },
+    "hadolint": {
+      "status": "ran",
+      "exit_code": 1,
+      "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean/Dockerfile",
+      "output": "hadolint.txt"
+    },
+    "trivy": {
+      "status": "ran",
+      "exit_code": 0,
+      "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-update-alone-clean.tar",
+      "output": "trivy.txt"
+    }
+  }
+}

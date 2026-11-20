@@ -1,0 +1,841 @@
+2026-11-15T23:56:23Z [INFO ] attribution of the real failures in the study
+
+Tier 3 failure attribution
+23:56:23 INFO  host    mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+23:56:23 INFO  window  3s, minimize true, out-dir /opt/con-unit/results/eval-v1-b/attribution
+23:56:23 INFO  study   /opt/con-unit/results/eval-v1-b/empirical_study.json (sha256 1a5f6242aa47, 100 images)
+23:56:23 INFO  pairs   37 to attribute (EXEC-01, EXEC-02)
+
+[1/37] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a  EXEC-01
+23:56:27 INFO  baseline                           running, survives the window
+23:56:27 INFO  treatment                          exited (exit 1)
+23:56:27 INFO  single /run                        exited (exit 1)
+23:56:27 INFO  single /var/run                    exited (exit 1)
+23:56:31 INFO  single /var/cache                  running, survives the window
+23:56:31 INFO  single /var/log                    exited (exit 1)
+23:56:31 INFO  single /var/lib                    exited (exit 1)
+23:56:34 INFO  union union                        running, survives the window
+23:56:34 OK    EXEC-01: RESOLVED_SINGLE by /var/cache
+
+[2/37] index.docker.io/library/nginx@sha256:901e593c95dc85f5a729f5765516321366ef4ac401821431d408897e95287d0a  EXEC-02
+23:56:38 INFO  baseline                           running, survives the window
+23:56:38 INFO  treatment                          exited (exit 1)
+23:56:38 INFO  single CAP_CHOWN                   exited (exit 1)
+23:56:38 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:56:38 INFO  single CAP_FOWNER                  exited (exit 1)
+23:56:39 INFO  single CAP_FSETID                  exited (exit 1)
+23:56:39 INFO  single CAP_KILL                    exited (exit 1)
+23:56:39 INFO  single CAP_SETGID                  exited (exit 1)
+23:56:39 INFO  single CAP_SETUID                  exited (exit 1)
+23:56:40 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:56:40 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+23:56:40 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:56:43 INFO  union union                        running, survives the window
+23:56:44 INFO  minimize without CAP_CHOWN         exited (exit 1)
+23:56:47 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+23:56:50 INFO  minimize without CAP_FOWNER        running, survives the window
+23:56:53 INFO  minimize without CAP_FSETID        running, survives the window
+23:56:57 INFO  minimize without CAP_KILL          running, survives the window
+23:57:00 INFO  minimize without CAP_SETGID        running, survives the window
+23:57:03 INFO  minimize without CAP_SETUID        running, survives the window
+23:57:06 INFO  minimize without CAP_SETPCAP       running, survives the window
+23:57:07 INFO  minimize without CAP_NET_BIND_SERVICE exited (exit 1)
+23:57:10 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+23:57:10 INFO  minimal set                        CAP_CHOWN + CAP_NET_BIND_SERVICE
+23:57:10 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_NET_BIND_SERVICE
+
+[3/37] index.docker.io/library/postgres@sha256:9ba53c7d41ea093baf5c1ba635ba5434c4f979880527d49bb7d9237d3193085b  EXEC-02
+23:57:13 INFO  baseline                           running, survives the window
+23:57:13 INFO  treatment                          exited (exit 1)
+23:57:14 INFO  single CAP_CHOWN                   exited (exit 1)
+23:57:14 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:57:14 INFO  single CAP_FOWNER                  exited (exit 1)
+23:57:14 INFO  single CAP_FSETID                  exited (exit 1)
+23:57:14 INFO  single CAP_KILL                    exited (exit 1)
+23:57:15 INFO  single CAP_SETGID                  exited (exit 1)
+23:57:15 INFO  single CAP_SETUID                  exited (exit 1)
+23:57:15 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:57:15 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+23:57:16 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:57:19 INFO  union union                        running, survives the window
+23:57:19 INFO  minimize without CAP_CHOWN         exited (exit 1)
+23:57:22 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+23:57:26 INFO  minimize without CAP_FOWNER        running, survives the window
+23:57:29 INFO  minimize without CAP_FSETID        running, survives the window
+23:57:32 INFO  minimize without CAP_KILL          running, survives the window
+23:57:33 INFO  minimize without CAP_SETGID        exited (exit 1)
+23:57:33 INFO  minimize without CAP_SETUID        exited (exit 1)
+23:57:36 INFO  minimize without CAP_SETPCAP       running, survives the window
+23:57:39 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+23:57:43 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+23:57:43 INFO  minimal set                        CAP_CHOWN + CAP_SETGID + CAP_SETUID
+23:57:43 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_SETGID + CAP_SETUID
+
+[4/37] index.docker.io/library/mysql@sha256:df90258da46f6e7ff8574ff84f17618aba0765cac749928299c69fd4e7cb8ad8  EXEC-02
+23:57:46 INFO  baseline                           running, survives the window
+23:57:46 INFO  treatment                          exited (exit 1)
+23:57:47 INFO  single CAP_CHOWN                   exited (exit 1)
+23:57:47 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:57:47 INFO  single CAP_FOWNER                  exited (exit 1)
+23:57:48 INFO  single CAP_FSETID                  exited (exit 1)
+23:57:48 INFO  single CAP_KILL                    exited (exit 1)
+23:57:48 INFO  single CAP_SETGID                  exited (exit 1)
+23:57:49 INFO  single CAP_SETUID                  exited (exit 1)
+23:57:49 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:57:49 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+23:57:50 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:57:53 INFO  union union                        running, survives the window
+23:57:56 INFO  minimize without CAP_CHOWN         running, survives the window
+23:57:57 INFO  minimize without CAP_DAC_OVERRIDE  exited (exit 1)
+23:58:00 INFO  minimize without CAP_FOWNER        running, survives the window
+23:58:03 INFO  minimize without CAP_FSETID        running, survives the window
+23:58:06 INFO  minimize without CAP_KILL          running, survives the window
+23:58:07 INFO  minimize without CAP_SETGID        exited (exit 1)
+23:58:07 INFO  minimize without CAP_SETUID        exited (exit 1)
+23:58:10 INFO  minimize without CAP_SETPCAP       running, survives the window
+23:58:14 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+23:58:17 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+23:58:17 INFO  minimal set                        CAP_DAC_OVERRIDE + CAP_SETGID + CAP_SETUID
+23:58:17 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_DAC_OVERRIDE + CAP_SETGID + CAP_SETUID
+
+[5/37] index.docker.io/library/mongo@sha256:452bdaf2127b8ff851e31410a267809b9829eded219979f2210e7c7efb85a058  EXEC-02
+23:58:20 INFO  baseline                           running, survives the window
+23:58:20 INFO  treatment                          exited (exit 1)
+23:58:21 INFO  single CAP_CHOWN                   exited (exit 1)
+23:58:21 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:58:21 INFO  single CAP_FOWNER                  exited (exit 1)
+23:58:21 INFO  single CAP_FSETID                  exited (exit 1)
+23:58:22 INFO  single CAP_KILL                    exited (exit 1)
+23:58:22 INFO  single CAP_SETGID                  exited (exit 1)
+23:58:22 INFO  single CAP_SETUID                  exited (exit 1)
+23:58:22 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:58:23 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+23:58:23 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:58:26 INFO  union union                        running, survives the window
+23:58:30 INFO  minimize without CAP_CHOWN         running, survives the window
+23:58:33 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+23:58:36 INFO  minimize without CAP_FOWNER        running, survives the window
+23:58:39 INFO  minimize without CAP_FSETID        running, survives the window
+23:58:43 INFO  minimize without CAP_KILL          running, survives the window
+23:58:43 INFO  minimize without CAP_SETGID        exited (exit 1)
+23:58:43 INFO  minimize without CAP_SETUID        exited (exit 1)
+23:58:46 INFO  minimize without CAP_SETPCAP       running, survives the window
+23:58:50 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+23:58:53 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+23:58:53 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+23:58:53 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[6/37] index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66  EXEC-01
+23:58:56 INFO  baseline                           running, survives the window
+23:58:56 INFO  treatment                          exited (exit 1)
+23:58:57 INFO  single /run                        exited (exit 1)
+23:58:57 INFO  single /var/run                    exited (exit 1)
+23:58:57 INFO  single /var/cache                  exited (exit 1)
+23:58:57 INFO  single /var/log                    exited (exit 1)
+23:58:58 INFO  single /var/lib                    exited (exit 1)
+23:58:58 INFO  union union                        exited (exit 1)
+23:58:58 OK    EXEC-01: UNRESOLVED
+
+[7/37] index.docker.io/library/httpd@sha256:698a0f59374eeb59c2c3ae6385c5f346edd2c70c2b63f7b552fb3d64dbc3cf66  EXEC-02
+23:59:01 INFO  baseline                           running, survives the window
+23:59:01 INFO  treatment                          exited (exit 1)
+23:59:02 INFO  single CAP_CHOWN                   exited (exit 1)
+23:59:02 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:59:02 INFO  single CAP_FOWNER                  exited (exit 1)
+23:59:02 INFO  single CAP_FSETID                  exited (exit 1)
+23:59:02 INFO  single CAP_KILL                    exited (exit 1)
+23:59:03 INFO  single CAP_SETGID                  exited (exit 1)
+23:59:03 INFO  single CAP_SETUID                  exited (exit 1)
+23:59:03 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:59:06 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+23:59:07 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:59:10 INFO  union union                        running, survives the window
+23:59:10 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[8/37] index.docker.io/library/rabbitmq@sha256:4841f6384ef8313c3594cd3f2e9f40c10805f8a61c45f08a9a5d9ddea8199267  EXEC-02
+23:59:13 INFO  baseline                           running, survives the window
+23:59:13 INFO  treatment                          exited (exit 1)
+23:59:14 INFO  single CAP_CHOWN                   exited (exit 1)
+23:59:14 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:59:14 INFO  single CAP_FOWNER                  exited (exit 1)
+23:59:14 INFO  single CAP_FSETID                  exited (exit 1)
+23:59:15 INFO  single CAP_KILL                    exited (exit 1)
+23:59:15 INFO  single CAP_SETGID                  exited (exit 1)
+23:59:15 INFO  single CAP_SETUID                  exited (exit 1)
+23:59:15 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:59:16 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+23:59:16 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:59:19 INFO  union union                        running, survives the window
+23:59:22 INFO  minimize without CAP_CHOWN         running, survives the window
+23:59:26 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+23:59:29 INFO  minimize without CAP_FOWNER        running, survives the window
+23:59:32 INFO  minimize without CAP_FSETID        running, survives the window
+23:59:36 INFO  minimize without CAP_KILL          running, survives the window
+23:59:36 INFO  minimize without CAP_SETGID        exited (exit 1)
+23:59:36 INFO  minimize without CAP_SETUID        exited (exit 1)
+23:59:39 INFO  minimize without CAP_SETPCAP       running, survives the window
+23:59:43 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+23:59:46 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+23:59:46 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+23:59:46 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[9/37] index.docker.io/library/traefik@sha256:f4bb143d1135a579b630ed491e17ec50f6f7c9c6a30585ff3d385471d2a86f5a  EXEC-02
+23:59:49 INFO  baseline                           running, survives the window
+23:59:49 INFO  treatment                          exited (exit 1)
+23:59:50 INFO  single CAP_CHOWN                   exited (exit 1)
+23:59:50 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+23:59:50 INFO  single CAP_FOWNER                  exited (exit 1)
+23:59:51 INFO  single CAP_FSETID                  exited (exit 1)
+23:59:51 INFO  single CAP_KILL                    exited (exit 1)
+23:59:51 INFO  single CAP_SETGID                  exited (exit 1)
+23:59:52 INFO  single CAP_SETUID                  exited (exit 1)
+23:59:52 INFO  single CAP_SETPCAP                 exited (exit 1)
+23:59:55 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+23:59:56 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+23:59:59 INFO  union union                        running, survives the window
+23:59:59 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[10/37] index.docker.io/library/mariadb@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed  EXEC-02
+00:00:02 INFO  baseline                           running, survives the window
+00:00:03 INFO  treatment                          exited (exit 1)
+00:00:03 INFO  single CAP_CHOWN                   exited (exit 1)
+00:00:04 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:00:04 INFO  single CAP_FOWNER                  exited (exit 1)
+00:00:05 INFO  single CAP_FSETID                  exited (exit 1)
+00:00:05 INFO  single CAP_KILL                    exited (exit 1)
+00:00:05 INFO  single CAP_SETGID                  exited (exit 1)
+00:00:06 INFO  single CAP_SETUID                  exited (exit 1)
+00:00:06 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:00:07 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:00:07 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:00:11 INFO  union union                        running, survives the window
+00:00:14 INFO  minimize without CAP_CHOWN         running, survives the window
+00:00:17 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:00:20 INFO  minimize without CAP_FOWNER        running, survives the window
+00:00:24 INFO  minimize without CAP_FSETID        running, survives the window
+00:00:27 INFO  minimize without CAP_KILL          running, survives the window
+00:00:27 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:00:28 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:00:31 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:00:34 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:00:38 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:00:38 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:00:38 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[11/37] index.docker.io/library/wordpress@sha256:ad1f0968c4241a683a6ca827b2b584fb6a27aecc899641f5b2cac56ece8a8472  EXEC-02
+00:00:41 INFO  baseline                           running, survives the window
+00:00:42 INFO  treatment                          exited (exit 2)
+00:00:44 INFO  single CAP_CHOWN                   exited (exit 2)
+00:00:45 INFO  single CAP_DAC_OVERRIDE            exited (exit 2)
+00:00:46 INFO  single CAP_FOWNER                  exited (exit 2)
+00:00:47 INFO  single CAP_FSETID                  exited (exit 2)
+00:00:48 INFO  single CAP_KILL                    exited (exit 2)
+00:00:49 INFO  single CAP_SETGID                  exited (exit 2)
+00:00:51 INFO  single CAP_SETUID                  exited (exit 2)
+00:00:52 INFO  single CAP_SETPCAP                 exited (exit 2)
+00:00:53 INFO  single CAP_NET_BIND_SERVICE        exited (exit 2)
+00:00:54 INFO  single CAP_SYS_CHROOT              exited (exit 2)
+00:00:58 INFO  union union                        running, survives the window
+00:00:59 INFO  minimize without CAP_CHOWN         exited (exit 2)
+00:01:02 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:01:04 INFO  minimize without CAP_FOWNER        exited (exit 2)
+00:01:07 INFO  minimize without CAP_FSETID        running, survives the window
+00:01:10 INFO  minimize without CAP_KILL          running, survives the window
+00:01:14 INFO  minimize without CAP_SETGID        running, survives the window
+00:01:17 INFO  minimize without CAP_SETUID        running, survives the window
+00:01:21 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:01:22 INFO  minimize without CAP_NET_BIND_SERVICE exited (exit 1)
+00:01:25 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:01:25 INFO  minimal set                        CAP_CHOWN + CAP_FOWNER + CAP_NET_BIND_SERVICE
+00:01:25 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_FOWNER + CAP_NET_BIND_SERVICE
+
+[12/37] index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a  EXEC-01
+00:01:29 INFO  baseline                           running, survives the window
+00:01:29 INFO  treatment                          exited (exit 1)
+00:01:29 INFO  single /run                        exited (exit 1)
+00:01:29 INFO  single /var/run                    exited (exit 1)
+00:01:30 INFO  single /var/cache                  exited (exit 1)
+00:01:30 INFO  single /var/log                    exited (exit 1)
+00:01:30 INFO  single /var/lib                    start_failed
+00:01:31 INFO  union union                        start_failed
+00:01:31 INFO  union union-without-/var/run       start_failed
+00:01:31 OK    EXEC-01: UNRESOLVED
+
+[13/37] index.docker.io/library/neo4j@sha256:7dbd307cc8f35d6a061cf71659d3d8f783c3db9e8c2f5bb9d54f77921931952a  EXEC-02
+00:01:34 INFO  baseline                           running, survives the window
+00:01:35 INFO  treatment                          exited (exit 1)
+00:01:37 INFO  single CAP_CHOWN                   exited (exit 1)
+00:01:37 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:01:37 INFO  single CAP_FOWNER                  exited (exit 1)
+00:01:37 INFO  single CAP_FSETID                  exited (exit 1)
+00:01:38 INFO  single CAP_KILL                    exited (exit 1)
+00:01:38 INFO  single CAP_SETGID                  exited (exit 1)
+00:01:38 INFO  single CAP_SETUID                  exited (exit 1)
+00:01:39 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:01:39 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:01:39 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:01:43 INFO  union union                        running, survives the window
+00:01:43 INFO  minimize without CAP_CHOWN         exited (exit 1)
+00:01:45 INFO  minimize without CAP_DAC_OVERRIDE  exited (exit 1)
+00:01:47 INFO  minimize without CAP_FOWNER        exited (exit 1)
+00:01:50 INFO  minimize without CAP_FSETID        running, survives the window
+00:01:53 INFO  minimize without CAP_KILL          running, survives the window
+00:01:55 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:01:57 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:02:01 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:02:04 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:02:07 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:02:07 INFO  minimal set                        CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_SETGID + CAP_SETUID
+00:02:07 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_SETGID + CAP_SETUID
+
+[14/37] index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a  EXEC-01
+00:02:11 INFO  baseline                           running, survives the window
+00:02:11 INFO  treatment                          exited (exit 1)
+00:02:11 INFO  single /run                        exited (exit 1)
+00:02:11 INFO  single /var/run                    exited (exit 1)
+00:02:12 INFO  single /var/cache                  exited (exit 1)
+00:02:12 INFO  single /var/log                    exited (exit 1)
+00:02:13 INFO  single /var/lib                    exited (exit 1)
+00:02:13 INFO  union union                        exited (exit 1)
+00:02:13 OK    EXEC-01: UNRESOLVED
+
+[15/37] index.docker.io/library/zookeeper@sha256:bbf678337a9242fcb6e49e51193855078ec515251cf11fe0bcfabae6a10e040a  EXEC-02
+00:02:16 INFO  baseline                           running, survives the window
+00:02:17 INFO  treatment                          exited (exit 1)
+00:02:17 INFO  single CAP_CHOWN                   exited (exit 1)
+00:02:17 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:02:18 INFO  single CAP_FOWNER                  exited (exit 1)
+00:02:18 INFO  single CAP_FSETID                  exited (exit 1)
+00:02:18 INFO  single CAP_KILL                    exited (exit 1)
+00:02:18 INFO  single CAP_SETGID                  exited (exit 1)
+00:02:19 INFO  single CAP_SETUID                  exited (exit 1)
+00:02:19 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:02:19 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:02:20 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:02:23 INFO  union union                        running, survives the window
+00:02:23 INFO  minimize without CAP_CHOWN         exited (exit 1)
+00:02:26 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:02:30 INFO  minimize without CAP_FOWNER        running, survives the window
+00:02:33 INFO  minimize without CAP_FSETID        running, survives the window
+00:02:36 INFO  minimize without CAP_KILL          running, survives the window
+00:02:37 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:02:37 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:02:40 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:02:43 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:02:47 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:02:47 INFO  minimal set                        CAP_CHOWN + CAP_SETGID + CAP_SETUID
+00:02:47 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_SETGID + CAP_SETUID
+
+[16/37] index.docker.io/library/eclipse-mosquitto@sha256:75d6662dee52c947dc9dd9c29f1d8d7ffef78ddaf38001caa09755681e8bbc98  EXEC-02
+00:02:50 INFO  baseline                           running, survives the window
+00:02:50 INFO  treatment                          exited (exit 14)
+00:02:51 INFO  single CAP_CHOWN                   exited (exit 14)
+00:02:51 INFO  single CAP_DAC_OVERRIDE            exited (exit 14)
+00:02:51 INFO  single CAP_FOWNER                  exited (exit 14)
+00:02:51 INFO  single CAP_FSETID                  exited (exit 14)
+00:02:52 INFO  single CAP_KILL                    exited (exit 14)
+00:02:52 INFO  single CAP_SETGID                  exited (exit 14)
+00:02:52 INFO  single CAP_SETUID                  exited (exit 14)
+00:02:53 INFO  single CAP_SETPCAP                 exited (exit 14)
+00:02:53 INFO  single CAP_NET_BIND_SERVICE        exited (exit 14)
+00:02:53 INFO  single CAP_SYS_CHROOT              exited (exit 14)
+00:02:56 INFO  union union                        running, survives the window
+00:03:00 INFO  minimize without CAP_CHOWN         running, survives the window
+00:03:03 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:03:06 INFO  minimize without CAP_FOWNER        running, survives the window
+00:03:09 INFO  minimize without CAP_FSETID        running, survives the window
+00:03:13 INFO  minimize without CAP_KILL          running, survives the window
+00:03:13 INFO  minimize without CAP_SETGID        exited (exit 14)
+00:03:13 INFO  minimize without CAP_SETUID        exited (exit 14)
+00:03:16 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:03:20 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:03:23 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:03:23 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:03:23 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[17/37] index.docker.io/library/gradle@sha256:e46e15353757ef9c9be0197a243653e88d25ebcd4c3c841057cf839c11fcf898  EXEC-02
+00:03:26 INFO  baseline                           running, survives the window
+00:03:27 INFO  treatment                          exited (exit 1)
+00:03:28 INFO  single CAP_CHOWN                   exited (exit 1)
+00:03:31 INFO  single CAP_DAC_OVERRIDE            running, survives the window
+00:03:32 INFO  single CAP_FOWNER                  exited (exit 1)
+00:03:32 INFO  single CAP_FSETID                  exited (exit 1)
+00:03:33 INFO  single CAP_KILL                    exited (exit 1)
+00:03:34 INFO  single CAP_SETGID                  exited (exit 1)
+00:03:34 INFO  single CAP_SETUID                  exited (exit 1)
+00:03:35 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:03:35 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:03:36 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:03:39 INFO  union union                        running, survives the window
+00:03:39 OK    EXEC-02: RESOLVED_SINGLE by CAP_DAC_OVERRIDE
+
+[18/37] index.docker.io/library/phpmyadmin@sha256:e4b3eb5305cd42d21512bb55def2bab52625d56df927ad4ee1864a9354c84d40  EXEC-02
+00:03:43 INFO  baseline                           running, survives the window
+00:03:43 INFO  treatment                          exited (exit 1)
+00:03:43 INFO  single CAP_CHOWN                   exited (exit 1)
+00:03:44 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:03:44 INFO  single CAP_FOWNER                  exited (exit 1)
+00:03:44 INFO  single CAP_FSETID                  exited (exit 1)
+00:03:45 INFO  single CAP_KILL                    exited (exit 1)
+00:03:45 INFO  single CAP_SETGID                  exited (exit 1)
+00:03:45 INFO  single CAP_SETUID                  exited (exit 1)
+00:03:46 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:03:49 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+00:03:49 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:03:52 INFO  union union                        running, survives the window
+00:03:52 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[19/37] index.docker.io/library/drupal@sha256:2869a0abe45b7ce2bc6d7a35fabe447d06393c3ce613964b3a4f1d9660eb0e08  EXEC-02
+00:03:56 INFO  baseline                           running, survives the window
+00:03:56 INFO  treatment                          exited (exit 1)
+00:03:56 INFO  single CAP_CHOWN                   exited (exit 1)
+00:03:57 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:03:57 INFO  single CAP_FOWNER                  exited (exit 1)
+00:03:57 INFO  single CAP_FSETID                  exited (exit 1)
+00:03:58 INFO  single CAP_KILL                    exited (exit 1)
+00:03:58 INFO  single CAP_SETGID                  exited (exit 1)
+00:03:58 INFO  single CAP_SETUID                  exited (exit 1)
+00:03:58 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:04:02 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+00:04:02 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:04:05 INFO  union union                        running, survives the window
+00:04:05 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[20/37] index.docker.io/library/mediawiki@sha256:406a08c7f2cf5a9c9cb590bbe27a21b4d3cb3268b0acf327fa7dd2727ff6b0be  EXEC-02
+00:04:09 INFO  baseline                           running, survives the window
+00:04:09 INFO  treatment                          exited (exit 1)
+00:04:09 INFO  single CAP_CHOWN                   exited (exit 1)
+00:04:10 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:04:10 INFO  single CAP_FOWNER                  exited (exit 1)
+00:04:10 INFO  single CAP_FSETID                  exited (exit 1)
+00:04:10 INFO  single CAP_KILL                    exited (exit 1)
+00:04:11 INFO  single CAP_SETGID                  exited (exit 1)
+00:04:11 INFO  single CAP_SETUID                  exited (exit 1)
+00:04:11 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:04:15 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+00:04:15 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:04:18 INFO  union union                        running, survives the window
+00:04:18 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[21/37] index.docker.io/library/nextcloud@sha256:81cb09055a20142521a267cea2bc27e6a81a065871c70850d209f08803567dbc  EXEC-02
+00:04:27 INFO  baseline                           running, survives the window
+00:04:36 INFO  treatment                          exited (exit 23)
+00:04:37 INFO  single CAP_CHOWN                   exited (exit 23)
+00:04:45 INFO  single CAP_DAC_OVERRIDE            exited (exit 23)
+00:04:53 INFO  single CAP_FOWNER                  exited (exit 23)
+00:05:02 INFO  single CAP_FSETID                  exited (exit 23)
+00:05:11 INFO  single CAP_KILL                    exited (exit 23)
+00:05:20 INFO  single CAP_SETGID                  exited (exit 23)
+00:05:28 INFO  single CAP_SETUID                  exited (exit 23)
+00:05:37 INFO  single CAP_SETPCAP                 exited (exit 23)
+00:05:46 INFO  single CAP_NET_BIND_SERVICE        exited (exit 23)
+00:05:55 INFO  single CAP_SYS_CHROOT              exited (exit 23)
+00:06:04 INFO  union union                        running, survives the window
+00:06:12 INFO  minimize without CAP_CHOWN         exited (exit 23)
+00:06:13 INFO  minimize without CAP_DAC_OVERRIDE  exited (exit 23)
+00:06:22 INFO  minimize without CAP_FOWNER        exited (exit 23)
+00:06:31 INFO  minimize without CAP_FSETID        running, survives the window
+00:06:40 INFO  minimize without CAP_KILL          running, survives the window
+00:06:46 INFO  minimize without CAP_SETGID        running, survives the window
+00:06:55 INFO  minimize without CAP_SETUID        running, survives the window
+00:07:04 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:07:12 INFO  minimize without CAP_NET_BIND_SERVICE exited (exit 1)
+00:07:21 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:07:21 INFO  minimal set                        CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_NET_BIND_SERVICE
+00:07:21 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_NET_BIND_SERVICE
+
+[22/37] index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e  EXEC-01
+00:07:24 INFO  baseline                           running, survives the window
+00:07:25 INFO  treatment                          exited (exit 1)
+00:07:25 INFO  single /run                        exited (exit 1)
+00:07:25 INFO  single /var/run                    exited (exit 1)
+00:07:26 INFO  single /var/cache                  exited (exit 1)
+00:07:26 INFO  single /var/log                    exited (exit 1)
+00:07:26 INFO  single /var/lib                    exited (exit 1)
+00:07:26 INFO  union union                        exited (exit 1)
+00:07:26 OK    EXEC-01: UNRESOLVED
+
+[23/37] index.docker.io/library/redmine@sha256:bfceeae10eb8dd20debc581e5c2213f53949c0195449d8cb4567e0bd522be07e  EXEC-02
+00:07:30 INFO  baseline                           running, survives the window
+00:07:30 INFO  treatment                          exited (exit 1)
+00:07:30 INFO  single CAP_CHOWN                   exited (exit 1)
+00:07:30 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:07:31 INFO  single CAP_FOWNER                  exited (exit 1)
+00:07:31 INFO  single CAP_FSETID                  exited (exit 1)
+00:07:31 INFO  single CAP_KILL                    exited (exit 1)
+00:07:32 INFO  single CAP_SETGID                  exited (exit 1)
+00:07:32 INFO  single CAP_SETUID                  exited (exit 1)
+00:07:32 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:07:32 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:07:33 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:07:36 INFO  union union                        running, survives the window
+00:07:39 INFO  minimize without CAP_CHOWN         running, survives the window
+00:07:42 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:07:46 INFO  minimize without CAP_FOWNER        running, survives the window
+00:07:49 INFO  minimize without CAP_FSETID        running, survives the window
+00:07:52 INFO  minimize without CAP_KILL          running, survives the window
+00:07:52 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:07:53 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:07:56 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:07:59 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:08:03 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:08:03 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:08:03 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[24/37] index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c  EXEC-01
+00:08:06 INFO  baseline                           running, survives the window
+00:08:06 INFO  treatment                          exited (exit 2)
+00:08:07 INFO  single /run                        exited (exit 2)
+00:08:07 INFO  single /var/run                    exited (exit 2)
+00:08:07 INFO  single /var/cache                  exited (exit 2)
+00:08:08 INFO  single /var/log                    exited (exit 2)
+00:08:08 INFO  single /var/lib                    exited (exit 2)
+00:08:09 INFO  union union                        exited (exit 2)
+00:08:09 OK    EXEC-01: UNRESOLVED
+
+[25/37] index.docker.io/library/yourls@sha256:3631239a8cc0f3911f0cdae00f5475f48a65b9f2c9f120ba137766bba28c945c  EXEC-02
+00:08:12 INFO  baseline                           running, survives the window
+00:08:12 INFO  treatment                          exited (exit 2)
+00:08:13 INFO  single CAP_CHOWN                   exited (exit 2)
+00:08:13 INFO  single CAP_DAC_OVERRIDE            exited (exit 2)
+00:08:14 INFO  single CAP_FOWNER                  exited (exit 2)
+00:08:14 INFO  single CAP_FSETID                  exited (exit 2)
+00:08:14 INFO  single CAP_KILL                    exited (exit 2)
+00:08:15 INFO  single CAP_SETGID                  exited (exit 2)
+00:08:15 INFO  single CAP_SETUID                  exited (exit 2)
+00:08:15 INFO  single CAP_SETPCAP                 exited (exit 2)
+00:08:16 INFO  single CAP_NET_BIND_SERVICE        exited (exit 2)
+00:08:16 INFO  single CAP_SYS_CHROOT              exited (exit 2)
+00:08:19 INFO  union union                        running, survives the window
+00:08:20 INFO  minimize without CAP_CHOWN         exited (exit 2)
+00:08:20 INFO  minimize without CAP_DAC_OVERRIDE  exited (exit 1)
+00:08:21 INFO  minimize without CAP_FOWNER        exited (exit 2)
+00:08:24 INFO  minimize without CAP_FSETID        running, survives the window
+00:08:27 INFO  minimize without CAP_KILL          running, survives the window
+00:08:30 INFO  minimize without CAP_SETGID        running, survives the window
+00:08:34 INFO  minimize without CAP_SETUID        running, survives the window
+00:08:37 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:08:40 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:08:44 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:08:44 INFO  minimal set                        CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER
+00:08:44 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER
+
+[26/37] index.docker.io/library/xwiki@sha256:ebef890add0eda3b07bca92db5fbc6fb3e3a10b3dc1cea260a2b26abc77d1f26  EXEC-01
+00:08:47 INFO  baseline                           running, survives the window
+00:08:47 INFO  treatment                          exited (exit 1)
+00:08:48 INFO  single /run                        exited (exit 1)
+00:08:48 INFO  single /var/run                    exited (exit 1)
+00:08:48 INFO  single /var/cache                  exited (exit 1)
+00:08:48 INFO  single /var/log                    exited (exit 1)
+00:08:49 INFO  single /var/lib                    exited (exit 1)
+00:08:50 INFO  union union                        exited (exit 1)
+00:08:50 OK    EXEC-01: UNRESOLVED
+
+[27/37] index.docker.io/library/fluentd@sha256:d912cf85f0229673e22462e69ad223d10804dd8ed32b4eecff6cb7adb3707f8d  EXEC-01
+00:08:53 INFO  baseline                           running, survives the window
+00:08:54 INFO  treatment                          exited (exit 1)
+00:08:54 INFO  single /run                        exited (exit 1)
+00:08:55 INFO  single /var/run                    exited (exit 1)
+00:08:56 INFO  single /var/cache                  exited (exit 1)
+00:08:57 INFO  single /var/log                    exited (exit 1)
+00:08:57 INFO  single /var/lib                    exited (exit 1)
+00:08:58 INFO  union union                        exited (exit 1)
+00:08:58 OK    EXEC-01: UNRESOLVED
+
+[28/37] index.docker.io/library/elasticsearch@sha256:b7b0f24e9b5e90656ffe69804b3a48907499ab2b9cd67f02b7af3aff1b026a89  EXEC-01
+00:09:01 INFO  baseline                           running, survives the window
+00:09:02 INFO  treatment                          exited (exit 74)
+00:09:03 INFO  single /run                        exited (exit 74)
+00:09:04 INFO  single /var/run                    exited (exit 74)
+00:09:05 INFO  single /var/cache                  exited (exit 74)
+00:09:06 INFO  single /var/log                    exited (exit 74)
+00:09:07 INFO  single /var/lib                    exited (exit 74)
+00:09:08 INFO  union union                        exited (exit 74)
+00:09:08 OK    EXEC-01: UNRESOLVED
+
+[29/37] index.docker.io/library/open-liberty@sha256:29dc1f49ed2ca1991c849bc974921ec655110995a2737256cfdfd29a334d1554  EXEC-01
+00:09:11 INFO  baseline                           running, survives the window
+00:09:11 INFO  treatment                          exited (exit 1)
+00:09:12 INFO  single /run                        exited (exit 1)
+00:09:12 INFO  single /var/run                    exited (exit 1)
+00:09:12 INFO  single /var/cache                  exited (exit 1)
+00:09:12 INFO  single /var/log                    exited (exit 1)
+00:09:13 INFO  single /var/lib                    exited (exit 1)
+00:09:13 INFO  union union                        exited (exit 1)
+00:09:13 OK    EXEC-01: UNRESOLVED
+
+[30/37] index.docker.io/library/caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5  EXEC-02
+00:09:16 INFO  baseline                           running, survives the window
+00:09:16 INFO  treatment                          exited (exit 1)
+00:09:17 INFO  single CAP_CHOWN                   exited (exit 1)
+00:09:17 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:09:17 INFO  single CAP_FOWNER                  exited (exit 1)
+00:09:18 INFO  single CAP_FSETID                  exited (exit 1)
+00:09:18 INFO  single CAP_KILL                    exited (exit 1)
+00:09:18 INFO  single CAP_SETGID                  exited (exit 1)
+00:09:18 INFO  single CAP_SETUID                  exited (exit 1)
+00:09:19 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:09:22 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+00:09:22 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:09:25 INFO  union union                        running, survives the window
+00:09:25 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[31/37] index.docker.io/library/orientdb@sha256:26ddb8e116bf52c78b88db841295b576a1f627f995d024c5f9e5187d2dc40faa  EXEC-02
+00:09:29 INFO  baseline                           running, survives the window
+00:09:30 INFO  treatment                          exited (exit 1)
+00:09:30 INFO  single CAP_CHOWN                   exited (exit 1)
+00:09:34 INFO  single CAP_DAC_OVERRIDE            running, survives the window
+00:09:35 INFO  single CAP_FOWNER                  exited (exit 1)
+00:09:36 INFO  single CAP_FSETID                  exited (exit 1)
+00:09:37 INFO  single CAP_KILL                    exited (exit 1)
+00:09:37 INFO  single CAP_SETGID                  exited (exit 1)
+00:09:38 INFO  single CAP_SETUID                  exited (exit 1)
+00:09:39 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:09:40 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:09:41 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:09:44 INFO  union union                        running, survives the window
+00:09:44 OK    EXEC-02: RESOLVED_SINGLE by CAP_DAC_OVERRIDE
+
+[32/37] index.docker.io/library/websphere-liberty@sha256:33db03751a2be1333b6b32d754bbefd3391a9b8013248c18847d49a03e807af8  EXEC-01
+00:09:48 INFO  baseline                           running, survives the window
+00:09:48 INFO  treatment                          exited (exit 24)
+00:09:49 INFO  single /run                        exited (exit 24)
+00:09:49 INFO  single /var/run                    exited (exit 24)
+00:09:50 INFO  single /var/cache                  exited (exit 24)
+00:09:50 INFO  single /var/log                    exited (exit 24)
+00:09:51 INFO  single /var/lib                    exited (exit 24)
+00:09:51 INFO  union union                        exited (exit 24)
+00:09:51 OK    EXEC-01: UNRESOLVED
+
+[33/37] index.docker.io/library/convertigo@sha256:016dcebecb1e1b2b4233f32e12a9e46a748448848f5cee1daee16853114538a0  EXEC-02
+00:09:55 INFO  baseline                           running, survives the window
+00:09:55 INFO  treatment                          exited (exit 127)
+00:09:55 INFO  single CAP_CHOWN                   exited (exit 127)
+00:09:55 INFO  single CAP_DAC_OVERRIDE            exited (exit 127)
+00:09:56 INFO  single CAP_FOWNER                  exited (exit 127)
+00:09:56 INFO  single CAP_FSETID                  exited (exit 127)
+00:09:56 INFO  single CAP_KILL                    exited (exit 127)
+00:09:56 INFO  single CAP_SETGID                  exited (exit 127)
+00:09:57 INFO  single CAP_SETUID                  exited (exit 127)
+00:09:57 INFO  single CAP_SETPCAP                 exited (exit 127)
+00:09:57 INFO  single CAP_NET_BIND_SERVICE        exited (exit 127)
+00:09:57 INFO  single CAP_SYS_CHROOT              exited (exit 127)
+00:10:01 INFO  union union                        running, survives the window
+00:10:04 INFO  minimize without CAP_CHOWN         running, survives the window
+00:10:07 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:10:11 INFO  minimize without CAP_FOWNER        running, survives the window
+00:10:14 INFO  minimize without CAP_FSETID        running, survives the window
+00:10:17 INFO  minimize without CAP_KILL          running, survives the window
+00:10:17 INFO  minimize without CAP_SETGID        exited (exit 127)
+00:10:18 INFO  minimize without CAP_SETUID        exited (exit 127)
+00:10:21 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:10:24 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:10:28 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:10:28 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:10:28 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[34/37] index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b  EXEC-01
+00:10:31 INFO  baseline                           running, survives the window
+00:10:31 INFO  treatment                          exited (exit 1)
+00:10:32 INFO  single /run                        exited (exit 1)
+00:10:32 INFO  single /var/run                    exited (exit 1)
+00:10:33 INFO  single /var/cache                  exited (exit 1)
+00:10:34 INFO  single /var/log                    exited (exit 1)
+00:10:34 INFO  single /var/lib                    exited (exit 1)
+00:10:35 INFO  union union                        exited (exit 1)
+00:10:35 OK    EXEC-01: UNRESOLVED
+
+[35/37] index.docker.io/library/clickhouse@sha256:07b744792d5b54da40ff7c5f18a9fcca929fd85f6cc317259dc5beb9dda1f90b  EXEC-02
+00:10:38 INFO  baseline                           running, survives the window
+00:10:39 INFO  treatment                          exited (exit 1)
+00:10:39 INFO  single CAP_CHOWN                   exited (exit 1)
+00:10:40 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:10:40 INFO  single CAP_FOWNER                  exited (exit 1)
+00:10:41 INFO  single CAP_FSETID                  exited (exit 1)
+00:10:41 INFO  single CAP_KILL                    exited (exit 1)
+00:10:42 INFO  single CAP_SETGID                  exited (exit 1)
+00:10:42 INFO  single CAP_SETUID                  exited (exit 1)
+00:10:43 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:10:43 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:10:44 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:10:47 INFO  union union                        running, survives the window
+00:10:47 INFO  minimize without CAP_CHOWN         exited (exit 1)
+00:10:51 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:10:54 INFO  minimize without CAP_FOWNER        running, survives the window
+00:10:57 INFO  minimize without CAP_FSETID        running, survives the window
+00:11:00 INFO  minimize without CAP_KILL          running, survives the window
+00:11:01 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:11:02 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:11:05 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:11:08 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:11:11 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:11:11 INFO  minimal set                        CAP_CHOWN + CAP_SETGID + CAP_SETUID
+00:11:11 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_CHOWN + CAP_SETGID + CAP_SETUID
+
+[36/37] index.docker.io/library/hitch@sha256:91a93a77157131d0f9d09dc7aea80f565eb1a40fdf537014f5bc4b9fc741ce97  EXEC-02
+00:11:15 INFO  baseline                           running, survives the window
+00:11:15 INFO  treatment                          exited (exit 1)
+00:11:15 INFO  single CAP_CHOWN                   exited (exit 1)
+00:11:16 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:11:16 INFO  single CAP_FOWNER                  exited (exit 1)
+00:11:16 INFO  single CAP_FSETID                  exited (exit 1)
+00:11:16 INFO  single CAP_KILL                    exited (exit 1)
+00:11:17 INFO  single CAP_SETGID                  exited (exit 1)
+00:11:17 INFO  single CAP_SETUID                  exited (exit 1)
+00:11:17 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:11:20 INFO  single CAP_NET_BIND_SERVICE        running, survives the window
+00:11:21 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:11:24 INFO  union union                        running, survives the window
+00:11:24 OK    EXEC-02: RESOLVED_SINGLE by CAP_NET_BIND_SERVICE
+
+[37/37] index.docker.io/library/krakend@sha256:9f61092f8c627bb4d536e3977332ae4712113d603720b856d9951366bbf9b3ef  EXEC-02
+00:11:27 INFO  baseline                           running, survives the window
+00:11:27 INFO  treatment                          exited (exit 1)
+00:11:28 INFO  single CAP_CHOWN                   exited (exit 1)
+00:11:28 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:11:28 INFO  single CAP_FOWNER                  exited (exit 1)
+00:11:28 INFO  single CAP_FSETID                  exited (exit 1)
+00:11:29 INFO  single CAP_KILL                    exited (exit 1)
+00:11:29 INFO  single CAP_SETGID                  exited (exit 1)
+00:11:29 INFO  single CAP_SETUID                  exited (exit 1)
+00:11:30 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:11:30 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:11:30 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:11:33 INFO  union union                        running, survives the window
+00:11:37 INFO  minimize without CAP_CHOWN         running, survives the window
+00:11:40 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:11:43 INFO  minimize without CAP_FOWNER        running, survives the window
+00:11:46 INFO  minimize without CAP_FSETID        running, survives the window
+00:11:50 INFO  minimize without CAP_KILL          running, survives the window
+00:11:50 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:11:50 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:11:53 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:11:57 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:12:00 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:12:00 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:12:00 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+Summary of the real failures
+00:12:00 INFO  EXEC-01: 12 pairs, 12 reproducible: 1 by a single candidate, 0 by a minimal set, 0 by the union only, 11 unresolved
+00:12:00 INFO  EXEC-01: not reproduced 0, baseline failed 0, not observable 0, image absent 0, error 0
+00:12:00 INFO  EXEC-01:   /var/cache             resolves 1
+00:12:00 INFO  EXEC-01:   minimal set /var/cache                   1
+00:12:00 INFO  EXEC-02: 25 pairs, 25 reproducible: 9 by a single candidate, 16 by a minimal set, 0 by the union only, 0 unresolved
+00:12:00 INFO  EXEC-02: not reproduced 0, baseline failed 0, not observable 0, image absent 0, error 0
+00:12:00 INFO  EXEC-02:   CAP_DAC_OVERRIDE       resolves 2
+00:12:00 INFO  EXEC-02:   CAP_NET_BIND_SERVICE   resolves 7
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_NET_BIND_SERVICE 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_DAC_OVERRIDE + CAP_FOWNER + CAP_SETGID + CAP_SETUID 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_FOWNER + CAP_NET_BIND_SERVICE 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_NET_BIND_SERVICE 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_CHOWN + CAP_SETGID + CAP_SETUID 3
+00:12:00 INFO  EXEC-02:   minimal set CAP_DAC_OVERRIDE             2
+00:12:00 INFO  EXEC-02:   minimal set CAP_DAC_OVERRIDE + CAP_SETGID + CAP_SETUID 1
+00:12:00 INFO  EXEC-02:   minimal set CAP_NET_BIND_SERVICE         7
+00:12:00 INFO  EXEC-02:   minimal set CAP_SETGID + CAP_SETUID      7
+00:12:00 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/attribution.json
+00:12:00 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/attribution.csv
+00:12:00 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/macros_attribution.tex
+00:12:00 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/table_attribution.tex
+2026-11-16T00:12:00Z [INFO ] seeded images absent (localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 localhost/conunit-rq1/writes-outside-tmp-defect:rq1 localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 ), building them with bin/rq1
+00:12:00 INFO  truth    3 seeded Tier 3 cases, 2 scored
+
+RQ1 detection benchmark
+00:12:00 INFO  oracle   fixtures/rq1/oracle.json (sha256 970e60c7c4a8)
+00:12:00 INFO  cases    39, properties 19
+00:12:00 INFO  out-dir  /opt/con-unit/results/eval-v1-b/attribution/seeded_build
+00:12:00 INFO  conunit   ConUnit version 0.3.0 (OCI Container Unit Testing Framework)
+00:12:00 WARN  hadolint  not selected
+00:12:00 WARN  trivy     not selected
+00:12:00 WARN  cst       not selected
+00:12:00 WARN  dockle    not selected
+00:12:00 INFO  engine    podman version 4.9.3
+
+[1/3] needs-setuid-setgid-defect (needs-setuid-setgid, defect_present=true)
+00:12:01 INFO  built localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 (c80289d037ac)
+00:12:15 INFO  conunit   exit=1
+
+[2/3] writes-outside-tmp-defect (writes-outside-tmp, defect_present=true)
+00:12:15 INFO  built localhost/conunit-rq1/writes-outside-tmp-defect:rq1 (a4e483b1ada5)
+00:12:29 INFO  conunit   exit=1
+
+[3/3] nonroot-privileged-port-defect (nonroot-privileged-port, defect_present=true)
+00:12:29 INFO  built localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 (87d633007cff)
+00:12:30 INFO  conunit   exit=1
+
+Summary
+tool       status     TP   FP   FN   TN   OOS   N/R   ERR   UNV   N/E  recall
+conunit    PARTIAL     2    0    0    0     0    36     0     1     0  2/2
+hadolint   NOT_RUN     0    0    0    0     0    39     0     0     0  n/a
+00:12:30 WARN  hadolint was NOT_RUN for every case, its column is not a result
+trivy      NOT_RUN     0    0    0    0     0    39     0     0     0  n/a
+00:12:30 WARN  trivy was NOT_RUN for every case, its column is not a result
+cst        NOT_RUN     0    0    0    0     0    39     0     0     0  n/a
+00:12:30 WARN  cst was NOT_RUN for every case, its column is not a result
+dockle     NOT_RUN     0    0    0    0     0    39     0     0     0  n/a
+00:12:30 WARN  dockle was NOT_RUN for every case, its column is not a result
+00:12:30 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/seeded_build/rq1_results.json
+00:12:30 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/seeded_build/table_rq1_detection.tex
+2026-11-16T00:12:30Z [INFO ] attribution of the seeded images (state: built)
+
+Tier 3 failure attribution
+00:12:30 INFO  host    mode: Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2 | cloud: aws c6i.2xlarge eu-central-1a ami-04bbcae8eccec8bce | os: linux/amd64 kernel 7.0.0-1014-aws | cpu: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz, 8 vCPU, 15.3 GiB | engine: podman 4.9.3 (overlay, crun 1.14.1) | commit: 2f5d90257717
+00:12:30 INFO  window  3s, minimize true, out-dir /opt/con-unit/results/eval-v1-b/attribution
+00:12:30 INFO  truth   fixtures/rq1/tier3_truth.json (sha256 2d97fb5553c5, 3 cases)
+00:12:30 INFO  keeping the study block of the previous attribution.json (study sha256 1a5f6242aa47)
+
+Seeded cases
+
+[1/3] localhost/conunit-rq1/needs-setuid-setgid-defect:rq1  EXEC-02
+00:12:33 INFO  baseline                           running, survives the window
+00:12:34 INFO  treatment                          exited (exit 1)
+00:12:34 INFO  single CAP_CHOWN                   exited (exit 1)
+00:12:34 INFO  single CAP_DAC_OVERRIDE            exited (exit 1)
+00:12:35 INFO  single CAP_FOWNER                  exited (exit 1)
+00:12:35 INFO  single CAP_FSETID                  exited (exit 1)
+00:12:35 INFO  single CAP_KILL                    exited (exit 1)
+00:12:35 INFO  single CAP_SETGID                  exited (exit 1)
+00:12:36 INFO  single CAP_SETUID                  exited (exit 1)
+00:12:36 INFO  single CAP_SETPCAP                 exited (exit 1)
+00:12:36 INFO  single CAP_NET_BIND_SERVICE        exited (exit 1)
+00:12:36 INFO  single CAP_SYS_CHROOT              exited (exit 1)
+00:12:40 INFO  union union                        running, survives the window
+00:12:43 INFO  minimize without CAP_CHOWN         running, survives the window
+00:12:46 INFO  minimize without CAP_DAC_OVERRIDE  running, survives the window
+00:12:49 INFO  minimize without CAP_FOWNER        running, survives the window
+00:12:53 INFO  minimize without CAP_FSETID        running, survives the window
+00:12:56 INFO  minimize without CAP_KILL          running, survives the window
+00:12:56 INFO  minimize without CAP_SETGID        exited (exit 1)
+00:12:57 INFO  minimize without CAP_SETUID        exited (exit 1)
+00:13:00 INFO  minimize without CAP_SETPCAP       running, survives the window
+00:13:03 INFO  minimize without CAP_NET_BIND_SERVICE running, survives the window
+00:13:06 INFO  minimize without CAP_SYS_CHROOT    running, survives the window
+00:13:06 INFO  minimal set                        CAP_SETGID + CAP_SETUID
+00:13:06 OK    EXEC-02: RESOLVED_MINIMAL by the minimal set CAP_SETGID + CAP_SETUID
+
+[2/3] localhost/conunit-rq1/writes-outside-tmp-defect:rq1  EXEC-01
+00:13:10 INFO  baseline                           running, survives the window
+00:13:10 INFO  treatment                          exited (exit 1)
+00:13:10 INFO  single /run                        exited (exit 1)
+00:13:10 INFO  single /var/run                    exited (exit 1)
+00:13:11 INFO  single /var/cache                  exited (exit 1)
+00:13:11 INFO  single /var/log                    exited (exit 1)
+00:13:14 INFO  single /var/lib                    running, survives the window
+00:13:18 INFO  union union                        running, survives the window
+00:13:18 OK    EXEC-01: RESOLVED_SINGLE by /var/lib
+
+[3/3] localhost/conunit-rq1/nonroot-privileged-port-defect:rq1  EXEC-02
+00:13:18 INFO  baseline                           exited (exit 1)
+00:13:18 WARN  EXEC-02: BASELINE_FAILED baseline exited before the window ended
+00:13:18 OK    needs-setuid-setgid-defect         EXACT           found CAP_SETGID + CAP_SETUID
+00:13:18 OK    writes-outside-tmp-defect          EXACT           found /var/lib
+00:13:18 INFO  nonroot-privileged-port-defect     NOT_MANIFESTED  the truth file records that this defect does not manifest on the engine; observed: BASELINE_FAILED (baseline exited before the window ended)
+
+Summary of the seeded cases
+00:13:18 INFO  scored 2: exact 2, superset 0, wrong 0
+00:13:18 INFO  not manifested 1 (reported, not scored), incomplete 0
+00:13:18 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/attribution.json
+00:13:18 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/attribution.csv
+00:13:18 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/macros_attribution.tex
+00:13:18 OK    wrote /opt/con-unit/results/eval-v1-b/attribution/table_attribution.tex

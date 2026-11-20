@@ -1,0 +1,379 @@
+{
+  "image_name": "localhost/conunit-rq1/private-key-file-defect:rq1",
+  "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+  "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+  "platform": "linux/amd64",
+  "suite_name": "ConUnit Container Hardening Profile (CIS-informed)",
+  "requested_ref": "localhost/conunit-rq1/private-key-file-defect:rq1",
+  "image_source": "local-store",
+  "timestamp": "2026-11-16T00:14:06.899860452Z",
+  "duration": 16426473228,
+  "total": 17,
+  "passed": 15,
+  "failed": 1,
+  "unverified": 1,
+  "phases": {
+    "pull_duration": 22015525,
+    "inspect_duration": 24273088,
+    "resolve_duration": 82354857,
+    "stream_duration": 3965226,
+    "tier1_duration": 85324,
+    "tier2_duration": 119736,
+    "tier3_duration": 16293282161,
+    "tier4_duration": 159,
+    "probe_window": 3000000000
+  },
+  "resources": {
+    "alloc_mb": 0.7623062133789062,
+    "total_alloc_mb": 2.046905517578125,
+    "sys_mb": 17.84204864501953,
+    "peak_rss_mb": 12.9609375,
+    "num_gc": 1,
+    "layer_count": 3,
+    "uncompressed_bytes": 8427093,
+    "live_heap_mb": 0.6524887084960938,
+    "self_cpu_seconds": 0.129556,
+    "child_cpu_seconds": 5.758137,
+    "indexed_entries": 522
+  },
+  "results": [
+    {
+      "test_id": "SPEC-01",
+      "test_name": "Non-Root Execution Identity",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 620,
+      "message": "Image config selects numeric non-root UID 10001",
+      "rule_type": "SPEC-01",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "CIS-4.6",
+      "test_name": "Image HEALTHCHECK",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 496,
+      "message": "Image metadata defines a HEALTHCHECK",
+      "rule_type": "CIS-4.6",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-04",
+      "test_name": "SUID/SGID Privilege Escalation Vectors",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 678,
+      "message": "Zero SUID/SGID binaries detected",
+      "rule_type": "FS-04",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SPEC-07",
+      "test_name": "Instruction Hygiene (COPY over ADD)",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 6309,
+      "message": "No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions",
+      "rule_type": "SPEC-07",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-03",
+      "test_name": "Clean Ambient Environment",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 76027,
+      "message": "No prohibited or secret environment variables detected",
+      "rule_type": "SPEC-03",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "FS-06",
+      "test_name": "Private Key Material Scan",
+      "tier": 2,
+      "outcome": "FAIL",
+      "passed": false,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 2733,
+      "message": "Private key material found in 1 recognized key file(s) outside fixture-like locations: [/opt/app/server.key]",
+      "rule_type": "FS-06",
+      "explanation": "Private keys stored in image layers can be extracted by anyone with container image pull access. The detector covers PEM and OpenSSH private-key blocks in files named *.key, *.pem or id_*; it does not scan arbitrary file formats and does not know whether a key is a test key.",
+      "remediation": "Purge private key files from image layers and mount credentials at runtime via secrets",
+      "reference": "https://www.cisecurity.org/benchmark/docker (related topic of the CIS Docker Benchmark, no control number stated)",
+      "evidence": {
+        "paths": [
+          "/opt/app/server.key"
+        ]
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-08",
+      "test_name": "Account Security (Empty Passwords)",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 64,
+      "message": "No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records",
+      "rule_type": "FS-08",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-05",
+      "test_name": "World-Writable File Elimination",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 119,
+      "message": "Zero world-writable regular files detected",
+      "rule_type": "FS-05",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-09",
+      "test_name": "System Directory Ownership Hygiene",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 111,
+      "message": "All system binaries in /bin and /usr/bin are owned by root (UID 0)",
+      "rule_type": "FS-09",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "FS-07",
+      "test_name": "Development and Test Harness Leakage",
+      "tier": 2,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 116031,
+      "message": "No test runner configuration was found outside fixture-like locations",
+      "rule_type": "FS-07",
+      "evidence": {},
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "image_content"
+      }
+    },
+    {
+      "test_id": "SUP-02",
+      "test_name": "Cryptographic Image Provenance \u0026 Signature",
+      "tier": 4,
+      "outcome": "UNVERIFIED",
+      "passed": false,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 159,
+      "message": "Signature status is unverified: provide a cryptographic verifier and an explicit trust policy",
+      "rule_type": "SUP-02",
+      "remediation": "Configure a signature verifier with a trusted key or keyless identity and issuer",
+      "reference": "https://www.cisecurity.org/benchmark/docker",
+      "reason": "NO_TRUST_POLICY",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "EXEC-02",
+      "test_name": "Dropped Linux Capabilities Conformance",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 6527958069,
+      "message": "The container was still running at the end of the 3s window with all Linux capabilities dropped (--cap-drop=ALL), as in the baseline",
+      "rule_type": "EXEC-02",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "SPEC-05",
+      "test_name": "Non-Privileged Declared Image Ports",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 1532,
+      "message": "No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected",
+      "rule_type": "SPEC-05",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "SPEC-06",
+      "test_name": "Dangling Debug Port Exclusion",
+      "tier": 1,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 340,
+      "message": "No dangerous debug or administration ports exposed",
+      "rule_type": "SPEC-06",
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "metadata_declaration"
+      }
+    },
+    {
+      "test_id": "EXEC-07",
+      "test_name": "Resource Constraint Conformance",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 3259564889,
+      "message": "The container was still running at the end of the 3s window with a memory limit of 256m, as in the baseline",
+      "rule_type": "EXEC-07",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-01",
+      "test_name": "Read-Only Root Filesystem Conformance",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 3246092773,
+      "message": "The container was still running at the end of the 3s window with a read-only root filesystem (64 MiB writable tmpfs at /tmp), as in the baseline",
+      "rule_type": "EXEC-01",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    },
+    {
+      "test_id": "EXEC-04",
+      "test_name": "No-New-Privileges Kernel Contract",
+      "tier": 3,
+      "outcome": "PASS",
+      "passed": true,
+      "image_digest": "sha256:feb645729664a78f2e6cf511bc9af2200f4fdb48002d1f8102a345067ec37633",
+      "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+      "platform": "linux/amd64",
+      "duration": 3259666430,
+      "message": "The container was still running at the end of the 3s window with no-new-privileges enabled, as in the baseline",
+      "rule_type": "EXEC-04",
+      "evidence": {
+        "baseline_state": "running",
+        "treatment_state": "running",
+        "window_ms": 3000
+      },
+      "rule": {
+        "standard": "ConUnit",
+        "mapping": "custom",
+        "scope": "runtime_compatibility"
+      }
+    }
+  ]
+}

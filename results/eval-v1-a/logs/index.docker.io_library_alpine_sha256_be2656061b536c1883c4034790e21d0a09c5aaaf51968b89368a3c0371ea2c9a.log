@@ -1,0 +1,118 @@
+================================================================================
+CONUNIT DIAGNOSTIC LOG FOR: index.docker.io/library/alpine@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+TIMESTAMP: 2026-11-15T23:20:36Z
+================================================================================
+
+STATUS: COMPLETED
+SUITE: ConUnit Container Hardening Profile (CIS-informed)
+PLATFORM: linux/amd64
+IMAGE SOURCE: local-store
+REGISTRY DIGEST: sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
+CONFIG DIGEST: sha256:b92841763c5c2140a20eeb2a44e94ebb0e80fd51d9d6b5895ea72fa999525d68
+TOTAL DURATION: 1.595651329s
+PHASE BREAKDOWN: Pull=1.275711819s, Inspect=17.680876ms, Resolve=56.287045ms, Stream=3.515696ms, Tier1=160.468µs, Tier2=133.641µs, Tier3=242.023028ms (window 3s), Tier4=221ns
+RESOURCES (ConUnit process only): Layers=1, IndexedEntries=515, CompressedBytes=0, UncompressedBytes=8422403, LiveHeapMB=0.8, SelfCPU=0.01s, ChildCPU=0.50s
+SUMMARY: 10 passed, 2 failed, 5 unverified (total 17)
+
+--------------------------------------------------------------------------------
+DETAILED ASSERTION OUTCOMES
+--------------------------------------------------------------------------------
+[1] [FAIL] SPEC-01 (Non-Root Execution Identity)
+    Tier:        Tier 1: Specification
+    Duration:    314ns
+    Message:     Image runs as root user (configured user: '')
+    Explanation: Running as root increases blast radius of container breakouts (e.g. CVE-2019-5736) to host-level root compromise.
+    Remediation: Add 'USER 10001:10001' to your Dockerfile or container build specification
+
+[2] [FAIL] CIS-4.6 (Image HEALTHCHECK)
+    Tier:        Tier 1: Specification
+    Duration:    138ns
+    Message:     Image metadata does not define an enabled HEALTHCHECK
+    Explanation: A configured health check allows the container runtime to report application health.
+    Remediation: Add an appropriate HEALTHCHECK instruction to the image
+
+[3] [PASS] FS-04 (SUID/SGID Privilege Escalation Vectors)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    698ns
+    Message:     Zero SUID/SGID binaries detected
+
+[4] [PASS] SPEC-07 (Instruction Hygiene (COPY over ADD))
+    Tier:        Tier 1: Specification
+    Duration:    19.605µs
+    Message:     No ADD instruction other than the base image rootfs import was found in the recorded OCI history; the history may be incomplete and does not prove all Dockerfile instructions
+
+[5] [PASS] SPEC-03 (Clean Ambient Environment)
+    Tier:        Tier 1: Specification
+    Duration:    139.359µs
+    Message:     No prohibited or secret environment variables detected
+
+[6] [PASS] FS-06 (Private Key Material Scan)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    520ns
+    Message:     No private-key block was found outside fixture-like locations in completely scanned recognized key files (*.key, *.pem, id_*); arbitrary files and non-PEM formats are outside this detector's scope
+
+[7] [PASS] FS-08 (Account Security (Empty Passwords))
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    85ns
+    Message:     No empty password fields were found in completely scanned final-image /etc/passwd and /etc/shadow records
+
+[8] [PASS] FS-05 (World-Writable File Elimination)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    129ns
+    Message:     Zero world-writable regular files detected
+
+[9] [PASS] FS-09 (System Directory Ownership Hygiene)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    112ns
+    Message:     All system binaries in /bin and /usr/bin are owned by root (UID 0)
+
+[10] [PASS] FS-07 (Development and Test Harness Leakage)
+    Tier:        Tier 2: Filesystem Hygiene
+    Duration:    132.097µs
+    Message:     No test runner configuration was found outside fixture-like locations
+
+[11] [UNVERIFIED] SUP-02 (Cryptographic Image Provenance & Signature)
+    Tier:        Tier 4: Supply Chain
+    Duration:    221ns
+    Reason:      NO_TRUST_POLICY
+    Message:     Signature status is unverified: provide a cryptographic verifier and an explicit trust policy
+    Remediation: Configure a signature verifier with a trusted key or keyless identity and issuer
+
+[12] [UNVERIFIED] EXEC-02 (Dropped Linux Capabilities Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    242.020094ms
+    Reason:      NOT_OBSERVABLE
+    Message:     The baseline run (defensive flags only) exited with code 0 before the 3s window ended, so the image has no long-running process to observe and the EXEC-02 result cannot be interpreted
+    Remediation: Resolve the engine or image issue behind the baseline and rerun the runtime check
+
+[13] [PASS] SPEC-05 (Non-Privileged Declared Image Ports)
+    Tier:        Tier 1: Specification
+    Duration:    845ns
+    Message:     No privileged or unrecognized image-declared ports; runtime listeners and port publishing were not inspected
+
+[14] [PASS] SPEC-06 (Dangling Debug Port Exclusion)
+    Tier:        Tier 1: Specification
+    Duration:    207ns
+    Message:     No dangerous debug or administration ports exposed
+
+[15] [UNVERIFIED] EXEC-07 (Resource Constraint Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    1.328µs
+    Reason:      NOT_OBSERVABLE
+    Message:     The baseline run (defensive flags only) exited with code 0 before the 3s window ended, so the image has no long-running process to observe and the EXEC-07 result cannot be interpreted
+    Remediation: Resolve the engine or image issue behind the baseline and rerun the runtime check
+
+[16] [UNVERIFIED] EXEC-01 (Read-Only Root Filesystem Conformance)
+    Tier:        Tier 3: Execution Contract
+    Duration:    874ns
+    Reason:      NOT_OBSERVABLE
+    Message:     The baseline run (defensive flags only) exited with code 0 before the 3s window ended, so the image has no long-running process to observe and the EXEC-01 result cannot be interpreted
+    Remediation: Resolve the engine or image issue behind the baseline and rerun the runtime check
+
+[17] [UNVERIFIED] EXEC-04 (No-New-Privileges Kernel Contract)
+    Tier:        Tier 3: Execution Contract
+    Duration:    732ns
+    Reason:      NOT_OBSERVABLE
+    Message:     The baseline run (defensive flags only) exited with code 0 before the 3s window ended, so the image has no long-running process to observe and the EXEC-04 result cannot be interpreted
+    Remediation: Resolve the engine or image issue behind the baseline and rerun the runtime check
+

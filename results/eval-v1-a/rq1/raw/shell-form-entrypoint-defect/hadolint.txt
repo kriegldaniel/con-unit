@@ -1,0 +1,1 @@
+[{"code":"DL3025","column":1,"file":"/opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-defect/Dockerfile","level":"warning","line":7,"message":"Use arguments JSON notation for CMD and ENTRYPOINT arguments"}]

@@ -1,0 +1,206 @@
+{
+  "schema": "conunit-run-manifest/1",
+  "run_id": "eval-v1-a",
+  "outcome": "complete",
+  "exit_code": 0,
+  "source": {
+    "requested_tag": "eval-v1",
+    "tag_exists": true,
+    "bundle_kind": "tag",
+    "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "head_commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "tree": null,
+    "tainted": false,
+    "working_tree_dirty": false,
+    "bundle_sha256": "73efdf48954324f22fc686ff0e3fdd0ced2af1a8772c79ac98385ca417fa8021"
+  },
+  "dataset": {
+    "canary": false,
+    "eval": {
+      "path": "fixtures/evaluation_dataset_pinned.txt",
+      "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+      "entries": 100
+    },
+    "rq3": {
+      "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+      "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+      "entries": 10
+    },
+    "reliability": null,
+    "remote_reported": {
+      "eval": {
+        "path": "fixtures/evaluation_dataset_pinned.txt",
+        "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+        "entries": 100
+      },
+      "rq3": {
+        "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+        "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+        "entries": 10
+      },
+      "reliability": null
+    },
+    "mirror_check_performed": true,
+    "mirror_check_results": {
+      "eval": "preflight/mirror_check_eval.json",
+      "rq3": "preflight/mirror_check_rq3.json"
+    }
+  },
+  "infrastructure": {
+    "region": "eu-central-1",
+    "instance_type": "c6i.2xlarge",
+    "instance_id": "i-0b049861d95ebf8e2",
+    "availability_zone": "eu-central-1a",
+    "ami": {
+      "id": "ami-04bbcae8eccec8bce",
+      "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20261108",
+      "creation_date": "2026-11-09T19:24:25.000Z",
+      "deprecation_time": "2028-11-09T19:24:25.000Z"
+    },
+    "root_volume_gb": 150,
+    "watchdog_minutes": 240,
+    "ssh_host_key_check": "verified-against-console"
+  },
+  "execution": {
+    "engine_mode": "rootful",
+    "stages": [
+      "eval",
+      "export",
+      "rq3",
+      "rq1",
+      "lint",
+      "crosscheck"
+    ],
+    "pack": "cis",
+    "platform": "linux/amd64",
+    "image_source_policy": "auto",
+    "probe_window": "3s",
+    "rq1_cases": 0,
+    "rq3_iterations": 10,
+    "rq3_warmup": 1,
+    "docker_hub_blocked": true,
+    "registry_remap": "docker.io/library -> public.ecr.aws/docker/library"
+  },
+  "timestamps": {
+    "started": "2026-11-15T23:15:16Z",
+    "provisioned": "2026-11-15T23:18:47Z",
+    "ssh_ready": "2026-11-15T23:18:58Z",
+    "remote_started": "2026-11-15T23:19:20Z",
+    "remote_finished": "2026-11-16T00:51:11Z",
+    "results_collected": "2026-11-16T00:51:13Z",
+    "destroyed": "2026-11-16T00:51:56Z",
+    "manifest_written": "2026-11-16T00:51:57Z"
+  },
+  "exit_codes": {
+    "remote_script": 0,
+    "remote_result": "complete",
+    "remote_stages": {
+      "host": 0,
+      "bundle": 0,
+      "go": 0,
+      "packages": 0,
+      "tools": 0,
+      "registry": 0,
+      "docker_hub_block": 0,
+      "mode": 0,
+      "datasets": 0,
+      "mirror_proof": 0,
+      "host_info": 0,
+      "build": 0,
+      "eval": 0,
+      "run_block_check": 0,
+      "export": 0,
+      "rq3": 0,
+      "rq1": 0,
+      "lint": 0,
+      "crosscheck": 0
+    }
+  },
+  "tool_versions": {
+    "local": {
+      "opentofu": "OpenTofu v1.13.2",
+      "aws_cli": "aws-cli/2.36.31 Python/3.14.8 Darwin/27.2.0 source/arm64",
+      "jq": "jq-1.8.2",
+      "git": "git version 2.56.0",
+      "rsync": "rsync  version 3.5.0  protocol version 32",
+      "ssh": "OpenSSH_10.6p1, OpenSSL 3.5.9 29 Sep 2026",
+      "bash": "5.3.20(1)-release"
+    },
+    "remote": {
+      "go": "go version go1.26.10 linux/amd64",
+      "podman": "podman version 4.9.3",
+      "crun": "crun version 1.14.1",
+      "conmon": "conmon version 2.1.10",
+      "netavark": "1.4.0-4",
+      "kernel": "7.0.0-1014-aws",
+      "podman_rootless": "false",
+      "cgroups": "v2",
+      "oci_runtime": "crun crun version 1.14.1",
+      "storage_driver": "overlay",
+      "engine_mode": "rootful",
+      "syft": "absent"
+    },
+    "installed": {
+      "schema": "conunit-tool-versions/1",
+      "lock_file": "tools.lock",
+      "lock_sha256": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737",
+      "locked": {
+        "dockle": "0.4.15",
+        "hadolint": "2.14.0",
+        "trivy": "0.76.1",
+        "container-structure-test": "1.22.1"
+      },
+      "tools": {
+        "dockle": {
+          "version": "0.4.15",
+          "url": "https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz",
+          "download_sha256": "8bfc9183d1d3d67800edb45bea4bb63ddf1d28bec5f89944075a07007d79caad",
+          "release_checksum_file": "https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_checksums.txt",
+          "binary_path": "/usr/local/bin/dockle",
+          "binary_sha256": "28d20c2f148781f7320802624a0decc46826f19cdd1d6756893a85042a2ab68e",
+          "version_output": "dockle version 0.4.15"
+        },
+        "hadolint": {
+          "version": "2.14.0",
+          "url": "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64",
+          "download_sha256": "6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47",
+          "release_checksum_file": "https://github.com/hadolint/hadolint/releases/download/v2.14.0/hadolint-linux-x86_64.sha256",
+          "binary_path": "/usr/local/bin/hadolint",
+          "binary_sha256": "6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47",
+          "version_output": "Haskell Dockerfile Linter 2.14.0"
+        },
+        "trivy": {
+          "version": "0.76.1",
+          "url": "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_Linux-64bit.tar.gz",
+          "download_sha256": "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0",
+          "release_checksum_file": "https://github.com/aquasecurity/trivy/releases/download/v0.76.1/trivy_0.76.1_checksums.txt",
+          "binary_path": "/usr/local/bin/trivy",
+          "binary_sha256": "d1dfca6ae10a1ad4540bb94e64f0510077c47008920a9b554986b39dca573d83",
+          "version_output": "Version: 0.76.1"
+        },
+        "container-structure-test": {
+          "version": "1.22.1",
+          "url": "https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/container-structure-test-linux-amd64",
+          "download_sha256": "fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca",
+          "release_checksum_file": "https://github.com/GoogleContainerTools/container-structure-test/releases/download/v1.22.1/checksums.txt",
+          "binary_path": "/usr/local/bin/container-structure-test",
+          "binary_sha256": "fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca",
+          "version_output": "1.22.1"
+        }
+      }
+    },
+    "lock_sha256_shipped": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737"
+  },
+  "teardown": {
+    "kept": false,
+    "verified": true,
+    "note": "destroyed and verified",
+    "remaining": {
+      "state_resources": "0",
+      "instances": "0",
+      "volumes": "0",
+      "security_groups": "0",
+      "key_pairs": "0"
+    }
+  }
+}

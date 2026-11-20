@@ -1,0 +1,3685 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-16T00:20:35.218988048Z",
+  "oracle_path": "fixtures/rq1/oracle.json",
+  "oracle_sha256": "970e60c7c4a8a292410baeef032f3bfc60137473fdb514ea4ee6a677e4f709a9",
+  "run": {
+    "conunit_version": "ConUnit version 0.3.0 (OCI Container Unit Testing Framework)",
+    "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+    "go_version": "go1.26.10",
+    "engine_name": "podman",
+    "engine_version": "4.9.3",
+    "rootless": false,
+    "cgroup_version": "v2",
+    "storage_driver": "overlay",
+    "oci_runtime": "crun 1.14.1",
+    "security_options": [
+      "apparmor",
+      "seccomp(profile=/usr/share/containers/seccomp.json)"
+    ],
+    "host_os": "linux",
+    "host_arch": "amd64",
+    "linux_kernel": "7.0.0-1014-aws",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz",
+    "vcpus": 8,
+    "memory_bytes": 16462835712,
+    "virtualization": "aws-nitro-kvm",
+    "execution_mode": "Virtualized host (AWS Nitro, KVM), rootful Podman, cgroup v2",
+    "cloud_provider": "aws",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-04bbcae8eccec8bce",
+    "region": "eu-central-1",
+    "zone": "eu-central-1a",
+    "tools": {
+      "container-structure-test": "1.22.1",
+      "cosign": "absent",
+      "dockle": "0.4.15",
+      "grype": "absent",
+      "hadolint": "2.14.0",
+      "syft": "absent",
+      "trivy": "0.76.1"
+    },
+    "started_at": "2026-11-16T00:20:35.255204961Z",
+    "finished_at": "2026-11-16T00:20:35.498838377Z"
+  },
+  "engine": {
+    "name": "engine",
+    "binary": "podman",
+    "path": "/usr/bin/podman",
+    "version": "podman version 4.9.3",
+    "available": true,
+    "selected": false
+  },
+  "tools": {
+    "conunit": {
+      "name": "conunit",
+      "binary": "/opt/con-unit/src/bin/con-unit",
+      "path": "/opt/con-unit/src/bin/con-unit",
+      "version": "ConUnit version 0.3.0 (OCI Container Unit Testing Framework)",
+      "available": true,
+      "selected": true
+    },
+    "cst": {
+      "name": "cst",
+      "binary": "container-structure-test",
+      "path": "/usr/local/bin/container-structure-test",
+      "version": "1.22.1",
+      "available": true,
+      "selected": true
+    },
+    "dockle": {
+      "name": "dockle",
+      "binary": "dockle",
+      "path": "/usr/local/bin/dockle",
+      "version": "dockle version 0.4.15",
+      "available": true,
+      "selected": true
+    },
+    "hadolint": {
+      "name": "hadolint",
+      "binary": "hadolint",
+      "path": "/usr/local/bin/hadolint",
+      "version": "Haskell Dockerfile Linter 2.14.0",
+      "available": true,
+      "selected": true
+    },
+    "trivy": {
+      "name": "trivy",
+      "binary": "trivy",
+      "path": "/usr/local/bin/trivy",
+      "version": "Version: 0.76.1",
+      "available": true,
+      "selected": true
+    }
+  },
+  "catalogs": {
+    "conunit": {
+      "name": "ConUnit rule catalog (pkg/conunit/rules.go) of the evaluated build",
+      "url": "pkg/conunit/rules.go",
+      "retrieved": "2026-11-15",
+      "note": "ConUnit is the tool under test, so there is no pinned version: the build that ran is recorded in raw/tools.json. The rules SPEC-09, SPEC-10 and FS-10 of the lint pack are defined by docs/INTERFACE_V2.md section 3 and implemented by another work package, so their entries could not be checked against a catalog in this tree and are marked unverified.",
+      "state": "not_pinned"
+    },
+    "cst": {
+      "name": "container-structure-test documented test types (README)",
+      "version": "1.22.1",
+      "ref": "1e1bb81e5272bf616f3ee87d5e085e2f90d94917",
+      "url": "https://github.com/GoogleContainerTools/container-structure-test/blob/v1.22.1/README.md",
+      "retrieved": "2026-11-15",
+      "note": "container-structure-test has no rule catalog. It ships four test types (command, file existence, file content, metadata) and the policy is written by the user. A property is in scope when one of these documented types can express it against the built image, and the policy file in fixtures/rq1/cst is authored by the benchmark author.",
+      "observed_version": "1.22.1",
+      "state": "match"
+    },
+    "dockle": {
+      "name": "Dockle checkpoints (CHECKPOINT.md) and assessors",
+      "version": "0.4.15",
+      "ref": "54368575d2a0c34a82fb05c904b8207284a64891",
+      "url": "https://github.com/goodwithtech/dockle/blob/v0.4.15/CHECKPOINT.md",
+      "retrieved": "2026-11-15",
+      "note": "CHECKPOINT.md and the assessors under pkg/assessor are read at tag v0.4.15. Run from a docker-archive with --input, Dockle does not evaluate DKL-DI-0006 (the latest tag check needs an image name), CIS-DI-0005 reads DOCKER_CONTENT_TRUST of the scanning host and CIS-DI-0002 has no code path. A checkpoint missing from the report can also hide a failed assessor, because an assessor error is only logged.",
+      "observed_version": "dockle version 0.4.15",
+      "state": "match"
+    },
+    "hadolint": {
+      "name": "Hadolint rules (README rules table and rule pages)",
+      "version": "2.14.0",
+      "ref": "4e697ba704fd23b2409b947a319c19c3ee54d24f",
+      "url": "https://github.com/hadolint/hadolint/blob/v2.14.0/README.md",
+      "retrieved": "2026-11-15",
+      "note": "The README table is read at tag v2.14.0. The rule pages in the wiki are not versioned with releases and were read on the retrieval date.",
+      "observed_version": "Haskell Dockerfile Linter 2.14.0",
+      "state": "match"
+    },
+    "trivy": {
+      "name": "Trivy Dockerfile checks (trivy-checks) and builtin secret rules",
+      "version": "0.76.1",
+      "ref": "ac85645895ed",
+      "url": "https://github.com/aquasecurity/trivy-checks/tree/ac85645895ed/checks/docker",
+      "retrieved": "2026-11-15",
+      "note": "Trivy 0.76.1 (commit e713f67f7d54decdcd9b3132c9751833dcced698) embeds the trivy-checks module version v1.12.2-0.20261012053351-ac85645895ed, read from its go.mod. The run uses --skip-check-update, so the embedded checks apply. Secret rule IDs are read from pkg/fanal/secret/builtin-rules.go at tag v0.76.1.",
+      "observed_version": "Version: 0.76.1",
+      "state": "match"
+    }
+  },
+  "cases": [
+    {
+      "id": "root-user-implicit",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-implicit/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/root-user-implicit:rq1",
+        "image_id": "24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60.json",
+        "config_digest": "sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+        "image_id": "sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "detected_ids": [
+            "SPEC-01"
+          ],
+          "observed_ids": [
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/root-user-implicit:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/root-user-implicit/conunit.txt --image-source local",
+          "raw_path": "raw/root-user-implicit/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "detected_ids": [
+            "rq1-root-user"
+          ],
+          "observed_ids": [
+            "rq1-root-user"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/root-user-implicit:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/root-user.yaml --output json",
+          "raw_path": "raw/root-user-implicit/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "detected_ids": [
+            "CIS-DI-0001"
+          ],
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-root-user-implicit.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:24a414cb5597e9e5cb6f273ad1bd85cd7d778a7bf2f11ae852a3aab25394ea60",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/root-user-implicit/dockle.txt"
+        },
+        "hadolint": {
+          "class": "FN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit/Dockerfile",
+          "raw_path": "raw/root-user-implicit/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "detected_ids": [
+            "DS-0002"
+          ],
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/root-user-implicit ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-root-user-implicit.tar",
+          "raw_path": "raw/root-user-implicit/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "root-user-explicit",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-explicit/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/root-user-explicit:rq1",
+        "image_id": "ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b.json",
+        "config_digest": "sha256:ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b",
+        "image_id": "sha256:ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "detected_ids": [
+            "SPEC-01"
+          ],
+          "observed_ids": [
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/root-user-explicit:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/root-user-explicit/conunit.txt --image-source local",
+          "raw_path": "raw/root-user-explicit/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "detected_ids": [
+            "rq1-root-user"
+          ],
+          "observed_ids": [
+            "rq1-root-user"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/root-user-explicit:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/root-user.yaml --output json",
+          "raw_path": "raw/root-user-explicit/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "detected_ids": [
+            "CIS-DI-0001"
+          ],
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-root-user-explicit.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:ff6e3c27781e6c5e6fdbb25053751a0ac78998d42bdb0e059f51ec52f2b8a91b",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/root-user-explicit/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "detected_ids": [
+            "DL3002"
+          ],
+          "observed_ids": [
+            "DL3002"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/root-user-explicit/Dockerfile",
+          "raw_path": "raw/root-user-explicit/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "detected_ids": [
+            "DS-0002"
+          ],
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/root-user-explicit ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-root-user-explicit.tar",
+          "raw_path": "raw/root-user-explicit/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "root-user-clean",
+      "property": "root-user",
+      "dockerfile": "cases/root-user-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/root-user-clean:rq1",
+        "image_id": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04.json",
+        "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "image_id": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/root-user-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/root-user-clean/conunit.txt --image-source local",
+          "raw_path": "raw/root-user-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-root-user"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/root-user-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/root-user.yaml --output json",
+          "raw_path": "raw/root-user-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0001"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-root-user-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/root-user-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3002"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/root-user-clean/Dockerfile",
+          "raw_path": "raw/root-user-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0002"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/root-user-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-root-user-clean.tar",
+          "raw_path": "raw/root-user-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "no-healthcheck-defect",
+      "property": "no-healthcheck",
+      "dockerfile": "cases/no-healthcheck-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/no-healthcheck-defect:rq1",
+        "image_id": "620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741.json",
+        "config_digest": "sha256:620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741",
+        "image_id": "sha256:620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "CIS-4.6"
+          ],
+          "detected_ids": [
+            "CIS-4.6"
+          ],
+          "observed_ids": [
+            "CIS-4.6"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/no-healthcheck-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/no-healthcheck-defect/conunit.txt --image-source local",
+          "raw_path": "raw/no-healthcheck-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0006"
+          ],
+          "detected_ids": [
+            "CIS-DI-0006"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0006"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0006": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-no-healthcheck-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:620b5dcee6e4dd77d8497909279658af2aa96c414f9f011b8212e11fb6a35741",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/no-healthcheck-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "args": [
+            "--info",
+            "DL3057"
+          ],
+          "detect_ids": [
+            "DL3057"
+          ],
+          "detected_ids": [
+            "DL3057"
+          ],
+          "observed_ids": [
+            "DL3057"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json --info DL3057 /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-defect/Dockerfile",
+          "raw_path": "raw/no-healthcheck-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0026"
+          ],
+          "detected_ids": [
+            "DS-0026"
+          ],
+          "observed_ids": [
+            "DS-0026"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-no-healthcheck-defect.tar",
+          "raw_path": "raw/no-healthcheck-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "no-healthcheck-clean",
+      "property": "no-healthcheck",
+      "dockerfile": "cases/no-healthcheck-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/no-healthcheck-clean:rq1",
+        "image_id": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04.json",
+        "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "image_id": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "CIS-4.6"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/no-healthcheck-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/no-healthcheck-clean/conunit.txt --image-source local",
+          "raw_path": "raw/no-healthcheck-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0006"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-no-healthcheck-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/no-healthcheck-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "args": [
+            "--info",
+            "DL3057"
+          ],
+          "detect_ids": [
+            "DL3057"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json --info DL3057 /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-clean/Dockerfile",
+          "raw_path": "raw/no-healthcheck-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0026"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/no-healthcheck-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-no-healthcheck-clean.tar",
+          "raw_path": "raw/no-healthcheck-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "setuid-binary-defect",
+      "property": "setuid-binary",
+      "dockerfile": "cases/setuid-binary-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/setuid-binary-defect:rq1",
+        "image_id": "08640f56cabc13c120fbd6a5d7728f3b4cbade3d99cbc3ef01d2c73294dc9aca"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "08640f56cabc13c120fbd6a5d7728f3b4cbade3d99cbc3ef01d2c73294dc9aca.json",
+        "config_digest": "sha256:08640f56cabc13c120fbd6a5d7728f3b4cbade3d99cbc3ef01d2c73294dc9aca",
+        "image_id": "sha256:08640f56cabc13c120fbd6a5d7728f3b4cbade3d99cbc3ef01d2c73294dc9aca",
+        "matches_image_id": true,
+        "size_bytes": 9546240
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-04"
+          ],
+          "detected_ids": [
+            "FS-04"
+          ],
+          "observed_ids": [
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/setuid-binary-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/setuid-binary-defect/conunit.txt --image-source local",
+          "raw_path": "raw/setuid-binary-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-setuid-binary"
+          ],
+          "detected_ids": [
+            "rq1-setuid-binary"
+          ],
+          "observed_ids": [
+            "rq1-setuid-binary"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/setuid-binary-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/setuid-binary.yaml --output json",
+          "raw_path": "raw/setuid-binary-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0008"
+          ],
+          "detected_ids": [
+            "CIS-DI-0008"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-setuid-binary-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:08640f56cabc13c120fbd6a5d7728f3b4cbade3d99cbc3ef01d2c73294dc9aca",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/setuid-binary-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-defect/Dockerfile",
+          "raw_path": "raw/setuid-binary-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-setuid-binary-defect.tar",
+          "raw_path": "raw/setuid-binary-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "setuid-binary-clean",
+      "property": "setuid-binary",
+      "dockerfile": "cases/setuid-binary-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/setuid-binary-clean:rq1",
+        "image_id": "73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045.json",
+        "config_digest": "sha256:73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045",
+        "image_id": "sha256:73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045",
+        "matches_image_id": true,
+        "size_bytes": 9546240
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/setuid-binary-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/setuid-binary-clean/conunit.txt --image-source local",
+          "raw_path": "raw/setuid-binary-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-setuid-binary"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/setuid-binary-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/setuid-binary.yaml --output json",
+          "raw_path": "raw/setuid-binary-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0008"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-setuid-binary-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:73095bdbd420addf8e0eef322098d096ff9df7831bb332ba7aa59e26ce20f045",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/setuid-binary-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-clean/Dockerfile",
+          "raw_path": "raw/setuid-binary-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/setuid-binary-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-setuid-binary-clean.tar",
+          "raw_path": "raw/setuid-binary-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "world-writable-file-defect",
+      "property": "world-writable-file",
+      "dockerfile": "cases/world-writable-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/world-writable-file-defect:rq1",
+        "image_id": "5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54.json",
+        "config_digest": "sha256:5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54",
+        "image_id": "sha256:5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54",
+        "matches_image_id": true,
+        "size_bytes": 8741376
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-05"
+          ],
+          "detected_ids": [
+            "FS-05"
+          ],
+          "observed_ids": [
+            "FS-05"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/world-writable-file-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/world-writable-file-defect/conunit.txt --image-source local",
+          "raw_path": "raw/world-writable-file-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-world-writable-file"
+          ],
+          "detected_ids": [
+            "rq1-world-writable-file"
+          ],
+          "observed_ids": [
+            "rq1-world-writable-file"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/world-writable-file-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/world-writable-file.yaml --output json",
+          "raw_path": "raw/world-writable-file-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-world-writable-file-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:5ab9d6824ed6ba509339f6cf470bf7ec26c790ac4595d1928f18f2b207de7c54",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/world-writable-file-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-defect/Dockerfile",
+          "raw_path": "raw/world-writable-file-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-world-writable-file-defect.tar",
+          "raw_path": "raw/world-writable-file-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "world-writable-file-clean",
+      "property": "world-writable-file",
+      "dockerfile": "cases/world-writable-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/world-writable-file-clean:rq1",
+        "image_id": "2a3f704fcef3518b5b8b2b212dd53137ab253c146feba208a22e0ced3acdb8e2"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "2a3f704fcef3518b5b8b2b212dd53137ab253c146feba208a22e0ced3acdb8e2.json",
+        "config_digest": "sha256:2a3f704fcef3518b5b8b2b212dd53137ab253c146feba208a22e0ced3acdb8e2",
+        "image_id": "sha256:2a3f704fcef3518b5b8b2b212dd53137ab253c146feba208a22e0ced3acdb8e2",
+        "matches_image_id": true,
+        "size_bytes": 8741376
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-05"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/world-writable-file-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/world-writable-file-clean/conunit.txt --image-source local",
+          "raw_path": "raw/world-writable-file-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-world-writable-file"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/world-writable-file-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/world-writable-file.yaml --output json",
+          "raw_path": "raw/world-writable-file-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-world-writable-file-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:2a3f704fcef3518b5b8b2b212dd53137ab253c146feba208a22e0ced3acdb8e2",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/world-writable-file-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-clean/Dockerfile",
+          "raw_path": "raw/world-writable-file-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/world-writable-file-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-world-writable-file-clean.tar",
+          "raw_path": "raw/world-writable-file-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "private-key-file-defect",
+      "property": "private-key-file",
+      "dockerfile": "cases/private-key-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/private-key-file-defect:rq1",
+        "image_id": "806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c.json",
+        "config_digest": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+        "image_id": "sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+        "matches_image_id": true,
+        "size_bytes": 8742912
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-06"
+          ],
+          "detected_ids": [
+            "FS-06"
+          ],
+          "observed_ids": [
+            "FS-06"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/private-key-file-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/private-key-file-defect/conunit.txt --image-source local",
+          "raw_path": "raw/private-key-file-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-private-key-file"
+          ],
+          "detected_ids": [
+            "rq1-private-key-file"
+          ],
+          "observed_ids": [
+            "rq1-private-key-file"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/private-key-file-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/private-key-file.yaml --output json",
+          "raw_path": "raw/private-key-file-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "FN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-private-key-file-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:806336a92294f1bcaf0ff1e8a5cb8bbface0f2892384ec47a774e5eee6cb7e0c",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/private-key-file-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DL4006"
+          ],
+          "reason": "property not addressed by the tool",
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/private-key-file-defect/Dockerfile",
+          "raw_path": "raw/private-key-file-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:private-key"
+          ],
+          "detected_ids": [
+            "SECRET:private-key"
+          ],
+          "observed_ids": [
+            "SECRET:private-key"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/private-key-file-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-private-key-file-defect.tar",
+          "raw_path": "raw/private-key-file-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "private-key-file-clean",
+      "property": "private-key-file",
+      "dockerfile": "cases/private-key-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/private-key-file-clean:rq1",
+        "image_id": "e52295ce7cbf9ade991bf9041134f921f8f316a532f9b0ca3acc36c357959a6b"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "e52295ce7cbf9ade991bf9041134f921f8f316a532f9b0ca3acc36c357959a6b.json",
+        "config_digest": "sha256:e52295ce7cbf9ade991bf9041134f921f8f316a532f9b0ca3acc36c357959a6b",
+        "image_id": "sha256:e52295ce7cbf9ade991bf9041134f921f8f316a532f9b0ca3acc36c357959a6b",
+        "matches_image_id": true,
+        "size_bytes": 8741376
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "FS-06"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/private-key-file-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/private-key-file-clean/conunit.txt --image-source local",
+          "raw_path": "raw/private-key-file-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-private-key-file"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/private-key-file-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/private-key-file.yaml --output json",
+          "raw_path": "raw/private-key-file-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-private-key-file-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:e52295ce7cbf9ade991bf9041134f921f8f316a532f9b0ca3acc36c357959a6b",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/private-key-file-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DL4006"
+          ],
+          "reason": "property not addressed by the tool",
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/private-key-file-clean/Dockerfile",
+          "raw_path": "raw/private-key-file-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:private-key"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/private-key-file-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-private-key-file-clean.tar",
+          "raw_path": "raw/private-key-file-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "package-cache-defect",
+      "property": "package-cache",
+      "dockerfile": "cases/package-cache-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/package-cache-defect:rq1",
+        "image_id": "addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144.json",
+        "config_digest": "sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+        "image_id": "sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+        "matches_image_id": true,
+        "size_bytes": 12715520
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "detected_ids": [
+            "FS-01"
+          ],
+          "observed_ids": [
+            "FS-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/package-cache-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/package-cache-defect/conunit.txt --image-source local",
+          "raw_path": "raw/package-cache-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-package-cache"
+          ],
+          "detected_ids": [
+            "rq1-package-cache"
+          ],
+          "observed_ids": [
+            "rq1-package-cache"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/package-cache-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/package-cache.yaml --output json",
+          "raw_path": "raw/package-cache-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0004"
+          ],
+          "detected_ids": [
+            "DKL-DI-0004"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "DKL-DI-0004"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "DKL-DI-0004": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-package-cache-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:addd4d1d78a6daf205592a34cde2280e5e6350a405c4ac7eac21898a5235d144",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/package-cache-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3019"
+          ],
+          "detected_ids": [
+            "DL3019"
+          ],
+          "observed_ids": [
+            "DL3018",
+            "DL3019"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/package-cache-defect/Dockerfile",
+          "raw_path": "raw/package-cache-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0025"
+          ],
+          "detected_ids": [
+            "DS-0025"
+          ],
+          "observed_ids": [
+            "DS-0025"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/package-cache-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-package-cache-defect.tar",
+          "raw_path": "raw/package-cache-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "package-cache-clean",
+      "property": "package-cache",
+      "dockerfile": "cases/package-cache-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/package-cache-clean:rq1",
+        "image_id": "186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf.json",
+        "config_digest": "sha256:186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf",
+        "image_id": "sha256:186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf",
+        "matches_image_id": true,
+        "size_bytes": 9663488
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/package-cache-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/package-cache-clean/conunit.txt --image-source local",
+          "raw_path": "raw/package-cache-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-package-cache"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/package-cache-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/package-cache.yaml --output json",
+          "raw_path": "raw/package-cache-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0004"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-package-cache-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:186b5d7c24461fa38d4734ac784a9ab8c681d81fca35349f03a25ccf07844daf",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/package-cache-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3019"
+          ],
+          "observed_ids": [
+            "DL3018",
+            "DL3059"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/package-cache-clean/Dockerfile",
+          "raw_path": "raw/package-cache-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0025"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/package-cache-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-package-cache-clean.tar",
+          "raw_path": "raw/package-cache-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "apt-lists-defect",
+      "property": "apt-lists",
+      "dockerfile": "cases/apt-lists-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/apt-lists-defect:rq1",
+        "image_id": "b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4.json",
+        "config_digest": "sha256:b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4",
+        "image_id": "sha256:b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4",
+        "matches_image_id": true,
+        "size_bytes": 151088128
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "detected_ids": [
+            "FS-01"
+          ],
+          "observed_ids": [
+            "FS-01",
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/apt-lists-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/apt-lists-defect/conunit.txt --image-source local",
+          "raw_path": "raw/apt-lists-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-apt-lists"
+          ],
+          "detected_ids": [
+            "rq1-apt-lists"
+          ],
+          "observed_ids": [
+            "rq1-apt-lists"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/apt-lists-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/apt-lists.yaml --output json",
+          "raw_path": "raw/apt-lists-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0005"
+          ],
+          "detected_ids": [
+            "DKL-DI-0005"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008",
+            "DKL-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO",
+            "DKL-DI-0005": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-apt-lists-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:b57ed4b6f70636822a2f58531823373b62a1083a574ac0935a33cecb184632d4",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/apt-lists-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "detected_ids": [
+            "DL3009"
+          ],
+          "observed_ids": [
+            "DL3008",
+            "DL3009"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/apt-lists-defect/Dockerfile",
+          "raw_path": "raw/apt-lists-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/apt-lists-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-apt-lists-defect.tar",
+          "raw_path": "raw/apt-lists-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "apt-lists-clean",
+      "property": "apt-lists",
+      "dockerfile": "cases/apt-lists-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/apt-lists-clean:rq1",
+        "image_id": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96.json",
+        "config_digest": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+        "image_id": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+        "matches_image_id": true,
+        "size_bytes": 129431040
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-01"
+          ],
+          "observed_ids": [
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/apt-lists-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/apt-lists-clean/conunit.txt --image-source local",
+          "raw_path": "raw/apt-lists-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-apt-lists"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/apt-lists-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/apt-lists.yaml --output json",
+          "raw_path": "raw/apt-lists-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0005"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-apt-lists-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/apt-lists-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "observed_ids": [
+            "DL3008"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/apt-lists-clean/Dockerfile",
+          "raw_path": "raw/apt-lists-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/apt-lists-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-apt-lists-clean.tar",
+          "raw_path": "raw/apt-lists-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "shell-form-entrypoint-defect",
+      "property": "shell-form-entrypoint",
+      "dockerfile": "cases/shell-form-entrypoint-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/shell-form-entrypoint-defect:rq1",
+        "image_id": "0eaf1ef11e7e12e8d1f80ee9eb6ca4de4824e4fb73d169c99733f4c0f852bbb4"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "0eaf1ef11e7e12e8d1f80ee9eb6ca4de4824e4fb73d169c99733f4c0f852bbb4.json",
+        "config_digest": "sha256:0eaf1ef11e7e12e8d1f80ee9eb6ca4de4824e4fb73d169c99733f4c0f852bbb4",
+        "image_id": "sha256:0eaf1ef11e7e12e8d1f80ee9eb6ca4de4824e4fb73d169c99733f4c0f852bbb4",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "hygiene",
+          "detect_ids": [
+            "EXEC-03"
+          ],
+          "detected_ids": [
+            "EXEC-03"
+          ],
+          "observed_ids": [
+            "EXEC-03"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/shell-form-entrypoint-defect:rq1 --pack hygiene --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/shell-form-entrypoint-defect/conunit.txt --image-source local",
+          "raw_path": "raw/shell-form-entrypoint-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-shell-form-entrypoint-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:0eaf1ef11e7e12e8d1f80ee9eb6ca4de4824e4fb73d169c99733f4c0f852bbb4",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/shell-form-entrypoint-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3025"
+          ],
+          "detected_ids": [
+            "DL3025"
+          ],
+          "observed_ids": [
+            "DL3025"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-defect/Dockerfile",
+          "raw_path": "raw/shell-form-entrypoint-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-shell-form-entrypoint-defect.tar",
+          "raw_path": "raw/shell-form-entrypoint-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "shell-form-entrypoint-clean",
+      "property": "shell-form-entrypoint",
+      "dockerfile": "cases/shell-form-entrypoint-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/shell-form-entrypoint-clean:rq1",
+        "image_id": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04.json",
+        "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "image_id": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "hygiene",
+          "detect_ids": [
+            "EXEC-03"
+          ],
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/shell-form-entrypoint-clean:rq1 --pack hygiene --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/shell-form-entrypoint-clean/conunit.txt --image-source local",
+          "raw_path": "raw/shell-form-entrypoint-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-shell-form-entrypoint-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/shell-form-entrypoint-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3025"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-clean/Dockerfile",
+          "raw_path": "raw/shell-form-entrypoint-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/shell-form-entrypoint-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-shell-form-entrypoint-clean.tar",
+          "raw_path": "raw/shell-form-entrypoint-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "add-remote-url-defect",
+      "property": "add-remote-url",
+      "dockerfile": "cases/add-remote-url-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/add-remote-url-defect:rq1",
+        "image_id": "91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10.json",
+        "config_digest": "sha256:91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10",
+        "image_id": "sha256:91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10",
+        "matches_image_id": true,
+        "size_bytes": 8752128
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "detected_ids": [
+            "SPEC-07"
+          ],
+          "observed_ids": [
+            "SPEC-07"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/add-remote-url-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/add-remote-url-defect/conunit.txt --image-source local",
+          "raw_path": "raw/add-remote-url-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "detected_ids": [
+            "CIS-DI-0009"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0009"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0009": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-add-remote-url-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:91294d40fd59749a8cd345cb951238fa5b57ef027625f1b68d4484fa8449dc10",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/add-remote-url-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-defect/Dockerfile",
+          "raw_path": "raw/add-remote-url-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "detected_ids": [
+            "DS-0005"
+          ],
+          "observed_ids": [
+            "DS-0005"
+          ],
+          "reason": "property not addressed by the tool, but a watched identifier was reported",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-add-remote-url-defect.tar",
+          "raw_path": "raw/add-remote-url-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "add-remote-url-clean",
+      "property": "add-remote-url",
+      "dockerfile": "cases/add-remote-url-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/add-remote-url-clean:rq1",
+        "image_id": "aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b.json",
+        "config_digest": "sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+        "image_id": "sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+        "matches_image_id": true,
+        "size_bytes": 8740864
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/add-remote-url-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/add-remote-url-clean/conunit.txt --image-source local",
+          "raw_path": "raw/add-remote-url-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-add-remote-url-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/add-remote-url-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-clean/Dockerfile",
+          "raw_path": "raw/add-remote-url-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/add-remote-url-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-add-remote-url-clean.tar",
+          "raw_path": "raw/add-remote-url-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "add-local-file-defect",
+      "property": "add-local-file",
+      "dockerfile": "cases/add-local-file-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/add-local-file-defect:rq1",
+        "image_id": "f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8.json",
+        "config_digest": "sha256:f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8",
+        "image_id": "sha256:f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8",
+        "matches_image_id": true,
+        "size_bytes": 8740864
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "detected_ids": [
+            "SPEC-07"
+          ],
+          "observed_ids": [
+            "SPEC-07"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/add-local-file-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/add-local-file-defect/conunit.txt --image-source local",
+          "raw_path": "raw/add-local-file-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "detected_ids": [
+            "CIS-DI-0009"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0009"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0009": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-add-local-file-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:f63bef16baccbb8a088e3881fe267ea376d9ac98e82068aa67e292101d070dc8",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/add-local-file-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "detected_ids": [
+            "DL3020"
+          ],
+          "observed_ids": [
+            "DL3020"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/add-local-file-defect/Dockerfile",
+          "raw_path": "raw/add-local-file-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "detected_ids": [
+            "DS-0005"
+          ],
+          "observed_ids": [
+            "DS-0005"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/add-local-file-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-add-local-file-defect.tar",
+          "raw_path": "raw/add-local-file-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "add-local-file-clean",
+      "property": "add-local-file",
+      "dockerfile": "cases/add-local-file-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/add-local-file-clean:rq1",
+        "image_id": "aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b.json",
+        "config_digest": "sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+        "image_id": "sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+        "matches_image_id": true,
+        "size_bytes": 8740864
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-07"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/add-local-file-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/add-local-file-clean/conunit.txt --image-source local",
+          "raw_path": "raw/add-local-file-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0009"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-add-local-file-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:aa35081fc9ea0f7d5a94a250af6343bd5080f47d11f4a32550b191235817ad2b",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/add-local-file-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3020"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/add-local-file-clean/Dockerfile",
+          "raw_path": "raw/add-local-file-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0005"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/add-local-file-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-add-local-file-clean.tar",
+          "raw_path": "raw/add-local-file-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "secret-in-env-defect",
+      "property": "secret-in-env",
+      "dockerfile": "cases/secret-in-env-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/secret-in-env-defect:rq1",
+        "image_id": "f27d622d02687babd6848022eea941784805665d2f509fff86cbf93fcb23f661"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "f27d622d02687babd6848022eea941784805665d2f509fff86cbf93fcb23f661.json",
+        "config_digest": "sha256:f27d622d02687babd6848022eea941784805665d2f509fff86cbf93fcb23f661",
+        "image_id": "sha256:f27d622d02687babd6848022eea941784805665d2f509fff86cbf93fcb23f661",
+        "matches_image_id": true,
+        "size_bytes": 8735232
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-03"
+          ],
+          "detected_ids": [
+            "SPEC-03"
+          ],
+          "observed_ids": [
+            "SPEC-03"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/secret-in-env-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/secret-in-env-defect/conunit.txt --image-source local",
+          "raw_path": "raw/secret-in-env-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-secret-in-env"
+          ],
+          "detected_ids": [
+            "rq1-secret-in-env"
+          ],
+          "observed_ids": [
+            "rq1-secret-in-env"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/secret-in-env-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/secret-in-env.yaml --output json",
+          "raw_path": "raw/secret-in-env-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "detected_ids": [
+            "CIS-DI-0010"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0010"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0010": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-secret-in-env-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:f27d622d02687babd6848022eea941784805665d2f509fff86cbf93fcb23f661",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/secret-in-env-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-defect/Dockerfile",
+          "raw_path": "raw/secret-in-env-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:*",
+            "DS-0031"
+          ],
+          "detected_ids": [
+            "DS-0031"
+          ],
+          "observed_ids": [
+            "DS-0031"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-secret-in-env-defect.tar",
+          "raw_path": "raw/secret-in-env-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "secret-in-env-clean",
+      "property": "secret-in-env",
+      "dockerfile": "cases/secret-in-env-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/secret-in-env-clean:rq1",
+        "image_id": "b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c.json",
+        "config_digest": "sha256:b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c",
+        "image_id": "sha256:b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c",
+        "matches_image_id": true,
+        "size_bytes": 8734720
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-03"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/secret-in-env-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/secret-in-env-clean/conunit.txt --image-source local",
+          "raw_path": "raw/secret-in-env-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-secret-in-env"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/secret-in-env-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/secret-in-env.yaml --output json",
+          "raw_path": "raw/secret-in-env-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0010"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-secret-in-env-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:b3e1da1c63f4e838ccda70878ef90e7dcb2657bc8f444e60cb327a2ac125fd2c",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/secret-in-env-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-clean/Dockerfile",
+          "raw_path": "raw/secret-in-env-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "SECRET:*",
+            "DS-0031"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/secret-in-env-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-secret-in-env-clean.tar",
+          "raw_path": "raw/secret-in-env-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "privileged-port-defect",
+      "property": "privileged-port",
+      "dockerfile": "cases/privileged-port-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/privileged-port-defect:rq1",
+        "image_id": "9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7.json",
+        "config_digest": "sha256:9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7",
+        "image_id": "sha256:9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7",
+        "matches_image_id": true,
+        "size_bytes": 8734720
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-05"
+          ],
+          "detected_ids": [
+            "SPEC-05"
+          ],
+          "observed_ids": [
+            "SPEC-05"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/privileged-port-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/privileged-port-defect/conunit.txt --image-source local",
+          "raw_path": "raw/privileged-port-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-privileged-port-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:9128a1e5b23488c68f1565614278cbfb9f16b54955bb8af4f86840882cdd2ce7",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/privileged-port-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3011"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/privileged-port-defect/Dockerfile",
+          "raw_path": "raw/privileged-port-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0004",
+            "DS-0008"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/privileged-port-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-privileged-port-defect.tar",
+          "raw_path": "raw/privileged-port-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "privileged-port-clean",
+      "property": "privileged-port",
+      "dockerfile": "cases/privileged-port-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/privileged-port-clean:rq1",
+        "image_id": "e185dca360e423f5276f729dd559fca10b82ec97c88dace29ddffae45dcd3cdd"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "e185dca360e423f5276f729dd559fca10b82ec97c88dace29ddffae45dcd3cdd.json",
+        "config_digest": "sha256:e185dca360e423f5276f729dd559fca10b82ec97c88dace29ddffae45dcd3cdd",
+        "image_id": "sha256:e185dca360e423f5276f729dd559fca10b82ec97c88dace29ddffae45dcd3cdd",
+        "matches_image_id": true,
+        "size_bytes": 8734720
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "SPEC-05"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/privileged-port-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/privileged-port-clean/conunit.txt --image-source local",
+          "raw_path": "raw/privileged-port-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-privileged-port-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:e185dca360e423f5276f729dd559fca10b82ec97c88dace29ddffae45dcd3cdd",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/privileged-port-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3011"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/privileged-port-clean/Dockerfile",
+          "raw_path": "raw/privileged-port-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DS-0004",
+            "DS-0008"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/privileged-port-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-privileged-port-clean.tar",
+          "raw_path": "raw/privileged-port-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "runtime-needs-capability-defect",
+      "property": "runtime-needs-capability",
+      "dockerfile": "cases/runtime-needs-capability-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/runtime-needs-capability-defect:rq1",
+        "image_id": "9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe.json",
+        "config_digest": "sha256:9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe",
+        "image_id": "sha256:9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe",
+        "matches_image_id": true,
+        "size_bytes": 8735232
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "detected_ids": [
+            "EXEC-02"
+          ],
+          "observed_ids": [
+            "EXEC-01",
+            "EXEC-02",
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/runtime-needs-capability-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/runtime-needs-capability-defect/conunit.txt --image-source local",
+          "raw_path": "raw/runtime-needs-capability-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-runtime-needs-capability-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:9e974731aea21e8e757108eb0382e3aff482cf6ab9332151ee8e47a2206435fe",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/runtime-needs-capability-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-defect/Dockerfile",
+          "raw_path": "raw/runtime-needs-capability-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-runtime-needs-capability-defect.tar",
+          "raw_path": "raw/runtime-needs-capability-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "runtime-needs-capability-clean",
+      "property": "runtime-needs-capability",
+      "dockerfile": "cases/runtime-needs-capability-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/runtime-needs-capability-clean:rq1",
+        "image_id": "300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e.json",
+        "config_digest": "sha256:300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e",
+        "image_id": "sha256:300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e",
+        "matches_image_id": true,
+        "size_bytes": 8735744
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/runtime-needs-capability-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/runtime-needs-capability-clean/conunit.txt --image-source local",
+          "raw_path": "raw/runtime-needs-capability-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-runtime-needs-capability-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:300ba6b9566d9eea0c5832d206ee824dc477ca19cafa980660ffc8b8bd4f9d8e",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/runtime-needs-capability-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-clean/Dockerfile",
+          "raw_path": "raw/runtime-needs-capability-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/runtime-needs-capability-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-runtime-needs-capability-clean.tar",
+          "raw_path": "raw/runtime-needs-capability-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "update-alone-defect",
+      "property": "update-alone",
+      "dockerfile": "cases/update-alone-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/update-alone-defect:rq1",
+        "image_id": "9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d.json",
+        "config_digest": "sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+        "image_id": "sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+        "matches_image_id": true,
+        "size_bytes": 151099904
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-09"
+          ],
+          "detected_ids": [
+            "SPEC-09"
+          ],
+          "observed_ids": [
+            "FS-04",
+            "SPEC-09"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/update-alone-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/update-alone-defect/conunit.txt --image-source local",
+          "raw_path": "raw/update-alone-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0007"
+          ],
+          "detected_ids": [
+            "CIS-DI-0007"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0007",
+            "CIS-DI-0008",
+            "DKL-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0007": "FATAL",
+            "CIS-DI-0008": "INFO",
+            "DKL-DI-0005": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-update-alone-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:9e24d5291ecbb2060106a3a102e3adc8d7e86708f90e1081cfb82e0fa535af3d",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/update-alone-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "detected_ids": [
+            "DL3009"
+          ],
+          "observed_ids": [
+            "DL3008",
+            "DL3009",
+            "DL3059"
+          ],
+          "reason": "property not addressed by the tool, but a watched identifier was reported",
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/update-alone-defect/Dockerfile",
+          "raw_path": "raw/update-alone-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0017"
+          ],
+          "detected_ids": [
+            "DS-0017"
+          ],
+          "observed_ids": [
+            "DS-0017"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/update-alone-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-update-alone-defect.tar",
+          "raw_path": "raw/update-alone-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "update-alone-clean",
+      "property": "update-alone",
+      "dockerfile": "cases/update-alone-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/update-alone-clean:rq1",
+        "image_id": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96.json",
+        "config_digest": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+        "image_id": "sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+        "matches_image_id": true,
+        "size_bytes": 129431040
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-09"
+          ],
+          "observed_ids": [
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/update-alone-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/update-alone-clean/conunit.txt --image-source local",
+          "raw_path": "raw/update-alone-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "CIS-DI-0007"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-update-alone-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:da9758c4ab4dab58f44417a9b33d85f9c4721c3283a4a2f461cedf3006faab96",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/update-alone-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "detect_ids": [
+            "DL3009"
+          ],
+          "observed_ids": [
+            "DL3008"
+          ],
+          "reason": "property not addressed by the tool",
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean/Dockerfile",
+          "raw_path": "raw/update-alone-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0017"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/update-alone-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-update-alone-clean.tar",
+          "raw_path": "raw/update-alone-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "sudo-usage-defect",
+      "property": "sudo-usage",
+      "dockerfile": "cases/sudo-usage-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/sudo-usage-defect:rq1",
+        "image_id": "228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02.json",
+        "config_digest": "sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+        "image_id": "sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+        "matches_image_id": true,
+        "size_bytes": 10584576
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-10"
+          ],
+          "detected_ids": [
+            "SPEC-10"
+          ],
+          "observed_ids": [
+            "FS-04",
+            "SPEC-10"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/sudo-usage-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/sudo-usage-defect/conunit.txt --image-source local",
+          "raw_path": "raw/sudo-usage-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0001"
+          ],
+          "detected_ids": [
+            "DKL-DI-0001"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008",
+            "DKL-DI-0001"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO",
+            "DKL-DI-0001": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-sudo-usage-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:228b337be65bdc1d897d2dbd8ff17dfb5188cdfbc96b39e068d882ebc01f3e02",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/sudo-usage-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3004"
+          ],
+          "detected_ids": [
+            "DL3004"
+          ],
+          "observed_ids": [
+            "DL3004",
+            "DL3018"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-defect/Dockerfile",
+          "raw_path": "raw/sudo-usage-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0010"
+          ],
+          "detected_ids": [
+            "DS-0010"
+          ],
+          "observed_ids": [
+            "DS-0010"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-sudo-usage-defect.tar",
+          "raw_path": "raw/sudo-usage-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "sudo-usage-clean",
+      "property": "sudo-usage",
+      "dockerfile": "cases/sudo-usage-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/sudo-usage-clean:rq1",
+        "image_id": "373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515.json",
+        "config_digest": "sha256:373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515",
+        "image_id": "sha256:373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515",
+        "matches_image_id": true,
+        "size_bytes": 8740864
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "SPEC-10"
+          ],
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/sudo-usage-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/sudo-usage-clean/conunit.txt --image-source local",
+          "raw_path": "raw/sudo-usage-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-DI-0001"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-sudo-usage-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:373eec7303574cbe887d56fbd02c453057bc24453d4033a48d236d84ff9b7515",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/sudo-usage-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DL3004"
+          ],
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-clean/Dockerfile",
+          "raw_path": "raw/sudo-usage-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DS-0010"
+          ],
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/sudo-usage-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-sudo-usage-clean.tar",
+          "raw_path": "raw/sudo-usage-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "non-unique-uid-defect",
+      "property": "non-unique-uid",
+      "dockerfile": "cases/non-unique-uid-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/non-unique-uid-defect:rq1",
+        "image_id": "77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a.json",
+        "config_digest": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+        "image_id": "sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+        "matches_image_id": true,
+        "size_bytes": 124159488
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-10"
+          ],
+          "detected_ids": [
+            "FS-10"
+          ],
+          "observed_ids": [
+            "FS-04",
+            "FS-10"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/non-unique-uid-defect:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/non-unique-uid-defect/conunit.txt --image-source local",
+          "raw_path": "raw/non-unique-uid-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "detected_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "observed_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "exit_code": 1,
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/non-unique-uid-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/non-unique-uid.yaml --output json",
+          "raw_path": "raw/non-unique-uid-defect/cst.txt"
+        },
+        "dockle": {
+          "class": "TP",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-LI-0002"
+          ],
+          "detected_ids": [
+            "DKL-LI-0002"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008",
+            "DKL-LI-0002"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO",
+            "DKL-LI-0002": "FATAL"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-non-unique-uid-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:77042815ecf29b46422e7eeda3a8417a7285508b26108497f9e4e38c141e6f2a",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/non-unique-uid-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-defect/Dockerfile",
+          "raw_path": "raw/non-unique-uid-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-non-unique-uid-defect.tar",
+          "raw_path": "raw/non-unique-uid-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "non-unique-uid-clean",
+      "property": "non-unique-uid",
+      "dockerfile": "cases/non-unique-uid-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/non-unique-uid-clean:rq1",
+        "image_id": "c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede.json",
+        "config_digest": "sha256:c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede",
+        "image_id": "sha256:c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede",
+        "matches_image_id": true,
+        "size_bytes": 124157952
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "lint",
+          "detect_ids": [
+            "FS-10"
+          ],
+          "observed_ids": [
+            "FS-04"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/non-unique-uid-clean:rq1 --pack lint --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/non-unique-uid-clean/conunit.txt --image-source local",
+          "raw_path": "raw/non-unique-uid-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "rq1-non-unique-uid"
+          ],
+          "command": "/usr/local/bin/container-structure-test test --image localhost/conunit-rq1/non-unique-uid-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/non-unique-uid.yaml --output json",
+          "raw_path": "raw/non-unique-uid-clean/cst.txt"
+        },
+        "dockle": {
+          "class": "TN",
+          "in_scope": true,
+          "detect_ids": [
+            "DKL-LI-0002"
+          ],
+          "observed_ids": [
+            "CIS-DI-0005",
+            "CIS-DI-0008"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO",
+            "CIS-DI-0008": "INFO"
+          },
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-non-unique-uid-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:c150ae6b31e46a53d0eb6593c2a4912a53ff88546af026b3567ff216cee01ede",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/non-unique-uid-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-clean/Dockerfile",
+          "raw_path": "raw/non-unique-uid-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/non-unique-uid-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-non-unique-uid-clean.tar",
+          "raw_path": "raw/non-unique-uid-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "needs-setuid-setgid-defect",
+      "property": "needs-setuid-setgid",
+      "dockerfile": "cases/needs-setuid-setgid-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/needs-setuid-setgid-defect:rq1",
+        "image_id": "c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89.json",
+        "config_digest": "sha256:c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89",
+        "image_id": "sha256:c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "detected_ids": [
+            "EXEC-02"
+          ],
+          "observed_ids": [
+            "EXEC-02",
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/needs-setuid-setgid-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/needs-setuid-setgid-defect/conunit.txt --image-source local",
+          "raw_path": "raw/needs-setuid-setgid-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-needs-setuid-setgid-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:c147d01ba1b7b2485b8b394ca287b9ddf1a1cc3220cbfa91c05f16062b007f89",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/needs-setuid-setgid-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-defect/Dockerfile",
+          "raw_path": "raw/needs-setuid-setgid-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-needs-setuid-setgid-defect.tar",
+          "raw_path": "raw/needs-setuid-setgid-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "needs-setuid-setgid-clean",
+      "property": "needs-setuid-setgid",
+      "dockerfile": "cases/needs-setuid-setgid-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/needs-setuid-setgid-clean:rq1",
+        "image_id": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04.json",
+        "config_digest": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "image_id": "sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+        "matches_image_id": true,
+        "size_bytes": 8734208
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/needs-setuid-setgid-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/needs-setuid-setgid-clean/conunit.txt --image-source local",
+          "raw_path": "raw/needs-setuid-setgid-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-needs-setuid-setgid-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:4a25cdfdfe2a804fa482d1a59d591673910afc927b612ceb96ba783723090f04",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/needs-setuid-setgid-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-clean/Dockerfile",
+          "raw_path": "raw/needs-setuid-setgid-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/needs-setuid-setgid-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-needs-setuid-setgid-clean.tar",
+          "raw_path": "raw/needs-setuid-setgid-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "writes-outside-tmp-defect",
+      "property": "writes-outside-tmp",
+      "dockerfile": "cases/writes-outside-tmp-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/writes-outside-tmp-defect:rq1",
+        "image_id": "712ee66552d5936aea22f3186b1836b75bdf13635d0531b2f652cf0cb373682d"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "712ee66552d5936aea22f3186b1836b75bdf13635d0531b2f652cf0cb373682d.json",
+        "config_digest": "sha256:712ee66552d5936aea22f3186b1836b75bdf13635d0531b2f652cf0cb373682d",
+        "image_id": "sha256:712ee66552d5936aea22f3186b1836b75bdf13635d0531b2f652cf0cb373682d",
+        "matches_image_id": true,
+        "size_bytes": 8719872
+      },
+      "tools": {
+        "conunit": {
+          "class": "TP",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-01"
+          ],
+          "detected_ids": [
+            "EXEC-01"
+          ],
+          "observed_ids": [
+            "EXEC-01",
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/writes-outside-tmp-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/writes-outside-tmp-defect/conunit.txt --image-source local",
+          "raw_path": "raw/writes-outside-tmp-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-writes-outside-tmp-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:712ee66552d5936aea22f3186b1836b75bdf13635d0531b2f652cf0cb373682d",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/writes-outside-tmp-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-defect/Dockerfile",
+          "raw_path": "raw/writes-outside-tmp-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-writes-outside-tmp-defect.tar",
+          "raw_path": "raw/writes-outside-tmp-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "writes-outside-tmp-clean",
+      "property": "writes-outside-tmp",
+      "dockerfile": "cases/writes-outside-tmp-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/writes-outside-tmp-clean:rq1",
+        "image_id": "2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a.json",
+        "config_digest": "sha256:2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a",
+        "image_id": "sha256:2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a",
+        "matches_image_id": true,
+        "size_bytes": 8719872
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-01"
+          ],
+          "observed_ids": [
+            "SPEC-01"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/writes-outside-tmp-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/writes-outside-tmp-clean/conunit.txt --image-source local",
+          "raw_path": "raw/writes-outside-tmp-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0001",
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0001": "WARN",
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-writes-outside-tmp-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:2ad2b2060209c7cf1950f2fe6ac4f5e381a993d85fc34942d4ec8bba21fcb64a",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/writes-outside-tmp-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-clean/Dockerfile",
+          "raw_path": "raw/writes-outside-tmp-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "DS-0002"
+          ],
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/writes-outside-tmp-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-writes-outside-tmp-clean.tar",
+          "raw_path": "raw/writes-outside-tmp-clean/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "nonroot-privileged-port-defect",
+      "property": "nonroot-privileged-port",
+      "dockerfile": "cases/nonroot-privileged-port-defect/Dockerfile",
+      "defect_present": true,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/nonroot-privileged-port-defect:rq1",
+        "image_id": "12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3.json",
+        "config_digest": "sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+        "image_id": "sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+        "matches_image_id": true,
+        "size_bytes": 8734720
+      },
+      "tools": {
+        "conunit": {
+          "class": "UNVERIFIED",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "reason": "expected checks [EXEC-02] ended UNVERIFIED",
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/nonroot-privileged-port-defect:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/nonroot-privileged-port-defect/conunit.txt --image-source local",
+          "raw_path": "raw/nonroot-privileged-port-defect/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-nonroot-privileged-port-defect.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:12148504982b4239741712e1f077380d4c706e3d2e2612736e505d2360f515b3",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/nonroot-privileged-port-defect/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-defect/Dockerfile",
+          "raw_path": "raw/nonroot-privileged-port-defect/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-defect ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-nonroot-privileged-port-defect.tar",
+          "raw_path": "raw/nonroot-privileged-port-defect/trivy.txt"
+        }
+      }
+    },
+    {
+      "id": "nonroot-privileged-port-clean",
+      "property": "nonroot-privileged-port",
+      "dockerfile": "cases/nonroot-privileged-port-clean/Dockerfile",
+      "defect_present": false,
+      "build": {
+        "status": "built",
+        "image": "localhost/conunit-rq1/nonroot-privileged-port-clean:rq1",
+        "image_id": "528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6"
+      },
+      "archive": {
+        "format": "docker-archive",
+        "config_name": "528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6.json",
+        "config_digest": "sha256:528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6",
+        "image_id": "sha256:528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6",
+        "matches_image_id": true,
+        "size_bytes": 8734720
+      },
+      "tools": {
+        "conunit": {
+          "class": "TN",
+          "in_scope": true,
+          "pack": "cis",
+          "detect_ids": [
+            "EXEC-02"
+          ],
+          "exit_code": 1,
+          "command": "/opt/con-unit/src/bin/con-unit test localhost/conunit-rq1/nonroot-privileged-port-clean:rq1 --pack cis --format json --output /opt/con-unit/results/eval-v1-a/rq1/raw/nonroot-privileged-port-clean/conunit.txt --image-source local",
+          "raw_path": "raw/nonroot-privileged-port-clean/conunit.txt"
+        },
+        "cst": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool"
+        },
+        "dockle": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "observed_ids": [
+            "CIS-DI-0005"
+          ],
+          "observed_levels": {
+            "CIS-DI-0005": "INFO"
+          },
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/dockle --input /tmp/rq1-225601-nonroot-privileged-port-clean.tar --format json --exit-code 0",
+          "notes": [
+            "working directory was an empty temporary directory, so no .dockleignore applied",
+            "config digest of the archive sha256:528b9fb1d1fc9f7bd4980fdbc317ffc1f9cbbe97ba314f1c102c53679b3211e6",
+            "checkpoint DKL-DI-0006 is evaluated only for an image name, so it cannot report for --input",
+            "no DOCKLE_ variable was set in the environment"
+          ],
+          "raw_path": "raw/nonroot-privileged-port-clean/dockle.txt"
+        },
+        "hadolint": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/hadolint --no-color --format json /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-clean/Dockerfile",
+          "raw_path": "raw/nonroot-privileged-port-clean/hadolint.txt"
+        },
+        "trivy": {
+          "class": "OUT_OF_SCOPE",
+          "in_scope": false,
+          "reason": "property not addressed by the tool",
+          "command": "/usr/local/bin/trivy config --format json --quiet --skip-check-update /opt/con-unit/src/fixtures/rq1/cases/nonroot-privileged-port-clean ; /usr/local/bin/trivy image --format json --quiet --skip-check-update --scanners secret --image-config-scanners misconfig,secret --input /tmp/rq1-225601-nonroot-privileged-port-clean.tar",
+          "raw_path": "raw/nonroot-privileged-port-clean/trivy.txt"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "conunit": {
+      "status": "RAN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 0,
+        "OUT_OF_SCOPE": 0,
+        "TN": 19,
+        "TOOL_ERROR": 0,
+        "TP": 19,
+        "UNVERIFIED": 1
+      },
+      "recall": {
+        "numerator": 19,
+        "denominator": 19,
+        "value": 1
+      },
+      "precision": {
+        "numerator": 19,
+        "denominator": 19,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 19,
+        "value": 0
+      },
+      "out_of_scope_flagged": 0
+    },
+    "cst": {
+      "status": "RAN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 0,
+        "OUT_OF_SCOPE": 22,
+        "TN": 8,
+        "TOOL_ERROR": 0,
+        "TP": 9,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 9,
+        "denominator": 9,
+        "value": 1
+      },
+      "precision": {
+        "numerator": 9,
+        "denominator": 9,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 8,
+        "value": 0
+      },
+      "out_of_scope_flagged": 0
+    },
+    "dockle": {
+      "status": "RAN",
+      "counts": {
+        "FN": 1,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 0,
+        "OUT_OF_SCOPE": 14,
+        "TN": 12,
+        "TOOL_ERROR": 0,
+        "TP": 12,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 12,
+        "denominator": 13,
+        "value": 0.9230769230769231
+      },
+      "precision": {
+        "numerator": 12,
+        "denominator": 12,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 12,
+        "value": 0
+      },
+      "out_of_scope_flagged": 0
+    },
+    "hadolint": {
+      "status": "RAN",
+      "counts": {
+        "FN": 1,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 0,
+        "OUT_OF_SCOPE": 24,
+        "TN": 7,
+        "TOOL_ERROR": 0,
+        "TP": 7,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 7,
+        "denominator": 8,
+        "value": 0.875
+      },
+      "precision": {
+        "numerator": 7,
+        "denominator": 7,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 7,
+        "value": 0
+      },
+      "out_of_scope_flagged": 1
+    },
+    "trivy": {
+      "status": "RAN",
+      "counts": {
+        "FN": 0,
+        "FP": 0,
+        "NOT_EVALUATED": 0,
+        "NOT_RUN": 0,
+        "OUT_OF_SCOPE": 22,
+        "TN": 8,
+        "TOOL_ERROR": 0,
+        "TP": 9,
+        "UNVERIFIED": 0
+      },
+      "recall": {
+        "numerator": 9,
+        "denominator": 9,
+        "value": 1
+      },
+      "precision": {
+        "numerator": 9,
+        "denominator": 9,
+        "value": 1
+      },
+      "false_positive_rate": {
+        "numerator": 0,
+        "denominator": 8,
+        "value": 0
+      },
+      "out_of_scope_flagged": 1
+    }
+  }
+}

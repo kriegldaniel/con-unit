@@ -1,0 +1,4 @@
+$ /usr/bin/podman build --format docker -t localhost/conunit-rq1/add-local-file-clean:rq1 -f /opt/con-unit/src/fixtures/rq1/cases/add-local-file-clean/Dockerfile /opt/con-unit/src/fixtures/rq1/cases/add-local-file-clean
+exit: 0
+--- stderr ---
+

@@ -1,0 +1,233 @@
+{
+  "schema": "conunit-remote-status/1",
+  "run_id": "eval-v1-b",
+  "commit": "2f5d90257717d3977b84ac68b8ef9af2a0876fe1",
+  "tag": "eval-v1",
+  "bundle_kind": "tag",
+  "tainted": false,
+  "mode": "rootful",
+  "stages_requested": [
+    "eval",
+    "export",
+    "attribute",
+    "ablate",
+    "reliability"
+  ],
+  "dataset": "fixtures/evaluation_dataset_pinned.txt",
+  "rq3_dataset": "fixtures/evaluation_dataset_top10_pinned.txt",
+  "canary": 0,
+  "platform": "linux/amd64",
+  "engine": "podman",
+  "image_source_policy": "auto",
+  "probe_window": "3s",
+  "pack": "cis",
+  "docker_hub_blocked": true,
+  "registry_remap": "docker.io/library -> public.ecr.aws/docker/library",
+  "rq1_cases": 0,
+  "tools_lock_sha256": "5e6df411700e6a2ff7dcdda2633fddfd5ed390f35a3b4d9c26b7122c03048737",
+  "started_at": "2026-11-15T23:23:43Z",
+  "finished_at": "2026-11-16T00:33:15Z",
+  "result": "complete",
+  "exit_code": 0,
+  "error": null,
+  "stages": {
+    "host": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:23:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:23:43Z"
+    },
+    "bundle": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:23:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:23:43Z"
+    },
+    "go": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:23:43Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:23:45Z"
+    },
+    "packages": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:23:45Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "tools": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "registry": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "docker_hub_block": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "mode": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "datasets": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:01Z"
+    },
+    "mirror_proof": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:01Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:02Z"
+    },
+    "host_info": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:03Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:04Z"
+    },
+    "build": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:04Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:24:18Z"
+    },
+    "eval": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:24:18Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:56:23Z"
+    },
+    "run_block_check": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:56:23Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:56:23Z"
+    },
+    "export": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:56:23Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-15T23:56:23Z"
+    },
+    "attribute": {
+      "state": "ok",
+      "started_at": "2026-11-15T23:56:23Z",
+      "seeded": {
+        "state": "built",
+        "truth_run_exit_code": 0
+      },
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:13:18Z",
+      "outputs": {
+        "dir": "attribution",
+        "files": 19,
+        "listing_sha256": "9a4fc5feca106568b7bc1c0dc3fe2fd3e5a649e796b7c988a87ab244da3ca399"
+      }
+    },
+    "ablate": {
+      "state": "ok",
+      "started_at": "2026-11-16T00:13:18Z",
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:14:58Z",
+      "outputs": {
+        "dir": "attribution",
+        "files": 20,
+        "listing_sha256": "3f34ff78267c86c2fd8d36fc3b8692029079762500fa218167a4bfb53c726eb3"
+      }
+    },
+    "reliability": {
+      "state": "ok",
+      "started_at": "2026-11-16T00:14:58Z",
+      "runs": {
+        "r1": {
+          "window": "3s",
+          "exit_code": 0
+        },
+        "r2": {
+          "window": "3s",
+          "exit_code": 0
+        },
+        "r3": {
+          "window": "3s",
+          "exit_code": 0
+        },
+        "w10": {
+          "window": "10s",
+          "exit_code": 0
+        },
+        "w30": {
+          "window": "30s",
+          "exit_code": 0
+        }
+      },
+      "exit_code": 0,
+      "finished_at": "2026-11-16T00:33:15Z",
+      "outputs": {
+        "dir": "reliability",
+        "files": 74,
+        "listing_sha256": "87b2853173b3ecf082b505b42bbe29e49a1823703bb8f8f70b2cb44a6456de3f"
+      }
+    }
+  },
+  "external_tools": {
+    "schema": "conunit-tool-versions/1",
+    "lock_file": "tools.lock",
+    "lock_sha256": null,
+    "locked": {},
+    "tools": {}
+  },
+  "dataset_used": {
+    "path": "fixtures/evaluation_dataset_pinned.txt",
+    "sha256": "a4d670b0e2c69b21207ba5406ec12482dd8dbf9fae5789e75e46e386b8fef894",
+    "entries": 100
+  },
+  "rq3_dataset_used": {
+    "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+    "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+    "entries": 10
+  },
+  "reliability_dataset_used": {
+    "path": "fixtures/evaluation_dataset_top10_pinned.txt",
+    "sha256": "61d23c7e522abe10469322ca6a803eafea23dffef7552167d8cea10ee0137ea0",
+    "entries": 10
+  },
+  "mirror_proof": {
+    "proof_image": "index.docker.io/library/busybox@sha256:7aa3d3c53cc1ed823c6a5967ebaac87700a5b0766af45ff599dbca3506c8b072",
+    "public_ecr_in_debug_log": true,
+    "docker_hub_in_debug_log": false,
+    "log": "host/mirror_proof_pull.log"
+  },
+  "tool_versions": {
+    "go": "go version go1.26.10 linux/amd64",
+    "podman": "podman version 4.9.3",
+    "crun": "crun version 1.14.1",
+    "conmon": "conmon version 2.1.10",
+    "netavark": "1.4.0-4",
+    "kernel": "7.0.0-1014-aws",
+    "podman_rootless": "false",
+    "cgroups": "v2",
+    "oci_runtime": "crun crun version 1.14.1",
+    "storage_driver": "overlay",
+    "engine_mode": "rootful",
+    "syft": "absent"
+  },
+  "imds": {
+    "instance_id": "i-03292ea470dd3a03f",
+    "instance_type": "c6i.2xlarge",
+    "ami_id": "ami-04bbcae8eccec8bce",
+    "availability_zone": "eu-central-1a",
+    "region": "eu-central-1"
+  }
+}

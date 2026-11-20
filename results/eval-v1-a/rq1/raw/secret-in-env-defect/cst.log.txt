@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/secret-in-env-defect:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/secret-in-env.yaml --output json
+exit: 1
+--- stderr ---
+time="2026-11-16T00:17:17Z" level=fatal msg=FAIL

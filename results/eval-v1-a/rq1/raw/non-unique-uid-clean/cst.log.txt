@@ -1,0 +1,4 @@
+$ /usr/local/bin/container-structure-test test --image localhost/conunit-rq1/non-unique-uid-clean:rq1 --config /opt/con-unit/src/fixtures/rq1/cst/non-unique-uid.yaml --output json
+exit: 0
+--- stderr ---
+
