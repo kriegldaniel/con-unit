@@ -1,0 +1,197 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:05.200
+This is a digest-pinned nginx image, tested as built.
+
+2
+00:00:05.400 --> 00:00:11.600
+A static check reads what the image declares. SPEC-01 reports: Image runs as root user (configured user: '').
+
+3
+00:00:12.200 --> 00:00:24.000
+It runs as root. Would it still start if an operator dropped every capability?
+
+4
+00:00:25.600 --> 00:00:30.000
+Tier 3 starts the image again under one restriction at a time.
+
+5
+00:00:30.400 --> 00:00:37.400
+With a read-only root filesystem and a writable /tmp, the container exited with code 1.
+
+6
+00:00:37.700 --> 00:00:42.000
+The last log line is a mkdir error: Read-only file system.
+
+7
+00:00:42.200 --> 00:00:49.000
+Three suspects: the image, the restriction, the test setup.
+
+8
+00:00:49.600 --> 00:00:54.400
+A dead container alone does not say which.
+
+9
+00:00:56.000 --> 00:00:59.400
+The baseline runs first, with defensive flags only. It is still running at W.
+
+10
+00:00:59.600 --> 00:01:03.000
+Because it was running, the treatment is judged.
+
+11
+00:01:03.200 --> 00:01:07.000
+The restricted run exited. The result is FAIL.
+
+12
+00:01:07.200 --> 00:01:11.800
+It did not survive W although the baseline did. That is not a defect claim and not a root cause.
+
+13
+00:01:13.000 --> 00:01:18.000
+The alpine baseline exited with code 0 before W. There is no long-running process to observe.
+
+14
+00:01:18.200 --> 00:01:21.600
+The treatment is not judged. The result is UNVERIFIED with reason NOT_OBSERVABLE.
+
+15
+00:01:21.800 --> 00:01:23.800
+No verdict is better than a guess.
+
+16
+00:01:25.000 --> 00:01:29.500
+The haproxy baseline did not stay running. It exited with a non-zero code.
+
+17
+00:01:29.700 --> 00:01:34.600
+The result is UNVERIFIED with reason BASELINE_FAILED. The log says the configuration file is missing.
+
+18
+00:01:35.800 --> 00:01:41.800
+The console report groups the checks of one image by outcome.
+
+19
+00:01:42.200 --> 00:01:46.800
+PASS, FAIL and UNVERIFIED are different outcomes.
+
+20
+00:01:47.400 --> 00:01:55.600
+Each FAIL lists its message and a next step. For Tier 3, the message says what the container did.
+
+21
+00:01:57.000 --> 00:02:01.600
+UNVERIFIED carries a reason from a closed set. Here SUP-02 has NO_TRUST_POLICY.
+
+22
+00:02:01.800 --> 00:02:06.200
+SUP-02 is a Tier 4 check. Tier 4 is an interface only and is not part of the evaluation.
+
+23
+00:02:06.400 --> 00:02:09.800
+An UNVERIFIED result is never counted as a pass.
+
+24
+00:02:10.600 --> 00:02:15.800
+Attribution is done by the evaluation tool tools/attribute_exec, not by con-unit test in version 0.3.0.
+
+25
+00:02:16.000 --> 00:02:21.600
+The baseline runs and the treatment exits. Then each candidate path is made writable, one at a time.
+
+26
+00:02:21.800 --> 00:02:29.800
+Making /var/cache writable restores liveness at W. The union of all candidates does too.
+
+27
+00:02:30.200 --> 00:02:34.600
+The recorded status is RESOLVED_SINGLE. It is a lead for a recipe, not a proof.
+
+28
+00:02:35.800 --> 00:02:39.200
+The same steps for the capability restriction. Dropping all capabilities makes the run exit.
+
+29
+00:02:39.500 --> 00:02:45.800
+No single capability restores the run, but all candidates together do.
+
+30
+00:02:46.400 --> 00:02:52.000
+Then capabilities are removed from the set one at a time, and the run is checked after each removal.
+
+31
+00:02:52.800 --> 00:02:56.400
+The minimal set that restores liveness at W: CAP_CHOWN, CAP_NET_BIND_SERVICE.
+
+32
+00:02:56.600 --> 00:02:59.600
+It is a lead for a recipe, not a proof.
+
+33
+00:03:00.600 --> 00:03:04.000
+ConUnit runs where tests run. One command tests an image.
+
+34
+00:03:04.200 --> 00:03:08.000
+This live run used rootless Podman 5.8.1, arm64, not the evaluation setup.
+
+35
+00:03:08.100 --> 00:03:11.000
+The exit code is 1 when a result is FAIL or UNVERIFIED.
+
+36
+00:03:11.400 --> 00:03:17.600
+In the JUnit file, an UNVERIFIED result is a skipped testcase and a FAIL is a failure.
+
+37
+00:03:18.200 --> 00:03:24.600
+Go tests can call the same checks. This example from the repository compiles as recorded.
+
+38
+00:03:26.150 --> 00:03:29.350
+Running at W is a liveness proxy, not proof that a service works.
+
+39
+00:03:29.650 --> 00:03:32.850
+Attribution is done by the evaluation tool tools/attribute_exec, not by con-unit test.
+
+40
+00:03:33.150 --> 00:03:36.350
+Tiers 1 and 2 overlap with linters like Dockle and the Anchore CIS pack.
+
+41
+00:03:36.650 --> 00:03:39.850
+Tier 4 is an interface only and is not part of the evaluation.
+
+42
+00:03:40.150 --> 00:03:43.350
+The profile is informed by CIS topics. It is not a CIS compliance assessment.
+
+43
+00:03:43.650 --> 00:03:46.850
+Tier 3 starts the image with its own entrypoint. Use a disposable host.
+
+44
+00:03:47.150 --> 00:03:50.350
+A baseline that fails or exits early gives UNVERIFIED, not a guess.
+
+45
+00:03:50.650 --> 00:03:52.600
+Evaluated so far on rootful Podman 4.9.3, linux/amd64.
+
+46
+00:03:52.700 --> 00:03:54.750
+Research prototype. Evaluation results are not repeated here.
+
+47
+00:03:55.600 --> 00:04:01.000
+The quick start from the README: run the unit tests, build the binary, test one image.
+
+48
+00:04:02.200 --> 00:04:07.200
+ConUnit 0.3.0 is a research prototype under the MIT license.
+
+49
+00:04:07.800 --> 00:04:14.000
+The repository link will be added after publication.

@@ -1,0 +1,1 @@
+function e(e,t,n,r){return e===(r===`horizontal`?`ArrowLeft`:`ArrowUp`)?(t-1+n)%n:e===(r===`horizontal`?`ArrowRight`:`ArrowDown`)?(t+1)%n:e===`Home`?0:e===`End`?n-1:null}export{e as t};

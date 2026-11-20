@@ -1,0 +1,1 @@
+import{y as e}from"./client.B45M81cz.js";import{t}from"./prefs.CeYISTkZ.js";var n={theme:`light`,motion:`reduce`,grid:!0,sound:!1,themeFromSystem:!0,motionFromSystem:!0},r=typeof window<`u`;function i(){if(!r)return{value:n};let i=t(),a=e(e=>{let t=!0;return i.subscribe(()=>{t?t=!1:e()})});return{get value(){return a(),i.get()}}}export{i as t};

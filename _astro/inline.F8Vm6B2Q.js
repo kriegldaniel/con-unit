@@ -1,0 +1,1 @@
+var e=/`([^`]+)`|\b([A-Z]{2,}(?:_[A-Z]{2,})+)\b/g;function t(t){let n=[],r=0;for(let i of t.matchAll(e)){let e=i.index??0;e>r&&n.push({code:!1,text:t.slice(r,e)}),n.push({code:!0,text:i[1]??i[2]??``}),r=e+i[0].length}return r<t.length&&n.push({code:!1,text:t.slice(r)}),n}export{t};
